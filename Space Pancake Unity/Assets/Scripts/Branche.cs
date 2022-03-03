@@ -36,8 +36,6 @@ public class Branche : MonoBehaviour
     {
         if (canJump & Input.GetKeyDown(serpe) & useSerpe == false) 
         {
-            characterControler.timerJump = 15f;  // Pour pas que la courbe de saut reprenne
-            
             Vector2 posChara = character.transform.position;
             direction = new Vector2(Mathf.Abs(posBranche.x) - Mathf.Abs(posChara.x), Mathf.Abs(posBranche.y) - Mathf.Abs(posChara.y));
             useSerpe = true;
@@ -47,7 +45,7 @@ public class Branche : MonoBehaviour
             
             StartCoroutine(cameraShake.Shake(duration, magnitude));
         }
-
+        
         if (dureeNoAirControl > timerAirControl & useSerpe == true)
         {
             timerAirControl += Time.deltaTime;

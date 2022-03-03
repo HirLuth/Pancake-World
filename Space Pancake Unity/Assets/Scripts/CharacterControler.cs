@@ -99,7 +99,11 @@ public class CharacterControler : MonoBehaviour
             timerGhostJump = 0;
         }
 
-
+        if (branche.useSerpe)
+        {
+            timerJump = 0;
+            jumping = false;
+        }
 
         if(branche.useSerpe == false)
         {
@@ -231,7 +235,7 @@ public class CharacterControler : MonoBehaviour
             // Si le joueur avance normalement sans faire de demi-tour
             else
             {
-                if (rb.velocity.x > 0)
+                if (rb.velocity.x > 0 || dir.x > 0.1f)
                 {
                     rb.velocity = new Vector2(Mathf.Sign(dir.x) * runSpeed * acceleration.Evaluate(progression), rb.velocity.y);
                 }
