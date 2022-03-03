@@ -1,0 +1,119 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &5704804759852541118
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 9125500080524808497, guid: 24c1fafcee992ed4eb20cfd810af9cf5, type: 3}
+      propertyPath: m_Name
+      value: Personnage Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 9125500080524808501, guid: 24c1fafcee992ed4eb20cfd810af9cf5, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9125500080524808501, guid: 24c1fafcee992ed4eb20cfd810af9cf5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -7.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 9125500080524808501, guid: 24c1fafcee992ed4eb20cfd810af9cf5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 9125500080524808501, guid: 24c1fafcee992ed4eb20cfd810af9cf5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9125500080524808501, guid: 24c1fafcee992ed4eb20cfd810af9cf5, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9125500080524808501, guid: 24c1fafcee992ed4eb20cfd810af9cf5, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9125500080524808501, guid: 24c1fafcee992ed4eb20cfd810af9cf5, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9125500080524808501, guid: 24c1fafcee992ed4eb20cfd810af9cf5, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9125500080524808501, guid: 24c1fafcee992ed4eb20cfd810af9cf5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9125500080524808501, guid: 24c1fafcee992ed4eb20cfd810af9cf5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9125500080524808501, guid: 24c1fafcee992ed4eb20cfd810af9cf5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9125500080524808502, guid: 24c1fafcee992ed4eb20cfd810af9cf5, type: 3}
+      propertyPath: branche
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 9125500080524808502, guid: 24c1fafcee992ed4eb20cfd810af9cf5, type: 3}
+      propertyPath: airSpeed
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9125500080524808502, guid: 24c1fafcee992ed4eb20cfd810af9cf5, type: 3}
+      propertyPath: dureeSaut
+      value: 1.28
+      objectReference: {fileID: 0}
+    - target: {fileID: 9125500080524808502, guid: 24c1fafcee992ed4eb20cfd810af9cf5, type: 3}
+      propertyPath: jumpForce
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 9125500080524808502, guid: 24c1fafcee992ed4eb20cfd810af9cf5, type: 3}
+      propertyPath: detectionSol
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9125500080524808502, guid: 24c1fafcee992ed4eb20cfd810af9cf5, type: 3}
+      propertyPath: vitesseMontee
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9125500080524808502, guid: 24c1fafcee992ed4eb20cfd810af9cf5, type: 3}
+      propertyPath: vitesseMonteeRapide
+      value: 5.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9125500080524808502, guid: 24c1fafcee992ed4eb20cfd810af9cf5, type: 3}
+      propertyPath: monteeDescente.m_Curve.Array.data[3].time
+      value: 0.93205523
+      objectReference: {fileID: 0}
+    - target: {fileID: 9125500080524808502, guid: 24c1fafcee992ed4eb20cfd810af9cf5, type: 3}
+      propertyPath: monteeDescente.m_Curve.Array.data[4].time
+      value: 1.1102341
+      objectReference: {fileID: 0}
+    - target: {fileID: 9125500080524808502, guid: 24c1fafcee992ed4eb20cfd810af9cf5, type: 3}
+      propertyPath: monteeDescente.m_Curve.Array.data[5].time
+      value: 1.2860771
+      objectReference: {fileID: 0}
+    - target: {fileID: 9125500080524808502, guid: 24c1fafcee992ed4eb20cfd810af9cf5, type: 3}
+      propertyPath: monteeDescente.m_Curve.Array.data[0].value
+      value: 1.0828333
+      objectReference: {fileID: 0}
+    - target: {fileID: 9125500080524808502, guid: 24c1fafcee992ed4eb20cfd810af9cf5, type: 3}
+      propertyPath: monteeDescente.m_Curve.Array.data[1].value
+      value: 0.9574583
+      objectReference: {fileID: 0}
+    - target: {fileID: 9125500080524808502, guid: 24c1fafcee992ed4eb20cfd810af9cf5, type: 3}
+      propertyPath: monteeDescente.m_Curve.Array.data[2].value
+      value: 0.5389649
+      objectReference: {fileID: 0}
+    - target: {fileID: 9125500080524808502, guid: 24c1fafcee992ed4eb20cfd810af9cf5, type: 3}
+      propertyPath: monteeDescente.m_Curve.Array.data[3].value
+      value: 0.24863891
+      objectReference: {fileID: 0}
+    - target: {fileID: 9125500080524808502, guid: 24c1fafcee992ed4eb20cfd810af9cf5, type: 3}
+      propertyPath: monteeDescente.m_Curve.Array.data[4].value
+      value: 0.14456701
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 24c1fafcee992ed4eb20cfd810af9cf5, type: 3}
