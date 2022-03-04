@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,42 +6,47 @@ using UnityEngine;
 public class CharacterControler : MonoBehaviour
 {
     [Header("Physics")]
-    public float detectionSol;
-    public LayerMask ground;
+    public float detectionSol;    // Longueur du raycast permettant de détecter le sol
+    public LayerMask ground;  
     private Rigidbody2D rb;
 
 
     [Header("Déplacements")]
     public float speed;
-    public float vitesseDemiTour;    // Vitesse à laquelle le personnage fait un demi tour
-    public float vitesseDeceleration = 2.5f;   // Vitesse à laquelle le personnage s'arrête
+    public float vitesseDemiTour;    // Vitesse à laquelle le personnage réalise son mouvement de demi-tour
+    public float vitesseDeceleration = 2.5f;   // Vitesse à laquelle le personnage réalise son mouvement d'arrêt
     public AnimationCurve acceleration;
     public AnimationCurve demiTour;
-    private Vector2 direction = Vector2.zero;
+    private Vector2 direction = Vector2.zero;   // Va stocker la direction regardée par le personnage
     private float progression = 0.0f;   // Variable utilisée pour mesurer la vitesse du personnage en ligne droite
     private float timer = 0.0f;   // Variable utilisée pour mesurer un demi-tour
+    private bool isStopping;   // Empêche le personnage d'arrêter son animation d'arrêt lorsqu'il court
 
 
     [Header("Course")]
     public float runSpeed;
-    public float runVitesseDemiTour;    // Vitesse à laquelle le personnage fait un demi tour (en course)
+    public float runVitesseDemiTour;    // Vitesse à laquelle le personnage réalise son mouvement de demi-tour(en course)
     public float runVitesseDeceleration = 2.5f;   // Vitesse à laquelle le personnage s'arrête (en course)
     private bool demiTourCourse;   // Permet d'éviter que le joueur n'arrête de courir lors d'un demi-tour
 
 
     [Header("Saut")]
-    public float jumpForce; // Et je parle pas du jeu ptdr XD lol mdr
-    public float vitesseMontee;
-    public float vitesseMonteeRapide;
+    public float jumpForce;  // Et je parle pas du jeu ptdr XD lol mdr
+    public float vitesseMontee;   // Vitesse à laquelle la courbe de saut est traversée
+    public float vitesseMonteeRapide;    // Vitesse à laquelle la courbe de saut est traversée si le joueur relâche le bouton
     public AnimationCurve monteeDescente;
-    public float ghostJumpDuree;
-    private bool onGround;
+    private bool onGround;   // Détecte 
     private bool jumping = false;
-    private bool isStopping;
     public float timerJump = 0.0f;
+
+
+    [Header("Ghost Jump + Jump Buffer")]
+    public float ghostJumpDuree;
+    private bool canJumpBuffer;
+    private bool isJumpBuffering;
     private float timerGhostJump;
-
-
+    
+    
     [Header("Wall Jump")] 
     public float wallJumpForce = 5;
     public float distanceDetection = 1f;
@@ -84,17 +90,22 @@ public class CharacterControler : MonoBehaviour
     {
         direction = new Vector2(Input.GetAxis("Horizontal"), 0);
         onGround = Physics2D.Raycast(transform.position, Vector2.down, detectionSol, ground);
+        canJumpBuffer = Physics2D.Raycast(transform.position, Vector2.down, detectionSol+ 1f, ground);
         
         onWallLeft = Physics2D.Raycast(transform.position, Vector2.left, distanceDetection, ground);
         onWallRight = Physics2D.Raycast(transform.position, Vector2.right, distanceDetection, ground);
-
+        
+        if (canJumpBuffer && Input.GetKeyDown(jump) && !onGround)
+        {
+            isJumpBuffering = true;
+        }
 
         if ((onWallLeft || onWallRight) || isWallJumping)
         {
             WallJump();
         }
 
-        if (onGround)
+        if (onGround && timerJump > 1.5f)
         {
             timerGhostJump = 0;
         }
@@ -113,8 +124,14 @@ public class CharacterControler : MonoBehaviour
             {
                 Jump();
             }
+
+            else if (onGround && isJumpBuffering)
+            {
+                isJumpBuffering = false;
+                Jump();
+            }
             
-            else if (timerGhostJump < ghostJumpDuree && Input.GetKeyDown(jump))
+            else if (timerGhostJump < ghostJumpDuree && Input.GetKeyDown(jump) && !jumping)
             {
                 Jump();
             }
@@ -126,6 +143,12 @@ public class CharacterControler : MonoBehaviour
         }
     }
 
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawLine(transform.position, transform.position + Vector3.down * (detectionSol));
+    }
 
 
     // Fonction dans laquelle tous les déplacements au sol du personnage sont réalisés
@@ -271,22 +294,33 @@ public class CharacterControler : MonoBehaviour
     
     public void Jump()
     {
+        // Si le joueur reste appuyé sur le bouton de saut
         if (Input.GetKey(jump))
         {
+            // On fait augmenter timerJump
             timerJump += Time.deltaTime * vitesseMontee;
         }
+        
+        // Si il relâche le bouton de saut
         else
         {
+            // On fait augmenter timerJump (plus qu'au dessus)
             timerJump += Time.deltaTime * vitesseMonteeRapide;
         }
-
+        
+        
+        // Se fait tant que le saut n'est pas fini
         if(timerJump < 1.5f)
         {
+            // On fait monter le personnage et on met jumping en true pour repasser dans cette fonction
             jumping = true;
             rb.velocity = new Vector2(rb.velocity.x, jumpForce * monteeDescente.Evaluate(timerJump));
         }
+        
+        // Si le saut est terminé 
         else
         {
+            // On met jumping en false pour ne plus repasser dans cette fonction
             jumping = false;
             timerJump = 0;
         }
@@ -295,6 +329,10 @@ public class CharacterControler : MonoBehaviour
 
     public void WallJump()
     {
+        // Pour stopper l'état de saut 
+        jumping = false;
+        timerJump = 0;
+        
         if (Input.GetKeyDown(jump) || isWallJumping)
         {
             if (timerWallJump > 0.1f)
