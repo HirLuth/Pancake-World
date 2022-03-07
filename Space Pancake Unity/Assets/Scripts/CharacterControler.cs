@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class CharacterControler : MonoBehaviour
 {
@@ -35,9 +36,9 @@ public class CharacterControler : MonoBehaviour
     public float vitesseMontee;   // Vitesse à laquelle la courbe de saut est traversée
     public float vitesseMonteeRapide;    // Vitesse à laquelle la courbe de saut est traversée si le joueur relâche le bouton
     public AnimationCurve monteeDescente;
-    private bool onGround;   // Détecte 
-    private bool jumping = false;
-    public float timerJump = 0.0f;
+    [HideInInspector] public bool onGround;   // Détecte si le personnage est en contact avec le sol
+    [HideInInspector] public bool jumping = false;
+    [HideInInspector] public float timerJump = 0.0f;
 
 
     [Header("Ghost Jump + Jump Buffer")]
@@ -66,10 +67,13 @@ public class CharacterControler : MonoBehaviour
 
 
     [Header("Inputs")]
-    private KeyCode left = KeyCode.LeftArrow;
-    private KeyCode right = KeyCode.RightArrow;
-    private KeyCode course = KeyCode.LeftShift;
-    private KeyCode jump = KeyCode.Space;
+    private PlayerControls controls;
+    private bool run;
+    private bool jump;
+    private bool longJump;
+    private bool serpe;
+    private bool moveLeft;
+    private bool moveRight;
 
 
     [Header("Autres")] 
@@ -80,6 +84,28 @@ public class CharacterControler : MonoBehaviour
     private bool checkForShake = true;
 
 
+    private void Awake()
+    {
+        controls = new PlayerControls();
+
+        controls.Personnage.Sauter.started += ctx => jump = true;
+        controls.Personnage.Sauter.performed += ctx => longJump = true;
+        controls.Personnage.Sauter.canceled += ctx => longJump = false;
+        
+        
+        controls.Personnage.Run.performed += ctx => run = false;
+        controls.Personnage.Run.canceled += ctx => run = true;
+        controls.Personnage.MoveLeft.performed += ctx => moveLeft = true;
+        controls.Personnage.MoveLeft.canceled += ctx => moveLeft = false;
+        controls.Personnage.MoveRight.performed += ctx => moveRight = true;
+        controls.Personnage.MoveRight.canceled += ctx => moveRight = false;
+    }
+
+    private void OnEnable()
+    {
+        controls.Personnage.Enable();
+    }
+
     void Start()
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
@@ -88,16 +114,28 @@ public class CharacterControler : MonoBehaviour
 
     void Update()
     {
-        direction = new Vector2(Input.GetAxis("Horizontal"), 0);
+        if (moveLeft)
+        {
+            direction = new Vector2(-1, 0);
+        }
+        else if (moveRight)
+        {
+            direction = new Vector2(1, 0);
+        }
+        else
+        {
+            direction = new Vector2(0, 0);
+        }
+
         onGround = Physics2D.Raycast(transform.position, Vector2.down, detectionSol, ground);
-        canJumpBuffer = Physics2D.Raycast(transform.position, Vector2.down, detectionSol+ 1f, ground);
+        canJumpBuffer = Physics2D.Raycast(transform.position, Vector2.down, detectionSol+ 0.2f, ground);
         
         onWallLeft = Physics2D.Raycast(transform.position, Vector2.left, distanceDetection, ground);
         onWallRight = Physics2D.Raycast(transform.position, Vector2.right, distanceDetection, ground);
         
-        if (canJumpBuffer && Input.GetKeyDown(jump) && !onGround)
+        if (canJumpBuffer && jump && !onGround && jumping == false)
         {
-            isJumpBuffering = true;
+            isJumpBuffering = true; 
         }
 
         if ((onWallLeft || onWallRight) || isWallJumping)
@@ -120,7 +158,7 @@ public class CharacterControler : MonoBehaviour
         {
             MoveCharacter(direction);
 
-            if (onGround && Input.GetKeyDown(jump) || jumping)
+            if (onGround && jump || jumping)
             {
                 Jump();
             }
@@ -131,7 +169,7 @@ public class CharacterControler : MonoBehaviour
                 Jump();
             }
             
-            else if (timerGhostJump < ghostJumpDuree && Input.GetKeyDown(jump) && !jumping)
+            else if (timerGhostJump < ghostJumpDuree && jump && !jumping)
             {
                 Jump();
             }
@@ -158,29 +196,29 @@ public class CharacterControler : MonoBehaviour
         {
             if(Mathf.Abs(rb.velocity.x) < speed)
             {
-                if(Input.GetKey(left) || Input.GetKey(right))
+                if(moveLeft || moveRight)
                 {
                     rb.AddForce(new Vector2(airControlForce * Mathf.Sign(dir.x), 0));
                 }
             }
 
-            else if(rb.velocity.x > speed & Input.GetKey(left))
+            else if(rb.velocity.x > speed & moveLeft)
             {
                 rb.AddForce(new Vector2(airControlForce * Mathf.Sign(dir.x), 0));
             }
 
-            else if (rb.velocity.x < speed & Input.GetKey(right))
+            else if (rb.velocity.x < speed & moveRight)
             {
                 rb.AddForce(new Vector2(airControlForce * Mathf.Sign(dir.x), 0));
             }
         }
 
 
-        // Si le personnage ne court pas ou ne fait pas un demi-tour en pleine course
-        else if (!Input.GetKey(course) & demiTourCourse == false & isStopping == false)
+        // Si le personnage marche ou ne fait pas un demi-tour en pleine course
+        else if (run & demiTourCourse == false & isStopping == false)
         {
             // Si le joueur avance dans une direction sans faire demi-tour 
-            if ((Input.GetKey(left) || Input.GetKey(right)) & progression < 0.4f & timer == 0.5f)
+            if ((moveLeft || moveRight) & progression < 0.4f & timer == 0.5f)
             {
                 progression += Time.deltaTime;
                 RotateCharacter(dir);
@@ -194,7 +232,7 @@ public class CharacterControler : MonoBehaviour
 
 
             // Si le joueur change de direction (de la gauche vers la droite)
-            if (rb.velocity.x > 0.5f & Input.GetKey(left) & timer > 0)
+            if (rb.velocity.x > 0.5f & moveLeft & timer > 0)
             {
                 RotateCharacter(dir);
                 timer -= Time.deltaTime * vitesseDemiTour;
@@ -202,7 +240,7 @@ public class CharacterControler : MonoBehaviour
             }
 
             // Si le joueur change de direction (de la droite vers la gauche)
-            else if (rb.velocity.x < -0.5f & Input.GetKey(right) & timer > 0)
+            else if (rb.velocity.x < -0.5f & moveRight & timer > 0)
             {
                 RotateCharacter(dir);
                 timer -= Time.deltaTime * vitesseDemiTour;
@@ -213,7 +251,14 @@ public class CharacterControler : MonoBehaviour
             else
             {
                 timer = 0.5f;
-                rb.velocity = new Vector2(Mathf.Sign(dir.x) * speed * acceleration.Evaluate(progression), rb.velocity.y);
+                if (rb.velocity.x > 0 || dir.x > 0.1f)
+                {
+                    rb.velocity = new Vector2(Mathf.Sign(dir.x) * speed * acceleration.Evaluate(progression), rb.velocity.y);
+                }
+                else
+                {
+                    rb.velocity = new Vector2(-speed * acceleration.Evaluate(progression), rb.velocity.y);
+                }
             }
         }
 
@@ -222,7 +267,7 @@ public class CharacterControler : MonoBehaviour
         else
         {
             // Si le joueur avance dans une direction sans faire demi-tour 
-            if ((Input.GetKey(left) || Input.GetKey(right)) && progression < 0.4f & timer == 0.5f)
+            if ((moveLeft || moveRight) && progression < 0.4f & timer == 0.5f)
             {
                 RotateCharacter(dir);
                 isStopping = false;
@@ -238,7 +283,7 @@ public class CharacterControler : MonoBehaviour
 
 
             // Si le joueur change de direction (de la gauche vers la droite)
-            if (rb.velocity.x > 0.5f & Input.GetKey(left) & timer > 0)
+            if (rb.velocity.x > 0.5f & moveLeft & timer > 0)
             {
                 RotateCharacter(dir);
                 demiTourCourse = true;
@@ -247,7 +292,7 @@ public class CharacterControler : MonoBehaviour
             }
 
             // Si le joueur change de direction (de la droite vers la gauche)
-            else if (rb.velocity.x < -0.5f & Input.GetKey(right) & timer > 0)
+            else if (rb.velocity.x < -0.5f & moveRight & timer > 0)
             {
                 RotateCharacter(dir);
                 demiTourCourse = true;
@@ -294,8 +339,9 @@ public class CharacterControler : MonoBehaviour
     
     public void Jump()
     {
+        jump = false;
         // Si le joueur reste appuyé sur le bouton de saut
-        if (Input.GetKey(jump))
+        if (longJump)
         {
             // On fait augmenter timerJump
             timerJump += Time.deltaTime * vitesseMontee;
@@ -333,8 +379,9 @@ public class CharacterControler : MonoBehaviour
         jumping = false;
         timerJump = 0;
         
-        if (Input.GetKeyDown(jump) || isWallJumping)
+        if (jump || isWallJumping)
         {
+            jump = false;
             if (timerWallJump > 0.1f)
             {
                 
