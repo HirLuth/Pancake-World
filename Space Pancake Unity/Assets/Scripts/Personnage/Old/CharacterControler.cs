@@ -105,7 +105,12 @@ public class CharacterControler : MonoBehaviour
     {
         controls.Personnage.Enable();
     }
-    
+
+    private void OnDisable()
+    {
+        controls.Personnage.Disable();
+    }
+
 
     void Start()
     {
