@@ -84,6 +84,7 @@ public class CharacterControler : MonoBehaviour
     private bool checkForShake = true;
 
 
+    // Toute la partie dédiée aux contrôles
     private void Awake()
     {
         controls = new PlayerControls();
@@ -100,11 +101,12 @@ public class CharacterControler : MonoBehaviour
         controls.Personnage.MoveRight.performed += ctx => moveRight = true;
         controls.Personnage.MoveRight.canceled += ctx => moveRight = false;
     }
-
+    
     private void OnEnable()
     {
         controls.Personnage.Enable();
     }
+    
 
     void Start()
     {
@@ -114,6 +116,7 @@ public class CharacterControler : MonoBehaviour
 
     void Update()
     {
+        // Définie la direction du joueur
         if (moveLeft)
         {
             direction = new Vector2(-1, 0);
@@ -126,34 +129,37 @@ public class CharacterControler : MonoBehaviour
         {
             direction = new Vector2(0, 0);
         }
+        
 
+        // Raycasts du saut 
         onGround = Physics2D.Raycast(transform.position, Vector2.down, detectionSol, ground);
         canJumpBuffer = Physics2D.Raycast(transform.position, Vector2.down, detectionSol+ 0.2f, ground);
         
+        // Raycast du Wall Jump
         onWallLeft = Physics2D.Raycast(transform.position, Vector2.left, distanceDetection, ground);
         onWallRight = Physics2D.Raycast(transform.position, Vector2.right, distanceDetection, ground);
         
+        
+        // Pour activer le jump buffering
         if (canJumpBuffer && jump && !onGround && jumping == false)
         {
             isJumpBuffering = true; 
         }
 
-        if ((onWallLeft || onWallRight) || isWallJumping)
+        // Déclenche le Wall Jump
+        if (onWallLeft || onWallRight || isWallJumping)
         {
             WallJump();
         }
-
-        if (onGround && timerJump > 1.5f)
+        
+        // Si le joueur est au sol (remise à 0 des timers)
+        if (onGround)
         {
+            timerJump = 0;
             timerGhostJump = 0;
         }
 
-        if (branche.useSerpe)
-        {
-            timerJump = 0;
-            jumping = false;
-        }
-
+        
         if(branche.useSerpe == false)
         {
             MoveCharacter(direction);
@@ -179,14 +185,19 @@ public class CharacterControler : MonoBehaviour
                 timerGhostJump += Time.deltaTime;
             }
         }
+        else
+        {
+            timerJump = 0;
+            jumping = false;
+        }
     }
 
 
-    private void OnDrawGizmos()
+    /* private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawLine(transform.position, transform.position + Vector3.down * (detectionSol));
-    }
+    } */
 
 
     // Fonction dans laquelle tous les déplacements au sol du personnage sont réalisés
@@ -379,9 +390,9 @@ public class CharacterControler : MonoBehaviour
         jumping = false;
         timerJump = 0;
         
+        // Quand le personnage saute du mur
         if (jump || isWallJumping)
         {
-            jump = false;
             if (timerWallJump > 0.1f)
             {
                 
@@ -399,6 +410,7 @@ public class CharacterControler : MonoBehaviour
                 rb.velocity = new Vector2(signe * wallJumpForce/1.5f , wallJumpForce * wallJump.Evaluate(timerWallJump));
             }
             
+            // On stop l'état de wall jump
             else
             {
                 timerWallJump = 1;
@@ -406,9 +418,12 @@ public class CharacterControler : MonoBehaviour
             } 
         }
 
+        // Quand le personnage glisse sur le mur
         else
         {
             rb.velocity = new Vector2(rb.velocity.x, -0.25f);
+            
+            // Pour rotate le personnage
             if (onWallLeft)
             {
                 transform.rotation = Quaternion.Euler(0, 0, 0);
