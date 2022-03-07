@@ -68,7 +68,7 @@ public class CharacterControler : MonoBehaviour
 
     [Header("Inputs")]
     private PlayerControls controls;
-    private bool run;
+    private bool run = true;
     private bool jump;
     private bool longJump;
     private bool serpe;
@@ -92,7 +92,6 @@ public class CharacterControler : MonoBehaviour
         controls.Personnage.Sauter.started += ctx => jump = true;
         controls.Personnage.Sauter.performed += ctx => longJump = true;
         controls.Personnage.Sauter.canceled += ctx => longJump = false;
-        
         
         controls.Personnage.Run.performed += ctx => run = false;
         controls.Personnage.Run.canceled += ctx => run = true;
