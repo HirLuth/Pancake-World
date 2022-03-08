@@ -12,7 +12,6 @@ public class Character: MonoBehaviour
     private bool moveRight;
     private bool run;
     private bool jump;
-    private bool longJump;
 
     
     [Header("Physics")] 
@@ -75,8 +74,6 @@ public class Character: MonoBehaviour
 
         controls.Personnage.Sauter.started += ctx => jump = true;
         controls.Personnage.Sauter.canceled += ctx => jump = false;
-        controls.Personnage.Sauter.performed += ctx => longJump = true;
-        controls.Personnage.Sauter.canceled += ctx => longJump = false;
     }
     
     private void OnEnable()
