@@ -54,6 +54,11 @@ public class Character: MonoBehaviour
     [SerializeField] LayerMask ground;
 
 
+    [Header("AirControl")] 
+    public float airControlForce;
+    public bool walkSpeed;   //   Pour éviter que le personnage aille trop vite 
+
+
 
     // Tout ce qui concerne le controller
     private void Awake()
@@ -90,7 +95,7 @@ public class Character: MonoBehaviour
         onGround = Physics2D.Raycast(transform.position, Vector2.down, tailleRaycastGround, ground);
         
 
-        // Détéction des inputs horizontaux du joueur
+        // Détéction des inputs horizontaux du joueur (version provisoire)
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
             moveLeft = true;
@@ -110,14 +115,23 @@ public class Character: MonoBehaviour
         /*if (moveLeft)
         {
             direction = -1;
+            stockageDemiTour = 0; 
         }
         if (moveRight)
         {
             direction = 1;
+            stockageDemiTour = 0; 
         } */
 
-        
-        MoveCharacter();
+        if (onGround)
+        {
+            MoveCharacter();
+        }
+        else
+        {
+            AirControl();
+        }
+
 
         if ((jump && onGround) || jumping)
         {
@@ -233,25 +247,48 @@ public class Character: MonoBehaviour
     
     void Jump()
     {
-        jumping = true;
+        jumping = true;   // Pour retourner dans cette fonction une fois celle-ci terminée
+        
+        // On test si le joueur continuer à appuyer sur la touche saut et donc le faire suater plus longtemps
         if (jump)
         {
             abscisseJumpCurve += Time.deltaTime * vitesseJumpcurve;
         }
+        
+        // Si le joueur relâche
         else
         {
             abscisseJumpCurve += Time.deltaTime * vitesseShortJumpAcceleration;
         }
 
+
+        // Si le saut est encore en cours
         if (abscisseJumpCurve < 1)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpCurve.Evaluate(abscisseJumpCurve) * jumpForce);
         }
+        
+        // Si le saut est terminé
         else
         {
             abscisseJumpCurve = 0;
             jump = false;
             jumping = false;
+        }
+    }
+
+    void AirControl()
+    {
+        if (moveLeft || moveRight)
+        {
+            if (rb.velocity.x < speed)
+            {
+                rb.velocity = new Vector2(direction * airControlForce, rb.velocity.y);
+            }
+            else if (rb.velocity.x < runSpeed)
+            {
+                rb.velocity = new Vector2(direction * airControlForce, rb.velocity.y);
+            }
         }
     }
 }
