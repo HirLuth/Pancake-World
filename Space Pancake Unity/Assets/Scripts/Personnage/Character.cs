@@ -130,7 +130,6 @@ public class Character: MonoBehaviour
 
                 if(abscisseRunCurve <= 0.1f)
                 {
-                    Debug.Log(12);
                     abscisseRunCurve = 1;
                     stopDemiTourRun = true;
                 }
