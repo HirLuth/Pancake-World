@@ -7,8 +7,8 @@ public class Character: MonoBehaviour
 {
     [Header("Inputs")]
     private PlayerControls controls;
-    protected bool moveLeft;
-    protected bool moveRight;
+    private bool moveLeft;
+    private bool moveRight;
     private bool run;
 
     
@@ -31,10 +31,11 @@ public class Character: MonoBehaviour
     public AnimationCurve runCurve;
     public float vitesseRunCurve;
     public float vitesseRunDecelerationCurve;
+    public float vitesseRunDemiTourCurve;
     private float abscisseRunCurve;
     private bool running;
     public float runSpeed = 10f;
-    private bool demiTourRun;
+    private bool stopDemiTourRun;
 
 
 
@@ -70,17 +71,29 @@ public class Character: MonoBehaviour
 
     private void Update()
     {
-        // Pour savoir la direction du personnage
-        if (moveLeft)
+
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            moveLeft = true;
+            moveRight = false;
+            direction = -1;
+        }
+        if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            moveRight = true;
+            moveLeft = false;
+            direction = 1;
+        }
+
+        /* if (moveLeft)
         {
             direction = -1;
         }
-        else if (moveRight)
+        if (moveRight)
         {
             direction = 1;
-        }
+        } */
        
-
         MoveCharacter();
     }
     
@@ -88,51 +101,64 @@ public class Character: MonoBehaviour
 
     void MoveCharacter()
     {
-        // Si le joueur marche
-        if (!run && !running)
+        // Si le joueur fait demi-tour...
+        if (((moveLeft && rb.velocity.x > 0) || (moveRight && rb.velocity.x < 0)) && !stopDemiTourRun && !stopDemiTourWalk)
         {
-            // Si le joueur fait demi-tour en marchant 
-            if (((moveLeft && rb.velocity.x > 0) || (moveRight && rb.velocity.x < 0)) && !stopDemiTourWalk)
+
+            // ... en marchant 
+            if(!running && !stopDemiTourWalk)
             {
                 abscisseMovementsCurve -= Time.deltaTime * vitesseDemiTourCurve;
 
-                if (abscisseMovementsCurve <= 0)
+                rb.velocity = new Vector2(-direction * movementsCurve.Evaluate(abscisseMovementsCurve) * speed, rb.velocity.y);
+
+                // Si le personnage a fini de faire demi-tour
+                if (abscisseMovementsCurve <= 0.1f)
                 {
                     abscisseMovementsCurve = 1;
                     stopDemiTourWalk = true;
                 }
-
-                if (moveLeft)
-                {
-                    rb.velocity = new Vector2(movementsCurve.Evaluate(abscisseMovementsCurve) * speed, rb.velocity.y);
-                }
-                else
-                {
-                    Debug.Log(moveRight);
-                    rb.velocity = new Vector2(-1 * movementsCurve.Evaluate(abscisseMovementsCurve) * speed, rb.velocity.y);
-                }
             }
 
-            else
+
+            // ... en courant 
+            else 
             {
-                // Si le joueur appuie sur une touche de déplacement
-                if ((moveLeft || moveRight) && abscisseMovementsCurve < 1)
+                abscisseRunCurve -= Time.deltaTime * vitesseRunDemiTourCurve;
+
+                rb.velocity = new Vector2(-direction * runCurve.Evaluate(abscisseRunCurve) * runSpeed, rb.velocity.y);
+
+                if(abscisseRunCurve <= 0.1f)
                 {
-                    stopDemiTourWalk = false;
-                    abscisseMovementsCurve += Time.deltaTime * vitesseMouvementsCurve;
+                    Debug.Log(12);
+                    abscisseRunCurve = 1;
+                    stopDemiTourRun = true;
                 }
-
-                // Si le joueur s'arrête de bouger
-                else if (abscisseMovementsCurve > 0)
-                {
-                    stopDemiTourWalk = false;
-                    abscisseMovementsCurve -= Time.deltaTime * vitesseDecelerationCurve;
-                }
-
-                rb.velocity = new Vector2(Mathf.Sign(direction) * movementsCurve.Evaluate(abscisseMovementsCurve) * speed, rb.velocity.y);
-
-                abscisseRunCurve = abscisseMovementsCurve * 0.7f;  // Permet au personnage de pas ralentir quand il commence à courir
             }
+
+        }
+
+        // Si le joueur marche
+        else if (!run && !running)
+        {
+            // Si le joueur appuie sur une touche de déplacement
+            if ((moveLeft || moveRight) && abscisseMovementsCurve < 1)
+            {
+                stopDemiTourWalk = false;
+                abscisseMovementsCurve += Time.deltaTime * vitesseMouvementsCurve;
+            }
+
+            // Si le joueur s'arrête de bouger
+            else if (abscisseMovementsCurve > 0)
+            {
+                stopDemiTourWalk = false;
+                abscisseMovementsCurve -= Time.deltaTime * vitesseDecelerationCurve;
+            }
+
+            rb.velocity = new Vector2(Mathf.Sign(direction) * movementsCurve.Evaluate(abscisseMovementsCurve) * speed, rb.velocity.y);
+
+            abscisseRunCurve = abscisseMovementsCurve * 0.7f;  // Permet au personnage de pas ralentir quand il commence à courir
+            
         }
         
 
@@ -157,6 +183,7 @@ public class Character: MonoBehaviour
         else
         {
             abscisseMovementsCurve = 1; // Pour garder la courbe de la marche à son max et donc avoir une transition entre les deux smooth
+            stopDemiTourRun = false;
 
             // Si le joueur bouge
             if ((moveLeft || moveRight) && abscisseRunCurve < 1)
@@ -173,5 +200,10 @@ public class Character: MonoBehaviour
             
             rb.velocity = new Vector2(Mathf.Sign(direction) * runCurve.Evaluate(abscisseRunCurve) * runSpeed, rb.velocity.y);
         }
+    }
+    
+    void Jump()
+    {
+
     }
 }
