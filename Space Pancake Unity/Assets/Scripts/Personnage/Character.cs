@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Character: MonoBehaviour
@@ -10,6 +11,8 @@ public class Character: MonoBehaviour
     private bool moveLeft;
     private bool moveRight;
     private bool run;
+    private bool jump;
+    private bool longJump;
 
     
     [Header("Physics")] 
@@ -17,31 +20,58 @@ public class Character: MonoBehaviour
 
     
     [Header("Déplacements")] 
-    public AnimationCurve movementsCurve;
-    public float vitesseMouvementsCurve;
-    public float vitesseDecelerationCurve;
-    public float vitesseDemiTourCurve;
-    private float abscisseMovementsCurve;
-    public float speed = 7f;
-    private float direction;
-    private bool stopDemiTourWalk;
+    public AnimationCurve movementsCurve;  // Courbe de marche
+    public float vitesseMouvementsCurve;   // Vitesse à laquelle on traverse la courbe (= acceleration)
+    public float vitesseDecelerationCurve;   
+    public float vitesseDemiTourCurve;   
+    private float abscisseMovementsCurve;   // Abscisse utilisée pour lire cette courbe, elle évolue en fonction du temps et de la vitesse qu'on lui donne
+    public float speed = 7f;   // Vitesse de déplacements
+    private float direction;    // Direction que le joueur regarde
+    private bool stopDemiTourWalk;    // Utilisé pour sortir de l'état de demi-tour
 
     
     [Header("Course")] 
-    public AnimationCurve runCurve;
-    public float vitesseRunCurve;
+    public AnimationCurve runCurve;   // Courbe de course
+    public float vitesseRunCurve;   // Vitesse à laquelle on traverse la courbe (= acceleration)
     public float vitesseRunDecelerationCurve;
     public float vitesseRunDemiTourCurve;
-    private float abscisseRunCurve;
-    private bool running;
-    public float runSpeed = 10f;
-    private bool stopDemiTourRun;
+    private float abscisseRunCurve;   // Abscisse utilisée pour lire la courbe de course, elle éolue en fonction du temps et de la vitesse qu'on lui donne
+    private bool running;    // Utilisé pour éviter que le joueur sorte de l'état de course sans transition
+    public float runSpeed;    // Vitesse de la course
+    private bool stopDemiTourRun;    // Utilisé pour sortir de l'état de demi-tour
+    private float stockageDemiTour;    // Permet de sortir de l'état de demi-tour avec une vitesse adaptée à l'inertie initale du pesonnage
+
+
+    [Header("Saut")] 
+    public AnimationCurve jumpCurve;
+    public float vitesseJumpcurve;
+    public float vitesseShortJumpAcceleration;
+    private float abscisseJumpCurve;
+    private bool jumping;
+    public float jumpForce;
+    private bool onGround;
+    [SerializeField] float tailleRaycastGround;
+    [SerializeField] LayerMask ground;
 
 
 
+    // Tout ce qui concerne le controller
     private void Awake()
     {
         controls = new PlayerControls();
+        controls.Personnage.MoveLeft.performed += ctx => moveLeft = true;
+        controls.Personnage.MoveLeft.canceled += ctx => moveLeft = false;
+
+        controls.Personnage.MoveRight.performed += ctx => moveRight = true;
+        controls.Personnage.MoveRight.canceled += ctx => moveRight = false;
+
+        controls.Personnage.Run.performed += ctx => run = true;
+        controls.Personnage.Run.canceled += ctx => run = false;
+
+        controls.Personnage.Sauter.started += ctx => jump = true;
+        controls.Personnage.Sauter.canceled += ctx => jump = false;
+        controls.Personnage.Sauter.performed += ctx => longJump = true;
+        controls.Personnage.Sauter.canceled += ctx => longJump = false;
     }
     
     private void OnEnable()
@@ -53,39 +83,31 @@ public class Character: MonoBehaviour
     {
         controls.Personnage.Disable();
     }
-
-    public void Start()
-    {
-        controls.Personnage.MoveLeft.started += ctx => moveLeft = true;
-        controls.Personnage.MoveLeft.canceled += ctx => moveLeft = false;
-
-        controls.Personnage.MoveRight.started += ctx => moveRight = true;
-        controls.Personnage.MoveRight.canceled += ctx => moveRight = false;
-
-        controls.Personnage.Run.performed += ctx => run = true;
-        controls.Personnage.Run.canceled += ctx => run = false;
-
-    }
-
-
+    
 
     private void Update()
     {
+        onGround = Physics2D.Raycast(transform.position, Vector2.down, tailleRaycastGround, ground);
+        
 
+        // Détéction des inputs horizontaux du joueur
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
             moveLeft = true;
             moveRight = false;
             direction = -1;
+            stockageDemiTour = 0;   // On remet cette variable à 0 puisque faire demi-tour signifie appuyer sur une flèche différente
         }
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
             moveRight = true;
             moveLeft = false;
             direction = 1;
+            stockageDemiTour = 0;    // On remet cette variable à 0 puisque faire demi-tour signifie appuyer sur une flèche différente
         }
-
-        /* if (moveLeft)
+        
+        
+        /*if (moveLeft)
         {
             direction = -1;
         }
@@ -93,8 +115,14 @@ public class Character: MonoBehaviour
         {
             direction = 1;
         } */
-       
+
+        
         MoveCharacter();
+
+        if ((jump && onGround) || jumping)
+        {
+            Jump();
+        }
     }
     
 
@@ -115,7 +143,7 @@ public class Character: MonoBehaviour
                 // Si le personnage a fini de faire demi-tour
                 if (abscisseMovementsCurve <= 0.1f)
                 {
-                    abscisseMovementsCurve = 1;
+                    abscisseMovementsCurve = 0.5f;
                     stopDemiTourWalk = true;
                 }
             }
@@ -125,12 +153,14 @@ public class Character: MonoBehaviour
             else 
             {
                 abscisseRunCurve -= Time.deltaTime * vitesseRunDemiTourCurve;
+                stockageDemiTour += Time.deltaTime * vitesseRunDemiTourCurve;
 
                 rb.velocity = new Vector2(-direction * runCurve.Evaluate(abscisseRunCurve) * runSpeed, rb.velocity.y);
 
                 if(abscisseRunCurve <= 0.1f)
                 {
-                    abscisseRunCurve = 1;
+                    abscisseRunCurve = stockageDemiTour;
+                    stockageDemiTour = 0;
                     stopDemiTourRun = true;
                 }
             }
@@ -141,7 +171,7 @@ public class Character: MonoBehaviour
         else if (!run && !running)
         {
             // Si le joueur appuie sur une touche de déplacement
-            if ((moveLeft || moveRight) && abscisseMovementsCurve < 1)
+            if ((moveLeft || moveRight) && abscisseMovementsCurve < 0.5f)
             {
                 stopDemiTourWalk = false;
                 abscisseMovementsCurve += Time.deltaTime * vitesseMouvementsCurve;
@@ -181,11 +211,11 @@ public class Character: MonoBehaviour
         // Si le joueur court
         else
         {
-            abscisseMovementsCurve = 1; // Pour garder la courbe de la marche à son max et donc avoir une transition entre les deux smooth
+            abscisseMovementsCurve = 0.5f; // Pour garder la courbe de la marche à son max et donc avoir une transition entre les deux smooth
             stopDemiTourRun = false;
 
             // Si le joueur bouge
-            if ((moveLeft || moveRight) && abscisseRunCurve < 1)
+            if ((moveLeft || moveRight) && abscisseRunCurve < 0.5f)
             {
                 running = true;
                 abscisseRunCurve += Time.deltaTime * vitesseRunCurve;
@@ -203,6 +233,25 @@ public class Character: MonoBehaviour
     
     void Jump()
     {
+        jumping = true;
+        if (jump)
+        {
+            abscisseJumpCurve += Time.deltaTime * vitesseJumpcurve;
+        }
+        else
+        {
+            abscisseJumpCurve += Time.deltaTime * vitesseShortJumpAcceleration;
+        }
 
+        if (abscisseJumpCurve < 1)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, jumpCurve.Evaluate(abscisseJumpCurve) * jumpForce);
+        }
+        else
+        {
+            abscisseJumpCurve = 0;
+            jump = false;
+            jumping = false;
+        }
     }
 }
