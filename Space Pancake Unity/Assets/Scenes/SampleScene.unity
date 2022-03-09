@@ -1999,7 +1999,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 873043651647558406}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 88.88, y: 13.07, z: 0}
+  m_LocalPosition: {x: 88.78, y: 12.9, z: 0}
   m_LocalScale: {x: 1.2, y: 1.2, z: 1}
   m_Children:
   - {fileID: 873043652179782393}
@@ -2447,9 +2447,61 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1130788752039163605, guid: 2668080157879484eadde581eac04ade, type: 3}
+      propertyPath: m_Mass
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 1130788752039163606, guid: 2668080157879484eadde581eac04ade, type: 3}
       propertyPath: m_Name
       value: Druide
+      objectReference: {fileID: 0}
+    - target: {fileID: 1130788752039163607, guid: 2668080157879484eadde581eac04ade, type: 3}
+      propertyPath: speed
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1130788752039163607, guid: 2668080157879484eadde581eac04ade, type: 3}
+      propertyPath: jumpForce
+      value: 33
+      objectReference: {fileID: 0}
+    - target: {fileID: 1130788752039163607, guid: 2668080157879484eadde581eac04ade, type: 3}
+      propertyPath: airControlForce
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1130788752039163607, guid: 2668080157879484eadde581eac04ade, type: 3}
+      propertyPath: vitesseJumpcurve
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1130788752039163607, guid: 2668080157879484eadde581eac04ade, type: 3}
+      propertyPath: vitesseShortJumpAcceleration
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1130788752039163607, guid: 2668080157879484eadde581eac04ade, type: 3}
+      propertyPath: jumpCurve.m_Curve.Array.data[1].time
+      value: 0.14327943
+      objectReference: {fileID: 0}
+    - target: {fileID: 1130788752039163607, guid: 2668080157879484eadde581eac04ade, type: 3}
+      propertyPath: jumpCurve.m_Curve.Array.data[2].time
+      value: 0.33726716
+      objectReference: {fileID: 0}
+    - target: {fileID: 1130788752039163607, guid: 2668080157879484eadde581eac04ade, type: 3}
+      propertyPath: jumpCurve.m_Curve.Array.data[1].value
+      value: 0.86795443
+      objectReference: {fileID: 0}
+    - target: {fileID: 1130788752039163607, guid: 2668080157879484eadde581eac04ade, type: 3}
+      propertyPath: jumpCurve.m_Curve.Array.data[2].value
+      value: 0.38180614
+      objectReference: {fileID: 0}
+    - target: {fileID: 1130788752039163607, guid: 2668080157879484eadde581eac04ade, type: 3}
+      propertyPath: jumpCurve.m_Curve.Array.data[1].inSlope
+      value: -3.0012
+      objectReference: {fileID: 0}
+    - target: {fileID: 1130788752039163607, guid: 2668080157879484eadde581eac04ade, type: 3}
+      propertyPath: jumpCurve.m_Curve.Array.data[1].inWeight
+      value: 0.2469531
+      objectReference: {fileID: 0}
+    - target: {fileID: 1130788752039163607, guid: 2668080157879484eadde581eac04ade, type: 3}
+      propertyPath: jumpCurve.m_Curve.Array.data[1].outSlope
+      value: -3.0012
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2668080157879484eadde581eac04ade, type: 3}

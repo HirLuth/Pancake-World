@@ -55,7 +55,6 @@ public class Character: MonoBehaviour
 
     [Header("AirControl")] 
     public float airControlForce;
-    public bool walkSpeed;   //   Pour éviter que le personnage aille trop vite 
 
 
 
@@ -119,6 +118,7 @@ public class Character: MonoBehaviour
             direction = 1;
             stockageDemiTour = 0; 
         } */
+
 
         if (onGround)
         {
@@ -241,6 +241,7 @@ public class Character: MonoBehaviour
             rb.velocity = new Vector2(Mathf.Sign(direction) * runCurve.Evaluate(abscisseRunCurve) * runSpeed, rb.velocity.y);
         }
     }
+
     
     void Jump()
     {
@@ -274,17 +275,55 @@ public class Character: MonoBehaviour
         }
     }
 
+
     void AirControl()
     {
         if (moveLeft || moveRight)
         {
-            if (rb.velocity.x < speed)
-            {
-                rb.velocity = new Vector2(direction * airControlForce, rb.velocity.y);
+            // Si la vitesse du personnage ne doit pas dépasser celle de course
+            if (running)
+            { 
+                // Si le joueur souhaite faire demi-tour à pleine vitesse (vers la gauche)
+                if (moveLeft && rb.velocity.x >= 0)
+                {
+                    abscisseRunCurve -= Time.deltaTime;    // On dimine l'abscisse de la courbe de course pour évite que le personnage ne dérape à fond à la fin si il a peu de vitesse 
+                    rb.AddForce(new Vector2(-1 * airControlForce, 0), ForceMode2D.Impulse);
+                }
+
+                // Si le joueur souhaite faire demi-tour à pleine vitesse (vers la droite)
+                else if (moveRight && rb.velocity.x <= 0)
+                {
+                    abscisseRunCurve -= Time.deltaTime * 10;    // On dimine l'abscisse de la courbe de course pour évite que le personnage ne dérape à fond à la fin si il a peu de vitesse 
+                    rb.AddForce(new Vector2(airControlForce, 0), ForceMode2D.Impulse);
+                }
+
+                // Si le joueur n'est pas encore à pleine vitesse et va en ligne droite
+                else if (Mathf.Abs(rb.velocity.x) < runSpeed)
+                {
+                    rb.AddForce(new Vector2(direction * airControlForce, 0), ForceMode2D.Impulse);
+                }
             }
-            else if (rb.velocity.x < runSpeed)
+
+            // Si la vitesse du personnage ne doit pas dépasser celle de marche
+            else
             {
-                rb.velocity = new Vector2(direction * airControlForce, rb.velocity.y);
+                // Si le joueur n'est pas encore à pleine vitesse
+                if (Mathf.Abs(rb.velocity.x) < speed)
+                {
+                    rb.AddForce(new Vector2(direction * airControlForce, 0), ForceMode2D.Impulse);
+                }
+
+                // Si le joueur souhaite changer de direction (gauche)
+                else if (moveLeft && rb.velocity.x >= speed)
+                {
+                    rb.AddForce(new Vector2(-1 * airControlForce, 0), ForceMode2D.Impulse);
+                }
+
+                // Si le joueur souhaite changer de direction (droite)
+                else if (moveRight && rb.velocity.x <= -speed)
+                {
+                    rb.AddForce(new Vector2(airControlForce, 0), ForceMode2D.Impulse);
+                }
             }
         }
     }
