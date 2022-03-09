@@ -2,7 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
+using UnityEditorInternal;
 using UnityEngine;
+using Vector2 = UnityEngine.Vector2;
 
 public class Character: MonoBehaviour
 {
@@ -43,10 +46,10 @@ public class Character: MonoBehaviour
 
     [Header("Saut")] 
     public AnimationCurve jumpCurve;
-    public float vitesseJumpcurve;
-    public float vitesseShortJumpAcceleration;
-    private float abscisseJumpCurve;
-    private bool jumping;
+    public float vitesseJumpcurve;    // Vitesse à laquelle on parcourt cette courbe si on garde le bouton de saut enfoncé
+    public float vitesseShortJumpAcceleration;    // Vitesse à laquelle on parcourt cette courbe si on lache le bouton de saut
+    private float abscisseJumpCurve;   
+    private bool jumping;  
     public float jumpForce;
     private bool onGround;
     [SerializeField] float tailleRaycastGround;
@@ -57,10 +60,21 @@ public class Character: MonoBehaviour
     public float airControlForce;
 
 
+    [Header("WallJump")] 
+    public Vector2 directionWallJump;
+    public float forceWallJump;
+    public float grabForceWall;
+    private bool canWallJumpLeft;
+    private bool canWallJumpRight;
+    [SerializeField] public float tailleRaycastWall;
+    [SerializeField] public LayerMask wall;
+
+
 
     // Tout ce qui concerne le controller
     private void Awake()
     {
+        jump = false;
         controls = new PlayerControls();
         controls.Personnage.MoveLeft.performed += ctx => moveLeft = true;
         controls.Personnage.MoveLeft.canceled += ctx => moveLeft = false;
@@ -84,21 +98,31 @@ public class Character: MonoBehaviour
     {
         controls.Personnage.Disable();
     }
-    
+
+    private void Start()
+    {
+        moveLeft = false;
+        moveRight = false;
+    }
+
 
     private void Update()
     {
         onGround = Physics2D.Raycast(transform.position, Vector2.down, tailleRaycastGround, ground);
-        
 
+        canWallJumpLeft = Physics2D.Raycast(transform.position, Vector2.left, tailleRaycastWall, wall);
+        canWallJumpRight = Physics2D.Raycast(transform.position, Vector2.right, tailleRaycastWall, wall);
+        
+        
         // Détéction des inputs horizontaux du joueur (version provisoire)
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
             moveLeft = true;
             moveRight = false;
             direction = -1;
-            stockageDemiTour = 0;   // On remet cette variable à 0 puisque faire demi-tour signifie appuyer sur une flèche différente
+            stockageDemiTour = 0;    // On remet cette variable à 0 puisque faire demi-tour signifie appuyer sur une flèche différente
         }
+
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
             moveRight = true;
@@ -106,30 +130,25 @@ public class Character: MonoBehaviour
             direction = 1;
             stockageDemiTour = 0;    // On remet cette variable à 0 puisque faire demi-tour signifie appuyer sur une flèche différente
         }
-        
-        
-        /*if (moveLeft)
-        {
-            direction = -1;
-            stockageDemiTour = 0; 
-        }
-        if (moveRight)
-        {
-            direction = 1;
-            stockageDemiTour = 0; 
-        } */
+
 
 
         if (onGround)
         {
             MoveCharacter();
         }
+        
         else
         {
             AirControl();
+            
+            if (canWallJumpLeft || canWallJumpRight)
+            {
+                WallJump();
+            }
         }
-
-
+        
+        
         if ((jump && onGround) || jumping)
         {
             Jump();
@@ -141,9 +160,8 @@ public class Character: MonoBehaviour
     void MoveCharacter()
     {
         // Si le joueur fait demi-tour...
-        if (((moveLeft && rb.velocity.x > 0) || (moveRight && rb.velocity.x < 0)) && !stopDemiTourRun && !stopDemiTourWalk)
+        if (((moveLeft && rb.velocity.x > 0.1f) || (moveRight && rb.velocity.x < -0.1f)) && !stopDemiTourRun && !stopDemiTourWalk)
         {
-
             // ... en marchant 
             if(!running && !stopDemiTourWalk)
             {
@@ -181,17 +199,17 @@ public class Character: MonoBehaviour
         // Si le joueur marche
         else if (!run && !running)
         {
+            stopDemiTourWalk = false;
+            
             // Si le joueur appuie sur une touche de déplacement
             if ((moveLeft || moveRight) && abscisseMovementsCurve < 0.5f)
             {
-                stopDemiTourWalk = false;
                 abscisseMovementsCurve += Time.deltaTime * vitesseMouvementsCurve;
             }
 
             // Si le joueur s'arrête de bouger
             else if (abscisseMovementsCurve > 0)
             {
-                stopDemiTourWalk = false;
                 abscisseMovementsCurve -= Time.deltaTime * vitesseDecelerationCurve;
             }
 
@@ -222,8 +240,9 @@ public class Character: MonoBehaviour
         // Si le joueur court
         else
         {
-            abscisseMovementsCurve = 0.5f; // Pour garder la courbe de la marche à son max et donc avoir une transition entre les deux smooth
             stopDemiTourRun = false;
+
+            abscisseMovementsCurve = 0.5f; // Pour garder la courbe de la marche à son max et donc avoir une transition entre les deux smooth
 
             // Si le joueur bouge
             if ((moveLeft || moveRight) && abscisseRunCurve < 0.5f)
@@ -248,7 +267,7 @@ public class Character: MonoBehaviour
         jumping = true;   // Pour retourner dans cette fonction une fois celle-ci terminée
         
         // On test si le joueur continuer à appuyer sur la touche saut et donc le faire suater plus longtemps
-        if (jump)
+        if (jump || abscisseJumpCurve > 0.5f)
         {
             abscisseJumpCurve += Time.deltaTime * vitesseJumpcurve;
         }
@@ -286,6 +305,7 @@ public class Character: MonoBehaviour
                 // Si le joueur souhaite faire demi-tour à pleine vitesse (vers la gauche)
                 if (moveLeft && rb.velocity.x >= 0)
                 {
+                    direction = -1;
                     abscisseRunCurve -= Time.deltaTime;    // On dimine l'abscisse de la courbe de course pour évite que le personnage ne dérape à fond à la fin si il a peu de vitesse 
                     rb.AddForce(new Vector2(-1 * airControlForce, 0), ForceMode2D.Impulse);
                 }
@@ -293,7 +313,8 @@ public class Character: MonoBehaviour
                 // Si le joueur souhaite faire demi-tour à pleine vitesse (vers la droite)
                 else if (moveRight && rb.velocity.x <= 0)
                 {
-                    abscisseRunCurve -= Time.deltaTime * 10;    // On dimine l'abscisse de la courbe de course pour évite que le personnage ne dérape à fond à la fin si il a peu de vitesse 
+                    direction = 1;
+                    abscisseRunCurve -= Time.deltaTime;    // On dimine l'abscisse de la courbe de course pour évite que le personnage ne dérape à fond à la fin si il a peu de vitesse 
                     rb.AddForce(new Vector2(airControlForce, 0), ForceMode2D.Impulse);
                 }
 
@@ -325,6 +346,31 @@ public class Character: MonoBehaviour
                     rb.AddForce(new Vector2(airControlForce, 0), ForceMode2D.Impulse);
                 }
             }
+        }
+    }
+
+    
+    void WallJump()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            jumping = false;
+            abscisseJumpCurve = 0;
+            if (canWallJumpLeft)
+            {
+                direction = 1;
+                rb.velocity = new Vector2(directionWallJump.x * forceWallJump, directionWallJump.y * forceWallJump);
+                Debug.Log(rb.velocity);
+            }
+            else
+            {
+                direction = -1;
+                rb.velocity = new Vector2(-1 * directionWallJump.x * forceWallJump, directionWallJump.y * forceWallJump);
+            }
+        }
+        else
+        {
+            rb.AddForce(new Vector2(0, grabForceWall), ForceMode2D.Force);
         }
     }
 }

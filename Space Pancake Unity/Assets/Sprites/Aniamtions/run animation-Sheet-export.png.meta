@@ -1,34 +1,19 @@
 fileFormatVersion: 2
-guid: 2d7ca6534539f5643a50eb2f7b8f36dd
+guid: 1137ca5b4f38d814586fc773dc96c76a
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8361465832387940557
-    second: animation_idle_0
+      213: 7707955965948751821
+    second: run animation-Sheet-export_0
   - first:
-      213: 2489380637037777200
-    second: animation_idle_1
+      213: -5956626520304061222
+    second: run animation-Sheet-export_1
   - first:
-      213: -3924432127712566373
-    second: animation_idle_2
+      213: 6276285016571650748
+    second: run animation-Sheet-export_2
   - first:
-      213: 307521741030635125
-    second: animation_idle_3
-  - first:
-      213: -3328917496238940834
-    second: animation_idle_4
-  - first:
-      213: -3106012109035712508
-    second: animation_idle_5
-  - first:
-      213: 7293000491671396468
-    second: animation_idle_6
-  - first:
-      213: 896512194926565525
-    second: animation_idle_7
-  - first:
-      213: -6426635468657862432
-    second: animation_idle_8
+      213: -7163245279806353336
+    second: run animation-Sheet-export_3
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -118,13 +103,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: animation_idle_0
+      name: run animation-Sheet-export_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 16
-        height: 17
+        height: 18
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -132,20 +117,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 33f63fa502b16fb80800000000000000
-      internalID: -8361465832387940557
+      spriteID: dcf6abecc1928fa60800000000000000
+      internalID: 7707955965948751821
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: animation_idle_1
+      name: run animation-Sheet-export_1
       rect:
         serializedVersion: 2
         x: 16
         y: 0
         width: 16
-        height: 17
+        height: 18
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -153,20 +138,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0315f55008e0c8220800000000000000
-      internalID: 2489380637037777200
+      spriteID: ad4fa954dbfc55da0800000000000000
+      internalID: -5956626520304061222
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: animation_idle_2
+      name: run animation-Sheet-export_2
       rect:
         serializedVersion: 2
         x: 32
         y: 0
         width: 16
-        height: 17
+        height: 18
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -174,20 +159,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b93ef8ab5cd9989c0800000000000000
-      internalID: -3924432127712566373
+      spriteID: cb22cd928f7d91750800000000000000
+      internalID: 6276285016571650748
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: animation_idle_3
+      name: run animation-Sheet-export_3
       rect:
         serializedVersion: 2
         x: 48
         y: 0
         width: 16
-        height: 17
+        height: 18
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -195,113 +180,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 57637d6e469844400800000000000000
-      internalID: 307521741030635125
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: animation_idle_4
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 0
-        width: 16
-        height: 17
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e5d581eac2f4dc1d0800000000000000
-      internalID: -3328917496238940834
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: animation_idle_5
-      rect:
-        serializedVersion: 2
-        x: 80
-        y: 0
-        width: 16
-        height: 17
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4005dd4717a35e4d0800000000000000
-      internalID: -3106012109035712508
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: animation_idle_6
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 0
-        width: 16
-        height: 17
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 470a2d4ae41f53560800000000000000
-      internalID: 7293000491671396468
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: animation_idle_7
-      rect:
-        serializedVersion: 2
-        x: 112
-        y: 0
-        width: 16
-        height: 17
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5985763671d017c00800000000000000
-      internalID: 896512194926565525
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: animation_idle_8
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 0
-        width: 16
-        height: 17
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0e8d8bd471100d6a0800000000000000
-      internalID: -6426635468657862432
+      spriteID: 840162ade5a079c90800000000000000
+      internalID: -7163245279806353336
       vertices: []
       indices: 
       edges: []
