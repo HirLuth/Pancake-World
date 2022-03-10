@@ -307,7 +307,7 @@ public class Character: MonoBehaviour
 
     void RotateCharacter()
     {
-        if (onGround && (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow)))
+        if (onGround && (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow)))
         {
             transform.rotation = Quaternion.Euler(0, moveLeft ? 180 : 0, 0);
         }
