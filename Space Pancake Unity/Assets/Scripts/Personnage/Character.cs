@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Numerics;
+//using System.Numerics;
 using UnityEditorInternal;
 using UnityEngine;
 using Vector2 = UnityEngine.Vector2;
@@ -70,6 +70,14 @@ public class Character: MonoBehaviour
     [SerializeField] public LayerMask wall;
 
 
+    [Header("Animations")]
+    public Animator anim;
+    private bool isWalking;
+    private bool isRunning;
+    private bool isJumping;
+    private bool isFalling;
+
+
 
     // Tout ce qui concerne le controller
     private void Awake()
@@ -132,9 +140,10 @@ public class Character: MonoBehaviour
         }
 
 
-
         if (onGround)
         {
+            isJumping = false;
+            isFalling = false;
             MoveCharacter();
         }
         
@@ -153,6 +162,21 @@ public class Character: MonoBehaviour
         {
             Jump();
         }
+
+
+        RotateCharacter();
+
+
+        if(rb.velocity.y < -0.1f)
+        {
+            isFalling = true;
+            jumping = false;
+        }
+
+        anim.SetBool("isRunning", isRunning);
+        anim.SetBool("isWalking", isWalking);
+        anim.SetBool("isJumping", isJumping);
+        anim.SetBool("isFalling", isFalling);
     }
     
 
@@ -259,12 +283,41 @@ public class Character: MonoBehaviour
             
             rb.velocity = new Vector2(Mathf.Sign(direction) * runCurve.Evaluate(abscisseRunCurve) * runSpeed, rb.velocity.y);
         }
+
+
+        // Pour les animations
+        if(Mathf.Abs(rb.velocity.x) < 0.1f)
+        {
+            isWalking = false;
+        }
+        else
+        {
+            if(Mathf.Abs(rb.velocity.x) < speed)
+            {
+                isWalking = true;
+                isRunning = false;
+            }
+            else
+            {
+                isRunning = true;
+            }
+        }
     }
 
+
+    void RotateCharacter()
+    {
+        if (onGround && (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow)))
+        {
+            transform.rotation = Quaternion.Euler(0, moveLeft ? 180 : 0, 0);
+        }
+    }
     
+
     void Jump()
     {
         jumping = true;   // Pour retourner dans cette fonction une fois celle-ci terminée
+        isJumping = true;
         
         // On test si le joueur continuer à appuyer sur la touche saut et donc le faire suater plus longtemps
         if (jump || abscisseJumpCurve > 0.5f)
@@ -288,10 +341,30 @@ public class Character: MonoBehaviour
         // Si le saut est terminé
         else
         {
+            isFalling = true;
+            isJumping = false;
             abscisseJumpCurve = 0;
             jump = false;
             jumping = false;
         }
+
+
+        /*if(rb.velocity.y > 0.01f)
+        {
+            isJumping = true;
+            isFalling = false;
+        }
+        else if(rb.velocity.y < - 0.01f)
+        {
+            Debug.Log(12);
+            isJumping = false;
+            isFalling = true;
+        }
+        else
+        {
+            isJumping = false;
+            isFalling = false;
+        }*/
     }
 
 

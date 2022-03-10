@@ -1631,6 +1631,30 @@ Transform:
   m_Father: {fileID: 58620811}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1981252076 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1130788752039163606, guid: 2668080157879484eadde581eac04ade, type: 3}
+  m_PrefabInstance: {fileID: 7440300181152935786}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1981252077
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1981252076}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5f648cb100c30484095f1599ba824813, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &2048357777
 GameObject:
   m_ObjectHideFlags: 0
@@ -2458,15 +2482,31 @@ PrefabInstance:
     - target: {fileID: 1130788752039163603, guid: 2668080157879484eadde581eac04ade, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -1467503134938122286, guid: f2828b5cabe94e94f93cdeaf8edad982, type: 3}
+      objectReference: {fileID: 7707955965948751821, guid: 1137ca5b4f38d814586fc773dc96c76a, type: 3}
     - target: {fileID: 1130788752039163603, guid: 2668080157879484eadde581eac04ade, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1130788752039163604, guid: 2668080157879484eadde581eac04ade, type: 3}
+      propertyPath: m_Size.y
+      value: 1.0270033
+      objectReference: {fileID: 0}
+    - target: {fileID: 1130788752039163604, guid: 2668080157879484eadde581eac04ade, type: 3}
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 6200000, guid: 9ba71abb6a4103c49a2b33d5e801fe60, type: 2}
+    - target: {fileID: 1130788752039163604, guid: 2668080157879484eadde581eac04ade, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.013501614
+      objectReference: {fileID: 0}
+    - target: {fileID: 1130788752039163604, guid: 2668080157879484eadde581eac04ade, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.x
+      value: 0.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 1130788752039163604, guid: 2668080157879484eadde581eac04ade, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.y
+      value: 0.17
+      objectReference: {fileID: 0}
     - target: {fileID: 1130788752039163605, guid: 2668080157879484eadde581eac04ade, type: 3}
       propertyPath: m_Mass
       value: 10
@@ -2488,8 +2528,16 @@ PrefabInstance:
       value: Druide
       objectReference: {fileID: 0}
     - target: {fileID: 1130788752039163607, guid: 2668080157879484eadde581eac04ade, type: 3}
+      propertyPath: anim
+      value: 
+      objectReference: {fileID: 1981252077}
+    - target: {fileID: 1130788752039163607, guid: 2668080157879484eadde581eac04ade, type: 3}
       propertyPath: speed
-      value: 9
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1130788752039163607, guid: 2668080157879484eadde581eac04ade, type: 3}
+      propertyPath: runSpeed
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 1130788752039163607, guid: 2668080157879484eadde581eac04ade, type: 3}
       propertyPath: jumpForce
@@ -2505,7 +2553,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1130788752039163607, guid: 2668080157879484eadde581eac04ade, type: 3}
       propertyPath: grabForceWall
-      value: 70
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 1130788752039163607, guid: 2668080157879484eadde581eac04ade, type: 3}
       propertyPath: airControlForce
