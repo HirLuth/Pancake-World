@@ -2437,7 +2437,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1130788752039163602, guid: 2668080157879484eadde581eac04ade, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.52
+      value: 3.68
       objectReference: {fileID: 0}
     - target: {fileID: 1130788752039163602, guid: 2668080157879484eadde581eac04ade, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2537,7 +2537,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1130788752039163607, guid: 2668080157879484eadde581eac04ade, type: 3}
       propertyPath: runSpeed
-      value: 18
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 1130788752039163607, guid: 2668080157879484eadde581eac04ade, type: 3}
       propertyPath: jumpForce
@@ -2553,7 +2553,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1130788752039163607, guid: 2668080157879484eadde581eac04ade, type: 3}
       propertyPath: grabForceWall
-      value: 40
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 1130788752039163607, guid: 2668080157879484eadde581eac04ade, type: 3}
       propertyPath: airControlForce

@@ -37,7 +37,7 @@ public class Character: MonoBehaviour
     public float vitesseRunCurve;   // Vitesse à laquelle on traverse la courbe (= acceleration)
     public float vitesseRunDecelerationCurve;
     public float vitesseRunDemiTourCurve;
-    private float abscisseRunCurve;   // Abscisse utilisée pour lire la courbe de course, elle éolue en fonction du temps et de la vitesse qu'on lui donne
+    private float abscisseRunCurve;   // Abscisse utilisée pour lire la courbe de course, elle évolue en fonction du temps et de la vitesse qu'on lui donne
     private bool running;    // Utilisé pour éviter que le joueur sorte de l'état de course sans transition
     public float runSpeed;    // Vitesse de la course
     private bool stopDemiTourRun;    // Utilisé pour sortir de l'état de demi-tour
@@ -48,25 +48,25 @@ public class Character: MonoBehaviour
     public AnimationCurve jumpCurve;
     public float vitesseJumpcurve;    // Vitesse à laquelle on parcourt cette courbe si on garde le bouton de saut enfoncé
     public float vitesseShortJumpAcceleration;    // Vitesse à laquelle on parcourt cette courbe si on lache le bouton de saut
-    private float abscisseJumpCurve;   
-    private bool jumping;  
-    public float jumpForce;
-    private bool onGround;
-    [SerializeField] float tailleRaycastGround;
+    private float abscisseJumpCurve;    // Abscisse utilisée pour lire l'ordonnée actuelle de la courbe de saut
+    private bool jumping;    // Permet de retourner dans la fonction saut
+    public float jumpForce;    // Puissance du saut
+    private bool onGround;    // Permet de vérifier si le personnage est au sol
+    [SerializeField] float tailleRaycastGround;    // Longueur du raycast permettant de détecter le sol
     [SerializeField] LayerMask ground;
 
 
     [Header("AirControl")] 
-    public float airControlForce;
+    public float airControlForce;    // Puissance de l'air control
 
 
     [Header("WallJump")] 
-    public Vector2 directionWallJump;
-    public float forceWallJump;
-    public float grabForceWall;
-    private bool canWallJumpLeft;
-    private bool canWallJumpRight;
-    [SerializeField] public float tailleRaycastWall;
+    public Vector2 directionWallJump;    // Direction dans laquelle va se faire le wall jump
+    public float forceWallJump;    // Puissance du wall jump
+    public float grabForceWall;    // Puissance de la résistence lorsque le personnage s'accorche aux murs
+    private bool canWallJumpLeft;   // Un mur à gauche du personnage est détécté
+    private bool canWallJumpRight;   // Un mur à droite du personnage est détécté
+    [SerializeField] public float tailleRaycastWall;   // Longueur du raycast permettant de détecter le mur
     [SerializeField] public LayerMask wall;
 
 
@@ -82,7 +82,6 @@ public class Character: MonoBehaviour
     // Tout ce qui concerne le controller
     private void Awake()
     {
-        jump = false;
         controls = new PlayerControls();
         controls.Personnage.MoveLeft.performed += ctx => moveLeft = true;
         controls.Personnage.MoveLeft.canceled += ctx => moveLeft = false;
@@ -140,6 +139,7 @@ public class Character: MonoBehaviour
         }
 
 
+        // Lancement des différentes fonctions
         if (onGround)
         {
             isJumping = false;
@@ -156,31 +156,30 @@ public class Character: MonoBehaviour
                 WallJump();
             }
         }
-        
-        
+
         if ((jump && onGround) || jumping)
         {
             Jump();
         }
-
-
+        
         RotateCharacter();
 
 
+        // Pour les animations
         if(rb.velocity.y < -0.1f)
         {
             isFalling = true;
             jumping = false;
         }
-
+        
         anim.SetBool("isRunning", isRunning);
         anim.SetBool("isWalking", isWalking);
         anim.SetBool("isJumping", isJumping);
         anim.SetBool("isFalling", isFalling);
     }
     
-
-
+    
+    // Déplacements au sol du personnage
     void MoveCharacter()
     {
         // Si le joueur fait demi-tour...
@@ -189,6 +188,7 @@ public class Character: MonoBehaviour
             // ... en marchant 
             if(!running && !stopDemiTourWalk)
             {
+                // On ralentir le personnage petit à petit
                 abscisseMovementsCurve -= Time.deltaTime * vitesseDemiTourCurve;
 
                 rb.velocity = new Vector2(-direction * movementsCurve.Evaluate(abscisseMovementsCurve) * speed, rb.velocity.y);
@@ -196,7 +196,7 @@ public class Character: MonoBehaviour
                 // Si le personnage a fini de faire demi-tour
                 if (abscisseMovementsCurve <= 0.1f)
                 {
-                    abscisseMovementsCurve = 0.5f;
+                    abscisseMovementsCurve = 0.5f;    // Pour ressortir du demi-tour avec la bonne vitesse
                     stopDemiTourWalk = true;
                 }
             }
@@ -205,11 +205,12 @@ public class Character: MonoBehaviour
             // ... en courant 
             else 
             {
-                abscisseRunCurve -= Time.deltaTime * vitesseRunDemiTourCurve;
-                stockageDemiTour += Time.deltaTime * vitesseRunDemiTourCurve;
+                abscisseRunCurve -= Time.deltaTime * vitesseRunDemiTourCurve;    // On ralentir le personnage petit à petit
+                stockageDemiTour += Time.deltaTime * vitesseRunDemiTourCurve;    // Pour adapter la vitesse du personnage lorsqu'il sort du demi-tour
 
                 rb.velocity = new Vector2(-direction * runCurve.Evaluate(abscisseRunCurve) * runSpeed, rb.velocity.y);
 
+                // Lorsque le demi-tour est finit
                 if(abscisseRunCurve <= 0.1f)
                 {
                     abscisseRunCurve = stockageDemiTour;
@@ -305,19 +306,25 @@ public class Character: MonoBehaviour
     }
 
 
+    // Rotation du personnage (au sol)
     void RotateCharacter()
     {
         if (onGround && (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow)))
         {
             transform.rotation = Quaternion.Euler(0, moveLeft ? 180 : 0, 0);
         }
+        else if (canWallJumpLeft || canWallJumpRight)
+        {
+            transform.rotation = Quaternion.Euler(0, canWallJumpRight ? 180 : 0, 0);
+        }
     }
     
 
+    // Saut du personnage
     void Jump()
     {
-        jumping = true;   // Pour retourner dans cette fonction une fois celle-ci terminée
-        isJumping = true;
+        jumping = true;   // Pour retourner dans cette fonction à chaque update
+        isJumping = true;    // Pour les animations
         
         // On test si le joueur continuer à appuyer sur la touche saut et donc le faire suater plus longtemps
         if (jump || abscisseJumpCurve > 0.5f)
@@ -331,7 +338,6 @@ public class Character: MonoBehaviour
             abscisseJumpCurve += Time.deltaTime * vitesseShortJumpAcceleration;
         }
 
-
         // Si le saut est encore en cours
         if (abscisseJumpCurve < 1)
         {
@@ -341,30 +347,14 @@ public class Character: MonoBehaviour
         // Si le saut est terminé
         else
         {
-            isFalling = true;
-            isJumping = false;
             abscisseJumpCurve = 0;
             jump = false;
             jumping = false;
-        }
-
-
-        /*if(rb.velocity.y > 0.01f)
-        {
-            isJumping = true;
-            isFalling = false;
-        }
-        else if(rb.velocity.y < - 0.01f)
-        {
-            Debug.Log(12);
-            isJumping = false;
+            
+            // Pour les animations
             isFalling = true;
-        }
-        else
-        {
             isJumping = false;
-            isFalling = false;
-        }*/
+        }
     }
 
 
@@ -425,22 +415,30 @@ public class Character: MonoBehaviour
     
     void WallJump()
     {
+        // si le joueur saute du mur
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            // On arrête l'état de saut actuel
             jumping = false;
             abscisseJumpCurve = 0;
+            
+            
+            // Si le mur se trouve à gauche du personnage
             if (canWallJumpLeft)
             {
                 direction = 1;
                 rb.velocity = new Vector2(directionWallJump.x * forceWallJump, directionWallJump.y * forceWallJump);
-                Debug.Log(rb.velocity);
             }
+            
+            // Si le mur se trouve à droite du personnage
             else
             {
                 direction = -1;
                 rb.velocity = new Vector2(-1 * directionWallJump.x * forceWallJump, directionWallJump.y * forceWallJump);
             }
         }
+        
+        // Si le joueur glisse sur le mur
         else
         {
             rb.AddForce(new Vector2(0, grabForceWall), ForceMode2D.Force);
