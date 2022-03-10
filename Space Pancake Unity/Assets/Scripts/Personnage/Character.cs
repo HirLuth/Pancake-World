@@ -15,6 +15,7 @@ public class Character: MonoBehaviour
     private bool moveRight;
     private bool run;
     private bool jump;
+    private Vector2 directionManette;
 
     
     [Header("Physics")] 
@@ -83,10 +84,10 @@ public class Character: MonoBehaviour
     private void Awake()
     {
         controls = new PlayerControls();
-        controls.Personnage.MoveLeft.performed += ctx => moveLeft = true;
+        controls.Personnage.MoveLeft.started += ctx => moveLeft = true;
         controls.Personnage.MoveLeft.canceled += ctx => moveLeft = false;
 
-        controls.Personnage.MoveRight.performed += ctx => moveRight = true;
+        controls.Personnage.MoveRight.started += ctx => moveRight = true;
         controls.Personnage.MoveRight.canceled += ctx => moveRight = false;
 
         controls.Personnage.Run.performed += ctx => run = true;
@@ -106,12 +107,6 @@ public class Character: MonoBehaviour
         controls.Personnage.Disable();
     }
 
-    private void Start()
-    {
-        moveLeft = false;
-        moveRight = false;
-    }
-
 
     private void Update()
     {
@@ -119,23 +114,15 @@ public class Character: MonoBehaviour
 
         canWallJumpLeft = Physics2D.Raycast(transform.position, Vector2.left, tailleRaycastWall, wall);
         canWallJumpRight = Physics2D.Raycast(transform.position, Vector2.right, tailleRaycastWall, wall);
-        
-        
-        // Détéction des inputs horizontaux du joueur (version provisoire)
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            moveLeft = true;
-            moveRight = false;
-            direction = -1;
-            stockageDemiTour = 0;    // On remet cette variable à 0 puisque faire demi-tour signifie appuyer sur une flèche différente
-        }
 
-        if (Input.GetKeyDown(KeyCode.RightArrow))
+
+        if (moveLeft)
         {
-            moveRight = true;
-            moveLeft = false;
+            direction = -1;
+        }
+        if (moveRight)
+        {
             direction = 1;
-            stockageDemiTour = 0;    // On remet cette variable à 0 puisque faire demi-tour signifie appuyer sur une flèche différente
         }
 
 
@@ -186,7 +173,7 @@ public class Character: MonoBehaviour
         if (((moveLeft && rb.velocity.x > 0.1f) || (moveRight && rb.velocity.x < -0.1f)) && !stopDemiTourRun && !stopDemiTourWalk)
         {
             // ... en marchant 
-            if(!running && !stopDemiTourWalk)
+            if (!running && !stopDemiTourWalk)
             {
                 // On ralentir le personnage petit à petit
                 abscisseMovementsCurve -= Time.deltaTime * vitesseDemiTourCurve;
@@ -201,12 +188,12 @@ public class Character: MonoBehaviour
                 }
             }
 
-
             // ... en courant 
-            else 
+            else
             {
                 abscisseRunCurve -= Time.deltaTime * vitesseRunDemiTourCurve;    // On ralentir le personnage petit à petit
                 stockageDemiTour += Time.deltaTime * vitesseRunDemiTourCurve;    // Pour adapter la vitesse du personnage lorsqu'il sort du demi-tour
+                Debug.Log(stockageDemiTour);
 
                 rb.velocity = new Vector2(-direction * runCurve.Evaluate(abscisseRunCurve) * runSpeed, rb.velocity.y);
 
@@ -309,7 +296,7 @@ public class Character: MonoBehaviour
     // Rotation du personnage (au sol)
     void RotateCharacter()
     {
-        if (onGround && (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow)))
+        if (onGround && (moveLeft || moveRight))
         {
             transform.rotation = Quaternion.Euler(0, moveLeft ? 180 : 0, 0);
         }
@@ -416,7 +403,7 @@ public class Character: MonoBehaviour
     void WallJump()
     {
         // si le joueur saute du mur
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (jump)
         {
             // On arrête l'état de saut actuel
             jumping = false;
