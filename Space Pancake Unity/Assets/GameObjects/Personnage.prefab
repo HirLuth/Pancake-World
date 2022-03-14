@@ -311,7 +311,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93f5b5ff8eb8ad14092de50541a13ae6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 887262781076718216}
   movementsCurve:
     serializedVersion: 2
     m_Curve:
@@ -420,7 +419,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   vitesseJumpcurve: 2
-  vitesseShortJumpAcceleration: 7
+  vitesseShortJumpAcceleration: 8
   jumpForce: 33
   tailleRaycastGround: 0.8
   ground:
@@ -436,6 +435,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   anim: {fileID: 7250847303676680922}
+  rb: {fileID: 887262781076718216}
+  bash: {fileID: 3901934828180129476, guid: 8a128419a089cc346b36dcf9e3af8355, type: 3}
 --- !u!95 &7250847303676680922
 Animator:
   serializedVersion: 3
