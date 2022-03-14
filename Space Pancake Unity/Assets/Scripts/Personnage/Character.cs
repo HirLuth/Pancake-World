@@ -80,7 +80,6 @@ public class Character: MonoBehaviour
     public Rigidbody2D rb;
 
 
-
     // Tout ce qui concerne le controller
     private void Awake()
     {

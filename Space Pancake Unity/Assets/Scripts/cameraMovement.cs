@@ -18,6 +18,11 @@ public class cameraMovement : MonoBehaviour
 
         position.x = Mathf.Lerp(transform.position.x, characterPosition.position.x, interpolationX);
 
+        if (DetectionHaut.tropHaut || DetectionBas.tropBas)
+        {
+            position.y = Mathf.Lerp(transform.position.y, characterPosition.position.y, interpolationY);
+        }
+
         transform.position = position;
     }
 }
