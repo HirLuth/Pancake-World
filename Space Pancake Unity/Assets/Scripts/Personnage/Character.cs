@@ -15,11 +15,7 @@ public class Character: MonoBehaviour
     private bool moveRight;
     private bool run;
     private bool jump;
-    private Vector2 directionManette;
-
-    
-    [Header("Physics")] 
-    public Rigidbody2D rb;
+    private bool wallJump;
 
     
     [Header("Déplacements")] 
@@ -59,6 +55,7 @@ public class Character: MonoBehaviour
 
     [Header("AirControl")] 
     public float airControlForce;    // Puissance de l'air control
+    public float noButtonForce;    // Resistance de l'air quand le joueur n'appuie sur aucune touche
 
 
     [Header("WallJump")] 
@@ -79,15 +76,20 @@ public class Character: MonoBehaviour
     private bool isFalling;
 
 
+    [Header("Autres")]
+    public Rigidbody2D rb;
+    public Bash bash;
+
+
 
     // Tout ce qui concerne le controller
     private void Awake()
     {
         controls = new PlayerControls();
-        controls.Personnage.MoveLeft.started += ctx => moveLeft = true;
+        controls.Personnage.MoveLeft.performed += ctx => moveLeft = true;
         controls.Personnage.MoveLeft.canceled += ctx => moveLeft = false;
 
-        controls.Personnage.MoveRight.started += ctx => moveRight = true;
+        controls.Personnage.MoveRight.performed += ctx => moveRight = true;
         controls.Personnage.MoveRight.canceled += ctx => moveRight = false;
 
         controls.Personnage.Run.performed += ctx => run = true;
@@ -95,6 +97,7 @@ public class Character: MonoBehaviour
 
         controls.Personnage.Sauter.started += ctx => jump = true;
         controls.Personnage.Sauter.canceled += ctx => jump = false;
+        controls.Personnage.Sauter.canceled += ctx => wallJump = false;
     }
     
     private void OnEnable()
@@ -116,40 +119,59 @@ public class Character: MonoBehaviour
         canWallJumpRight = Physics2D.Raycast(transform.position, Vector2.right, tailleRaycastWall, wall);
 
 
-        if (moveLeft)
+        if (controls.Personnage.MoveLeft.WasPressedThisFrame())
         {
+            moveLeft = true;
             direction = -1;
         }
-        if (moveRight)
+
+        if (controls.Personnage.MoveRight.WasPressedThisFrame())
         {
+            moveRight = true;
             direction = 1;
         }
 
-
-        // Lancement des différentes fonctions
-        if (onGround)
+        if (controls.Personnage.Sauter.WasPressedThisFrame() && (canWallJumpLeft || canWallJumpRight))
         {
-            isJumping = false;
-            isFalling = false;
-            MoveCharacter();
+            wallJump = true;
         }
-        
+
+
+        rb.drag = 0;
+
+        if (!bash.usingSerpe)
+        {
+            // Lancement des différentes fonctions
+            if (onGround)
+            {
+                isJumping = false;
+                isFalling = false;
+                MoveCharacter();
+            }
+
+            else
+            {
+                AirControl();
+
+                if (canWallJumpLeft || canWallJumpRight)
+                {
+                    WallJump();
+                }
+            }
+
+            if ((jump && onGround) || jumping)
+            {
+                Jump();
+            }
+
+            RotateCharacter();
+        }
         else
         {
-            AirControl();
-            
-            if (canWallJumpLeft || canWallJumpRight)
-            {
-                WallJump();
-            }
+            jumping = false;
+            abscisseJumpCurve = 0;
         }
 
-        if ((jump && onGround) || jumping)
-        {
-            Jump();
-        }
-        
-        RotateCharacter();
 
 
         // Pour les animations
@@ -158,14 +180,14 @@ public class Character: MonoBehaviour
             isFalling = true;
             jumping = false;
         }
-        
+
         anim.SetBool("isRunning", isRunning);
         anim.SetBool("isWalking", isWalking);
         anim.SetBool("isJumping", isJumping);
         anim.SetBool("isFalling", isFalling);
     }
-    
-    
+
+
     // Déplacements au sol du personnage
     void MoveCharacter()
     {
@@ -193,7 +215,6 @@ public class Character: MonoBehaviour
             {
                 abscisseRunCurve -= Time.deltaTime * vitesseRunDemiTourCurve;    // On ralentir le personnage petit à petit
                 stockageDemiTour += Time.deltaTime * vitesseRunDemiTourCurve;    // Pour adapter la vitesse du personnage lorsqu'il sort du demi-tour
-                Debug.Log(stockageDemiTour);
 
                 rb.velocity = new Vector2(-direction * runCurve.Evaluate(abscisseRunCurve) * runSpeed, rb.velocity.y);
 
@@ -296,11 +317,11 @@ public class Character: MonoBehaviour
     // Rotation du personnage (au sol)
     void RotateCharacter()
     {
-        if (onGround && (moveLeft || moveRight))
+        if (moveLeft || moveRight)
         {
             transform.rotation = Quaternion.Euler(0, moveLeft ? 180 : 0, 0);
         }
-        else if (canWallJumpLeft || canWallJumpRight)
+        else if ((canWallJumpLeft || canWallJumpRight) && !onGround)
         {
             transform.rotation = Quaternion.Euler(0, canWallJumpRight ? 180 : 0, 0);
         }
@@ -397,16 +418,23 @@ public class Character: MonoBehaviour
                 }
             }
         }
+        else
+        {
+            rb.AddForce(new Vector2(Mathf.Sign(-rb.velocity.x) * noButtonForce, 0));
+        }
     }
 
     
     void WallJump()
     {
         // si le joueur saute du mur
-        if (jump)
+        if (wallJump)
         {
             // On arrête l'état de saut actuel
+            jump = false;
             jumping = false;
+            wallJump = false;
+            rb.drag = 0;
             abscisseJumpCurve = 0;
             
             
@@ -428,7 +456,8 @@ public class Character: MonoBehaviour
         // Si le joueur glisse sur le mur
         else
         {
-            rb.AddForce(new Vector2(0, grabForceWall), ForceMode2D.Force);
+            rb.drag = grabForceWall;
+            //rb.AddForce(new Vector2(0, grabForceWall), ForceMode2D.Force);
         }
     }
 }
