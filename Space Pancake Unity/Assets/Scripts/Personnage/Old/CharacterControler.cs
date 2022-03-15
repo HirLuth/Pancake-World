@@ -339,16 +339,16 @@ public class CharacterControler : MonoBehaviour
     {
         bool lookLeft;
 
-        if (dir.x < 0.01f)
+        if (dir.x < 0.01f && !onWallLeft && !onWallRight)
         {
             lookLeft = false;
         }
-        else
+        else if(!onWallLeft && !onWallRight)
         {
             lookLeft = true;
         }
 
-        transform.rotation = Quaternion.Euler(0, lookLeft ? 0 : 180, 0);
+        //transform.rotation = Quaternion.Euler(0, lookLeft ? 0 : 180, 0);
     }
 
     

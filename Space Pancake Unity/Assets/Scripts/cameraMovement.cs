@@ -16,17 +16,13 @@ public class cameraMovement : MonoBehaviour
 
         Vector3 position = this.transform.position;
 
-        position.x = Mathf.Lerp(this.transform.position.x, characterPosition.position.x + 3, interpolationX);
-        
-        if (transform.position.x > 45)
+        position.x = Mathf.Lerp(transform.position.x, characterPosition.position.x, interpolationX);
+
+        if (DetectionHaut.tropHaut || DetectionBas.tropBas)
         {
-            position.y = Mathf.Lerp(this.transform.position.y, 4.5f, interpolationY);
-        }
-        else
-        {
-            position.y = Mathf.Lerp(this.transform.position.y, 1.53f, interpolationY);
+            position.y = Mathf.Lerp(transform.position.y, characterPosition.position.y, interpolationY);
         }
 
-        this.transform.position = position;
+        transform.position = position;
     }
 }

@@ -15,10 +15,7 @@ public class Character: MonoBehaviour
     private bool moveRight;
     private bool run;
     private bool jump;
-
-    
-    [Header("Physics")] 
-    public Rigidbody2D rb;
+    private bool wallJump;
 
     
     [Header("Déplacements")] 
@@ -58,6 +55,7 @@ public class Character: MonoBehaviour
 
     [Header("AirControl")] 
     public float airControlForce;    // Puissance de l'air control
+    public float noButtonForce;    // Resistance de l'air quand le joueur n'appuie sur aucune touche
 
 
     [Header("WallJump")] 
@@ -78,6 +76,9 @@ public class Character: MonoBehaviour
     private bool isFalling;
 
 
+    [Header("Autres")]
+    public Rigidbody2D rb;
+
 
     // Tout ce qui concerne le controller
     private void Awake()
@@ -94,6 +95,7 @@ public class Character: MonoBehaviour
 
         controls.Personnage.Sauter.started += ctx => jump = true;
         controls.Personnage.Sauter.canceled += ctx => jump = false;
+        controls.Personnage.Sauter.canceled += ctx => wallJump = false;
     }
     
     private void OnEnable()
@@ -106,79 +108,88 @@ public class Character: MonoBehaviour
         controls.Personnage.Disable();
     }
 
-    private void Start()
-    {
-        moveLeft = false;
-        moveRight = false;
-    }
-
 
     private void Update()
     {
         onGround = Physics2D.Raycast(transform.position, Vector2.down, tailleRaycastGround, ground);
 
-        canWallJumpLeft = Physics2D.Raycast(transform.position, Vector2.left, tailleRaycastWall, wall);
-        canWallJumpRight = Physics2D.Raycast(transform.position, Vector2.right, tailleRaycastWall, wall);
-        
-        
-        // Détéction des inputs horizontaux du joueur (version provisoire)
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        canWallJumpLeft = Physics2D.Raycast(transform.position, Vector2.left, tailleRaycastWall, ground);
+        canWallJumpRight = Physics2D.Raycast(transform.position, Vector2.right, tailleRaycastWall, ground);
+
+
+        if (controls.Personnage.MoveLeft.WasPressedThisFrame())
         {
             moveLeft = true;
-            moveRight = false;
             direction = -1;
-            stockageDemiTour = 0;    // On remet cette variable à 0 puisque faire demi-tour signifie appuyer sur une flèche différente
         }
 
-        if (Input.GetKeyDown(KeyCode.RightArrow))
+        if (controls.Personnage.MoveRight.WasPressedThisFrame())
         {
             moveRight = true;
-            moveLeft = false;
             direction = 1;
-            stockageDemiTour = 0;    // On remet cette variable à 0 puisque faire demi-tour signifie appuyer sur une flèche différente
         }
 
-
-        // Lancement des différentes fonctions
-        if (onGround)
+        if (controls.Personnage.Sauter.WasPressedThisFrame() && (canWallJumpLeft || canWallJumpRight))
         {
-            isJumping = false;
-            isFalling = false;
-            MoveCharacter();
+            wallJump = true;
         }
-        
+
+
+        rb.drag = 0;
+
+        if (!Bash.usingSerpe && !Tyrolienne.usingTyrolienne)
+        {
+            // Lancement des différentes fonctions
+            if (onGround)
+            {
+                Detection.canUseZipline = false;
+                isJumping = false;
+                isFalling = false;
+                MoveCharacter();
+            }
+
+            else if (!Tyrolienne.noAirControl)
+            {
+                AirControl();
+                if (canWallJumpLeft || canWallJumpRight)
+                {
+                    WallJump();
+                }
+            }
+
+            if ((jump && onGround) || jumping)
+            {
+                Jump();
+            }
+
+            RotateCharacter();
+        }
         else
         {
-            AirControl();
-            
-            if (canWallJumpLeft || canWallJumpRight)
-            {
-                WallJump();
-            }
+            jumping = false;
+            abscisseJumpCurve = 0;
         }
 
-        if ((jump && onGround) || jumping)
-        {
-            Jump();
-        }
         
-        RotateCharacter();
-
-
         // Pour les animations
         if(rb.velocity.y < -0.1f)
         {
             isFalling = true;
             jumping = false;
         }
-        
+        else if (rb.velocity.y > 0.1f)
+        {
+            isFalling = false;
+            isJumping = true;
+        }
+
         anim.SetBool("isRunning", isRunning);
         anim.SetBool("isWalking", isWalking);
         anim.SetBool("isJumping", isJumping);
         anim.SetBool("isFalling", isFalling);
     }
-    
-    
+
+
     // Déplacements au sol du personnage
     void MoveCharacter()
     {
@@ -186,7 +197,7 @@ public class Character: MonoBehaviour
         if (((moveLeft && rb.velocity.x > 0.1f) || (moveRight && rb.velocity.x < -0.1f)) && !stopDemiTourRun && !stopDemiTourWalk)
         {
             // ... en marchant 
-            if(!running && !stopDemiTourWalk)
+            if (!running && !stopDemiTourWalk)
             {
                 // On ralentir le personnage petit à petit
                 abscisseMovementsCurve -= Time.deltaTime * vitesseDemiTourCurve;
@@ -201,9 +212,8 @@ public class Character: MonoBehaviour
                 }
             }
 
-
             // ... en courant 
-            else 
+            else
             {
                 abscisseRunCurve -= Time.deltaTime * vitesseRunDemiTourCurve;    // On ralentir le personnage petit à petit
                 stockageDemiTour += Time.deltaTime * vitesseRunDemiTourCurve;    // Pour adapter la vitesse du personnage lorsqu'il sort du demi-tour
@@ -309,25 +319,25 @@ public class Character: MonoBehaviour
     // Rotation du personnage (au sol)
     void RotateCharacter()
     {
-        if (onGround && (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow)))
-        {
-            transform.rotation = Quaternion.Euler(0, moveLeft ? 180 : 0, 0);
-        }
-        else if (canWallJumpLeft || canWallJumpRight)
+        if ((canWallJumpLeft || canWallJumpRight) && !onGround)
         {
             transform.rotation = Quaternion.Euler(0, canWallJumpRight ? 180 : 0, 0);
+        }
+        else if (moveLeft || moveRight)
+        {
+            transform.rotation = Quaternion.Euler(0, moveLeft ? 180 : 0, 0);
         }
     }
     
 
     // Saut du personnage
-    void Jump()
+    public void Jump()
     {
         jumping = true;   // Pour retourner dans cette fonction à chaque update
         isJumping = true;    // Pour les animations
         
         // On test si le joueur continuer à appuyer sur la touche saut et donc le faire suater plus longtemps
-        if (jump || abscisseJumpCurve > 0.5f)
+        if (jump || abscisseJumpCurve > 0.6f)
         {
             abscisseJumpCurve += Time.deltaTime * vitesseJumpcurve;
         }
@@ -368,16 +378,24 @@ public class Character: MonoBehaviour
                 // Si le joueur souhaite faire demi-tour à pleine vitesse (vers la gauche)
                 if (moveLeft && rb.velocity.x >= 0)
                 {
+                    if (abscisseRunCurve > 0)
+                    {
+                        abscisseRunCurve -= Time.deltaTime;    // On dimine l'abscisse de la courbe de course pour évite que le personnage ne dérape trop à la fin si il a peu de vitesse
+                    }
+                    
                     direction = -1;
-                    abscisseRunCurve -= Time.deltaTime;    // On dimine l'abscisse de la courbe de course pour évite que le personnage ne dérape à fond à la fin si il a peu de vitesse 
                     rb.AddForce(new Vector2(-1 * airControlForce, 0), ForceMode2D.Impulse);
                 }
 
                 // Si le joueur souhaite faire demi-tour à pleine vitesse (vers la droite)
                 else if (moveRight && rb.velocity.x <= 0)
                 {
+                    if (abscisseRunCurve > 0)
+                    {
+                        abscisseRunCurve -= Time.deltaTime;    // On dimine l'abscisse de la courbe de course pour évite que le personnage ne dérape trop à la fin si il a peu de vitesse
+                    }
+                    
                     direction = 1;
-                    abscisseRunCurve -= Time.deltaTime;    // On dimine l'abscisse de la courbe de course pour évite que le personnage ne dérape à fond à la fin si il a peu de vitesse 
                     rb.AddForce(new Vector2(airControlForce, 0), ForceMode2D.Impulse);
                 }
 
@@ -400,15 +418,21 @@ public class Character: MonoBehaviour
                 // Si le joueur souhaite changer de direction (gauche)
                 else if (moveLeft && rb.velocity.x >= speed)
                 {
+                    direction = -1;
                     rb.AddForce(new Vector2(-1 * airControlForce, 0), ForceMode2D.Impulse);
                 }
 
                 // Si le joueur souhaite changer de direction (droite)
                 else if (moveRight && rb.velocity.x <= -speed)
                 {
+                    direction = 1;
                     rb.AddForce(new Vector2(airControlForce, 0), ForceMode2D.Impulse);
                 }
             }
+        }
+        else
+        {
+            rb.AddForce(new Vector2(Mathf.Sign(-rb.velocity.x) * noButtonForce, 0));
         }
     }
 
@@ -416,10 +440,13 @@ public class Character: MonoBehaviour
     void WallJump()
     {
         // si le joueur saute du mur
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (wallJump)
         {
             // On arrête l'état de saut actuel
+            jump = false;
             jumping = false;
+            wallJump = false;
+            rb.drag = 0;
             abscisseJumpCurve = 0;
             
             
@@ -441,7 +468,8 @@ public class Character: MonoBehaviour
         // Si le joueur glisse sur le mur
         else
         {
-            rb.AddForce(new Vector2(0, grabForceWall), ForceMode2D.Force);
+            rb.drag = grabForceWall;
+            //rb.AddForce(new Vector2(0, grabForceWall), ForceMode2D.Force);
         }
     }
 }

@@ -616,12 +616,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -8361465832387940557, guid: 2d7ca6534539f5643a50eb2f7b8f36dd, type: 3}
+  m_Sprite: {fileID: -1467503134938122286, guid: f2828b5cabe94e94f93cdeaf8edad982, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1, y: 1.0625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -645,7 +645,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 1, y: 1.0625}
-    newSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1.0625}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -823,7 +823,14 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   airControlForce: 0
-  walkSpeed: 0
+  directionWallJump: {x: 0, y: 0}
+  forceWallJump: 0
+  grabForceWall: 0
+  tailleRaycastWall: 0
+  wall:
+    serializedVersion: 2
+    m_Bits: 0
+  anim: {fileID: 0}
 --- !u!212 &1130788752041454824
 SpriteRenderer:
   m_ObjectHideFlags: 0
