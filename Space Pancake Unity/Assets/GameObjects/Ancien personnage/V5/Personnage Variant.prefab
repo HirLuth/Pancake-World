@@ -121,7 +121,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3370975539180701572, guid: 7d66d83780bbd264796141ea0e1735e3, type: 3}
       propertyPath: m_Name
-      value: Personnage
+      value: Personnage Variant
       objectReference: {fileID: 0}
     - target: {fileID: 3370975539180701575, guid: 7d66d83780bbd264796141ea0e1735e3, type: 3}
       propertyPath: m_GravityScale
