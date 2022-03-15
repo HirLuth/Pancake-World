@@ -137,7 +137,7 @@ public class Character: MonoBehaviour
 
         rb.drag = 0;
 
-        if (!Bash.usingSerpe)
+        if (!Bash.usingSerpe && !Tyrolienne.usingTyrolienne)
         {
             // Lancement des différentes fonctions
             if (onGround)
