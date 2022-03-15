@@ -4,36 +4,47 @@ using UnityEngine;
 
 public class Tyrolienne : MonoBehaviour
 {
+    [Header("Paramètres Importants")] 
+    public float start;
+    
     public Vector2 cible;
-    public float speedTyrolienne;
+    private float speedTyrolienne;
     public static bool usingTyrolienne;
+    public float speedLimit;
+    public float acceleration;
 
     [Header("Player")]
     public GameObject player;
     private Rigidbody2D rb;
-    private float stockage;
+    private float stockageGravity;
 
 
     private void Start()
     {
         rb = player.GetComponent<Rigidbody2D>();
-        stockage = rb.gravityScale;
+        stockageGravity = rb.gravityScale;
     }
 
 
-    void FixedUpdate()
+    void Update()
     {
-        if (usingTyrolienne == true && player.transform.position.x < cible.x)
+        if (usingTyrolienne && (player.transform.position.x < cible.x && player.transform.position.x > start) && Detection.canUseZipline)
         {
             rb.gravityScale = 0;
+
+            if (speedTyrolienne < speedLimit)
+            {
+                speedTyrolienne += Time.deltaTime * acceleration;
+            }
 
             Vector2 direction = new Vector2(cible.x - player.transform.localPosition.x, cible.y - player.transform.localPosition.y);
             rb.velocity = direction.normalized * speedTyrolienne;
         }
 
-        else
+        else if (player.transform.position.x >= cible.x || player.transform.position.x <= start)
         {
-            rb.gravityScale = stockage;
+            rb.gravityScale = stockageGravity;
+            Detection.canUseZipline = false;
             usingTyrolienne = false;
         }
     }
@@ -41,5 +52,7 @@ public class Tyrolienne : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         usingTyrolienne = true;
+
+        speedTyrolienne = rb.velocity.x;
     }
 }
