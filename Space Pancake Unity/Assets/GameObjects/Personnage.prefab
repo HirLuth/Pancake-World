@@ -180,7 +180,7 @@ GameObject:
   - component: {fileID: 7250847303676680922}
   m_Layer: 0
   m_Name: Personnage
-  m_TagString: Untagged
+  m_TagString: Character
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -298,7 +298,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &887262781076718218
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -338,7 +338,7 @@ MonoBehaviour:
   vitesseMouvementsCurve: 5
   vitesseDecelerationCurve: 10
   vitesseDemiTourCurve: 20
-  speed: 8
+  speed: 7
   runCurve:
     serializedVersion: 2
     m_Curve:
@@ -366,7 +366,7 @@ MonoBehaviour:
   vitesseRunCurve: 2
   vitesseRunDecelerationCurve: 2
   vitesseRunDemiTourCurve: 1.5
-  runSpeed: 17
+  runSpeed: 16
   jumpCurve:
     serializedVersion: 2
     m_Curve:
@@ -427,8 +427,8 @@ MonoBehaviour:
     m_Bits: 64
   airControlForce: 1.35
   noButtonForce: 8
-  directionWallJump: {x: 1, y: 1.1}
-  forceWallJump: 25
+  directionWallJump: {x: 1, y: 1.2}
+  forceWallJump: 20
   grabForceWall: 13
   tailleRaycastWall: 0.7
   wall:
@@ -436,7 +436,6 @@ MonoBehaviour:
     m_Bits: 128
   anim: {fileID: 7250847303676680922}
   rb: {fileID: 887262781076718216}
-  bash: {fileID: 3901934828180129476, guid: 8a128419a089cc346b36dcf9e3af8355, type: 3}
 --- !u!95 &7250847303676680922
 Animator:
   serializedVersion: 3

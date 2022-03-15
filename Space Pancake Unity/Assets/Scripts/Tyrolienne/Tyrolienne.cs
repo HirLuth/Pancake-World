@@ -19,8 +19,31 @@ public class Tyrolienne : MonoBehaviour
     
     [Header("Player")]
     public GameObject player;
+    public Character character;
     private Rigidbody2D rb;
     private float stockageGravity;
+    private PlayerControls controls;
+    
+    [Header("PlayerAirControl")]
+    public static bool noAirControl;
+    private float timer;
+
+
+    private void Awake()
+    {
+        controls = new PlayerControls();
+    }
+    
+    private void OnEnable()
+    {
+        controls.Personnage.Enable();
+    }
+
+    private void OnDisable()
+    {
+        controls.Personnage.Disable();
+    }
+
 
 
     private void Start()
@@ -36,31 +59,40 @@ public class Tyrolienne : MonoBehaviour
     {
         if (usingTyrolienne && (player.transform.position.x < poteau2.transform.position.x && player.transform.position.x > poteau1.transform.position.x) && Detection.canUseZipline)
         {
+            if (controls.Personnage.Sauter.WasPressedThisFrame())
+            {
+                timer = 0;
+                character.Jump();
+                usingTyrolienne = false;
+                noAirControl = true;
+            }
             
-            Debug.Log(cible);
             rb.gravityScale = 0;
 
             if (speedTyrolienne < speedLimit)
             {
                 speedTyrolienne += Time.deltaTime * acceleration;
             }
-
-            //Vector2 direction = new Vector2(cible.x - player.transform.localPosition.x, cible.y - player.transform.localPosition.y);
+            
             rb.velocity = direction.normalized * speedTyrolienne;
         }
 
-        else if (player.transform.position.x >= poteau2.transform.position.x || player.transform.position.x <= poteau1.transform.position.x)
+        else if (player.transform.position.x >= poteau2.transform.position.x || player.transform.position.x <= poteau1.transform.position.x || !usingTyrolienne)
         {
-            rb.gravityScale = stockageGravity;
-            Detection.canUseZipline = false;
             usingTyrolienne = false;
+            rb.gravityScale = stockageGravity;
+
+            timer += Time.deltaTime;
+            if (timer > 0.4f)
+            {
+                noAirControl = false;
+            }
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         usingTyrolienne = true;
-
         speedTyrolienne = rb.velocity.x;
     }
 }

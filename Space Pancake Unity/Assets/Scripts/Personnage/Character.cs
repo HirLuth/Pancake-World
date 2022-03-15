@@ -142,12 +142,13 @@ public class Character: MonoBehaviour
             // Lancement des différentes fonctions
             if (onGround)
             {
+                Detection.canUseZipline = false;
                 isJumping = false;
                 isFalling = false;
                 MoveCharacter();
             }
 
-            else
+            else if (!Tyrolienne.noAirControl)
             {
                 AirControl();
                 if (canWallJumpLeft || canWallJumpRight)
@@ -330,7 +331,7 @@ public class Character: MonoBehaviour
     
 
     // Saut du personnage
-    void Jump()
+    public void Jump()
     {
         jumping = true;   // Pour retourner dans cette fonction à chaque update
         isJumping = true;    // Pour les animations
