@@ -12,7 +12,11 @@ public class Tyrolienne : MonoBehaviour
     public static bool usingTyrolienne;
     public float speedLimit;
     public float acceleration;
+    private Vector2 direction;
 
+    public GameObject poteau1;
+    public GameObject poteau2;
+    
     [Header("Player")]
     public GameObject player;
     private Rigidbody2D rb;
@@ -23,13 +27,17 @@ public class Tyrolienne : MonoBehaviour
     {
         rb = player.GetComponent<Rigidbody2D>();
         stockageGravity = rb.gravityScale;
+        
+        direction = new Vector2(poteau2.transform.position.x - poteau1.transform.position.x, poteau2.transform.position.y - poteau1.transform.position.y);
     }
 
 
     void Update()
     {
-        if (usingTyrolienne && (player.transform.position.x < cible.x && player.transform.position.x > start) && Detection.canUseZipline)
+        if (usingTyrolienne && (player.transform.position.x < poteau2.transform.position.x && player.transform.position.x > poteau1.transform.position.x) && Detection.canUseZipline)
         {
+            
+            Debug.Log(cible);
             rb.gravityScale = 0;
 
             if (speedTyrolienne < speedLimit)
@@ -37,11 +45,11 @@ public class Tyrolienne : MonoBehaviour
                 speedTyrolienne += Time.deltaTime * acceleration;
             }
 
-            Vector2 direction = new Vector2(cible.x - player.transform.localPosition.x, cible.y - player.transform.localPosition.y);
+            //Vector2 direction = new Vector2(cible.x - player.transform.localPosition.x, cible.y - player.transform.localPosition.y);
             rb.velocity = direction.normalized * speedTyrolienne;
         }
 
-        else if (player.transform.position.x >= cible.x || player.transform.position.x <= start)
+        else if (player.transform.position.x >= poteau2.transform.position.x || player.transform.position.x <= poteau1.transform.position.x)
         {
             rb.gravityScale = stockageGravity;
             Detection.canUseZipline = false;

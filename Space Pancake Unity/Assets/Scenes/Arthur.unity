@@ -208,7 +208,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 189455444}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 29.26, y: 4.9, z: -10}
+  m_LocalPosition: {x: 29.26, y: 3.73, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1237454720}
@@ -380,6 +380,10 @@ PrefabInstance:
     - target: {fileID: 887262781076718219, guid: 8f7f6f34241a1484b82df60f07839aa9, type: 3}
       propertyPath: m_Name
       value: Personnage
+      objectReference: {fileID: 0}
+    - target: {fileID: 887262781076718219, guid: 8f7f6f34241a1484b82df60f07839aa9, type: 3}
+      propertyPath: m_TagString
+      value: Character
       objectReference: {fileID: 0}
     - target: {fileID: 887262781076718223, guid: 8f7f6f34241a1484b82df60f07839aa9, type: 3}
       propertyPath: m_RootOrder
@@ -571,6 +575,8 @@ MonoBehaviour:
   cible: {x: 54.85, y: 2.15}
   speedLimit: 20
   acceleration: 10
+  poteau1: {fileID: 979990574}
+  poteau2: {fileID: 2112187962}
   player: {fileID: 30774016}
 --- !u!61 &520713510
 BoxCollider2D:
@@ -854,7 +860,7 @@ GameObject:
   - component: {fileID: 979990576}
   - component: {fileID: 979990575}
   m_Layer: 0
-  m_Name: Tyrolienne
+  m_Name: Poteau
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1412,7 +1418,7 @@ GameObject:
   - component: {fileID: 2112187964}
   - component: {fileID: 2112187963}
   m_Layer: 0
-  m_Name: Tyrolienne
+  m_Name: Poteau
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
