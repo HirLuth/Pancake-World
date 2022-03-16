@@ -157,6 +157,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 887262781076718216, guid: 8f7f6f34241a1484b82df60f07839aa9, type: 3}
+      propertyPath: m_GravityScale
+      value: 8.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 887262781076718218, guid: 8f7f6f34241a1484b82df60f07839aa9, type: 3}
+      propertyPath: forceWallJump
+      value: 16.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 887262781076718218, guid: 8f7f6f34241a1484b82df60f07839aa9, type: 3}
+      propertyPath: grabForceWall
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 887262781076718218, guid: 8f7f6f34241a1484b82df60f07839aa9, type: 3}
+      propertyPath: airControlForce
+      value: 1.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 887262781076718218, guid: 8f7f6f34241a1484b82df60f07839aa9, type: 3}
+      propertyPath: dureeNoAirControl
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 887262781076718218, guid: 8f7f6f34241a1484b82df60f07839aa9, type: 3}
+      propertyPath: directionWallJump.y
+      value: 1.2
+      objectReference: {fileID: 0}
     - target: {fileID: 887262781076718219, guid: 8f7f6f34241a1484b82df60f07839aa9, type: 3}
       propertyPath: m_Name
       value: Personnage
@@ -347,10 +371,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f6825b173b416d48bec67cf4addac8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  start: 37.47092
-  cible: {x: 54.85, y: 2.15}
-  speedLimit: 20
-  acceleration: 15
+  speedLimit: 22
+  acceleration: 20
   poteau1: {fileID: 979990574}
   poteau2: {fileID: 2112187962}
   player: {fileID: 30774016}
@@ -1237,6 +1259,10 @@ PrefabInstance:
       propertyPath: characterPosition
       value: 
       objectReference: {fileID: 1778687508}
+    - target: {fileID: 4512747628521838616, guid: 59c04b7eaf615df4a8bbcd5e7e7694cd, type: 3}
+      propertyPath: orthographic size
+      value: 7.368352
+      objectReference: {fileID: 0}
     - target: {fileID: 4512747628521838617, guid: 59c04b7eaf615df4a8bbcd5e7e7694cd, type: 3}
       propertyPath: m_RootOrder
       value: 0

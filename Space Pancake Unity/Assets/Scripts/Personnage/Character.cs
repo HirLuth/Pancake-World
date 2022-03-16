@@ -65,7 +65,9 @@ public class Character: MonoBehaviour
     private bool canWallJumpLeft;   // Un mur à gauche du personnage est détécté
     private bool canWallJumpRight;   // Un mur à droite du personnage est détécté
     [SerializeField] public float tailleRaycastWall;   // Longueur du raycast permettant de détecter le mur
-    [SerializeField] public LayerMask wall;
+    private float timerWallJump;
+    private float stockageWallJump;
+    [SerializeField] float dureeNoAirControl;
 
 
     [Header("Animations")]
@@ -95,7 +97,8 @@ public class Character: MonoBehaviour
 
         controls.Personnage.Sauter.started += ctx => jump = true;
         controls.Personnage.Sauter.canceled += ctx => jump = false;
-        controls.Personnage.Sauter.canceled += ctx => wallJump = false;
+
+        stockageWallJump = forceWallJump;
     }
     
     private void OnEnable()
@@ -135,8 +138,6 @@ public class Character: MonoBehaviour
         }
 
 
-        rb.drag = 0;
-
         if (!Bash.usingSerpe && !Tyrolienne.usingTyrolienne)
         {
             // Lancement des différentes fonctions
@@ -145,15 +146,21 @@ public class Character: MonoBehaviour
                 Detection.canUseZipline = false;
                 isJumping = false;
                 isFalling = false;
+                timerWallJump = 0;
                 MoveCharacter();
             }
 
             else if (!Tyrolienne.noAirControl)
             {
-                AirControl();
-                if (canWallJumpLeft || canWallJumpRight)
+                if (canWallJumpLeft || canWallJumpRight || wallJump)
                 {
                     WallJump();
+                }
+
+                else if (!wallJump)
+                {
+                    Debug.Log(12);
+                    AirControl();
                 }
             }
 
@@ -374,7 +381,7 @@ public class Character: MonoBehaviour
         {
             // Si la vitesse du personnage ne doit pas dépasser celle de course
             if (running)
-            { 
+            {
                 // Si le joueur souhaite faire demi-tour à pleine vitesse (vers la gauche)
                 if (moveLeft && rb.velocity.x >= 0)
                 {
@@ -439,17 +446,38 @@ public class Character: MonoBehaviour
     
     void WallJump()
     {
-        // si le joueur saute du mur
-        if (wallJump)
+        // Partie pour après que le personnage a quitté le mur
+        if(timerWallJump > 0)
         {
+            timerWallJump += Time.deltaTime;
+
+            // On ajoute encore un peu de force au personnage
+            if(0.1f > timerWallJump)
+            {
+                forceWallJump -= Time.deltaTime * 30;
+                rb.velocity = new Vector2(Mathf.Sign(rb.velocity.x) * directionWallJump.x * forceWallJump, directionWallJump.y * forceWallJump);
+            }
+
+            // Retour à l'air control normal
+            if(dureeNoAirControl < timerWallJump)
+            {
+                forceWallJump = stockageWallJump;
+                wallJump = false;
+                timerWallJump = 0;
+            }
+        }
+
+        // si le joueur saute du mur
+        else if (wallJump && timerWallJump == 0)
+        {
+            timerWallJump += Time.deltaTime;
+
             // On arrête l'état de saut actuel
             jump = false;
             jumping = false;
-            wallJump = false;
-            rb.drag = 0;
             abscisseJumpCurve = 0;
-            
-            
+
+
             // Si le mur se trouve à gauche du personnage
             if (canWallJumpLeft)
             {
@@ -468,8 +496,9 @@ public class Character: MonoBehaviour
         // Si le joueur glisse sur le mur
         else
         {
-            rb.drag = grabForceWall;
-            //rb.AddForce(new Vector2(0, grabForceWall), ForceMode2D.Force);
+            timerWallJump = 0;
+            forceWallJump = stockageWallJump;
+            rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -grabForceWall, float.MaxValue));
         }
     }
 }
