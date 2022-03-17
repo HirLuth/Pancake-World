@@ -157,30 +157,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 887262781076718216, guid: 8f7f6f34241a1484b82df60f07839aa9, type: 3}
-      propertyPath: m_GravityScale
-      value: 8.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 887262781076718218, guid: 8f7f6f34241a1484b82df60f07839aa9, type: 3}
-      propertyPath: forceWallJump
-      value: 16.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 887262781076718218, guid: 8f7f6f34241a1484b82df60f07839aa9, type: 3}
-      propertyPath: grabForceWall
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 887262781076718218, guid: 8f7f6f34241a1484b82df60f07839aa9, type: 3}
-      propertyPath: airControlForce
-      value: 1.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 887262781076718218, guid: 8f7f6f34241a1484b82df60f07839aa9, type: 3}
-      propertyPath: dureeNoAirControl
-      value: 0.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 887262781076718218, guid: 8f7f6f34241a1484b82df60f07839aa9, type: 3}
-      propertyPath: directionWallJump.y
-      value: 1.2
-      objectReference: {fileID: 0}
     - target: {fileID: 887262781076718219, guid: 8f7f6f34241a1484b82df60f07839aa9, type: 3}
       propertyPath: m_Name
       value: Personnage
