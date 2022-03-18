@@ -9,6 +9,7 @@ public class FallingPlateform : MonoBehaviour
 {
    public GameObject player;
    public Collider2D colliderSelf;
+   public Collider2D triggerZone;
    public Rigidbody2D rbSelf;
    [SerializeField] private bool playerAsSteppedOn;
    [SerializeField] private float fallingSpeed;
@@ -27,10 +28,12 @@ public class FallingPlateform : MonoBehaviour
       if (player.transform.position.y >= transform.position.y + (transform.localScale.y/2) + (player.transform.localScale.y/2) + margeDetection)
       {
          colliderSelf.enabled = true;
+         triggerZone.enabled = true;
       }
       if (player.transform.position.y <= transform.position.y + (transform.localScale.y/2) + (player.transform.localScale.y/2))
       {
          colliderSelf.enabled = false;
+         triggerZone.enabled = false;
       }
       if (playerAsSteppedOn)
       {
@@ -43,7 +46,7 @@ public class FallingPlateform : MonoBehaviour
       
    }
 
-   private void OnCollisionEnter2D(Collision2D other)
+   private void OnTriggerEnter2D(Collider2D other)
    {
       if (other.gameObject.CompareTag("Character"))
       {
