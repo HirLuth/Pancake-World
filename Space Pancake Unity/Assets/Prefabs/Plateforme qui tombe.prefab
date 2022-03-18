@@ -148,7 +148,7 @@ MonoBehaviour:
   colliderSelf: {fileID: 7551128530492296413}
   rbSelf: {fileID: 4342268271514786630}
   playerAsSteppedOn: 0
-  fallingSpeed: 7
+  fallingSpeed: 8
   timerToFall: 0
   timeBeforFalling: 0.1
   margeDetection: 0.1
