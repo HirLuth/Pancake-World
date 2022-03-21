@@ -159,7 +159,6 @@ public class Character: MonoBehaviour
 
                 else if (!wallJump)
                 {
-                    Debug.Log(12);
                     AirControl();
                 }
             }

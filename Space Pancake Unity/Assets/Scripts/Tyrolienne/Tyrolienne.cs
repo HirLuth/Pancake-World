@@ -63,7 +63,7 @@ public class Tyrolienne : MonoBehaviour
             rb.gravityScale = 0;
 
             // Si le joueur décide de sauter sur la tyrolienne
-            if (controls.Personnage.Sauter.WasPressedThisFrame())
+            if (controls.Personnage.Sauter.WasPressedThisFrame() && rb.velocity.x > 0)
             {
                 // On le fait sauter 
                 timer = 0;
@@ -96,7 +96,7 @@ public class Tyrolienne : MonoBehaviour
             // Tout ce qui concerne l'absence d'air control 
             timer += Time.deltaTime;
 
-            if (timer > 0.32f)
+            if (timer > 0.6f)
             {
                 noAirControl = false;
             }
