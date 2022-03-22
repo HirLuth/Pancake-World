@@ -4,25 +4,15 @@ using UnityEngine;
 
 public class cameraMovement : MonoBehaviour
 {
-    public Transform characterPosition;
+    [SerializeField] Rigidbody2D rb;
+    [SerializeField] Camera camera;
+    private float multiplicateur;
+    
 
-    public float speedX = 2.0f;
-    public float speedY = 2.0f;
-
-    void FixedUpdate()
+    void Update()
     {
-        float interpolationX = speedX * Time.deltaTime;
-        float interpolationY = speedY * Time.deltaTime;
-
-        Vector3 position = this.transform.position;
-
-        position.x = Mathf.Lerp(transform.position.x, characterPosition.position.x, interpolationX);
-
-        if (DetectionHaut.tropHaut || DetectionBas.tropBas)
-        {
-            position.y = Mathf.Lerp(transform.position.y, characterPosition.position.y, interpolationY);
-        }
-
-        transform.position = position;
+        multiplicateur = rb.velocity.x * 0.1f;
+        camera.orthographicSize = 1;
+        Debug.Log(camera.orthographicSize);
     }
 }

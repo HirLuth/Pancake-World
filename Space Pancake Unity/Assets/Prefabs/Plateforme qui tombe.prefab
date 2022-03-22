@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7551128530492296413}
   - component: {fileID: 4342268271514786630}
   - component: {fileID: 7551128530492296414}
+  - component: {fileID: 1015887814}
   m_Layer: 6
   m_Name: Plateforme qui tombe
   m_TagString: Untagged
@@ -98,7 +99,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.004094556}
+  m_Offset: {x: 0, y: -0.0011657923}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -109,7 +110,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.9918109}
+  m_Size: {x: 1, y: 0.9976684}
   m_EdgeRadius: 0
 --- !u!50 &4342268271514786630
 Rigidbody2D:
@@ -146,9 +147,36 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 887262781076718219, guid: 8f7f6f34241a1484b82df60f07839aa9, type: 3}
   colliderSelf: {fileID: 7551128530492296413}
+  triggerZone: {fileID: 1015887814}
   rbSelf: {fileID: 4342268271514786630}
   playerAsSteppedOn: 0
-  fallingSpeed: 7
+  fallingSpeed: 8
   timerToFall: 0
   timeBeforFalling: 0.1
   margeDetection: 0.1
+--- !u!61 &1015887814
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7551128530492296418}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.515}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 0.03}
+  m_EdgeRadius: 0

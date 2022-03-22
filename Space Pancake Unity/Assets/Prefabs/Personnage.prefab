@@ -293,7 +293,7 @@ Rigidbody2D:
   m_Mass: 10
   m_LinearDrag: 0
   m_AngularDrag: 0
-  m_GravityScale: 9
+  m_GravityScale: 8.5
   m_Material: {fileID: 6200000, guid: 9ba71abb6a4103c49a2b33d5e801fe60, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -421,19 +421,17 @@ MonoBehaviour:
   vitesseJumpcurve: 2
   vitesseShortJumpAcceleration: 8
   jumpForce: 33
-  tailleRaycastGround: 0.8
+  tailleRaycastGround: 0.64
   ground:
     serializedVersion: 2
     m_Bits: 64
-  airControlForce: 1.35
+  airControlForce: 1.25
   noButtonForce: 8
   directionWallJump: {x: 1, y: 1.2}
-  forceWallJump: 20
-  grabForceWall: 13
+  forceWallJump: 16.5
+  grabForceWall: 3
   tailleRaycastWall: 0.7
-  wall:
-    serializedVersion: 2
-    m_Bits: 128
+  dureeNoAirControl: 0.3
   anim: {fileID: 7250847303676680922}
   rb: {fileID: 887262781076718216}
 --- !u!95 &7250847303676680922

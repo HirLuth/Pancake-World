@@ -9,6 +9,7 @@ public class FallingPlateform : MonoBehaviour
 {
    public GameObject player;
    public Collider2D colliderSelf;
+   public Collider2D triggerZone;
    public Rigidbody2D rbSelf;
    [SerializeField] private bool playerAsSteppedOn;
    [SerializeField] private float fallingSpeed;
@@ -19,38 +20,38 @@ public class FallingPlateform : MonoBehaviour
    private void Awake()
    {
       playerAsSteppedOn = false;
-      rbSelf.bodyType = RigidbodyType2D.Static;
+      rbSelf.bodyType = RigidbodyType2D.Kinematic;
    }
 
    private void Update()
    {
-      if (rbSelf.velocity.x <= -fallingSpeed)
-      {
-         rbSelf.velocity = Vector2.down*fallingSpeed;
-      }
       if (player.transform.position.y >= transform.position.y + (transform.localScale.y/2) + (player.transform.localScale.y/2) + margeDetection)
       {
          colliderSelf.enabled = true;
+         triggerZone.enabled = true;
       }
       if (player.transform.position.y <= transform.position.y + (transform.localScale.y/2) + (player.transform.localScale.y/2))
       {
          colliderSelf.enabled = false;
+         triggerZone.enabled = false;
       }
       if (playerAsSteppedOn)
       {
          timerToFall += Time.deltaTime;
          if (timerToFall >= timeBeforFalling)
          {
-            rbSelf.bodyType = RigidbodyType2D.Dynamic;
             rbSelf.velocity = Vector2.down * fallingSpeed;
          }
       }
       
    }
 
-   private void OnCollisionEnter2D(Collision2D other)
+   private void OnTriggerEnter2D(Collider2D other)
    {
-      playerAsSteppedOn = true;
+      if (other.gameObject.CompareTag("Character"))
+      {
+         playerAsSteppedOn = true;
+      }
    }
 }
 
