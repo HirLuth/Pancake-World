@@ -41,7 +41,7 @@ public class FallingPlateform : MonoBehaviour
          timerToFall += Time.deltaTime;
          if (timerToFall >= timeBeforFalling)
          {
-            rbSelf.bodyType = RigidbodyType2D.Kinematic;
+            rbSelf.bodyType = RigidbodyType2D.Dynamic;
             rbSelf.velocity = Vector2.down * fallingSpeed;
          }
       }
