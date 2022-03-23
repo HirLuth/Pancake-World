@@ -63,9 +63,12 @@ public class MaïsAReaction : MonoBehaviour
         }
         if (isOnTheRide)
         {
+            character.jumping = false;
+            character.abscisseJumpCurve = 0;
             timer += Time.deltaTime;
             playerRB.gravityScale = 0;
             character.noControl = true;
+            character.jumpForce = jumpOutForceY;
             
             if (controls.Personnage.MoveRight.WasPerformedThisFrame())
             {
@@ -78,7 +81,9 @@ public class MaïsAReaction : MonoBehaviour
             
             if (controls.Personnage.Sauter.WasPerformedThisFrame())
             {
-                playerRB.velocity = new Vector2(horizontaleSpeedSide * jumpOutForceX+1, jumpOutForceY);
+                //playerRB.velocity = new Vector2(horizontaleSpeedSide * jumpOutForceX+1, jumpOutForceY);
+                
+                character.Jump();
                 ReintialiseWhenGetOut();
                 launchedWithoutPlayer = true;
             }
