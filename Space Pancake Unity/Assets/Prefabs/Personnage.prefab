@@ -421,11 +421,11 @@ MonoBehaviour:
   vitesseJumpcurve: 2
   vitesseShortJumpAcceleration: 8
   jumpForce: 33
-  tailleRaycastGround: 0.8
+  tailleRaycastGround: 0.64
   ground:
     serializedVersion: 2
     m_Bits: 64
-  airControlForce: 4
+  airControlForce: 1.25
   noButtonForce: 8
   directionWallJump: {x: 1, y: 1.2}
   forceWallJump: 16.5
