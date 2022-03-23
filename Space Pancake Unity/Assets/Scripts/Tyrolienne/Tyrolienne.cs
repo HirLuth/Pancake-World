@@ -6,13 +6,13 @@ public class Tyrolienne : MonoBehaviour
 {
     [Header("Paramètres Importants")] 
     private float speedTyrolienne;
-    public static bool usingTyrolienne;
-    public float speedLimit;
-    public float acceleration;
-    private Vector2 direction;
+    public bool usingTyrolienne;
+    [SerializeField] float speedLimit;
+    [SerializeField] float acceleration;
+    [SerializeField] Vector2 direction;
 
-    public GameObject poteau1;
-    public GameObject poteau2;
+    [SerializeField] GameObject poteau1;
+    [SerializeField] GameObject poteau2;
     
     [Header("Player")]
     public GameObject player;
@@ -23,6 +23,7 @@ public class Tyrolienne : MonoBehaviour
     
     [Header("PlayerAirControl")]
     public static bool noAirControl;
+    private bool isJumping;
     private float timer;
 
 
@@ -50,49 +51,58 @@ public class Tyrolienne : MonoBehaviour
         stockageGravity = rb.gravityScale;
         
         // On détermine la direction que va prendre la tyrolienne
-        direction = new Vector2(poteau2.transform.position.x - poteau1.transform.position.x, poteau2.transform.position.y - poteau1.transform.position.y);
+        direction = poteau2.transform.position - poteau1.transform.position;
     }
 
 
     void Update()
     {
-        // Si le personnage peut utiliser la tyrolienne
-        if (usingTyrolienne && player.transform.position.x < poteau2.transform.position.x && player.transform.position.x > poteau1.transform.position.x && Detection.canUseZipline)
+        if (usingTyrolienne)
         {
-            // Tout d'abord on retire la gravité du personnage 
-            rb.gravityScale = 0;
-
-            // Si le joueur décide de sauter sur la tyrolienne
-            if (controls.Personnage.Sauter.WasPressedThisFrame() && rb.velocity.x > 0)
+            // Si le personnage peut utiliser la tyrolienne
+            if (usingTyrolienne && player.transform.position.x < poteau2.transform.position.x && player.transform.position.x > poteau1.transform.position.x && Detection.canUseZipline)
             {
-                // On le fait sauter 
-                timer = 0;
-                character.Jump();
-                usingTyrolienne = false;
-                noAirControl = true;
-            }
+                // Tout d'abord on retire la gravité du personnage 
+                rb.gravityScale = 0;
+                character.noControl = true;
 
-            // Gain de vitesse de la tyrolienne 
-            else if (speedTyrolienne < speedLimit)
-            {
-                if(rb.velocity.x < 0)
+                // Si le joueur décide de sauter sur la tyrolienne
+                if (controls.Personnage.Sauter.WasPressedThisFrame() && rb.velocity.x > 0)
                 {
-                    speedTyrolienne += Time.deltaTime * acceleration * 1.5f;
+                    // On le fait sauter 
+                    timer = 0;
+                    character.Jump();
+                    character.noControl = false;
+                    usingTyrolienne = false;
+                    noAirControl = true;
+                    rb.gravityScale = stockageGravity;
                 }
 
-                speedTyrolienne += Time.deltaTime * acceleration;
+                // Gain de vitesse de la tyrolienne 
+                else if (speedTyrolienne < speedLimit)
+                {
+                    if(rb.velocity.x < 0)
+                    {
+                        speedTyrolienne += Time.deltaTime * acceleration * 1.5f;
+                    }
+
+                    speedTyrolienne += Time.deltaTime * acceleration;
+                }
+
+                rb.velocity = direction.normalized * speedTyrolienne;
             }
-            
-            rb.velocity = direction.normalized * speedTyrolienne;
+
+            // Si le joueur n'est plus entre les deux poteaux ou si on n'utilise pas la tyrolienne
+            else if (player.transform.position.x >= poteau2.transform.position.x || player.transform.position.x <= poteau1.transform.position.x)
+            {
+                usingTyrolienne = false;
+                character.noControl = false;
+                rb.gravityScale = stockageGravity;
+            }
         }
-
-        // Si le joueur n'est plus entre les deux poteaux ou si on n'utilise pas la tyrolienne
-        else if (player.transform.position.x >= poteau2.transform.position.x || player.transform.position.x <= poteau1.transform.position.x || !usingTyrolienne)
+        
+        else if (noAirControl)
         {
-            usingTyrolienne = false;
-            rb.gravityScale = stockageGravity;
-
-
             // Tout ce qui concerne l'absence d'air control 
             timer += Time.deltaTime;
 
@@ -112,5 +122,7 @@ public class Tyrolienne : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
         usingTyrolienne = false;
+        character.noControl = false;
+        rb.gravityScale = stockageGravity;
     }
 }
