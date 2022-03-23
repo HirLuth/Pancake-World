@@ -80,6 +80,7 @@ public class Character: MonoBehaviour
 
     [Header("Autres")]
     public Rigidbody2D rb;
+    public bool noControl;
 
 
     // Tout ce qui concerne le controller
