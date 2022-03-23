@@ -45,8 +45,8 @@ public class Character: MonoBehaviour
     public AnimationCurve jumpCurve;
     public float vitesseJumpcurve;    // Vitesse à laquelle on parcourt cette courbe si on garde le bouton de saut enfoncé
     public float vitesseShortJumpAcceleration;    // Vitesse à laquelle on parcourt cette courbe si on lache le bouton de saut
-    private float abscisseJumpCurve;    // Abscisse utilisée pour lire l'ordonnée actuelle de la courbe de saut
-    private bool jumping;    // Permet de retourner dans la fonction saut
+    [HideInInspector] public float abscisseJumpCurve;    // Abscisse utilisée pour lire l'ordonnée actuelle de la courbe de saut
+    [HideInInspector] public bool jumping;    // Permet de retourner dans la fonction saut
     public float jumpForce;    // Puissance du saut
     private bool onGround;    // Permet de vérifier si le personnage est au sol
     [SerializeField] float tailleRaycastGround;    // Longueur du raycast permettant de détecter le sol
@@ -116,7 +116,7 @@ public class Character: MonoBehaviour
     private void Update()
     {
         onGround = Physics2D.Raycast(transform.position, Vector2.down, tailleRaycastGround, ground);
-
+        
         canWallJumpLeft = Physics2D.Raycast(transform.position, Vector2.left, tailleRaycastWall, ground);
         canWallJumpRight = Physics2D.Raycast(transform.position, Vector2.right, tailleRaycastWall, ground);
 
@@ -133,14 +133,15 @@ public class Character: MonoBehaviour
             direction = 1;
         }
 
-        if (controls.Personnage.Sauter.WasPressedThisFrame() && (canWallJumpLeft || canWallJumpRight))
+        if (controls.Personnage.Sauter.WasPressedThisFrame() && (canWallJumpLeft || canWallJumpRight) && !onGround)
         {
             wallJump = true;
         }
 
 
-        if (!Bash.usingSerpe && !Tyrolienne.usingTyrolienne)
+        if (!Bash.usingSerpe && noControl == false)
         {
+            Debug.Log(12);
             // Lancement des différentes fonctions
             if (onGround)
             {
