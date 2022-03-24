@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1493479515}
   - component: {fileID: 1493479514}
-  - component: {fileID: 3681349310038433914}
   m_Layer: 0
   m_Name: CM vcam1
   m_TagString: Untagged
@@ -26,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1493479513}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 68.112, y: 0.10972047, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1747380743}
@@ -52,7 +51,7 @@ MonoBehaviour:
   m_Priority: 10
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 0}
-  m_Follow: {fileID: 887262781076718223, guid: 8f7f6f34241a1484b82df60f07839aa9, type: 3}
+  m_Follow: {fileID: 0}
   m_Lens:
     FieldOfView: 60
     OrthographicSize: 7.368352
@@ -68,22 +67,6 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_ComponentOwner: {fileID: 1747380743}
---- !u!114 &3681349310038433914
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1493479513}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4700f9f03ad19f94baf0367cb7a9c988, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Width: 2
-  m_Damping: 1
-  m_MinFOV: 3
-  m_MaxFOV: 60
 --- !u!1 &1747380742
 GameObject:
   m_ObjectHideFlags: 0
@@ -140,18 +123,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ad980451443d70438faac0bc6c235a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_TrackedObjectOffset: {x: 0, y: 0, z: 0}
-  m_LookaheadTime: 0.08
-  m_LookaheadSmoothing: 0
+  m_TrackedObjectOffset: {x: 1.5, y: 0, z: 0}
+  m_LookaheadTime: 0.132
+  m_LookaheadSmoothing: 8
   m_LookaheadIgnoreY: 1
   m_XDamping: 0.8
-  m_YDamping: 1.5
-  m_ZDamping: 1
+  m_YDamping: 1
+  m_ZDamping: 0
   m_TargetMovementOnly: 1
   m_ScreenX: 0.50286263
   m_ScreenY: 0.51083827
   m_CameraDistance: 10
-  m_DeadZoneWidth: 0.07
+  m_DeadZoneWidth: 0
   m_DeadZoneHeight: 0.43
   m_DeadZoneDepth: 0
   m_UnlimitedSoftZone: 0
@@ -232,7 +215,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 11.4193
+  field of view: 60
   orthographic: 1
   orthographic size: 7.368352
   m_Depth: -1
@@ -315,11 +298,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72ece51f2901e7445ab60da3685d6b5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ShowDebugText: 0
+  m_ShowDebugText: 1
   m_ShowCameraFrustum: 1
   m_IgnoreTimeScale: 0
   m_WorldUpOverride: {fileID: 0}
-  m_UpdateMethod: 2
+  m_UpdateMethod: 0
   m_BlendUpdateMethod: 1
   m_DefaultBlend:
     m_Style: 1

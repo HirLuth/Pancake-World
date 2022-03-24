@@ -420,8 +420,10 @@ MonoBehaviour:
     m_RotationOrder: 4
   vitesseJumpcurve: 2
   vitesseShortJumpAcceleration: 8
+  abscisseJumpCurve: 0
+  jumping: 0
   jumpForce: 33
-  tailleRaycastGround: 0.64
+  tailleRaycastGround: 0.65
   ground:
     serializedVersion: 2
     m_Bits: 64
@@ -434,6 +436,7 @@ MonoBehaviour:
   dureeNoAirControl: 0.3
   anim: {fileID: 7250847303676680922}
   rb: {fileID: 887262781076718216}
+  noControl: 0
 --- !u!95 &7250847303676680922
 Animator:
   serializedVersion: 3

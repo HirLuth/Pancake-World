@@ -1575,29 +1575,29 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1493479515, guid: 59c04b7eaf615df4a8bbcd5e7e7694cd, type: 3}
-      propertyPath: m_LocalPosition.y
+    - target: {fileID: 1747380744, guid: 59c04b7eaf615df4a8bbcd5e7e7694cd, type: 3}
+      propertyPath: m_XDamping
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1747380744, guid: 59c04b7eaf615df4a8bbcd5e7e7694cd, type: 3}
+      propertyPath: m_DeadZoneWidth
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1747380744, guid: 59c04b7eaf615df4a8bbcd5e7e7694cd, type: 3}
-      propertyPath: m_YDamping
-      value: 1
+      propertyPath: m_LookaheadTime
+      value: 0.132
       objectReference: {fileID: 0}
-    - target: {fileID: 3681349310038433914, guid: 59c04b7eaf615df4a8bbcd5e7e7694cd, type: 3}
-      propertyPath: m_Width
-      value: 100
+    - target: {fileID: 1747380744, guid: 59c04b7eaf615df4a8bbcd5e7e7694cd, type: 3}
+      propertyPath: m_LookaheadSmoothing
+      value: 8
       objectReference: {fileID: 0}
-    - target: {fileID: 3681349310038433914, guid: 59c04b7eaf615df4a8bbcd5e7e7694cd, type: 3}
-      propertyPath: m_Damping
+    - target: {fileID: 1747380744, guid: 59c04b7eaf615df4a8bbcd5e7e7694cd, type: 3}
+      propertyPath: m_TrackedObjectOffset.x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2001910739, guid: 59c04b7eaf615df4a8bbcd5e7e7694cd, type: 3}
+      propertyPath: m_UpdateMethod
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4512747628521838616, guid: 59c04b7eaf615df4a8bbcd5e7e7694cd, type: 3}
-      propertyPath: field of view
-      value: 60
-      objectReference: {fileID: 0}
-    - target: {fileID: 4512747628521838616, guid: 59c04b7eaf615df4a8bbcd5e7e7694cd, type: 3}
-      propertyPath: near clip plane
-      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 4512747628521838617, guid: 59c04b7eaf615df4a8bbcd5e7e7694cd, type: 3}
       propertyPath: m_RootOrder
@@ -1605,7 +1605,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4512747628521838617, guid: 59c04b7eaf615df4a8bbcd5e7e7694cd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 12.012235
+      value: 13.518731
       objectReference: {fileID: 0}
     - target: {fileID: 4512747628521838617, guid: 59c04b7eaf615df4a8bbcd5e7e7694cd, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1647,8 +1647,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: Main Camera
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 3681349310038433914, guid: 59c04b7eaf615df4a8bbcd5e7e7694cd, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 59c04b7eaf615df4a8bbcd5e7e7694cd, type: 3}
 --- !u!1001 &6636112899773507624
 PrefabInstance:
