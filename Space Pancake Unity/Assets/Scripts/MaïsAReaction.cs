@@ -65,6 +65,7 @@ public class MaïsAReaction : MonoBehaviour
         }
         if (isOnTheRide)
         {
+            spriteSelf.color = colorNotAtRange;
             character.jumping = false;
             character.abscisseJumpCurve = 0;
             timer += Time.deltaTime;
@@ -119,7 +120,7 @@ public class MaïsAReaction : MonoBehaviour
         }
     }
 
-    private void ReintialiseWhenGetOut()
+    public void ReintialiseWhenGetOut()
     {
         playerRB.gravityScale = stockageGravityScaleJoueur;
         character.noControl = false;
