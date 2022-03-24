@@ -22,8 +22,8 @@ public class MaïsAReaction : MonoBehaviour
     [SerializeField] private float positionSetUpDistanceFromEdge;
     [SerializeField] private float multiplicatorTimeToGetInPosition;
     [SerializeField] private float directionnalModificator;
-    [SerializeField] private float jumpOutForceX;
-    [SerializeField] private float jumpOutForceY;
+    [SerializeField] private float jumpOutForceMultiplicator;
+    
     
     [Header("Variables de fonctionnement")]
     [SerializeField] private bool playerIsAtRange;
@@ -32,6 +32,7 @@ public class MaïsAReaction : MonoBehaviour
     [SerializeField] private float timer;
     [SerializeField] private float stockageGravityScaleJoueur;
     [SerializeField] private float horizontaleSpeedSide;
+    [SerializeField] private float stockageJumpForce;
 
 
     [Header("Variable UI")] 
@@ -43,6 +44,7 @@ public class MaïsAReaction : MonoBehaviour
         controls = new PlayerControls();
         playerIsAtRange = false;
         stockageGravityScaleJoueur = playerRB.gravityScale;
+        stockageJumpForce = character.jumpForce;
     }
     
     private void OnEnable()
@@ -68,7 +70,8 @@ public class MaïsAReaction : MonoBehaviour
             timer += Time.deltaTime;
             playerRB.gravityScale = 0;
             character.noControl = true;
-            character.jumpForce = jumpOutForceY;
+            character.jumpForce = jumpOutForceMultiplicator*stockageJumpForce;
+            
             
             if (controls.Personnage.MoveRight.WasPerformedThisFrame())
             {
@@ -127,11 +130,13 @@ public class MaïsAReaction : MonoBehaviour
     {
         playerIsAtRange = true;
         spriteSelf.color = colorAtRange;
+        
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
         playerIsAtRange = false;
         spriteSelf.color = colorNotAtRange;
+        character.jumpForce = stockageJumpForce;
     }
 }
