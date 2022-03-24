@@ -81,7 +81,7 @@ public class CharacterControler : MonoBehaviour
     public float amplitude = 0.1f;
     public Branche branche;
     public cameraShake cameraShake;
-    private bool checkForShake = true;
+    //private bool checkForShake = true;
 
 
     // Toute la partie dédiée aux contrôles
@@ -337,8 +337,7 @@ public class CharacterControler : MonoBehaviour
     // Fonction dans laquelle on change la rotation du personnage en fonction de là où il regarde
     public void RotateCharacter(Vector2 dir)
     {
-        bool lookLeft;
-
+/*
         if (dir.x < 0.01f && !onWallLeft && !onWallRight)
         {
             lookLeft = false;
@@ -347,7 +346,7 @@ public class CharacterControler : MonoBehaviour
         {
             lookLeft = true;
         }
-
+*/
         //transform.rotation = Quaternion.Euler(0, lookLeft ? 0 : 180, 0);
     }
 

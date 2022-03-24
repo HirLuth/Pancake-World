@@ -27,4 +27,10 @@ public class CinemachineMovements : MonoBehaviour
     {
         camera.m_Lens.OrthographicSize = stockageSize + modificateur;
     }
+
+
+    public void ChangeFollow(Transform objectFollowed)
+    {
+        camera.m_Follow = objectFollowed;
+    }
 }
