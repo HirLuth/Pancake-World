@@ -435,6 +435,9 @@ MonoBehaviour:
   tailleRaycastWall: 0.7
   dureeNoAirControl: 0.3
   anim: {fileID: 7250847303676680922}
+  dezoomMax: 1
+  vitesseDezoom: 1.25
+  vitesseZoom: 0.75
   rb: {fileID: 887262781076718216}
   noControl: 0
 --- !u!95 &7250847303676680922

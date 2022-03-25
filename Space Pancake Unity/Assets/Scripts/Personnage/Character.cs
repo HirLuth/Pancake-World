@@ -84,6 +84,7 @@ public class Character: MonoBehaviour
     public float vitesseZoom;
     private float dezoomCamera;
     private float timerDezoom;
+    private bool dontChangeZoom;
 
 
     [Header("Autres")]
@@ -123,8 +124,13 @@ public class Character: MonoBehaviour
 
     private void Update()
     {
-        onGround = Physics2D.Raycast(transform.position, Vector2.down, tailleRaycastGround, ground);
+        onGround = Physics2D.Raycast(transform.position - new Vector3(0.6f,0,0), Vector2.down, tailleRaycastGround, ground);
         
+        if (!onGround)
+        {
+            onGround = Physics2D.Raycast(transform.position + new Vector3(0.6f,0,0), Vector2.down, tailleRaycastGround, ground);
+        }
+
         canWallJumpLeft = Physics2D.Raycast(transform.position, Vector2.left, tailleRaycastWall, ground);
         canWallJumpRight = Physics2D.Raycast(transform.position, Vector2.right, tailleRaycastWall, ground);
 
@@ -186,9 +192,9 @@ public class Character: MonoBehaviour
         }
 
         // Pour la camera
-        if(onGround || noControl)
+        if(!dontChangeZoom)
         {
-            if (Mathf.Abs(rb.velocity.x) > speed + 0.1f || run)
+            if (Mathf.Abs(rb.velocity.x) > speed + 0.1f)
             {
                 if (timerDezoom < 1f)
                 {
@@ -254,6 +260,7 @@ public class Character: MonoBehaviour
             // ... en courant 
             else
             {
+                dontChangeZoom = true;
                 abscisseRunCurve -= Time.deltaTime * vitesseRunDemiTourCurve;    // On ralentir le personnage petit à petit
                 stockageDemiTour += Time.deltaTime * vitesseRunDemiTourCurve;    // Pour adapter la vitesse du personnage lorsqu'il sort du demi-tour
 
@@ -262,6 +269,7 @@ public class Character: MonoBehaviour
                 // Lorsque le demi-tour est finit
                 if(abscisseRunCurve <= 0.1f)
                 {
+                    dontChangeZoom = false;
                     abscisseRunCurve = stockageDemiTour;
                     stockageDemiTour = 0;
                     stopDemiTourRun = true;
