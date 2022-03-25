@@ -142,7 +142,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 164
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -191,14 +191,18 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 800
+        y: 640
         width: 160
-        height: 160
+        height: 204
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: -80, y: -62}
+        - {x: -80, y: 38}
+        - {x: 80, y: 38}
+        - {x: 80, y: -61}
       tessellationDetail: 0
       bones: []
       spriteID: 26de2f3323ad10030800000000000000
@@ -212,14 +216,18 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 160
-        y: 800
+        y: 640
         width: 160
-        height: 160
+        height: 204
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: -80, y: -61}
+        - {x: -80, y: 38}
+        - {x: 80, y: 38}
+        - {x: 80, y: -62}
       tessellationDetail: 0
       bones: []
       spriteID: 6e5b73106c0d531c0800000000000000
@@ -233,14 +241,18 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 320
-        y: 800
+        y: 640
         width: 160
-        height: 160
+        height: 204
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: -80, y: -62}
+        - {x: -80, y: 38}
+        - {x: 80, y: 38}
+        - {x: 80, y: -62}
       tessellationDetail: 0
       bones: []
       spriteID: 3316d9306dcfb1390800000000000000
@@ -254,14 +266,24 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 480
-        y: 800
+        y: 640
         width: 160
-        height: 160
+        height: 203
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: 50, y: -61.5}
+        - {x: 39, y: -40.5}
+        - {x: 31, y: -21.5}
+        - {x: 1, y: -21.5}
+        - {x: -10, y: -42.5}
+        - {x: -60, y: -51.5}
+        - {x: -80, y: -60.5}
+        - {x: -80, y: 38.5}
+        - {x: 80, y: 38.5}
+        - {x: 80, y: -61.5}
       tessellationDetail: 0
       bones: []
       spriteID: 81a3c1500b0c74b30800000000000000
@@ -275,14 +297,18 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 640
-        y: 800
+        y: 640
         width: 160
-        height: 160
+        height: 203
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: -80, y: -61.5}
+        - {x: -80, y: 38.5}
+        - {x: 80, y: 38.5}
+        - {x: 80, y: -61.5}
       tessellationDetail: 0
       bones: []
       spriteID: 19185bf6cef22ecc0800000000000000
@@ -296,14 +322,22 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 800
-        y: 800
+        y: 640
         width: 160
-        height: 160
+        height: 203
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: 10, y: 8.5}
+        - {x: 10, y: -30.5}
+        - {x: -31, y: -42.5}
+        - {x: -41, y: -61.5}
+        - {x: -80, y: -61.5}
+        - {x: -80, y: 38.5}
+        - {x: 80, y: 38.5}
+        - {x: 70, y: 19.5}
       tessellationDetail: 0
       bones: []
       spriteID: b5be2f92cfa1c7a90800000000000000
@@ -317,18 +351,18 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 640
+        y: 320
         width: 160
-        height: 160
+        height: 202
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape:
-      - - {x: -78, y: -51}
-        - {x: -80, y: 51}
-        - {x: 80, y: 51}
-        - {x: 80, y: -52}
+      - - {x: -80, y: -61}
+        - {x: -80, y: 39}
+        - {x: 80, y: 39}
+        - {x: 80, y: -61}
       tessellationDetail: 0
       bones: []
       spriteID: 49f327c6c805c5940800000000000000
@@ -341,19 +375,19 @@ TextureImporter:
       name: platformes_instables_props_7
       rect:
         serializedVersion: 2
-        x: 160
-        y: 640
+        x: 161
+        y: 320
         width: 160
-        height: 160
+        height: 202
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape:
-      - - {x: -80, y: -49}
-        - {x: -80, y: 49}
-        - {x: 80, y: 49}
-        - {x: 80, y: -51}
+      - - {x: -80, y: -41}
+        - {x: -80, y: 40}
+        - {x: 80, y: 39}
+        - {x: 80, y: -41}
       tessellationDetail: 0
       bones: []
       spriteID: fcc188c75b1ee0be0800000000000000
@@ -367,14 +401,18 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 320
-        y: 640
+        y: 320
         width: 160
-        height: 160
+        height: 202
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: -80, y: -61}
+        - {x: -80, y: 39}
+        - {x: 80, y: 39}
+        - {x: 80, y: -61}
       tessellationDetail: 0
       bones: []
       spriteID: ff236711eb25ffc70800000000000000
@@ -388,14 +426,19 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 480
-        y: 640
+        y: 320
         width: 160
-        height: 160
+        height: 202
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: -50, y: -61}
+        - {x: -80, y: -50}
+        - {x: -80, y: 39}
+        - {x: 80, y: 39}
+        - {x: 80, y: -61}
       tessellationDetail: 0
       bones: []
       spriteID: 384713feec98bbe50800000000000000
@@ -409,14 +452,18 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 640
-        y: 640
+        y: 320
         width: 160
-        height: 160
+        height: 202
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: -80, y: -70}
+        - {x: -80, y: 39}
+        - {x: 80, y: 39}
+        - {x: 80, y: -71}
       tessellationDetail: 0
       bones: []
       spriteID: a58d024b53c5536d0800000000000000
@@ -430,14 +477,19 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 800
-        y: 640
+        y: 320
         width: 160
-        height: 160
+        height: 202
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: 50, y: -71}
+        - {x: -80, y: -71}
+        - {x: -80, y: 39}
+        - {x: 80, y: 39}
+        - {x: 70, y: -50}
       tessellationDetail: 0
       bones: []
       spriteID: fd85d7cea549ea720800000000000000
@@ -450,15 +502,19 @@ TextureImporter:
       name: platformes_instables_props_12
       rect:
         serializedVersion: 2
-        x: 0
-        y: 480
+        x: 160
+        y: 0
         width: 160
-        height: 160
+        height: 221
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: -80, y: -150}
+        - {x: -80, y: -26}
+        - {x: 80, y: -26}
+        - {x: 80, y: -150}
       tessellationDetail: 0
       bones: []
       spriteID: 4855faf0ff32ef1f0800000000000000
@@ -471,15 +527,21 @@ TextureImporter:
       name: platformes_instables_props_13
       rect:
         serializedVersion: 2
-        x: 160
-        y: 480
+        x: 481
+        y: 0
         width: 160
-        height: 160
+        height: 221
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: -60, y: -140}
+        - {x: -60, y: -91}
+        - {x: -70, y: -89}
+        - {x: -80, y: -40}
+        - {x: 80, y: -40}
+        - {x: 80, y: -140}
       tessellationDetail: 0
       bones: []
       spriteID: 52e7fd17be2f7bbb0800000000000000
@@ -492,15 +554,19 @@ TextureImporter:
       name: platformes_instables_props_14
       rect:
         serializedVersion: 2
-        x: 320
-        y: 480
+        x: 640
+        y: 0
         width: 160
-        height: 160
+        height: 221
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: -80, y: -140}
+        - {x: -80, y: -40}
+        - {x: 80, y: -40}
+        - {x: 80, y: -140}
       tessellationDetail: 0
       bones: []
       spriteID: 063556a7af1a84990800000000000000
@@ -513,355 +579,24 @@ TextureImporter:
       name: platformes_instables_props_15
       rect:
         serializedVersion: 2
-        x: 480
-        y: 480
+        x: 800
+        y: 0
         width: 160
-        height: 160
+        height: 221
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: -80, y: -140}
+        - {x: -80, y: -40}
+        - {x: 80, y: -40}
+        - {x: 70, y: -70}
+        - {x: 50, y: -140}
       tessellationDetail: 0
       bones: []
       spriteID: 041c11118f8c40dc0800000000000000
       internalID: -3673590428263661248
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: platformes_instables_props_16
-      rect:
-        serializedVersion: 2
-        x: 640
-        y: 480
-        width: 160
-        height: 160
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 94ae7b7814e527670800000000000000
-      internalID: 8534987879363373641
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: platformes_instables_props_17
-      rect:
-        serializedVersion: 2
-        x: 800
-        y: 480
-        width: 160
-        height: 160
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: dc46dfb83f48a8c20800000000000000
-      internalID: 3209523866015458509
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: platformes_instables_props_18
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 320
-        width: 160
-        height: 160
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2e130c209d3932450800000000000000
-      internalID: 6062852083634156002
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: platformes_instables_props_19
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 320
-        width: 160
-        height: 160
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 015e3916f4ae77a70800000000000000
-      internalID: 8824779621516174608
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: platformes_instables_props_20
-      rect:
-        serializedVersion: 2
-        x: 320
-        y: 320
-        width: 160
-        height: 160
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b4a5b640919244de0800000000000000
-      internalID: -1349908800879240629
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: platformes_instables_props_21
-      rect:
-        serializedVersion: 2
-        x: 480
-        y: 320
-        width: 160
-        height: 160
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: cdecdc8defd2fea50800000000000000
-      internalID: 6552506555429670620
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: platformes_instables_props_22
-      rect:
-        serializedVersion: 2
-        x: 640
-        y: 320
-        width: 160
-        height: 160
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 61ce4bdcec8cfb970800000000000000
-      internalID: 8772951389681019926
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: platformes_instables_props_23
-      rect:
-        serializedVersion: 2
-        x: 800
-        y: 320
-        width: 160
-        height: 160
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7a5c921ab76dba360800000000000000
-      internalID: 7182069857245578663
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: platformes_instables_props_24
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 160
-        width: 160
-        height: 160
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 087122387b318f760800000000000000
-      internalID: 7491759659030812544
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: platformes_instables_props_25
-      rect:
-        serializedVersion: 2
-        x: 480
-        y: 160
-        width: 160
-        height: 160
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b7d2e80c893e21110800000000000000
-      internalID: 1230295893430644091
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: platformes_instables_props_26
-      rect:
-        serializedVersion: 2
-        x: 640
-        y: 160
-        width: 160
-        height: 160
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 068b8388284bdc580800000000000000
-      internalID: -8805183223715284896
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: platformes_instables_props_27
-      rect:
-        serializedVersion: 2
-        x: 800
-        y: 160
-        width: 160
-        height: 160
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f0bf754d9ae3d7090800000000000000
-      internalID: -8035197261026166001
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: platformes_instables_props_28
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 0
-        width: 160
-        height: 160
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f242d564c727cd2f0800000000000000
-      internalID: -946755943572626385
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: platformes_instables_props_29
-      rect:
-        serializedVersion: 2
-        x: 480
-        y: 0
-        width: 160
-        height: 160
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 68eeb343e0dbe42d0800000000000000
-      internalID: -3292486408857719162
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: platformes_instables_props_30
-      rect:
-        serializedVersion: 2
-        x: 640
-        y: 0
-        width: 160
-        height: 160
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: fd733912b19cb23e0800000000000000
-      internalID: -2077345684736755745
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: platformes_instables_props_31
-      rect:
-        serializedVersion: 2
-        x: 800
-        y: 0
-        width: 160
-        height: 160
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6d557e56bb626fdb0800000000000000
-      internalID: -4758573369959950890
       vertices: []
       indices: 
       edges: []
