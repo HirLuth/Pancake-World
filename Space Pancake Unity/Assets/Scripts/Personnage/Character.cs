@@ -78,6 +78,14 @@ public class Character: MonoBehaviour
     private bool isFalling;
 
 
+    [Header("Camera")]
+    public float dezoomMax;
+    public float vitesseDezoom;
+    public float vitesseZoom;
+    private float dezoomCamera;
+    private float timerDezoom;
+
+
     [Header("Autres")]
     public Rigidbody2D rb;
     public bool noControl;
@@ -141,7 +149,6 @@ public class Character: MonoBehaviour
 
         if (!Bash.usingSerpe && noControl == false)
         {
-            Debug.Log(12);
             // Lancement des différentes fonctions
             if (onGround)
             {
@@ -178,9 +185,33 @@ public class Character: MonoBehaviour
             abscisseJumpCurve = 0;
         }
 
-        
+        // Pour la camera
+        if(onGround || noControl)
+        {
+            if (Mathf.Abs(rb.velocity.x) > speed + 0.1f || run)
+            {
+                if (timerDezoom < 1f)
+                {
+                    timerDezoom += Time.deltaTime * vitesseDezoom;
+                }
+            }
+
+            else
+            {
+                if (timerDezoom > 0f)
+                {
+                    timerDezoom -= Time.deltaTime * vitesseZoom;
+                }
+            }
+        }
+
+        dezoomCamera = Mathf.Lerp(0, dezoomMax, Mathf.SmoothStep(0.0f, 1.0f, timerDezoom));
+
+        CinemachineMovements.Instance.CameraSize(dezoomCamera);
+
+
         // Pour les animations
-        if(rb.velocity.y < -0.1f)
+        if (rb.velocity.y < -0.1f)
         {
             isFalling = true;
             jumping = false;

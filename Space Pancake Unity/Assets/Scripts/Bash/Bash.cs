@@ -57,21 +57,27 @@ public class Bash : MonoBehaviour
         {
             spriteRenderer.color = couleurDetection;
             
+
+            // Si le joueur s'élance
             if (controls.Personnage.Serpe.WasReleasedThisFrame())
             {
+                // On sort du ralenti
                 ralenti = 1;
                 Time.timeScale = 1;
                 Time.fixedDeltaTime = 0.02f * Time.timeScale;
-                arrow.SetActive(false);
 
+                arrow.SetActive(false);   // On retire la flèche
+                usingSerpe = false;    // On redonne le contrôle du personnage
+
+                // On donne de l'élan au personnage
                 direction = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical") + 0.2f);
                 rb.velocity = direction * force;
                 
-                StartCoroutine(camera.Shake(duration, amplitude));
-                usingSerpe = false;
+                CinemachineShake.Instance.Shake(duration, amplitude);   // Camera shake
             }
             
             
+            // Si le joueur reste appuyé
             else if (controls.Personnage.Serpe.WasPerformedThisFrame() || usingSerpe)
             {
                 if (ralenti > 0)
@@ -95,9 +101,13 @@ public class Bash : MonoBehaviour
     private void OnTriggerExit2D(Collider2D other)
     {
         canUseSerpe = false;
+
+        // Tout ce qui concerne l'arrêt du ralenti
         ralenti = 1;
         Time.timeScale = 1;
         Time.fixedDeltaTime = 0.02f * Time.timeScale;
+
+        // Tout le reste 
         arrow.SetActive(false);
         usingSerpe = false;
         spriteRenderer.color = couleurNonDetection;
