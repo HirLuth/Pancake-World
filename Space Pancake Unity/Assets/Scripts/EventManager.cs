@@ -10,7 +10,7 @@ public class EventManager : MonoBehaviour
 
     [SerializeField] private GameObject UI;
 
-    private int points;
+    private int pointsNumber;
     [SerializeField] private TextMeshProUGUI score;
 
 
@@ -28,9 +28,16 @@ public class EventManager : MonoBehaviour
     }
 
 
-    public void AddPoints()
+    public void Death()
     {
-        points += 1;
-        score.text = "SCORE : " + points;
+        Time.timeScale = 0;
+        UI.SetActive(true);
+    }
+
+
+    public void AddPoints(int points)
+    {
+        pointsNumber += points;
+        score.text = "SCORE : " + pointsNumber;
     }
 }
