@@ -250,7 +250,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0039642304, y: -6.73952}
+  m_Offset: {x: 0.009928316, y: -6.73952}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -261,7 +261,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.9738643, y: 0.17990112}
+  m_Size: {x: 1.0249496, y: 0.17990112}
   m_EdgeRadius: 0
 --- !u!114 &7102747403412941411
 MonoBehaviour:
@@ -275,12 +275,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f6825b173b416d48bec67cf4addac8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  usingTyrolienne: 0
   speedLimit: 22
   acceleration: 20
+  direction: {x: 0, y: 0}
   poteau1: {fileID: 7102747402790086504}
   poteau2: {fileID: 7102747403973669244}
-  player: {fileID: 0}
-  character: {fileID: 0}
+  player: {fileID: 887262781076718219, guid: 8f7f6f34241a1484b82df60f07839aa9, type: 3}
+  character: {fileID: 887262781076718218, guid: 8f7f6f34241a1484b82df60f07839aa9, type: 3}
 --- !u!1 &7102747403762027466
 GameObject:
   m_ObjectHideFlags: 0
