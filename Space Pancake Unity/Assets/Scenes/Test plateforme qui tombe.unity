@@ -152,7 +152,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4512747628521838617, guid: 59c04b7eaf615df4a8bbcd5e7e7694cd, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4512747628521838617, guid: 59c04b7eaf615df4a8bbcd5e7e7694cd, type: 3}
       propertyPath: m_LocalScale.x
@@ -424,7 +424,7 @@ Transform:
   m_LocalScale: {x: 10.296698, y: 9.385238, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &955445025
 GameObject:
@@ -438,6 +438,8 @@ GameObject:
   - component: {fileID: 955445028}
   - component: {fileID: 955445027}
   - component: {fileID: 955445026}
+  - component: {fileID: 955445031}
+  - component: {fileID: 955445030}
   m_Layer: 0
   m_Name: Soldat fraise
   m_TagString: Untagged
@@ -556,13 +558,55 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 955445025}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 30.59, y: -2.69, z: 0}
+  m_LocalPosition: {x: 29.96, y: -2.69, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1143944802}
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &955445030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 955445025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8285f865b373ae4781ee33f0aa4c216, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rbSelf: {fileID: 955445031}
+  spriteSelf: {fileID: 955445028}
+  movementSpeed: 5
+  patrollingDistanceRight: 5
+  patrollingDistanceLeft: 5
+  iaIsWalking: 1
+  startingWalkingSideIsRight: 1
+  startPostion: {x: 0, y: 0}
+  isGoingRight: 0
+--- !u!50 &955445031
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 955445025}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 50
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!1 &1066306428
 GameObject:
   m_ObjectHideFlags: 0
@@ -670,7 +714,7 @@ Transform:
   m_LocalScale: {x: 10.296698, y: 9.385238, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1134650618
 PrefabInstance:
@@ -1027,7 +1071,7 @@ Transform:
   m_LocalScale: {x: 10.296698, y: 9.385238, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2055964610 stripped
 GameObject:
@@ -1076,7 +1120,7 @@ PrefabInstance:
       objectReference: {fileID: 2055964610}
     - target: {fileID: 2390025770101467342, guid: 92ee482d2bc6d5644ae186fc4efe4dfd, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2390025770101467342, guid: 92ee482d2bc6d5644ae186fc4efe4dfd, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1141,7 +1185,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6667967545553100197, guid: dd4022dfdad95ab44b04c278fbb9b03d, type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6667967545553100197, guid: dd4022dfdad95ab44b04c278fbb9b03d, type: 3}
       propertyPath: m_LocalPosition.x
