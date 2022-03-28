@@ -10,7 +10,6 @@ public class ZoneMort : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Time.timeScale = 0;
-        UI.SetActive(true);
+        EventManager.Instance.Death();
     }
 }
