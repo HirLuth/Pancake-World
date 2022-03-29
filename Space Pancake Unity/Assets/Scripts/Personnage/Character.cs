@@ -385,7 +385,7 @@ public class Character: MonoBehaviour
         isJumping = true;    // Pour les animations
         
         // On test si le joueur continuer à appuyer sur la touche saut et donc le faire suater plus longtemps
-        if (jump || abscisseJumpCurve > 0.6f)
+        if (jump || abscisseJumpCurve > 0.8f)
         {
             abscisseJumpCurve += Time.deltaTime * vitesseJumpcurve;
         }

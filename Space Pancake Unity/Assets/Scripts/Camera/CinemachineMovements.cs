@@ -8,8 +8,10 @@ public class CinemachineMovements : MonoBehaviour
     public static CinemachineMovements Instance;
     private CinemachineVirtualCamera camera;
 
-    private float stockageSize;
+    public float stockageSize;
 
+    public bool estFixe;
+    
 
     private void Awake()
     {
@@ -25,12 +27,16 @@ public class CinemachineMovements : MonoBehaviour
 
     public void CameraSize(float modificateur)
     {
-        camera.m_Lens.OrthographicSize = stockageSize + modificateur;
+        if (!estFixe)
+        {
+            camera.m_Lens.OrthographicSize = stockageSize + modificateur;
+        }
     }
 
 
-    public void ChangeFollow(Transform objectFollowed)
+    public void ChangeFollow(Transform objectFollowed, float dezoom)
     {
+        camera.m_Lens.OrthographicSize = dezoom;
         camera.m_Follow = objectFollowed;
     }
 }
