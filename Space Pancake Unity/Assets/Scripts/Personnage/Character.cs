@@ -125,6 +125,8 @@ public class Character: MonoBehaviour
 
     private void Update()
     {
+        Debug.Log(Time.timeScale);
+
         onGround = Physics2D.Raycast(transform.position - new Vector3(0.6f,0,0), Vector2.down, tailleRaycastGround, ground);
         
         if (!onGround)
