@@ -90,6 +90,7 @@ public class Character: MonoBehaviour
     [Header("Autres")]
     public Rigidbody2D rb;
     public bool noControl;
+    private bool cantRun;   // Pour éviter que le personnage passe en air control de course alors qu'il l'a commencé en marchant
 
 
     // Tout ce qui concerne le controller
@@ -172,7 +173,7 @@ public class Character: MonoBehaviour
                     WallJump();
                 }
 
-                else if (!wallJump)
+                if (!wallJump)
                 {
                     AirControl();
                 }
@@ -384,7 +385,7 @@ public class Character: MonoBehaviour
         isJumping = true;    // Pour les animations
         
         // On test si le joueur continuer à appuyer sur la touche saut et donc le faire suater plus longtemps
-        if (jump || abscisseJumpCurve > 0.6f)
+        if (jump || abscisseJumpCurve > 0.8f)
         {
             abscisseJumpCurve += Time.deltaTime * vitesseJumpcurve;
         }
@@ -420,7 +421,7 @@ public class Character: MonoBehaviour
         if (moveLeft || moveRight)
         {
             // Si la vitesse du personnage ne doit pas dépasser celle de course
-            if (running)
+            if (Mathf.Abs(rb.velocity.x) > speed + 0.2f)
             {
                 // Si le joueur souhaite faire demi-tour à pleine vitesse (vers la gauche)
                 if (moveLeft && rb.velocity.x >= 0)
@@ -536,6 +537,11 @@ public class Character: MonoBehaviour
         // Si le joueur glisse sur le mur
         else
         {
+            if ((canWallJumpLeft && rb.velocity.x < 0) || (canWallJumpRight && rb.velocity.x > 0))
+            {
+                rb.velocity = new Vector2(0, rb.velocity.y);
+            }
+
             timerWallJump = 0;
             forceWallJump = stockageWallJump;
             rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -grabForceWall, float.MaxValue));

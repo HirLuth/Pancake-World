@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 887262780302949259}
   - component: {fileID: 887262780302949256}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Oeil
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   m_Component:
   - component: {fileID: 887262780544646004}
   - component: {fileID: 887262780544646005}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Oeil
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -178,7 +178,7 @@ GameObject:
   - component: {fileID: 887262781076718216}
   - component: {fileID: 887262781076718218}
   - component: {fileID: 7250847303676680922}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Personnage
   m_TagString: Character
   m_Icon: {fileID: 0}
@@ -293,7 +293,7 @@ Rigidbody2D:
   m_Mass: 10
   m_LinearDrag: 0
   m_AngularDrag: 0
-  m_GravityScale: 8.5
+  m_GravityScale: 7.5
   m_Material: {fileID: 6200000, guid: 9ba71abb6a4103c49a2b33d5e801fe60, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -418,11 +418,11 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  vitesseJumpcurve: 2
+  vitesseJumpcurve: 1.8
   vitesseShortJumpAcceleration: 8
   abscisseJumpCurve: 0
   jumping: 0
-  jumpForce: 33
+  jumpForce: 30
   tailleRaycastGround: 0.65
   ground:
     serializedVersion: 2
