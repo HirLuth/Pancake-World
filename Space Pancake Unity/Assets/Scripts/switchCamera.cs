@@ -8,7 +8,7 @@ public class switchCamera : MonoBehaviour
     [SerializeField] Transform originalCamera;
 
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    /*private void OnTriggerEnter2D(Collider2D collision)
     {
         CinemachineMovements.Instance.ChangeFollow(newCamera);
     }
@@ -17,5 +17,5 @@ public class switchCamera : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
         CinemachineMovements.Instance.ChangeFollow(originalCamera);
-    }
+    }*/
 }

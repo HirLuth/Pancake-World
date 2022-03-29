@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 887262780302949259}
   - component: {fileID: 887262780302949256}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Oeil
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   m_Component:
   - component: {fileID: 887262780544646004}
   - component: {fileID: 887262780544646005}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Oeil
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -178,7 +178,7 @@ GameObject:
   - component: {fileID: 887262781076718216}
   - component: {fileID: 887262781076718218}
   - component: {fileID: 7250847303676680922}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Personnage
   m_TagString: Character
   m_Icon: {fileID: 0}

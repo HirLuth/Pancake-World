@@ -5,14 +5,14 @@ using Cinemachine;
 
 public class CinemachineShake : MonoBehaviour
 {
-    // Pour faire référence au script dans d'autres scripts facilement 
+    // Pour faire rÃ©fÃ©rence au script dans d'autres scripts facilement 
     public static CinemachineShake Instance
     {
         get;
         private set;
     }
 
-    private CinemachineVirtualCamera camera;    // Référence de la virtual camera
+    private CinemachineVirtualCamera camera;    // RÃ©fÃ©rence de la virtual camera
     private CinemachineBasicMultiChannelPerlin shake;
     private float shakeTimer;    // Timer permettant de stopper le camera shake
 
@@ -22,7 +22,7 @@ public class CinemachineShake : MonoBehaviour
     {
         Instance = this;
         camera = GetComponent<CinemachineVirtualCamera>();
-        shake = camera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();   // Référence de ce qui provoque le camera shake
+        shake = camera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();   // RÃ©fÃ©rence de ce qui provoque le camera shake
     }
 
 
