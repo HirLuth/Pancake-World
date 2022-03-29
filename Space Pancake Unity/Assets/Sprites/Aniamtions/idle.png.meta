@@ -1,28 +1,19 @@
 fileFormatVersion: 2
-guid: 00e6c3c65877d0340b7089b53d891fdf
+guid: 45a75a3e204af904488c69670177d100
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -741055295813112216
-    second: marche druide-Sheet_0
+      213: 8793639957104055765
+    second: idle_0
   - first:
-      213: 6312626320955649835
-    second: marche druide-Sheet_1
+      213: 6084859605308855041
+    second: idle_1
   - first:
-      213: 7144155350506475617
-    second: marche druide-Sheet_2
+      213: 8603369663158992956
+    second: idle_2
   - first:
-      213: -1169972919242709505
-    second: marche druide-Sheet_3
-  - first:
-      213: -1309349730721595048
-    second: marche druide-Sheet_4
-  - first:
-      213: 2623806429120708768
-    second: marche druide-Sheet_5
-  - first:
-      213: 787640117765638257
-    second: marche druide-Sheet_6
+      213: -5906421172241655209
+    second: idle_3
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -112,13 +103,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: marche druide-Sheet_0
+      name: idle_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 24
-        height: 24
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -130,158 +121,83 @@ TextureImporter:
         - {x: 8, y: -9}
       tessellationDetail: 0
       bones: []
-      spriteID: 86e232e722e37b5f0800000000000000
-      internalID: -741055295813112216
+      spriteID: 5d55ed543f8490a70800000000000000
+      internalID: 8793639957104055765
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: marche druide-Sheet_1
+      name: idle_1
       rect:
         serializedVersion: 2
-        x: 24
+        x: 32
         y: 0
-        width: 24
-        height: 24
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape:
-      - - {x: -8, y: -8}
-        - {x: -8, y: 10}
-        - {x: 8, y: 10}
-        - {x: 8, y: -8}
+      - - {x: -8, y: -9}
+        - {x: -8, y: 9}
+        - {x: 8, y: 9}
+        - {x: 8, y: -9}
       tessellationDetail: 0
       bones: []
-      spriteID: b2fa7547134fa9750800000000000000
-      internalID: 6312626320955649835
+      spriteID: 103de827293c17450800000000000000
+      internalID: 6084859605308855041
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: marche druide-Sheet_2
+      name: idle_2
       rect:
         serializedVersion: 2
-        x: 48
+        x: 64
         y: 0
-        width: 24
-        height: 24
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape:
-      - - {x: -8, y: -6}
-        - {x: -8, y: 11}
-        - {x: 8, y: 11}
-        - {x: 8, y: -6}
+      - - {x: -8, y: -9}
+        - {x: -8, y: 8}
+        - {x: 8, y: 8}
+        - {x: 8, y: -9}
       tessellationDetail: 0
       bones: []
-      spriteID: 160152f9073252360800000000000000
-      internalID: 7144155350506475617
+      spriteID: c30c6f3402f456770800000000000000
+      internalID: 8603369663158992956
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: marche druide-Sheet_3
-      rect:
-        serializedVersion: 2
-        x: 72
-        y: 0
-        width: 24
-        height: 24
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape:
-      - - {x: -8, y: -8}
-        - {x: -8, y: 10}
-        - {x: 8, y: 10}
-        - {x: 8, y: -8}
-      tessellationDetail: 0
-      bones: []
-      spriteID: ff526b724db63cfe0800000000000000
-      internalID: -1169972919242709505
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: marche druide-Sheet_4
+      name: idle_3
       rect:
         serializedVersion: 2
         x: 96
         y: 0
-        width: 24
-        height: 24
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape:
-      - - {x: -9, y: -8}
-        - {x: -9, y: 10}
-        - {x: 7, y: 10}
-        - {x: 7, y: -8}
+      - - {x: -8, y: -9}
+        - {x: -8, y: 8}
+        - {x: 8, y: 8}
+        - {x: 8, y: -9}
       tessellationDetail: 0
       bones: []
-      spriteID: 851069d6b5144dde0800000000000000
-      internalID: -1309349730721595048
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: marche druide-Sheet_5
-      rect:
-        serializedVersion: 2
-        x: 120
-        y: 0
-        width: 24
-        height: 24
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape:
-      - - {x: -9, y: -7}
-        - {x: -9, y: 11}
-        - {x: 7, y: 11}
-        - {x: 7, y: -7}
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0a04027bb02a96420800000000000000
-      internalID: 2623806429120708768
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: marche druide-Sheet_6
-      rect:
-        serializedVersion: 2
-        x: 144
-        y: 0
-        width: 24
-        height: 24
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape:
-      - - {x: -9, y: -8}
-        - {x: -9, y: 10}
-        - {x: 7, y: 10}
-        - {x: 7, y: -8}
-      tessellationDetail: 0
-      bones: []
-      spriteID: 178844693824eea00800000000000000
-      internalID: 787640117765638257
+      spriteID: 75a90b6cc3d280ea0800000000000000
+      internalID: -5906421172241655209
       vertices: []
       indices: 
       edges: []
