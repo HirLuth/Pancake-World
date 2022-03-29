@@ -1,31 +1,31 @@
 fileFormatVersion: 2
-guid: 189ce2a68a1484940a8134d7a2f2bdbd
+guid: 89d0231085ffeb44caccfbf656eeb19a
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7625077184568233266
-    second: "course fix\xE9e-Sheet_0"
+      213: 457095871844076
+    second: mort druide-Sheet_0
   - first:
-      213: 6236741138233336952
-    second: "course fix\xE9e-Sheet_1"
+      213: 3163399063228819964
+    second: mort druide-Sheet_1
   - first:
-      213: -4342089095075208077
-    second: "course fix\xE9e-Sheet_2"
+      213: 4289835237684009105
+    second: mort druide-Sheet_2
   - first:
-      213: 875843400518605158
-    second: "course fix\xE9e-Sheet_3"
+      213: 2836042760008938681
+    second: mort druide-Sheet_3
   - first:
-      213: -480824932575669066
-    second: "course fix\xE9e-Sheet_4"
+      213: -4587650411497196964
+    second: mort druide-Sheet_4
   - first:
-      213: 710968011827110473
-    second: "course fix\xE9e-Sheet_5"
+      213: -3154781942585767985
+    second: mort druide-Sheet_5
   - first:
-      213: -6099653614221703386
-    second: "course fix\xE9e-Sheet_6"
+      213: -5507435994159762047
+    second: mort druide-Sheet_6
   - first:
-      213: -445705781506211135
-    second: "course fix\xE9e-Sheet_7"
+      213: -7792676323784950553
+    second: mort druide-Sheet_7
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -115,7 +115,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "course fix\xE9e-Sheet_0"
+      name: mort druide-Sheet_0
       rect:
         serializedVersion: 2
         x: 0
@@ -133,92 +133,17 @@ TextureImporter:
         - {x: 8, y: -10}
       tessellationDetail: 0
       bones: []
-      spriteID: 23d002bcc47b1d960800000000000000
-      internalID: 7625077184568233266
+      spriteID: ceec11de9bf910000800000000000000
+      internalID: 457095871844076
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "course fix\xE9e-Sheet_1"
+      name: mort druide-Sheet_1
       rect:
         serializedVersion: 2
         x: 24
-        y: 2
-        width: 24
-        height: 22
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape:
-      - - {x: -8, y: -9}
-        - {x: -8, y: 9}
-        - {x: 8, y: 9}
-        - {x: 8, y: -9}
-      tessellationDetail: 0
-      bones: []
-      spriteID: 874a674850b5d8650800000000000000
-      internalID: 6236741138233336952
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: "course fix\xE9e-Sheet_2"
-      rect:
-        serializedVersion: 2
-        x: 48
-        y: 2
-        width: 24
-        height: 22
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape:
-      - - {x: -8, y: -8}
-        - {x: -8, y: 9}
-        - {x: 8, y: 9}
-        - {x: 8, y: -8}
-      tessellationDetail: 0
-      bones: []
-      spriteID: 374e1f039fccdb3c0800000000000000
-      internalID: -4342089095075208077
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: "course fix\xE9e-Sheet_3"
-      rect:
-        serializedVersion: 2
-        x: 72
-        y: 2
-        width: 24
-        height: 22
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape:
-      - - {x: -8, y: -9}
-        - {x: -8, y: 9}
-        - {x: 8, y: 9}
-        - {x: 8, y: -9}
-      tessellationDetail: 0
-      bones: []
-      spriteID: 66918ceaeee972c00800000000000000
-      internalID: 875843400518605158
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: "course fix\xE9e-Sheet_4"
-      rect:
-        serializedVersion: 2
-        x: 96
         y: 2
         width: 24
         height: 22
@@ -233,14 +158,89 @@ TextureImporter:
         - {x: 8, y: -10}
       tessellationDetail: 0
       bones: []
-      spriteID: 6b41da67544c359f0800000000000000
-      internalID: -480824932575669066
+      spriteID: cf9ae8600b6a6eb20800000000000000
+      internalID: 3163399063228819964
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "course fix\xE9e-Sheet_5"
+      name: mort druide-Sheet_2
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 2
+        width: 24
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -6, y: -10}
+        - {x: -6, y: 6}
+        - {x: 7, y: 6}
+        - {x: 7, y: -10}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 198db1f8b6e888b30800000000000000
+      internalID: 4289835237684009105
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mort druide-Sheet_3
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 2
+        width: 24
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -6, y: -10}
+        - {x: -6, y: 6}
+        - {x: 7, y: 6}
+        - {x: 7, y: -10}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9b4b62e3dd5ab5720800000000000000
+      internalID: 2836042760008938681
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mort druide-Sheet_4
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 2
+        width: 24
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -5, y: -7}
+        - {x: -5, y: 3}
+        - {x: 5, y: 3}
+        - {x: 5, y: -7}
+      tessellationDetail: 0
+      bones: []
+      spriteID: c52f805d1446550c0800000000000000
+      internalID: -4587650411497196964
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mort druide-Sheet_5
       rect:
         serializedVersion: 2
         x: 120
@@ -252,20 +252,20 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape:
-      - - {x: -9, y: -9}
-        - {x: -9, y: 9}
-        - {x: 7, y: 9}
-        - {x: 7, y: -9}
+      - - {x: -5, y: -7}
+        - {x: -5, y: 3}
+        - {x: 5, y: 3}
+        - {x: 5, y: -7}
       tessellationDetail: 0
       bones: []
-      spriteID: 942ee9fc3adddd900800000000000000
-      internalID: 710968011827110473
+      spriteID: fc7cb58b986f734d0800000000000000
+      internalID: -3154781942585767985
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "course fix\xE9e-Sheet_6"
+      name: mort druide-Sheet_6
       rect:
         serializedVersion: 2
         x: 144
@@ -277,20 +277,20 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape:
-      - - {x: -9, y: -9}
-        - {x: -9, y: 9}
-        - {x: 7, y: 9}
-        - {x: 7, y: -9}
+      - - {x: -4, y: -6}
+        - {x: -4, y: 1}
+        - {x: 4, y: 1}
+        - {x: 4, y: -6}
       tessellationDetail: 0
       bones: []
-      spriteID: 627436fea5da95ba0800000000000000
-      internalID: -6099653614221703386
+      spriteID: 18538e89428a193b0800000000000000
+      internalID: -5507435994159762047
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "course fix\xE9e-Sheet_7"
+      name: mort druide-Sheet_7
       rect:
         serializedVersion: 2
         x: 168
@@ -302,14 +302,14 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape:
-      - - {x: -9, y: -9}
-        - {x: -9, y: 10}
-        - {x: 7, y: 10}
-        - {x: 7, y: -9}
+      - - {x: -4, y: -6}
+        - {x: -4, y: 1}
+        - {x: 4, y: 1}
+        - {x: 4, y: -6}
       tessellationDetail: 0
       bones: []
-      spriteID: 1c20cf204f880d9f0800000000000000
-      internalID: -445705781506211135
+      spriteID: 7ec733fbb2adad390800000000000000
+      internalID: -7792676323784950553
       vertices: []
       indices: 
       edges: []

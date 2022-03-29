@@ -1,31 +1,28 @@
 fileFormatVersion: 2
-guid: 189ce2a68a1484940a8134d7a2f2bdbd
+guid: 00e6c3c65877d0340b7089b53d891fdf
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7625077184568233266
-    second: "course fix\xE9e-Sheet_0"
+      213: -741055295813112216
+    second: marche druide-Sheet_0
   - first:
-      213: 6236741138233336952
-    second: "course fix\xE9e-Sheet_1"
+      213: 6312626320955649835
+    second: marche druide-Sheet_1
   - first:
-      213: -4342089095075208077
-    second: "course fix\xE9e-Sheet_2"
+      213: 7144155350506475617
+    second: marche druide-Sheet_2
   - first:
-      213: 875843400518605158
-    second: "course fix\xE9e-Sheet_3"
+      213: -1169972919242709505
+    second: marche druide-Sheet_3
   - first:
-      213: -480824932575669066
-    second: "course fix\xE9e-Sheet_4"
+      213: -1309349730721595048
+    second: marche druide-Sheet_4
   - first:
-      213: 710968011827110473
-    second: "course fix\xE9e-Sheet_5"
+      213: 2623806429120708768
+    second: marche druide-Sheet_5
   - first:
-      213: -6099653614221703386
-    second: "course fix\xE9e-Sheet_6"
-  - first:
-      213: -445705781506211135
-    second: "course fix\xE9e-Sheet_7"
+      213: 787640117765638257
+    second: marche druide-Sheet_6
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -115,38 +112,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "course fix\xE9e-Sheet_0"
+      name: marche druide-Sheet_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 2
+        y: 0
         width: 24
-        height: 22
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape:
-      - - {x: -8, y: -10}
-        - {x: -8, y: 8}
-        - {x: 8, y: 8}
-        - {x: 8, y: -10}
-      tessellationDetail: 0
-      bones: []
-      spriteID: 23d002bcc47b1d960800000000000000
-      internalID: 7625077184568233266
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: "course fix\xE9e-Sheet_1"
-      rect:
-        serializedVersion: 2
-        x: 24
-        y: 2
-        width: 24
-        height: 22
+        height: 24
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -158,158 +130,158 @@ TextureImporter:
         - {x: 8, y: -9}
       tessellationDetail: 0
       bones: []
-      spriteID: 874a674850b5d8650800000000000000
-      internalID: 6236741138233336952
+      spriteID: 86e232e722e37b5f0800000000000000
+      internalID: -741055295813112216
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "course fix\xE9e-Sheet_2"
+      name: marche druide-Sheet_1
       rect:
         serializedVersion: 2
-        x: 48
-        y: 2
+        x: 24
+        y: 0
         width: 24
-        height: 22
+        height: 24
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape:
       - - {x: -8, y: -8}
-        - {x: -8, y: 9}
-        - {x: 8, y: 9}
+        - {x: -8, y: 10}
+        - {x: 8, y: 10}
         - {x: 8, y: -8}
       tessellationDetail: 0
       bones: []
-      spriteID: 374e1f039fccdb3c0800000000000000
-      internalID: -4342089095075208077
+      spriteID: b2fa7547134fa9750800000000000000
+      internalID: 6312626320955649835
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "course fix\xE9e-Sheet_3"
+      name: marche druide-Sheet_2
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 0
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -8, y: -6}
+        - {x: -8, y: 11}
+        - {x: 8, y: 11}
+        - {x: 8, y: -6}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 160152f9073252360800000000000000
+      internalID: 7144155350506475617
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: marche druide-Sheet_3
       rect:
         serializedVersion: 2
         x: 72
-        y: 2
+        y: 0
         width: 24
-        height: 22
+        height: 24
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape:
-      - - {x: -8, y: -9}
-        - {x: -8, y: 9}
-        - {x: 8, y: 9}
-        - {x: 8, y: -9}
+      - - {x: -8, y: -8}
+        - {x: -8, y: 10}
+        - {x: 8, y: 10}
+        - {x: 8, y: -8}
       tessellationDetail: 0
       bones: []
-      spriteID: 66918ceaeee972c00800000000000000
-      internalID: 875843400518605158
+      spriteID: ff526b724db63cfe0800000000000000
+      internalID: -1169972919242709505
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "course fix\xE9e-Sheet_4"
+      name: marche druide-Sheet_4
       rect:
         serializedVersion: 2
         x: 96
-        y: 2
+        y: 0
         width: 24
-        height: 22
+        height: 24
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape:
-      - - {x: -8, y: -10}
-        - {x: -8, y: 8}
-        - {x: 8, y: 8}
-        - {x: 8, y: -10}
+      - - {x: -9, y: -8}
+        - {x: -9, y: 10}
+        - {x: 7, y: 10}
+        - {x: 7, y: -8}
       tessellationDetail: 0
       bones: []
-      spriteID: 6b41da67544c359f0800000000000000
-      internalID: -480824932575669066
+      spriteID: 851069d6b5144dde0800000000000000
+      internalID: -1309349730721595048
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "course fix\xE9e-Sheet_5"
+      name: marche druide-Sheet_5
       rect:
         serializedVersion: 2
         x: 120
-        y: 2
+        y: 0
         width: 24
-        height: 22
+        height: 24
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape:
-      - - {x: -9, y: -9}
-        - {x: -9, y: 9}
-        - {x: 7, y: 9}
-        - {x: 7, y: -9}
+      - - {x: -9, y: -7}
+        - {x: -9, y: 11}
+        - {x: 7, y: 11}
+        - {x: 7, y: -7}
       tessellationDetail: 0
       bones: []
-      spriteID: 942ee9fc3adddd900800000000000000
-      internalID: 710968011827110473
+      spriteID: 0a04027bb02a96420800000000000000
+      internalID: 2623806429120708768
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "course fix\xE9e-Sheet_6"
+      name: marche druide-Sheet_6
       rect:
         serializedVersion: 2
         x: 144
-        y: 2
+        y: 0
         width: 24
-        height: 22
+        height: 24
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape:
-      - - {x: -9, y: -9}
-        - {x: -9, y: 9}
-        - {x: 7, y: 9}
-        - {x: 7, y: -9}
-      tessellationDetail: 0
-      bones: []
-      spriteID: 627436fea5da95ba0800000000000000
-      internalID: -6099653614221703386
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: "course fix\xE9e-Sheet_7"
-      rect:
-        serializedVersion: 2
-        x: 168
-        y: 2
-        width: 24
-        height: 22
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape:
-      - - {x: -9, y: -9}
+      - - {x: -9, y: -8}
         - {x: -9, y: 10}
         - {x: 7, y: 10}
-        - {x: 7, y: -9}
+        - {x: 7, y: -8}
       tessellationDetail: 0
       bones: []
-      spriteID: 1c20cf204f880d9f0800000000000000
-      internalID: -445705781506211135
+      spriteID: 178844693824eea00800000000000000
+      internalID: 787640117765638257
       vertices: []
       indices: 
       edges: []
