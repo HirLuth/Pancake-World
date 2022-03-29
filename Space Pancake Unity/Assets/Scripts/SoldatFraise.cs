@@ -40,6 +40,14 @@ public class SoldatFraise : MonoBehaviour
 
     void Update()
     {
+        if (Bash.usingSerpe)
+        {
+            lanceCollider.enabled = false;
+        }
+        else
+        {
+            lanceCollider.enabled = true;
+        }
         if (iaIsWalking)
         {
             if (isGoingRight)
