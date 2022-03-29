@@ -56,6 +56,7 @@ public class Character: MonoBehaviour
     [Header("AirControl")] 
     public float airControlForce;    // Puissance de l'air control
     public float noButtonForce;    // Resistance de l'air quand le joueur n'appuie sur aucune touche
+    [HideInInspector] public bool noAirControl;
     private bool runAirControl;   // Permet au air personnage d'avoir un air control plus conséquent 
     private bool stop;
 
@@ -170,7 +171,7 @@ public class Character: MonoBehaviour
                 MoveCharacter();
             }
 
-            else if (!Tyrolienne.noAirControl)
+            else if (!noAirControl)
             {
                 if (canWallJumpLeft || canWallJumpRight || wallJump)
                 {
@@ -531,6 +532,7 @@ public class Character: MonoBehaviour
         // si le joueur saute du mur
         else if (wallJump && timerWallJump == 0)
         {
+            runAirControl = true;
             timerWallJump += Time.deltaTime;
 
             // On arrête l'état de saut actuel
@@ -562,6 +564,7 @@ public class Character: MonoBehaviour
                 rb.velocity = new Vector2(0, rb.velocity.y);
             }
 
+            runAirControl = false;
             timerWallJump = 0;
             forceWallJump = stockageWallJump;
             rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -grabForceWall, float.MaxValue));
