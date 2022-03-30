@@ -422,7 +422,7 @@ MonoBehaviour:
   vitesseShortJumpAcceleration: 8
   abscisseJumpCurve: 0
   jumping: 0
-  jumpForce: 30
+  jumpForce: 33
   tailleRaycastGround: 0.65
   ground:
     serializedVersion: 2
