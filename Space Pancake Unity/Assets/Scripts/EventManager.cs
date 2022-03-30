@@ -28,7 +28,6 @@ public class EventManager : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         isDead = false;
-        Time.fixedDeltaTime = 0.02f * Time.timeScale;
         Time.timeScale = 1;
         UI.SetActive(false);
     }
