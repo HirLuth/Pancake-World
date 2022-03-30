@@ -8,6 +8,8 @@ public class Bash : MonoBehaviour
 
     [Header("Inputs")]
     private PlayerControls controls;
+    private bool wantsToUseSerpe;
+
 
     [Header("Detection")]
     [SerializeField] SpriteRenderer spriteRenderer;
@@ -15,10 +17,12 @@ public class Bash : MonoBehaviour
     [SerializeField] Color couleurNonDetection;
     private bool canUseSerpe;
 
+
     [Header("Camera Shake")]
     [SerializeField] private cameraShake camera;
     [SerializeField] private float duration;
     [SerializeField] private float amplitude;
+
 
     [Header("Autres")]
     public GameObject arrow;
@@ -28,6 +32,7 @@ public class Bash : MonoBehaviour
     public static bool usingSerpe;
     private float ralenti;
     
+
     [Header("Vibrations")]
     PlayerIndex playerIndex;
     GamePadState state;
@@ -53,13 +58,30 @@ public class Bash : MonoBehaviour
 
     void Update()
     {
-        if (canUseSerpe && !EventManager.Instance.isDead)
+        if (controls.Personnage.Serpe.WasPerformedThisFrame())
+        {
+            wantsToUseSerpe = true;
+        }
+        else if(controls.Personnage.Serpe.WasReleasedThisFrame())
+        {
+            wantsToUseSerpe = false;
+        }
+
+        if ((canUseSerpe && wantsToUseSerpe) || usingSerpe)
+        {
+            UseSerpe();
+        }
+    }
+
+
+    void UseSerpe()
+    {
+        if (!EventManager.Instance.isDead)
         {
             spriteRenderer.color = couleurDetection;
-            
 
             // Si le joueur s'élance
-            if (controls.Personnage.Serpe.WasReleasedThisFrame())
+            if (!wantsToUseSerpe)
             {
                 // On sort du ralenti
                 Time.timeScale = 1;
@@ -71,13 +93,13 @@ public class Bash : MonoBehaviour
                 // On donne de l'élan au personnage
                 direction = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical") + 0.2f);
                 rb.velocity = direction * force;
-                
+
                 CinemachineShake.Instance.Shake(duration, amplitude);   // Camera shake
             }
-            
-            
+
+
             // Si le joueur reste appuyé
-            else if (controls.Personnage.Serpe.WasPerformedThisFrame() || usingSerpe)
+            else 
             {
                 Time.timeScale = 0.05f;
                 Time.fixedDeltaTime = 0.02f * Time.timeScale;
@@ -91,6 +113,7 @@ public class Bash : MonoBehaviour
             canUseSerpe = false;
         }
     }
+
 
     private void OnTriggerStay2D(Collider2D collision)
     {
