@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 using UnityEngine.SceneManagement;
 
 public class SpawnPointManagement : MonoBehaviour
@@ -20,16 +21,12 @@ public class SpawnPointManagement : MonoBehaviour
         instance = this;
         DontDestroyOnLoad(this.gameObject);
     }
-    
-    /*private void OnEnable()
+
+    private void Update()
     {
-        Debug.Log("Spawn !!!");
-        if (spawnWasModifiedOnce)
-        {
-            playerGameObject.transform.position = spawnPointLocation;
-        }
-    }*/
-    
+        Debug.Log(spawnPointLocation);
+    }
+
     public void SetSpawnPoint(Vector2 newSpawnPointLocation)
     {
         spawnPointLocation = newSpawnPointLocation;

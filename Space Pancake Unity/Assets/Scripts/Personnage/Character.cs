@@ -116,6 +116,10 @@ public class Character: MonoBehaviour
     
     private void OnEnable()
     {
+        if (SpawnPointManagement.spawnWasModifiedOnce)
+        { 
+            transform.position = SpawnPointManagement.spawnPointLocation;
+        }
         controls.Personnage.Enable();
     }
 
