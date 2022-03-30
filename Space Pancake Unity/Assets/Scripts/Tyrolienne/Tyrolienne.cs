@@ -21,10 +21,13 @@ public class Tyrolienne : MonoBehaviour
     private float stockageGravity;
     private PlayerControls controls;
     
+
     [Header("PlayerAirControl")]
-    public static bool noAirControl;
-    private bool isJumping;
     private float timer;
+
+
+    [Header("Autres")]
+    private bool isOnThisZipline;
 
 
     private void Awake()
@@ -57,6 +60,15 @@ public class Tyrolienne : MonoBehaviour
 
     void Update()
     {
+        if (isOnThisZipline)
+        {
+            UseZipline();
+        }
+    }
+
+
+    void UseZipline()
+    {
         if (usingTyrolienne)
         {
             // Si le personnage peut utiliser la tyrolienne
@@ -74,14 +86,14 @@ public class Tyrolienne : MonoBehaviour
                     character.Jump();
                     character.noControl = false;
                     usingTyrolienne = false;
-                    noAirControl = true;
+                    character.noAirControl = true;
                     rb.gravityScale = stockageGravity;
                 }
 
                 // Gain de vitesse de la tyrolienne 
                 else if (speedTyrolienne < speedLimit)
                 {
-                    if(rb.velocity.x < 0)
+                    if (rb.velocity.x < 0)
                     {
                         speedTyrolienne += Time.deltaTime * acceleration * 1.5f;
                     }
@@ -95,26 +107,30 @@ public class Tyrolienne : MonoBehaviour
             // Si le joueur n'est plus entre les deux poteaux ou si on n'utilise pas la tyrolienne
             else if (player.transform.position.x >= poteau2.transform.position.x || player.transform.position.x <= poteau1.transform.position.x)
             {
+                isOnThisZipline = false;
                 usingTyrolienne = false;
                 character.noControl = false;
                 rb.gravityScale = stockageGravity;
             }
         }
-        
-        else if (noAirControl)
+
+        else if (character.noAirControl)
         {
             // Tout ce qui concerne l'absence d'air control 
             timer += Time.deltaTime;
 
             if (timer > 0.6f)
             {
-                noAirControl = false;
+                isOnThisZipline = false;
+                character.noAirControl = false;
             }
         }
     }
 
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        isOnThisZipline = true;
         usingTyrolienne = true;
         speedTyrolienne = rb.velocity.x;
     }
@@ -122,7 +138,6 @@ public class Tyrolienne : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
         usingTyrolienne = false;
-        character.noControl = false;
         rb.gravityScale = stockageGravity;
     }
 }

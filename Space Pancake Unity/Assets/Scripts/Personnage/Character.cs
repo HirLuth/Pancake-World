@@ -56,6 +56,9 @@ public class Character: MonoBehaviour
     [Header("AirControl")] 
     public float airControlForce;    // Puissance de l'air control
     public float noButtonForce;    // Resistance de l'air quand le joueur n'appuie sur aucune touche
+    [HideInInspector] public bool noAirControl;
+    private bool runAirControl;   // Permet au air personnage d'avoir un air control plus conséquent 
+    private bool stop;
 
 
     [Header("WallJump")] 
@@ -90,7 +93,6 @@ public class Character: MonoBehaviour
     [Header("Autres")]
     public Rigidbody2D rb;
     public bool noControl;
-    private bool cantRun;   // Pour éviter que le personnage passe en air control de course alors qu'il l'a commencé en marchant
 
 
     // Tout ce qui concerne le controller
@@ -125,6 +127,7 @@ public class Character: MonoBehaviour
 
     private void Update()
     {
+        // Tous les raycasts
         onGround = Physics2D.Raycast(transform.position - new Vector3(0.6f,0,0), Vector2.down, tailleRaycastGround, ground);
         
         if (!onGround)
@@ -136,6 +139,7 @@ public class Character: MonoBehaviour
         canWallJumpRight = Physics2D.Raycast(transform.position, Vector2.right, tailleRaycastWall, ground);
 
 
+        // Détection des différents contrôles
         if (controls.Personnage.MoveLeft.WasPressedThisFrame())
         {
             moveLeft = true;
@@ -154,7 +158,7 @@ public class Character: MonoBehaviour
         }
 
 
-        if (!Bash.usingSerpe && noControl == false)
+        if (!Bash.usingSerpe && !noControl)
         {
             // Lancement des différentes fonctions
             if (onGround)
@@ -162,11 +166,12 @@ public class Character: MonoBehaviour
                 Detection.canUseZipline = false;
                 isJumping = false;
                 isFalling = false;
+                stop = false;
                 timerWallJump = 0;
                 MoveCharacter();
             }
 
-            else if (!Tyrolienne.noAirControl)
+            else if (!noAirControl)
             {
                 if (canWallJumpLeft || canWallJumpRight || wallJump)
                 {
@@ -418,10 +423,26 @@ public class Character: MonoBehaviour
 
     void AirControl()
     {
+
+        // Tout ce qui concerne le fait que le personnage a un air control pouvant aller plus vite que la vitesse de marche
+        if (!stop)
+        {
+            if(Mathf.Abs(rb.velocity.x) > speed + 0.1f)
+            {
+                runAirControl = true;
+                stop = true;
+            }
+            else
+            {
+                runAirControl = false;
+                stop = true;
+            }
+        }
+
         if (moveLeft || moveRight)
         {
             // Si la vitesse du personnage ne doit pas dépasser celle de course
-            if (Mathf.Abs(rb.velocity.x) > speed + 0.2f)
+            if (runAirControl)
             {
                 // Si le joueur souhaite faire demi-tour à pleine vitesse (vers la gauche)
                 if (moveLeft && rb.velocity.x >= 0)
@@ -511,6 +532,7 @@ public class Character: MonoBehaviour
         // si le joueur saute du mur
         else if (wallJump && timerWallJump == 0)
         {
+            runAirControl = true;
             timerWallJump += Time.deltaTime;
 
             // On arrête l'état de saut actuel
@@ -542,6 +564,7 @@ public class Character: MonoBehaviour
                 rb.velocity = new Vector2(0, rb.velocity.y);
             }
 
+            runAirControl = false;
             timerWallJump = 0;
             forceWallJump = stockageWallJump;
             rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -grabForceWall, float.MaxValue));

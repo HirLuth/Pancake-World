@@ -53,7 +53,7 @@ public class Bash : MonoBehaviour
 
     void Update()
     {
-        if (canUseSerpe)
+        if (canUseSerpe && !EventManager.Instance.isDead)
         {
             spriteRenderer.color = couleurDetection;
             
@@ -62,7 +62,6 @@ public class Bash : MonoBehaviour
             if (controls.Personnage.Serpe.WasReleasedThisFrame())
             {
                 // On sort du ralenti
-                ralenti = 1;
                 Time.timeScale = 1;
                 Time.fixedDeltaTime = 0.02f * Time.timeScale;
 
@@ -80,16 +79,16 @@ public class Bash : MonoBehaviour
             // Si le joueur reste appuyé
             else if (controls.Personnage.Serpe.WasPerformedThisFrame() || usingSerpe)
             {
-                if (ralenti > 0)
-                {
-                    ralenti -= Time.deltaTime * 20;
-                }
-
                 Time.timeScale = 0.05f;
                 Time.fixedDeltaTime = 0.02f * Time.timeScale;
                 usingSerpe = true;
                 arrow.SetActive(true);
             }
+        }
+        else
+        {
+            usingSerpe = false;
+            canUseSerpe = false;
         }
     }
 
@@ -103,7 +102,6 @@ public class Bash : MonoBehaviour
         canUseSerpe = false;
 
         // Tout ce qui concerne l'arrêt du ralenti
-        ralenti = 1;
         Time.timeScale = 1;
         Time.fixedDeltaTime = 0.02f * Time.timeScale;
 
