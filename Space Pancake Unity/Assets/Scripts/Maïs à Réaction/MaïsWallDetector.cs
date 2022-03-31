@@ -10,6 +10,6 @@ public class MaïsWallDetector : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         maïsAReaction.ReintialiseWhenGetOut();
-        Destroy(maïsParent);
+        maïsAReaction.isInDestroyingAnmation = true;
     }
 }

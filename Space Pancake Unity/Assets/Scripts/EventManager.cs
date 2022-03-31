@@ -8,10 +8,14 @@ public class EventManager : MonoBehaviour
 {
     public static EventManager Instance { get; private set; }
 
-    [SerializeField] private GameObject UI;
-
+    // Tout ce qui concerne le score
     private int pointsNumber;
     [SerializeField] private TextMeshProUGUI score;
+
+
+    // Tout ce qui concerne la mort
+    [SerializeField] private GameObject UI;
+    public bool isDead;
 
 
     private void Awake()
@@ -22,14 +26,16 @@ public class EventManager : MonoBehaviour
 
     public void Restart()
     {
-        Time.timeScale = 1;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        isDead = false;
+        Time.timeScale = 1;
         UI.SetActive(false);
     }
 
 
     public void Death()
     {
+        isDead = true;
         Time.timeScale = 0;
         UI.SetActive(true);
     }
