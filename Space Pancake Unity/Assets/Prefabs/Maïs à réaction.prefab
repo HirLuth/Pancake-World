@@ -85,6 +85,7 @@ GameObject:
   - component: {fileID: 7228419546840578200}
   - component: {fileID: 7228419546840578206}
   - component: {fileID: 7228419546840578207}
+  - component: {fileID: 5362935187791216378}
   m_Layer: 7
   m_Name: "Ma\xEFs \xE0 r\xE9action"
   m_TagString: Untagged
@@ -101,7 +102,7 @@ Transform:
   m_GameObject: {fileID: 7228419546840578203}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -4.87, y: -0.79, z: 0}
-  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1379497010}
   m_Father: {fileID: 0}
@@ -126,7 +127,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -147,8 +148,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
-  m_Color: {r: 0.9245283, g: 0.7983586, b: 0.501513, a: 1}
+  m_Sprite: {fileID: -4322669750592062139, guid: 880cc07d66906ad46934d04056989ba4, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -175,7 +176,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 2, y: 2}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -223,6 +224,7 @@ MonoBehaviour:
   spriteSelf: {fileID: 7228419546840578202}
   rbSelf: {fileID: 7228419546840578206}
   maxSpeedGoingUp: 10
+  animatorSelf: {fileID: 5362935187791216378}
   "courbeAccelerationMont\xE9":
     serializedVersion: 2
     m_Curve:
@@ -266,16 +268,38 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   timerToExplode: 2
+  explosionAnimationTimer: 0.2
   positionSetUpDistanceFromEdge: 1
   multiplicatorTimeToGetInPosition: 2
   directionnalModificator: 3
   jumpOutForceMultiplicator: 3.5
+  isInDestroyingAnmation: 0
   playerIsAtRange: 0
   isOnTheRide: 0
   launchedWithoutPlayer: 0
   timer: 0
+  timerExplosion: 0
   stockageGravityScaleJoueur: 0
   horizontaleSpeedSide: 0
   stockageJumpForce: 0
-  colorNotAtRange: {r: 0.9254902, g: 0.8, b: 0.5019608, a: 1}
-  colorAtRange: {r: 1, g: 0.8685147, b: 0.28773582, a: 1}
+  colorNotAtRange: {r: 1, g: 1, b: 1, a: 1}
+  colorAtRange: {r: 1, g: 1, b: 1, a: 1}
+--- !u!95 &5362935187791216378
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7228419546840578203}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e8011bff46c314c4c8698b414c32f6fa, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

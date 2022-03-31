@@ -9,17 +9,21 @@ public class SpawnPointManagement : MonoBehaviour
 {
     public static SpawnPointManagement instance;
     public static Vector2 spawnPointLocation;
-    public  static bool spawnWasModifiedOnce;
+    public static bool spawnWasModifiedOnce;
+    [SerializeField] private bool activerCheckpoint;
     
     private void Awake()
     {
-        if (instance != null)
+        if (activerCheckpoint)
         {
-            DestroyImmediate(gameObject);
-            return;
+            if (instance != null)
+            {
+                DestroyImmediate(gameObject);
+                return;
+            }
+            instance = this;
+            DontDestroyOnLoad(this.gameObject);
         }
-        instance = this;
-        DontDestroyOnLoad(this.gameObject);
     }
 
     private void Update()
@@ -29,8 +33,11 @@ public class SpawnPointManagement : MonoBehaviour
 
     public void SetSpawnPoint(Vector2 newSpawnPointLocation)
     {
-        spawnPointLocation = newSpawnPointLocation;
-        spawnWasModifiedOnce = true;
+        if (activerCheckpoint)
+        {
+            spawnPointLocation = newSpawnPointLocation;
+            spawnWasModifiedOnce = true;
+        }
     }
 
 }

@@ -16,20 +16,24 @@ public class MaïsAReaction : MonoBehaviour
     [SerializeField] private SpriteRenderer spriteSelf;
     [SerializeField] private Rigidbody2D rbSelf;
     [SerializeField] private float maxSpeedGoingUp;
+    [SerializeField] private Animator animatorSelf;
     [Header("Variables modifiables")] 
     [SerializeField] private AnimationCurve courbeAccelerationMonté;
     [SerializeField] private float timerToExplode;
+    [SerializeField] private float explosionAnimationTimer;
     [SerializeField] private float positionSetUpDistanceFromEdge;
     [SerializeField] private float multiplicatorTimeToGetInPosition;
     [SerializeField] private float directionnalModificator;
     [SerializeField] private float jumpOutForceMultiplicator;
-    
-    
-    [Header("Variables de fonctionnement")]
+
+
+    [Header("Variables de fonctionnement")] 
+    [SerializeField] public bool isInDestroyingAnmation;
     [SerializeField] private bool playerIsAtRange;
     [SerializeField] private bool isOnTheRide;
     [SerializeField] private bool launchedWithoutPlayer;
     [SerializeField] private float timer;
+    [SerializeField] private float timerExplosion;
     [SerializeField] private float stockageGravityScaleJoueur;
     [SerializeField] private float horizontaleSpeedSide;
     [SerializeField] private float stockageJumpForce;
@@ -59,6 +63,11 @@ public class MaïsAReaction : MonoBehaviour
 
     private void Update()
     {
+        if (isInDestroyingAnmation)
+        {
+            Destruction();
+            return;
+        }
         if (playerIsAtRange && controls.Personnage.Serpe.WasPressedThisFrame())
         {
             isOnTheRide = true;
@@ -66,6 +75,7 @@ public class MaïsAReaction : MonoBehaviour
         if (isOnTheRide)
         {
             spriteSelf.color = colorNotAtRange;
+            animatorSelf.SetBool("maïsIsGoingUp", true);
             character.jumping = false;
             character.abscisseJumpCurve = 0;
             timer += Time.deltaTime;
@@ -100,7 +110,7 @@ public class MaïsAReaction : MonoBehaviour
                 if (timer >= timerToExplode)
                 {
                     ReintialiseWhenGetOut();
-                    Destroy(this.gameObject);
+                    isInDestroyingAnmation = true;
                 }
             }
             else if (!launchedWithoutPlayer)
@@ -115,7 +125,7 @@ public class MaïsAReaction : MonoBehaviour
             rbSelf.velocity = Vector2.up * courbeAccelerationMonté.Evaluate(timer/timerToExplode) * maxSpeedGoingUp;
             if (timer >= timerToExplode)
             {
-                Destroy(this.gameObject);
+                isInDestroyingAnmation = true;
             }
         }
     }
@@ -125,6 +135,19 @@ public class MaïsAReaction : MonoBehaviour
         playerRB.gravityScale = stockageGravityScaleJoueur;
         character.noControl = false;
         isOnTheRide = false;
+    }
+
+    private void Destruction()
+    {
+        animatorSelf.SetBool("maïsIsExploding", true);
+        timerExplosion += Time.deltaTime;
+        rbSelf.velocity = Vector2.zero;
+        if (timerExplosion >= explosionAnimationTimer)
+        {
+            Destroy(this.gameObject);
+        }
+        
+        
     }
 
     private void OnTriggerEnter2D(Collider2D other)
