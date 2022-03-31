@@ -23,23 +23,27 @@ AnimationClip:
       value: {fileID: -4322669750592062139, guid: 880cc07d66906ad46934d04056989ba4, type: 3}
     - time: 0.15
       value: {fileID: -6084742189279595456, guid: 880cc07d66906ad46934d04056989ba4, type: 3}
-    - time: 0.33333334
+    - time: 0.28333333
+      value: {fileID: -4322669750592062139, guid: 880cc07d66906ad46934d04056989ba4, type: 3}
+    - time: 0.43333334
+      value: {fileID: -6084742189279595456, guid: 880cc07d66906ad46934d04056989ba4, type: 3}
+    - time: 0.56666666
       value: {fileID: -7017300416979499355, guid: 880cc07d66906ad46934d04056989ba4, type: 3}
-    - time: 0.51666665
+    - time: 0.71666664
       value: {fileID: 1255751292001733903, guid: 880cc07d66906ad46934d04056989ba4, type: 3}
-    - time: 0.6666667
+    - time: 0.85
       value: {fileID: -1875553756273638870, guid: 880cc07d66906ad46934d04056989ba4, type: 3}
-    - time: 0.81666666
-      value: {fileID: -7285662753132749781, guid: 880cc07d66906ad46934d04056989ba4, type: 3}
     - time: 1
-      value: {fileID: 9105482244662361069, guid: 880cc07d66906ad46934d04056989ba4, type: 3}
+      value: {fileID: -7285662753132749781, guid: 880cc07d66906ad46934d04056989ba4, type: 3}
     - time: 1.15
+      value: {fileID: 9105482244662361069, guid: 880cc07d66906ad46934d04056989ba4, type: 3}
+    - time: 1.2833333
       value: {fileID: 7343435665349184250, guid: 880cc07d66906ad46934d04056989ba4, type: 3}
-    - time: 1.3333334
+    - time: 1.4333333
       value: {fileID: 7994435391150845694, guid: 880cc07d66906ad46934d04056989ba4, type: 3}
-    - time: 1.4833333
+    - time: 1.5666667
       value: {fileID: -1305336646985945953, guid: 880cc07d66906ad46934d04056989ba4, type: 3}
-    - time: 1.6666666
+    - time: 1.7166667
       value: {fileID: 5377701338119559376, guid: 880cc07d66906ad46934d04056989ba4, type: 3}
     - time: 1.85
       value: {fileID: 592775972214783556, guid: 880cc07d66906ad46934d04056989ba4, type: 3}
@@ -64,6 +68,8 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
+    - {fileID: -4322669750592062139, guid: 880cc07d66906ad46934d04056989ba4, type: 3}
+    - {fileID: -6084742189279595456, guid: 880cc07d66906ad46934d04056989ba4, type: 3}
     - {fileID: -4322669750592062139, guid: 880cc07d66906ad46934d04056989ba4, type: 3}
     - {fileID: -6084742189279595456, guid: 880cc07d66906ad46934d04056989ba4, type: 3}
     - {fileID: -7017300416979499355, guid: 880cc07d66906ad46934d04056989ba4, type: 3}
