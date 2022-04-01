@@ -40,7 +40,7 @@ public class SoldatFraise : MonoBehaviour
 
     void Update()
     {
-        if (Bash.usingSerpe)
+        if (Character.Instance.usingSerpe)
         {
             lanceCollider.enabled = false;
         }

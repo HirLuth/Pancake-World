@@ -93,6 +93,8 @@ public class Character: MonoBehaviour
     [Header("Autres")]
     public Rigidbody2D rb;
     public bool noControl;
+    [HideInInspector] public bool usingSerpe;
+    public static Character Instance;
 
 
     // Tout ce qui concerne le controller
@@ -112,6 +114,7 @@ public class Character: MonoBehaviour
         controls.Personnage.Sauter.canceled += ctx => jump = false;
 
         stockageWallJump = forceWallJump;
+        Instance = this;
     }
     
     private void OnEnable()
@@ -162,7 +165,7 @@ public class Character: MonoBehaviour
         }
 
 
-        if (!Bash.usingSerpe && !noControl)
+        if (!usingSerpe && !noControl)
         {
             // Lancement des différentes fonctions
             if (onGround)
@@ -247,12 +250,12 @@ public class Character: MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        /*if (jumping)
+        if (jumping)
         {
             jumping = false;
             jump = false;
             abscisseJumpCurve = 0;
-        }*/
+        }
     }
 
 

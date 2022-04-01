@@ -152,9 +152,11 @@ public class MaïsAReaction : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        playerIsAtRange = true;
-        spriteSelf.color = colorAtRange;
-        
+        if (other.gameObject.tag == "Character")
+        {
+            playerIsAtRange = true;
+            spriteSelf.color = colorAtRange;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D other)
