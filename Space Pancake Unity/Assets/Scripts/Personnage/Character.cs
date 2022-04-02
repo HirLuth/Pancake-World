@@ -1,9 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-//using System.Numerics;
-using UnityEditorInternal;
 using UnityEngine;
 using Vector2 = UnityEngine.Vector2;
 
@@ -475,7 +472,7 @@ public class Character: MonoBehaviour
                     }
                     
                     direction = -1;
-                    rb.AddForce(new Vector2(-1 * airControlForce, 0), ForceMode2D.Impulse);
+                    rb.AddForce(new Vector2(-1 * airControlForce, 0));
                 }
 
                 // Si le joueur souhaite faire demi-tour à pleine vitesse (vers la droite)
@@ -487,13 +484,13 @@ public class Character: MonoBehaviour
                     }
                     
                     direction = 1;
-                    rb.AddForce(new Vector2(airControlForce, 0), ForceMode2D.Impulse);
+                    rb.AddForce(new Vector2(airControlForce, 0));
                 }
 
                 // Si le joueur n'est pas encore à pleine vitesse et va en ligne droite
                 else if (Mathf.Abs(rb.velocity.x) < runSpeed)
                 {
-                    rb.AddForce(new Vector2(direction * airControlForce, 0), ForceMode2D.Impulse);
+                    rb.AddForce(new Vector2(direction * airControlForce, 0));
                 }
             }
 
@@ -503,21 +500,21 @@ public class Character: MonoBehaviour
                 // Si le joueur n'est pas encore à pleine vitesse
                 if (Mathf.Abs(rb.velocity.x) < speed)
                 {
-                    rb.AddForce(new Vector2(direction * airControlForce, 0), ForceMode2D.Impulse);
+                    rb.AddForce(new Vector2(direction * airControlForce, 0));
                 }
 
                 // Si le joueur souhaite changer de direction (gauche)
                 else if (moveLeft && rb.velocity.x >= speed)
                 {
                     direction = -1;
-                    rb.AddForce(new Vector2(-1 * airControlForce, 0), ForceMode2D.Impulse);
+                    rb.AddForce(new Vector2(-1 * airControlForce, 0));
                 }
 
                 // Si le joueur souhaite changer de direction (droite)
                 else if (moveRight && rb.velocity.x <= -speed)
                 {
                     direction = 1;
-                    rb.AddForce(new Vector2(airControlForce, 0), ForceMode2D.Impulse);
+                    rb.AddForce(new Vector2(airControlForce, 0));
                 }
             }
         }
