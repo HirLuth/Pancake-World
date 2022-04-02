@@ -8,6 +8,7 @@ public class PlateformeQuiDisparait : MonoBehaviour
     public GameObject player;
     public Collider2D triggerZone;
     public Collider2D colliderSelf;
+    [SerializeField] private Animator animatorSelf;
     [SerializeField] private bool steppedOn;
     [SerializeField] private float timerToDisapear;
     [SerializeField] private float timer;
@@ -35,7 +36,6 @@ public class PlateformeQuiDisparait : MonoBehaviour
         {
             if (timer >= timerToDisapear)
             {
-                timer = 0;
                 Destroy(this.gameObject); 
             }
             else
@@ -49,6 +49,7 @@ public class PlateformeQuiDisparait : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Character"))
         {
+            animatorSelf.SetBool("sucreIsdisapearing",true);
             steppedOn = true;
         }
     }
