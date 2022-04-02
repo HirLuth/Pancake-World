@@ -240,13 +240,13 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 7707955965948751821, guid: 1137ca5b4f38d814586fc773dc96c76a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.16, y: 0.17}
+  m_Size: {x: 1.5, y: 1.5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -270,7 +270,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 1, y: 1.125}
-    newSize: {x: 0.16, y: 0.17}
+    newSize: {x: 1.5, y: 1.5}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -363,10 +363,10 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  vitesseRunCurve: 2
-  vitesseRunDecelerationCurve: 2
-  vitesseRunDemiTourCurve: 1.5
-  runSpeed: 16
+  vitesseRunCurve: 2.5
+  vitesseRunDecelerationCurve: 3
+  vitesseRunDemiTourCurve: 2
+  runSpeed: 14
   jumpCurve:
     serializedVersion: 2
     m_Curve:
@@ -427,8 +427,9 @@ MonoBehaviour:
   ground:
     serializedVersion: 2
     m_Bits: 64
-  airControlForce: 1.25
+  airControlForce: 1.5
   noButtonForce: 8
+  noAirControl: 0
   directionWallJump: {x: 1, y: 1.2}
   forceWallJump: 16.5
   grabForceWall: 3
@@ -440,6 +441,7 @@ MonoBehaviour:
   vitesseZoom: 0.75
   rb: {fileID: 887262781076718216}
   noControl: 0
+  usingSerpe: 0
 --- !u!95 &7250847303676680922
 Animator:
   serializedVersion: 3

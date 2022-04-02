@@ -223,6 +223,10 @@ public class Character: MonoBehaviour
                 }
             }
         }
+        else
+        {
+            dontChangeZoom = false;
+        }
 
         dezoomCamera = Mathf.Lerp(0, dezoomMax, Mathf.SmoothStep(0.0f, 1.0f, timerDezoom));
 
@@ -375,7 +379,7 @@ public class Character: MonoBehaviour
         else
         {
             if(Mathf.Abs(rb.velocity.x) < speed + 0.1f)
-            {
+            {  
                 isWalking = true;
                 isRunning = false;
             }
