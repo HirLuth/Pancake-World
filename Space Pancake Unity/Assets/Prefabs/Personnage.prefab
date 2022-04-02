@@ -366,7 +366,7 @@ MonoBehaviour:
   vitesseRunCurve: 2.5
   vitesseRunDecelerationCurve: 3
   vitesseRunDemiTourCurve: 2
-  runSpeed: 14
+  runSpeed: 13
   jumpCurve:
     serializedVersion: 2
     m_Curve:
