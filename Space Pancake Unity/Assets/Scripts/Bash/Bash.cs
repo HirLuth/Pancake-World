@@ -19,7 +19,6 @@ public class Bash : MonoBehaviour
 
 
     [Header("Camera Shake")]
-    [SerializeField] private cameraShake camera;
     [SerializeField] private float duration;
     [SerializeField] private float amplitude;
 
@@ -29,7 +28,7 @@ public class Bash : MonoBehaviour
     private Vector2 direction;
     public float force;
     [SerializeField] Rigidbody2D rb;
-    public static bool usingSerpe;
+    public bool usingSerpe;
     private float ralenti;
     
 
@@ -80,17 +79,18 @@ public class Bash : MonoBehaviour
         {
             spriteRenderer.color = couleurDetection;
 
-            // Si le joueur s'élance
+            // Si le joueur s'ï¿½lance
             if (!wantsToUseSerpe)
             {
                 // On sort du ralenti
                 Time.timeScale = 1;
                 Time.fixedDeltaTime = 0.02f * Time.timeScale;
 
-                arrow.SetActive(false);   // On retire la flèche
-                usingSerpe = false;    // On redonne le contrôle du personnage
+                arrow.SetActive(false);   // On retire la flï¿½che
+                usingSerpe = false;    // On redonne le contrï¿½le du personnage
+                Character.Instance.noControl = false;
 
-                // On donne de l'élan au personnage
+                // On donne de l'ï¿½lan au personnage
                 direction = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical") + 0.2f);
                 rb.velocity = direction * force;
 
@@ -98,11 +98,12 @@ public class Bash : MonoBehaviour
             }
 
 
-            // Si le joueur reste appuyé
+            // Si le joueur reste appuyï¿½
             else 
             {
                 Time.timeScale = 0.05f;
                 Time.fixedDeltaTime = 0.02f * Time.timeScale;
+                Character.Instance.noControl = true;
                 usingSerpe = true;
                 arrow.SetActive(true);
             }
@@ -110,6 +111,7 @@ public class Bash : MonoBehaviour
         else
         {
             usingSerpe = false;
+            Character.Instance.noControl = false;
             canUseSerpe = false;
         }
     }
@@ -117,19 +119,24 @@ public class Bash : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        canUseSerpe = true;
+        if (collision.gameObject.tag == "Character")
+        {
+            canUseSerpe = true;
+            spriteRenderer.color = couleurDetection;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
         canUseSerpe = false;
 
-        // Tout ce qui concerne l'arrêt du ralenti
+        // Tout ce qui concerne l'arrï¿½t du ralenti
         Time.timeScale = 1;
         Time.fixedDeltaTime = 0.02f * Time.timeScale;
 
         // Tout le reste 
         arrow.SetActive(false);
+        Character.Instance.noControl = false;
         usingSerpe = false;
         spriteRenderer.color = couleurNonDetection;
     }

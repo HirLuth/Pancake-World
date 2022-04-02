@@ -107,6 +107,7 @@ public class Tyrolienne : MonoBehaviour
             // Si le joueur n'est plus entre les deux poteaux ou si on n'utilise pas la tyrolienne
             else if (player.transform.position.x >= poteau2.transform.position.x || player.transform.position.x <= poteau1.transform.position.x)
             {
+                Debug.Log(12);
                 isOnThisZipline = false;
                 usingTyrolienne = false;
                 character.noControl = false;
@@ -133,11 +134,5 @@ public class Tyrolienne : MonoBehaviour
         isOnThisZipline = true;
         usingTyrolienne = true;
         speedTyrolienne = rb.velocity.x;
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        usingTyrolienne = false;
-        rb.gravityScale = stockageGravity;
     }
 }
