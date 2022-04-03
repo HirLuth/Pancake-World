@@ -28,6 +28,7 @@ public class CinemachineShake : MonoBehaviour
 
     public void Shake(float duration, float magnitude)
     {
+        Debug.Log(12);
         // On lance le camera shake
         shakeTimer = duration;
         shake.m_AmplitudeGain = magnitude;

@@ -28,7 +28,6 @@ public class SpawnPointManagement : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(spawnPointLocation);
     }
 
     public void SetSpawnPoint(Vector2 newSpawnPointLocation)

@@ -276,8 +276,8 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1.0191243}
-  m_EdgeRadius: 0
+  m_Size: {x: 0.98, y: 0.999124}
+  m_EdgeRadius: 0.02
 --- !u!50 &887262781076718216
 Rigidbody2D:
   serializedVersion: 4
@@ -427,8 +427,8 @@ MonoBehaviour:
   ground:
     serializedVersion: 2
     m_Bits: 64
-  airControlForce: 70
-  noButtonForce: 30
+  airControlForce: 2
+  noButtonForce: 0.5
   noAirControl: 0
   directionWallJump: {x: 1, y: 1.2}
   forceWallJump: 16.5
