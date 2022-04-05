@@ -60,7 +60,6 @@ public class Tyrolienne : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(poteau2.transform.position.x);
         if (isOnThisZipline)
         {
             UseZipline();
