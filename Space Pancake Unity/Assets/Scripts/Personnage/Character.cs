@@ -246,6 +246,7 @@ public class Character: MonoBehaviour
         anim.SetBool("isWalking", isWalking);
         anim.SetBool("isJumping", isJumping);
         anim.SetBool("isFalling", isFalling);
+        anim.SetBool("isOnGround", onGround);
     }
 
 
