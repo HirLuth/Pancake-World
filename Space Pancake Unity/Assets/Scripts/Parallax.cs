@@ -16,8 +16,9 @@ public class Parallax : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        startPos = transform.position.x;
+        startPos = cam.transform.position.x;
         length = GetComponent<SpriteRenderer>().bounds.size.x;
+        Debug.Log(startPos + length);
     }
 
     // Update is called once per frame
@@ -28,6 +29,8 @@ public class Parallax : MonoBehaviour
 
         transform.position = new Vector3(startPos + dist, transform.position.y, transform.position.z);
 
+        Debug.Log(temp);
+        
         if (temp > startPos + length)
         {
             startPos += length;
