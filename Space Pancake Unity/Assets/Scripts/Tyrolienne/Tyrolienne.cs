@@ -94,6 +94,7 @@ public class Tyrolienne : MonoBehaviour
                     character.Jump();
                     character.noControl = false;
                     usingTyrolienne = false;
+                    Detection.comeFromDown = true;
                     character.noAirControl = true;
                     rb.gravityScale = stockageGravity;
                 }
@@ -140,8 +141,11 @@ public class Tyrolienne : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        isOnThisZipline = true;
-        usingTyrolienne = true;
-        speedTyrolienne = rb.velocity.x;
+        if (collision.gameObject.tag == "Character")
+        {
+            isOnThisZipline = true;
+            usingTyrolienne = true;
+            speedTyrolienne = rb.velocity.x;
+        }
     }
 }

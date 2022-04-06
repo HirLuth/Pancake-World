@@ -10,13 +10,20 @@ public class Detection : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (!comeFromDown)
+        
+        
+        
+        if (other.gameObject.tag == "Character")
         {
-            canUseZipline = true;
-        }
-        else
-        {
-            comeFromDown = false;
+            if (!comeFromDown)
+            {
+                canUseZipline = true;
+            }
+            
+            else
+            {
+                comeFromDown = false;
+            }
         }
     }
 }
