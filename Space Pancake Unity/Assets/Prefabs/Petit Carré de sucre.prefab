@@ -110,7 +110,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.78025067, y: 0.5023525}
+  m_Size: {x: 0.78025067, y: 0.5}
   m_EdgeRadius: 0
 --- !u!61 &6892141663881349633
 BoxCollider2D:
@@ -158,6 +158,9 @@ MonoBehaviour:
   timerToDisapear: 1
   timer: 0
   margeDetection: 0.1
+  colliderSizeY: 0.5
+  vrai: 
+  faux: 
 --- !u!95 &84659083
 Animator:
   serializedVersion: 3

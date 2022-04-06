@@ -16,6 +16,7 @@ public class FallingPlateform : MonoBehaviour
    [SerializeField] private float timerToFall;
    [SerializeField] private float timeBeforFalling;
    [SerializeField] private float margeDetection;
+   [SerializeField] private float colliderSize;
 
    private void Awake()
    {
@@ -25,12 +26,12 @@ public class FallingPlateform : MonoBehaviour
 
    private void Update()
    {
-      if (player.transform.position.y >= transform.position.y + (transform.localScale.y/2) + (player.transform.localScale.y/2) + margeDetection)
+      if (player.transform.position.y >= transform.position.y + (colliderSize/2) + (player.transform.localScale.y/2) + margeDetection)
       {
          colliderSelf.enabled = true;
          triggerZone.enabled = true;
       }
-      if (player.transform.position.y <= transform.position.y + (transform.localScale.y/2) + (player.transform.localScale.y/2))
+      if (player.transform.position.y <= transform.position.y + (colliderSize/2) + (player.transform.localScale.y/2))
       {
          colliderSelf.enabled = false;
          triggerZone.enabled = false;
