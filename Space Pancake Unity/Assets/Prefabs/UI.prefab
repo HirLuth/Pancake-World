@@ -983,6 +983,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   score: {fileID: 8038471001462322401}
   UI: {fileID: 8910444647162832602}
+  dureeAnimationMort: 0.65
   isDead: 0
 --- !u!114 &1041176701
 MonoBehaviour:

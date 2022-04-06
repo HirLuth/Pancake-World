@@ -1451,6 +1451,7 @@ MonoBehaviour:
   timerToFall: 0
   timeBeforFalling: 0.1
   margeDetection: 0.3
+  colliderSize: 0
 --- !u!50 &363477441
 Rigidbody2D:
   serializedVersion: 4
@@ -2942,7 +2943,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2950452531395555615, guid: ae98643e896093e4d9f0a5b4bbe1f1ab, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.32
+      value: -1.36
       objectReference: {fileID: 0}
     - target: {fileID: 2950452531395555615, guid: ae98643e896093e4d9f0a5b4bbe1f1ab, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3287,6 +3288,18 @@ PrefabInstance:
     - target: {fileID: 887262781076718217, guid: 8f7f6f34241a1484b82df60f07839aa9, type: 3}
       propertyPath: m_Offset.y
       value: -0.03839363
+      objectReference: {fileID: 0}
+    - target: {fileID: 887262781076718218, guid: 8f7f6f34241a1484b82df60f07839aa9, type: 3}
+      propertyPath: dureeSpawn
+      value: 0.66
+      objectReference: {fileID: 0}
+    - target: {fileID: 887262781076718218, guid: 8f7f6f34241a1484b82df60f07839aa9, type: 3}
+      propertyPath: noButtonForce
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 887262781076718218, guid: 8f7f6f34241a1484b82df60f07839aa9, type: 3}
+      propertyPath: airControlForce
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 887262781076718219, guid: 8f7f6f34241a1484b82df60f07839aa9, type: 3}
       propertyPath: m_Name
@@ -4140,7 +4153,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1041176701, guid: 067e3ae90fd00f74a96de1387df487e1, type: 3}
       propertyPath: activerCheckpoint
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2476014768660599495, guid: 067e3ae90fd00f74a96de1387df487e1, type: 3}
       propertyPath: m_RootOrder
@@ -4189,6 +4202,10 @@ PrefabInstance:
     - target: {fileID: 8554718855025575701, guid: 067e3ae90fd00f74a96de1387df487e1, type: 3}
       propertyPath: m_Name
       value: UI (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8910444646950572715, guid: 067e3ae90fd00f74a96de1387df487e1, type: 3}
+      propertyPath: dureeAnimationMort
+      value: 0.65
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 067e3ae90fd00f74a96de1387df487e1, type: 3}
@@ -70866,6 +70883,7 @@ MonoBehaviour:
   timerToFall: 0
   timeBeforFalling: 0.1
   margeDetection: 0.1
+  colliderSize: 0
 --- !u!50 &1478034352
 Rigidbody2D:
   serializedVersion: 4
@@ -71690,6 +71708,7 @@ MonoBehaviour:
   timerToFall: 0
   timeBeforFalling: 0.1
   margeDetection: 0.1
+  colliderSize: 0
 --- !u!50 &1867795324
 Rigidbody2D:
   serializedVersion: 4
@@ -72095,11 +72114,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4512747628521838617, guid: 59c04b7eaf615df4a8bbcd5e7e7694cd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 105.10737
+      value: 105.095795
       objectReference: {fileID: 0}
     - target: {fileID: 4512747628521838617, guid: 59c04b7eaf615df4a8bbcd5e7e7694cd, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 9.773413
+      value: 9.795089
       objectReference: {fileID: 0}
     - target: {fileID: 4512747628521838617, guid: 59c04b7eaf615df4a8bbcd5e7e7694cd, type: 3}
       propertyPath: m_LocalPosition.z
@@ -74032,6 +74051,7 @@ MonoBehaviour:
   timerToFall: 0
   timeBeforFalling: 0.1
   margeDetection: 0.1
+  colliderSize: 0
 --- !u!4 &7551128531499183741
 Transform:
   m_ObjectHideFlags: 0

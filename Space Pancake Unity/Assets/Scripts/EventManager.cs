@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,6 +16,8 @@ public class EventManager : MonoBehaviour
 
     // Tout ce qui concerne la mort
     [SerializeField] private GameObject UI;
+    private float timerAnimation;
+    public float dureeAnimationMort;
     public bool isDead;
 
 
@@ -27,23 +30,37 @@ public class EventManager : MonoBehaviour
     public void Restart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        isDead = false;
-        Time.timeScale = 1;
-        UI.SetActive(false);
     }
-
-
+    
     public void Death()
     {
         isDead = true;
-        Time.timeScale = 0;
-        UI.SetActive(true);
+
+        // On immobilise le joueur
+        Character.Instance.noControl = true;
+        Character.Instance.rb.gravityScale = 0;
+        Character.Instance.rb.velocity = new Vector2(0, 0);
+
+        // On lance son animation
+        Character.Instance.anim.SetTrigger("isDead");
+
+        // Attente de la fin de l'animation
+        StartCoroutine(WaitAnimation(dureeAnimationMort));
     }
-
-
+    
     public void AddPoints(int points)
     {
         pointsNumber += points;
         score.text = "SCORE : " + pointsNumber;
+    }
+
+
+    public IEnumerator WaitAnimation(float duree)
+    {
+        yield return new WaitForSeconds(duree);
+        
+        Character.Instance.gameObject.SetActive(false);
+        
+        UI.SetActive(true);
     }
 }

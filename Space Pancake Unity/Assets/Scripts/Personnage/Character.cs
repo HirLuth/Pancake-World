@@ -89,7 +89,8 @@ public class Character: MonoBehaviour
 
     [Header("Autres")]
     public Rigidbody2D rb;
-    public bool noControl;
+    public float dureeSpawn;
+    [HideInInspector] public bool noControl;
     [HideInInspector] public bool usingSerpe;
     public static Character Instance;
 
@@ -126,6 +127,11 @@ public class Character: MonoBehaviour
     private void OnDisable()
     {
         controls.Personnage.Disable();
+    }
+
+    private void Start()
+    {
+        StartCoroutine(WaitSpawn(dureeSpawn));
     }
 
 
@@ -167,7 +173,6 @@ public class Character: MonoBehaviour
             // Lancement des différentes fonctions
             if (onGround)
             {
-                Detection.comeFromDown = false;
                 Detection.canUseZipline = false;
                 noAirControl = false;
                 
@@ -591,5 +596,19 @@ public class Character: MonoBehaviour
             forceWallJump = stockageWallJump;
             rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -grabForceWall, float.MaxValue));
         }
+    }
+    
+    public IEnumerator WaitSpawn(float duree)
+    {
+        anim.SetTrigger("isSpawning");
+        
+        noControl = true;
+        float stockageGravity = rb.gravityScale;
+        rb.gravityScale = 0;
+
+        yield return new WaitForSeconds(duree);
+        
+        noControl = false;
+        rb.gravityScale = stockageGravity;
     }
 }
