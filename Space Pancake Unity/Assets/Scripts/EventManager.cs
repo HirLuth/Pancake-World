@@ -31,23 +31,23 @@ public class EventManager : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
-
-
+    
     public void Death()
     {
         isDead = true;
 
+        // On immobilise le joueur
         Character.Instance.noControl = true;
         Character.Instance.rb.gravityScale = 0;
         Character.Instance.rb.velocity = new Vector2(0, 0);
-        
-        
+
+        // On lance son animation
         Character.Instance.anim.SetTrigger("isDead");
 
+        // Attente de la fin de l'animation
         StartCoroutine(WaitAnimation(dureeAnimationMort));
     }
-
-
+    
     public void AddPoints(int points)
     {
         pointsNumber += points;
