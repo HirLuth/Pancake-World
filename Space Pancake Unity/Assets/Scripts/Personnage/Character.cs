@@ -167,7 +167,6 @@ public class Character: MonoBehaviour
             // Lancement des différentes fonctions
             if (onGround)
             {
-                Detection.comeFromDown = false;
                 Detection.canUseZipline = false;
                 noAirControl = false;
                 
