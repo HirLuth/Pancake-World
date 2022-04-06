@@ -427,8 +427,8 @@ MonoBehaviour:
   ground:
     serializedVersion: 2
     m_Bits: 64
-  airControlForce: 3
-  noButtonForce: 0.5
+  airControlForce: 6
+  noButtonForce: 2.5
   noAirControl: 0
   directionWallJump: {x: 1, y: 1.2}
   forceWallJump: 16.5
