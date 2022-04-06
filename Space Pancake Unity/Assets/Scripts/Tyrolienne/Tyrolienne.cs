@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -60,6 +61,13 @@ public class Tyrolienne : MonoBehaviour
 
     void Update()
     {
+        if (isOnThisZipline && !Detection.canUseZipline)
+        {
+            isOnThisZipline = false;
+            usingTyrolienne = false;
+            Detection.comeFromDown = true;
+        }
+        
         if (isOnThisZipline)
         {
             UseZipline();
@@ -107,6 +115,7 @@ public class Tyrolienne : MonoBehaviour
             // Si le joueur n'est plus entre les deux poteaux ou si on n'utilise pas la tyrolienne
             else if (player.transform.position.x >= poteau2.transform.position.x || player.transform.position.x <= poteau1.transform.position.x)
             {
+                Detection.canUseZipline = false;
                 isOnThisZipline = false;
                 usingTyrolienne = false;
                 character.noControl = false;
@@ -121,6 +130,7 @@ public class Tyrolienne : MonoBehaviour
 
             if (timer > 0.6f)
             {
+                Detection.canUseZipline = false;
                 isOnThisZipline = false;
                 character.noAirControl = false;
             }
