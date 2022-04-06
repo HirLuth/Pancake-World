@@ -13,6 +13,8 @@ public class PlateformeQuiDisparait : MonoBehaviour
     [SerializeField] private float timerToDisapear;
     [SerializeField] private float timer;
     [SerializeField] private float margeDetection;
+    [SerializeField] private string vrai;
+    [SerializeField] private string faux;
 
     private void Awake()
     {
@@ -26,12 +28,14 @@ public class PlateformeQuiDisparait : MonoBehaviour
         {
             colliderSelf.enabled = true;
             triggerZone.enabled = true;
+            Debug.Log(vrai);
         }
         if (player.transform.position.y <= transform.position.y + (transform.localScale.y/2) + (player.transform.localScale.y/2))
         {
             colliderSelf.enabled = false;
             triggerZone.enabled = false;
         }
+        
         if (steppedOn)
         {
             if (timer >= timerToDisapear)
