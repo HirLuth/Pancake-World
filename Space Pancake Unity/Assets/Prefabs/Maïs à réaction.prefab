@@ -273,6 +273,9 @@ MonoBehaviour:
   multiplicatorTimeToGetInPosition: 2
   directionnalModificator: 3
   jumpOutForceMultiplicator: 3.5
+  maisAReaction: {fileID: 7228419546840578203}
+  clone: {fileID: 0}
+  stockagePosition: {x: 0, y: 0}
   isInDestroyingAnmation: 0
   playerIsAtRange: 0
   isOnTheRide: 0
