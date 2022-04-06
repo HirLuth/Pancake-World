@@ -25,7 +25,6 @@ public class PlateformeQuiDisparait : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(player.transform.position.y);
         if (player.transform.position.y >= transform.position.y + (colliderSizeY/2) + (player.transform.localScale.y/2) + margeDetection)
         {
             colliderSelf.enabled = true;
