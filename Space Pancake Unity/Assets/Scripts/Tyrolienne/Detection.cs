@@ -6,8 +6,13 @@ using UnityEngine;
 public class Detection : MonoBehaviour
 {
     public static bool canUseZipline;
+
     private void OnTriggerEnter2D(Collider2D other)
     {
-        canUseZipline = true;
+        if (other.gameObject.tag == "Character")
+        {
+            canUseZipline = true;
+
+        }
     }
 }

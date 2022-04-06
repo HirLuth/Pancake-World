@@ -15,6 +15,7 @@ public class CinemachineShake : MonoBehaviour
     private CinemachineVirtualCamera camera;    // Référence de la virtual camera
     private CinemachineBasicMultiChannelPerlin shake;
     private float shakeTimer;    // Timer permettant de stopper le camera shake
+    public bool isShaking;
 
 
 
@@ -28,7 +29,6 @@ public class CinemachineShake : MonoBehaviour
 
     public void Shake(float duration, float magnitude)
     {
-        Debug.Log(12);
         // On lance le camera shake
         shakeTimer = duration;
         shake.m_AmplitudeGain = magnitude;

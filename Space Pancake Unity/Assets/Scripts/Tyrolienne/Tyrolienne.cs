@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -60,7 +61,12 @@ public class Tyrolienne : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(poteau2.transform.position.x);
+        if (isOnThisZipline && !Detection.canUseZipline)
+        {
+            isOnThisZipline = false;
+            usingTyrolienne = false;
+        }
+        
         if (isOnThisZipline)
         {
             UseZipline();
@@ -122,6 +128,7 @@ public class Tyrolienne : MonoBehaviour
 
             if (timer > 0.6f)
             {
+                Detection.canUseZipline = false;
                 isOnThisZipline = false;
                 character.noAirControl = false;
             }
@@ -131,8 +138,11 @@ public class Tyrolienne : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        isOnThisZipline = true;
-        usingTyrolienne = true;
-        speedTyrolienne = rb.velocity.x;
+        if (collision.gameObject.tag == "Character")
+        {
+            isOnThisZipline = true;
+            usingTyrolienne = true;
+            speedTyrolienne = rb.velocity.x;
+        }
     }
 }

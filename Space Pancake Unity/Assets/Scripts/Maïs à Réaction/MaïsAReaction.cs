@@ -1,8 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
+
 
 public class MaïsAReaction : MonoBehaviour
 {
@@ -27,7 +29,8 @@ public class MaïsAReaction : MonoBehaviour
     [SerializeField] private float jumpOutForceMultiplicator;
 
 
-    [Header("Variables de fonctionnement")] 
+    [Header("Variables de fonctionnement")]
+    [SerializeField] private Vector2 stockagePosition;
     [SerializeField] public bool isInDestroyingAnmation;
     [SerializeField] private bool playerIsAtRange;
     [SerializeField] private bool isOnTheRide;
@@ -49,7 +52,9 @@ public class MaïsAReaction : MonoBehaviour
         playerIsAtRange = false;
         stockageGravityScaleJoueur = playerRB.gravityScale;
         stockageJumpForce = character.jumpForce;
+        stockagePosition = transform.position;
     }
+    
     
     private void OnEnable()
     {
@@ -95,8 +100,6 @@ public class MaïsAReaction : MonoBehaviour
             
             if (controls.Personnage.Sauter.WasPerformedThisFrame())
             {
-                //playerRB.velocity = new Vector2(horizontaleSpeedSide * jumpOutForceX+1, jumpOutForceY);
-                
                 character.Jump();
                 ReintialiseWhenGetOut();
                 launchedWithoutPlayer = true;
