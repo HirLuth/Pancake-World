@@ -87,12 +87,18 @@ public class Character: MonoBehaviour
     private bool dontChangeZoom;
 
 
+    [Header("JumpSketch")]
+    public float stretch;
+    private bool stopStretch;
+
+
     [Header("Autres")]
     public Rigidbody2D rb;
     public float dureeSpawn;
     [HideInInspector] public bool noControl;
     [HideInInspector] public bool usingSerpe;
     public static Character Instance;
+
 
 
     // Tout ce qui concerne le controller
@@ -153,12 +159,14 @@ public class Character: MonoBehaviour
         if (controls.Personnage.MoveLeft.WasPressedThisFrame())
         {
             moveLeft = true;
+            moveRight = false;
             direction = -1;
         }
 
         if (controls.Personnage.MoveRight.WasPressedThisFrame())
         {
             moveRight = true;
+            moveLeft = false;
             direction = 1;
         }
 
@@ -188,11 +196,6 @@ public class Character: MonoBehaviour
                 if (canWallJumpLeft || canWallJumpRight || wallJump)
                 {
                     WallJump();
-                }
-
-                if (!wallJump)
-                {
-                    AirControl();
                 }
             }
 
@@ -255,6 +258,18 @@ public class Character: MonoBehaviour
         anim.SetBool("isJumping", isJumping);
         anim.SetBool("isFalling", isFalling);
         anim.SetBool("isOnGround", onGround);
+
+
+        if (jumping || !stopStretch)
+        {
+            stopStretch = false;
+            transform.localScale = new Vector2(1.2f - rb.velocity.y * stretch, 1.2f + rb.velocity.y * stretch);
+
+            if(rb.velocity.y < -0.1f)
+            {
+                stopStretch = true;
+            }
+        }
     }
 
 
@@ -265,6 +280,18 @@ public class Character: MonoBehaviour
             jumping = false;
             jump = false;
             abscisseJumpCurve = 0;
+        }
+    }
+
+
+    private void FixedUpdate()
+    {
+        if(!noControl && !noAirControl && !usingSerpe && !onGround)
+        {
+            if (!wallJump)
+            {
+                AirControl();
+            }
         }
     }
 

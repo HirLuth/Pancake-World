@@ -15,7 +15,6 @@ public class CinemachineShake : MonoBehaviour
     private CinemachineVirtualCamera camera;    // Référence de la virtual camera
     private CinemachineBasicMultiChannelPerlin shake;
     private float shakeTimer;    // Timer permettant de stopper le camera shake
-    public bool isShaking;
 
 
 
