@@ -6,8 +6,24 @@ using UnityEngine;
 public class Detection : MonoBehaviour
 {
     public static bool canUseZipline;
+    public static bool comeFromDown;
+    
     private void OnTriggerEnter2D(Collider2D other)
     {
-        canUseZipline = true;
+        
+        
+        
+        if (other.gameObject.tag == "Character")
+        {
+            if (!comeFromDown)
+            {
+                canUseZipline = true;
+            }
+            
+            else
+            {
+                comeFromDown = false;
+            }
+        }
     }
 }

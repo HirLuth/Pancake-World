@@ -12,8 +12,7 @@ public class Parallax : MonoBehaviour
     public float parallaxEffect;
     
     
-    
-    // Start is called before the first frame update
+
     void Start()
     {
         startPosX = cam.transform.position.x;
@@ -21,7 +20,6 @@ public class Parallax : MonoBehaviour
         length = GetComponent<SpriteRenderer>().bounds.size.x;
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
         float temp = (cam.transform.position.x * (1 - parallaxEffect));
