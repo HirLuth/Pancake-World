@@ -6,8 +6,8 @@ using UnityEngine.UIElements;
 public class Parallax : MonoBehaviour
 {
     private float length;
-    private float startPos;
-    
+    private float startPosX;
+
     public GameObject cam;
     public float parallaxEffect;
     
@@ -16,9 +16,9 @@ public class Parallax : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        startPos = cam.transform.position.x;
+        startPosX = cam.transform.position.x;
+
         length = GetComponent<SpriteRenderer>().bounds.size.x;
-        Debug.Log(startPos + length);
     }
 
     // Update is called once per frame
@@ -27,17 +27,15 @@ public class Parallax : MonoBehaviour
         float temp = (cam.transform.position.x * (1 - parallaxEffect));
         float dist = (cam.transform.position.x * parallaxEffect);
 
-        transform.position = new Vector3(startPos + dist, transform.position.y, transform.position.z);
+        transform.position = new Vector3(startPosX + dist, transform.position.y, transform.position.z);
 
-        Debug.Log(temp);
-        
-        if (temp > startPos + length)
+        if (temp > startPosX + length)
         {
-            startPos += length;
+            startPosX += length;
         }
-        else if (temp < startPos - length)
+        else if (temp < startPosX - length)
         {
-            startPos -= length;
+            startPosX -= length;
         }
     }
 }
