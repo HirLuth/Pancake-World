@@ -89,7 +89,7 @@ public class Character: MonoBehaviour
 
     [Header("Autres")]
     public Rigidbody2D rb;
-    public bool noControl;
+    [HideInInspector] public bool noControl;
     [HideInInspector] public bool usingSerpe;
     public static Character Instance;
 
