@@ -439,6 +439,7 @@ MonoBehaviour:
   dezoomMax: 1
   vitesseDezoom: 1.25
   vitesseZoom: 0.75
+  stretch: 0.007
   rb: {fileID: 887262781076718216}
   dureeSpawn: 0.66
   noControl: 0
