@@ -87,8 +87,7 @@ public class MaïsAReaction : MonoBehaviour
             playerRB.gravityScale = 0;
             character.noControl = true;
             character.jumpForce = jumpOutForceMultiplicator*stockageJumpForce;
-            
-            
+
             if (controls.Personnage.MoveRight.WasPerformedThisFrame())
             {
                 horizontaleSpeedSide = 1;
@@ -97,7 +96,12 @@ public class MaïsAReaction : MonoBehaviour
             {
                 horizontaleSpeedSide = -1;
             }
-            
+
+            else if (controls.Personnage.MoveLeft.WasReleasedThisFrame() || controls.Personnage.MoveRight.WasReleasedThisFrame())
+            {
+                horizontaleSpeedSide = 0;
+            }
+
             if (controls.Personnage.Sauter.WasPerformedThisFrame())
             {
                 character.Jump();
