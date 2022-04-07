@@ -91,7 +91,7 @@ public class Bash : MonoBehaviour
                 Character.Instance.noControl = false;
 
                 // On donne de l'�lan au personnage
-                direction = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical") + 0.2f);
+                direction = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical") + 0.23f);
                 rb.velocity = direction * force;
 
                 CinemachineShake.Instance.Shake(duration, amplitude);   // Camera shake
@@ -101,7 +101,7 @@ public class Bash : MonoBehaviour
             // Si le joueur reste appuy�
             else 
             {
-                Time.timeScale = 0.05f;
+                Time.timeScale = 0.02f;
                 Time.fixedDeltaTime = 0.02f * Time.timeScale;
                 Character.Instance.noControl = true;
                 usingSerpe = true;
