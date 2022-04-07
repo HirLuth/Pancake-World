@@ -590,7 +590,7 @@ public class Character: MonoBehaviour
             timerWallJump += Time.deltaTime;
 
             // On ajoute encore un peu de force au personnage
-            if(0.2f > timerWallJump)
+            if(0.15f > timerWallJump)
             {
                 forceWallJump -= Time.deltaTime * 25;
                 rb.velocity = new Vector2(Mathf.Sign(rb.velocity.x) * directionWallJump.x * forceWallJump, directionWallJump.y * forceWallJump);
