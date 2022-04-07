@@ -351,7 +351,7 @@ public class Character: MonoBehaviour
             }
 
             // Si le joueur s'arrête de bouger
-            else if (abscisseMovementsCurve > 0)
+            else if (abscisseMovementsCurve >= -0.0001f)
             {
                 abscisseMovementsCurve -= Time.deltaTime * vitesseDecelerationCurve;
             }
@@ -395,7 +395,7 @@ public class Character: MonoBehaviour
             }
 
             // Si le joueur arrête de courir sans enchaîner sur la marche
-            else if (abscisseRunCurve > 0)
+            else if (abscisseRunCurve >= 0)
             {
                 abscisseRunCurve -= Time.deltaTime * vitesseRunDecelerationCurve;
             }
