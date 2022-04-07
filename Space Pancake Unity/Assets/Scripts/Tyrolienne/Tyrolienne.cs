@@ -140,6 +140,7 @@ public class Tyrolienne : MonoBehaviour
     {
         if (collision.gameObject.tag == "Character")
         {
+            stockageGravity = rb.gravityScale;
             isOnThisZipline = true;
             usingTyrolienne = true;
             speedTyrolienne = rb.velocity.x;

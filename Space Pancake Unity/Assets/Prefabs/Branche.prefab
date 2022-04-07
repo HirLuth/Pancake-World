@@ -1,5 +1,53 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1471757929
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1471757930}
+  - component: {fileID: 1471757931}
+  m_Layer: 0
+  m_Name: Effets
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1471757930
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1471757929}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1.2072755, y: -7.6220336, z: -454.96262}
+  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3901934828180129479}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1471757931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1471757929}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isGlobal: 1
+  priority: 0
+  blendDistance: 0
+  weight: 0
+  sharedProfile: {fileID: 11400000, guid: a64cc741d8afc7848a3f884a056d6ec3, type: 2}
 --- !u!1 &3901934828180129475
 GameObject:
   m_ObjectHideFlags: 0
@@ -31,6 +79,7 @@ Transform:
   m_LocalScale: {x: 0.49999997, y: 0.50000006, z: 1}
   m_Children:
   - {fileID: 3901934828523366034}
+  - {fileID: 1471757930}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -100,7 +149,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 3.5
+  m_Radius: 3.8
 --- !u!114 &3901934828180129476
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -120,8 +169,9 @@ MonoBehaviour:
   amplitude: 6
   arrow: {fileID: 3901934828523366063}
   force: 25
-  rb: {fileID: 887262781076718216, guid: 8f7f6f34241a1484b82df60f07839aa9, type: 3}
+  rb: {fileID: 0}
   usingSerpe: 0
+  volume: {fileID: 1471757931}
 --- !u!1 &3901934828523366063
 GameObject:
   m_ObjectHideFlags: 0

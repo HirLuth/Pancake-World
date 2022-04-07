@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 using XInputDotNetPure;
 
 public class Bash : MonoBehaviour
@@ -28,8 +29,15 @@ public class Bash : MonoBehaviour
     private Vector2 direction;
     public float force;
     [SerializeField] Rigidbody2D rb;
-    public bool usingSerpe;
+    [HideInInspector] public bool usingSerpe;
     private float ralenti;
+
+    [Header("Effets")]
+    public Volume volume;
+    private float distance;
+    private float timerEffets;
+    private float puissanceEffets;
+    private bool exitEffects;
     
 
     [Header("Vibrations")]
@@ -66,6 +74,31 @@ public class Bash : MonoBehaviour
             wantsToUseSerpe = false;
         }
 
+        if (usingSerpe)
+        {
+            if (timerEffets <= 1)
+            {
+                timerEffets += Time.fixedDeltaTime * 5;
+            }
+
+            puissanceEffets = Mathf.Lerp(0, 1, timerEffets);
+        }
+        
+        else if (exitEffects)
+        {
+            if (timerEffets > 0)
+            {
+                timerEffets -= Time.deltaTime * 2;
+            }
+            else
+            {
+                exitEffects = false;
+            }
+
+            puissanceEffets = Mathf.Lerp(0, 1, timerEffets);
+            volume.weight = timerEffets;
+        }
+
         if ((canUseSerpe && wantsToUseSerpe) || usingSerpe)
         {
             UseSerpe();
@@ -85,24 +118,40 @@ public class Bash : MonoBehaviour
                 // On sort du ralenti
                 Time.timeScale = 1;
                 Time.fixedDeltaTime = 0.02f * Time.timeScale;
+                exitEffects = true;
+                timerEffets = 1;
 
                 arrow.SetActive(false);   // On retire la fl�che
                 usingSerpe = false;    // On redonne le contr�le du personnage
                 Character.Instance.noControl = false;
 
                 // On donne de l'�lan au personnage
-                direction = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical") + 0.2f);
+                direction = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical") + 0.23f);
                 rb.velocity = direction * force;
 
-                CinemachineShake.Instance.Shake(duration, amplitude);   // Camera shake
+                //CinemachineShake.Instance.Shake(duration, amplitude);   // Camera shake
             }
 
 
             // Si le joueur reste appuy�
-            else 
+            else
             {
-                Time.timeScale = 0.05f;
+                distance = Mathf.Sqrt((Mathf.Pow(transform.position.x - Character.Instance.transform.position.x, 2)) + Mathf.Pow(transform.position.y - Character.Instance.transform.position.y, 2));
+                
                 Time.fixedDeltaTime = 0.02f * Time.timeScale;
+                
+                
+                if (distance < 1)
+                {
+                    volume.weight = 0.5f * puissanceEffets;
+                    Time.timeScale = 0.035f;
+                }
+                else
+                {
+                    volume.weight = 1f - distance * 0.5f * puissanceEffets;
+                    Time.timeScale = distance * 0.035f;
+                }
+                
                 Character.Instance.noControl = true;
                 usingSerpe = true;
                 arrow.SetActive(true);
@@ -111,6 +160,7 @@ public class Bash : MonoBehaviour
         else
         {
             usingSerpe = false;
+            timerEffets = 0;
             Character.Instance.noControl = false;
             canUseSerpe = false;
         }
@@ -133,11 +183,17 @@ public class Bash : MonoBehaviour
         // Tout ce qui concerne l'arr�t du ralenti
         Time.timeScale = 1;
         Time.fixedDeltaTime = 0.02f * Time.timeScale;
+        volume.weight = 0;
 
         // Tout le reste 
         arrow.SetActive(false);
         Character.Instance.noControl = false;
         usingSerpe = false;
         spriteRenderer.color = couleurNonDetection;
+
+        if (!exitEffects)
+        {
+            timerEffets = 0;
+        }
     }
 }
