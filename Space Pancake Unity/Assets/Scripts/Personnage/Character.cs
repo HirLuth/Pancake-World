@@ -150,10 +150,32 @@ public class Character: MonoBehaviour
         {
             onGround = Physics2D.Raycast(transform.position + new Vector3(0.6f,0,0), Vector2.down, tailleRaycastGround, ground);
         }
+        else if (!onGround)
+        {
+            onGround = Physics2D.Raycast(transform.position, Vector2.down, tailleRaycastGround, ground);
+        }
 
-        canWallJumpLeft = Physics2D.Raycast(transform.position, Vector2.left, tailleRaycastWall, ground);
-        canWallJumpRight = Physics2D.Raycast(transform.position, Vector2.right, tailleRaycastWall, ground);
+        canWallJumpLeft = Physics2D.Raycast(transform.position + new Vector3(0,0.6f,0), Vector2.left, tailleRaycastWall, ground);
 
+        if (!canWallJumpLeft)
+        {
+            canWallJumpLeft = Physics2D.Raycast(transform.position - new Vector3(0,0.6f,0), Vector2.left, tailleRaycastWall, ground);
+        }
+        else if (!canWallJumpLeft)
+        {
+            canWallJumpLeft = Physics2D.Raycast(transform.position, Vector2.left, tailleRaycastWall, ground);
+        }
+        
+        canWallJumpRight = Physics2D.Raycast(transform.position + new Vector3(0,0.6f,0), Vector2.right, tailleRaycastWall, ground);
+
+        if (!canWallJumpRight)
+        {
+            canWallJumpRight = Physics2D.Raycast(transform.position - new Vector3(0,0.6f,0), Vector2.right, tailleRaycastWall, ground);
+        }
+        else if (!canWallJumpRight)
+        {
+            canWallJumpRight = Physics2D.Raycast(transform.position, Vector2.right, tailleRaycastWall, ground);
+        }
 
         // Détection des différents contrôles
         if (controls.Personnage.MoveLeft.WasPressedThisFrame())
@@ -273,9 +295,9 @@ public class Character: MonoBehaviour
     }
 
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (jumping)
+        if (jumping && other.gameObject.layer == ground)
         {
             jumping = false;
             jump = false;
@@ -568,9 +590,9 @@ public class Character: MonoBehaviour
             timerWallJump += Time.deltaTime;
 
             // On ajoute encore un peu de force au personnage
-            if(0.1f > timerWallJump)
+            if(0.2f > timerWallJump)
             {
-                forceWallJump -= Time.deltaTime * 30;
+                forceWallJump -= Time.deltaTime * 25;
                 rb.velocity = new Vector2(Mathf.Sign(rb.velocity.x) * directionWallJump.x * forceWallJump, directionWallJump.y * forceWallJump);
             }
 
@@ -583,6 +605,7 @@ public class Character: MonoBehaviour
             }
         }
 
+        
         // si le joueur saute du mur
         else if (wallJump && timerWallJump == 0)
         {
@@ -594,19 +617,35 @@ public class Character: MonoBehaviour
             jumping = false;
             abscisseJumpCurve = 0;
 
-
+            
             // Si le mur se trouve à gauche du personnage
             if (canWallJumpLeft)
             {
-                direction = 1;
-                rb.velocity = new Vector2(directionWallJump.x * forceWallJump, directionWallJump.y * forceWallJump);
+                if (moveLeft)
+                {
+                    direction = 1;
+                    rb.velocity = new Vector2(directionWallJump.x * forceWallJump * 0.5f, directionWallJump.y * forceWallJump);
+                }
+                else
+                {
+                    direction = 1;
+                    rb.velocity = new Vector2(directionWallJump.x * forceWallJump, directionWallJump.y * forceWallJump);
+                }
             }
             
             // Si le mur se trouve à droite du personnage
             else
             {
-                direction = -1;
-                rb.velocity = new Vector2(-1 * directionWallJump.x * forceWallJump, directionWallJump.y * forceWallJump);
+                if (moveRight)
+                {
+                    direction = -1;
+                    rb.velocity = new Vector2(-1 * directionWallJump.x * forceWallJump * 0.5f, directionWallJump.y * forceWallJump);
+                }
+                else
+                {
+                    direction = -1;
+                    rb.velocity = new Vector2(-1 * directionWallJump.x * forceWallJump, directionWallJump.y * forceWallJump);
+                }
             }
         }
         
