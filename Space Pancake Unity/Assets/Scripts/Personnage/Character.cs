@@ -8,8 +8,8 @@ public class Character: MonoBehaviour
 {
     [Header("Inputs")]
     private PlayerControls controls;
-    private bool moveLeft;
-    private bool moveRight;
+    [HideInInspector] public bool moveLeft;
+    [HideInInspector] public bool moveRight;
     private bool run;
     private bool jump;
     private bool wallJump;
@@ -32,7 +32,7 @@ public class Character: MonoBehaviour
     public float vitesseRunDecelerationCurve;
     public float vitesseRunDemiTourCurve;
     private float abscisseRunCurve;   // Abscisse utilisée pour lire la courbe de course, elle évolue en fonction du temps et de la vitesse qu'on lui donne
-    private bool running;    // Utilisé pour éviter que le joueur sorte de l'état de course sans transition
+    [HideInInspector] public bool running;    // Utilisé pour éviter que le joueur sorte de l'état de course sans transition
     public float runSpeed;    // Vitesse de la course
     private bool stopDemiTourRun;    // Utilisé pour sortir de l'état de demi-tour
     private float stockageDemiTour;    // Permet de sortir de l'état de demi-tour avec une vitesse adaptée à l'inertie initale du pesonnage
@@ -148,33 +148,33 @@ public class Character: MonoBehaviour
     private void Update()
     {
         // Tous les raycasts
-        onGround = Physics2D.Raycast(transform.position - new Vector3(0.6f,0,0), Vector2.down, tailleRaycastGround, ground);
+        onGround = Physics2D.Raycast(transform.position - new Vector3(0.45f,0,0), Vector2.down, tailleRaycastGround, ground);
         
         if (!onGround)
         {
-            onGround = Physics2D.Raycast(transform.position + new Vector3(0.6f,0,0), Vector2.down, tailleRaycastGround, ground);
+            onGround = Physics2D.Raycast(transform.position + new Vector3(0.45f,0,0), Vector2.down, tailleRaycastGround, ground);
         }
         else if (!onGround)
         {
             onGround = Physics2D.Raycast(transform.position, Vector2.down, tailleRaycastGround, ground);
         }
 
-        canWallJumpLeft = Physics2D.Raycast(transform.position + new Vector3(0,0.6f,0), Vector2.left, tailleRaycastWall, ground);
+        canWallJumpLeft = Physics2D.Raycast(transform.position + new Vector3(0,0.5f,0), Vector2.left, tailleRaycastWall, ground);
 
         if (!canWallJumpLeft)
         {
-            canWallJumpLeft = Physics2D.Raycast(transform.position - new Vector3(0,0.6f,0), Vector2.left, tailleRaycastWall, ground);
+            canWallJumpLeft = Physics2D.Raycast(transform.position - new Vector3(0,0.5f,0), Vector2.left, tailleRaycastWall, ground);
         }
         else if (!canWallJumpLeft)
         {
             canWallJumpLeft = Physics2D.Raycast(transform.position, Vector2.left, tailleRaycastWall, ground);
         }
         
-        canWallJumpRight = Physics2D.Raycast(transform.position + new Vector3(0,0.6f,0), Vector2.right, tailleRaycastWall, ground);
+        canWallJumpRight = Physics2D.Raycast(transform.position + new Vector3(0,0.5f,0), Vector2.right, tailleRaycastWall, ground);
 
         if (!canWallJumpRight)
         {
-            canWallJumpRight = Physics2D.Raycast(transform.position - new Vector3(0,0.6f,0), Vector2.right, tailleRaycastWall, ground);
+            canWallJumpRight = Physics2D.Raycast(transform.position - new Vector3(0,0.5f,0), Vector2.right, tailleRaycastWall, ground);
         }
         else if (!canWallJumpRight)
         {
@@ -266,7 +266,7 @@ public class Character: MonoBehaviour
 
         dezoomCamera = Mathf.Lerp(0, dezoomMax, Mathf.SmoothStep(0.0f, 1.0f, timerDezoom));
 
-        CinemachineMovements.Instance.CameraSize(dezoomCamera);
+        //CinemachineMovements.Instance.CameraSize(dezoomCamera);
 
 
         // Pour les animations

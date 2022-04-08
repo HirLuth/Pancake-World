@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   score: {fileID: 0}
-  UI: {fileID: 0}
+  UI: {fileID: 8554718855025575701, guid: 067e3ae90fd00f74a96de1387df487e1, type: 3}
   dureeAnimationMort: 0.65
   isDead: 0
 --- !u!114 &4315512679870263101
