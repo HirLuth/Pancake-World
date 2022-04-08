@@ -27,12 +27,12 @@ public class PlateformeQuiDisparait : MonoBehaviour
     {
         if (player.transform.position.y >= transform.position.y + (colliderSizeY/2) + (player.transform.localScale.y/2) + margeDetection)
         {
-            colliderSelf.enabled = true;
+            //colliderSelf.enabled = true;
             triggerZone.enabled = true;
         }
         if (player.transform.position.y <= transform.position.y + (colliderSizeY/2) + (player.transform.localScale.y/2))
         {
-            colliderSelf.enabled = false;
+            //colliderSelf.enabled = false;
             triggerZone.enabled = false;
         }
         
