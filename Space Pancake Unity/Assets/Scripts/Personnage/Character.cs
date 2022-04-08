@@ -92,6 +92,10 @@ public class Character: MonoBehaviour
     private bool stopStretch;
 
 
+    [Header("VFX")] 
+    [SerializeField] private ParticleSystem particulesGauches;
+
+
     [Header("Autres")]
     public Rigidbody2D rb;
     public float dureeSpawn;
@@ -233,6 +237,8 @@ public class Character: MonoBehaviour
             jumping = false;
             abscisseJumpCurve = 0;
         }
+        
+        VFX();
 
         // Pour la camera
         if(!dontChangeZoom)
@@ -297,7 +303,7 @@ public class Character: MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (jumping && other.gameObject.layer == ground)
+        if (jumping && other.gameObject.layer == 6)
         {
             jumping = false;
             jump = false;
@@ -663,6 +669,22 @@ public class Character: MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -grabForceWall, float.MaxValue));
         }
     }
+
+
+    void VFX()
+    {
+        var emissionGauche = particulesGauches.emission;
+
+        if (running && onGround && Mathf.Abs(rb.velocity.x) > speed)
+        {
+            emissionGauche.enabled = true;
+        }
+        else
+        {
+            emissionGauche.enabled = false;
+        }
+    }
+    
     
     public IEnumerator WaitSpawn(float duree)
     {
