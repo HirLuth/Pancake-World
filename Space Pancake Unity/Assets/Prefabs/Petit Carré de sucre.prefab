@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 6892141663881349633}
   - component: {fileID: 168032856135158801}
   - component: {fileID: 84659083}
+  - component: {fileID: 1954771444}
   m_Layer: 6
   m_Name: "Petit Carr\xE9 de sucre"
   m_TagString: Untagged
@@ -97,7 +98,7 @@ BoxCollider2D:
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_UsedByEffector: 0
+  m_UsedByEffector: 1
   m_UsedByComposite: 0
   m_Offset: {x: 0.001671493, y: 0.080492854}
   m_SpriteTilingProperty:
@@ -150,7 +151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 354a307d0be7cc0418925eb814f985af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 887262781076718219, guid: 8f7f6f34241a1484b82df60f07839aa9, type: 3}
+  player: {fileID: 0}
   triggerZone: {fileID: 6892141663881349633}
   colliderSelf: {fileID: 176925332577713838}
   animatorSelf: {fileID: 84659083}
@@ -180,3 +181,22 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!251 &1954771444
+PlatformEffector2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7583923730363954349}
+  m_Enabled: 1
+  m_UseColliderMask: 1
+  m_ColliderMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RotationalOffset: 0
+  m_UseOneWay: 1
+  m_UseOneWayGrouping: 0
+  m_SurfaceArc: 115
+  m_UseSideFriction: 0
+  m_UseSideBounce: 0
+  m_SideArc: 1
