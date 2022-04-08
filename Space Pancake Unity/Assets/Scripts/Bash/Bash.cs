@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -49,6 +50,11 @@ public class Bash : MonoBehaviour
     public void Awake()
     {
         controls = new PlayerControls();
+    }
+
+    private void Start()
+    {
+        rb = Character.Instance.rb;
     }
 
     private void OnEnable()
