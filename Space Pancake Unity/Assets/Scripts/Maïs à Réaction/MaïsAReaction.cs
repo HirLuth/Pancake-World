@@ -54,8 +54,15 @@ public class MaïsAReaction : MonoBehaviour
         stockageJumpForce = character.jumpForce;
         stockagePosition = transform.position;
     }
-    
-    
+
+    private void Start()
+    {
+        playerGameObject = Character.Instance.gameObject;
+        character = Character.Instance;
+        playerRB = Character.Instance.rb;
+    }
+
+
     private void OnEnable()
     {
         controls.Personnage.Enable();

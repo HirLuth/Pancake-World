@@ -24,16 +24,19 @@ public class FallingPlateform : MonoBehaviour
       rbSelf.bodyType = RigidbodyType2D.Kinematic;
    }
 
+   private void Start()
+   {
+      player = Character.Instance.gameObject;
+   }
+
    private void Update()
    {
       if (player.transform.position.y >= transform.position.y + (colliderSize/2) + (player.transform.localScale.y/2) + margeDetection)
       {
-         //colliderSelf.enabled = true;
          triggerZone.enabled = true;
       }
       if (player.transform.position.y <= transform.position.y + (colliderSize/2) + (player.transform.localScale.y/2))
       {
-         //colliderSelf.enabled = false;
          triggerZone.enabled = false;
       }
       if (playerAsSteppedOn)

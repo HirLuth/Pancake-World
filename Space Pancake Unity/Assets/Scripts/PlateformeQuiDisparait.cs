@@ -23,6 +23,11 @@ public class PlateformeQuiDisparait : MonoBehaviour
         steppedOn = false;
     }
 
+    private void Start()
+    {
+        player = Character.Instance.gameObject;
+    }
+
     void Update()
     {
         if (player.transform.position.y >= transform.position.y + (colliderSizeY/2) + (player.transform.localScale.y/2) + margeDetection)

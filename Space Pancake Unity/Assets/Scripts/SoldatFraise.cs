@@ -6,13 +6,12 @@ using UnityEngine;
 
 public class SoldatFraise : MonoBehaviour
 {
-    [Header("Self Refernce")]
+    [Header("Self Reference")]
     [SerializeField] private Rigidbody2D rbSelf;
     [SerializeField] private SpriteRenderer spriteSelf;
     [SerializeField] private Collider2D lanceCollider;
     [Header("other référence")]
     [SerializeField] private EventManager eventManager;
-    [SerializeField] private Character characterScript;
     [Header("Variables modifiable")]
     [SerializeField] private float movementSpeed;
     [SerializeField] private float patrollingDistanceRight;
@@ -36,6 +35,11 @@ public class SoldatFraise : MonoBehaviour
         {
             isGoingRight = false;
         }
+    }
+
+    private void Start()
+    {
+        eventManager = EventManager.Instance;
     }
 
     void Update()
