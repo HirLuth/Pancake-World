@@ -12,6 +12,7 @@ public class CameraMovements : MonoBehaviour
     public float deadZoneX;
     public float deadZoneY;
     private float avanceeY;
+    [HideInInspector] public Vector2 targetPosition;
 
 
     [Header("OffsetX")] 
@@ -26,13 +27,20 @@ public class CameraMovements : MonoBehaviour
     public float vitesseDezoom;
     public float vitesseZoom;
     public float dezoomMax;
-    private float stockageSize;
-    private float dezoomActuel;
-    private Camera camera;
+    [HideInInspector] public float stockageSize;
+    [HideInInspector] public float dezoomActuel;
+    [HideInInspector] public Camera camera;
+
+
+    [Header("Autres")] 
+    public static CameraMovements Instance;
+    [HideInInspector] public bool followPlayer;
 
 
     private void Start()
     {
+        Instance = this;
+        
         camera = gameObject.GetComponent<Camera>();
         stockageSize = camera.orthographicSize;
     }
@@ -40,17 +48,21 @@ public class CameraMovements : MonoBehaviour
 
     void FixedUpdate()
     {
-        Vector2 playerPosition = Character.Instance.transform.position + offset;
+        if (followPlayer)
+        {
+           targetPosition = Character.Instance.transform.position + offset;
+        }
+           
 
-        float differenceX = transform.position.x - playerPosition.x;
-        float differenceY = transform.position.y - playerPosition.y;
+        float differenceX = transform.position.x - targetPosition.x;
+        float differenceY = transform.position.y - targetPosition.y;
 
 
         // Déplacements camera sur l'axe x
         float newPositionX = transform.position.x;
         if (Mathf.Abs(differenceX) >= deadZoneX)
         {
-            newPositionX = Mathf.Lerp(transform.position.x, playerPosition.x, Time.fixedDeltaTime * (Mathf.Abs(differenceX) - smoothFactorX));
+            newPositionX = Mathf.Lerp(transform.position.x, targetPosition.x, Time.fixedDeltaTime * (Mathf.Abs(differenceX) - smoothFactorX));
         }
 
 
@@ -68,8 +80,9 @@ public class CameraMovements : MonoBehaviour
             if (dezoomActuel < 1)
             {
                 dezoomActuel += Time.deltaTime * vitesseDezoom;
-                camera.orthographicSize = stockageSize + Mathf.Lerp(0, dezoomMax, Mathf.SmoothStep(0, 1, dezoomActuel));
             }
+            
+            camera.orthographicSize = stockageSize + Mathf.Lerp(0, dezoomMax, Mathf.SmoothStep(0, 1, dezoomActuel));
         }
         
         // Rattrapage de la camera lorsque le joueur court vers la droite + dezoom
@@ -86,8 +99,9 @@ public class CameraMovements : MonoBehaviour
             if (dezoomActuel < 1)
             {
                 dezoomActuel += Time.deltaTime * vitesseDezoom;
-                camera.orthographicSize = stockageSize + Mathf.Lerp(0, dezoomMax, Mathf.SmoothStep(0, 1, dezoomActuel));
             }
+            
+            camera.orthographicSize = stockageSize + Mathf.Lerp(0, dezoomMax, Mathf.SmoothStep(0, 1, dezoomActuel));
         }
 
         // Quand le joueur s'arrête ou change de direction
@@ -99,11 +113,13 @@ public class CameraMovements : MonoBehaviour
             offsetActuel = 0;
             offset.x = 0;
 
+            
             if (dezoomActuel > 0)
             {
                 dezoomActuel -= Time.deltaTime * vitesseZoom;
-                camera.orthographicSize = stockageSize + Mathf.Lerp(0, dezoomMax, Mathf.SmoothStep(0, 1, dezoomActuel));
             }
+            
+            camera.orthographicSize = stockageSize + Mathf.Lerp(0, dezoomMax, Mathf.SmoothStep(0, 1, dezoomActuel));
         }
 
 
@@ -112,9 +128,8 @@ public class CameraMovements : MonoBehaviour
         
         if (Mathf.Abs(differenceY) >= deadZoneY)
         {
-            newPositionY = Mathf.Lerp(transform.position.y, playerPosition.y, Time.fixedDeltaTime * (Mathf.Abs(differenceY) - smoothFactorY));
+            newPositionY = Mathf.Lerp(transform.position.y, targetPosition.y, Time.fixedDeltaTime * (Mathf.Abs(differenceY) - smoothFactorY));
         }
-        
         
         transform.position = new Vector3(newPositionX, newPositionY, transform.position.z);
     }
