@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,12 +20,24 @@ public class cameraMovement : MonoBehaviour
     private float offsetActuel;
     bool goingLeft;
     bool goingRight;
-    
-    
+
+
+    [Header("Dezoom")] 
+    public Camera camera;
+    public float vitesseDezoom;
+    public float dezoomMax;
+    private float stockageSize;
+
+
+    private void Start()
+    {
+        stockageSize = camera.orthographicSize;
+    }
+
+
     void FixedUpdate()
     {
         Vector2 playerPosition = Character.Instance.transform.position + offset;
-        Debug.Log(playerPosition);
 
         float differenceX = transform.position.x - playerPosition.x;
         float differenceY = transform.position.y - playerPosition.y;
