@@ -102,6 +102,7 @@ public class Character: MonoBehaviour
     [HideInInspector] public bool noControl;
     [HideInInspector] public bool usingSerpe;
     public static Character Instance;
+    [SerializeField] private bool activatespawnpoint;
 
 
 
@@ -127,8 +128,8 @@ public class Character: MonoBehaviour
     
     private void OnEnable()
     {
-        if (SpawnPointManagement.spawnWasModifiedOnce)
-        { 
+        if (activatespawnpoint && SpawnPointManagement.spawnWasModifiedOnce)
+        {
             transform.position = SpawnPointManagement.spawnPointLocation;
         }
         controls.Personnage.Enable();
