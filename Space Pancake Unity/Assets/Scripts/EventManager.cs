@@ -26,6 +26,11 @@ public class EventManager : MonoBehaviour
         Instance = this;
     }
 
+    private void Start()
+    {
+        UI = UIPrincipale.Instance.gameObject;
+    }
+
 
     public void Restart()
     {
