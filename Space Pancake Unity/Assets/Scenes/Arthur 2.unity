@@ -92592,8 +92592,8 @@ MonoBehaviour:
   deadZoneY: 2.5
   offsetMax: 5
   speedRattrapage: 0.5
-  camera: {fileID: 4512747626650215359}
-  vitesseDezoom: 1
+  vitesseDezoom: 0.4
+  vitesseZoom: 0.3
   dezoomMax: 1
 --- !u!114 &8910444645808213068 stripped
 MonoBehaviour:
