@@ -27,8 +27,8 @@ public class CameraMovements : MonoBehaviour
     public float vitesseDezoom;
     public float vitesseZoom;
     public float dezoomMax;
-    private float stockageSize;
-    private float dezoomActuel;
+    [HideInInspector] public float stockageSize;
+    [HideInInspector] public float dezoomActuel;
     [HideInInspector] public Camera camera;
 
 
