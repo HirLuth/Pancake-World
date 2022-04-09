@@ -29,6 +29,7 @@ public class EventManager : MonoBehaviour
     private void Start()
     {
         UI = UIPrincipale.Instance.gameObject;
+        score = UIPrincipale.Instance.textScore;
     }
 
 
