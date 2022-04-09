@@ -26,9 +26,7 @@ public class SpawnPointManagement : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-    }
+    
 
     public void SetSpawnPoint(Vector2 newSpawnPointLocation)
     {
