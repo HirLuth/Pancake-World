@@ -313,6 +313,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93f5b5ff8eb8ad14092de50541a13ae6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveLeft: 0
+  moveRight: 0
   movementsCurve:
     serializedVersion: 2
     m_Curve:
@@ -368,6 +370,7 @@ MonoBehaviour:
   vitesseRunCurve: 2.5
   vitesseRunDecelerationCurve: 3
   vitesseRunDemiTourCurve: 2
+  running: 0
   runSpeed: 13
   jumpCurve:
     serializedVersion: 2
@@ -447,6 +450,7 @@ MonoBehaviour:
   dureeSpawn: 0.66
   noControl: 0
   usingSerpe: 0
+  activatespawnpoint: 1
 --- !u!95 &7250847303676680922
 Animator:
   serializedVersion: 3
