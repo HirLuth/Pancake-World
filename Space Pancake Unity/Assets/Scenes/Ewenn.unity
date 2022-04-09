@@ -427,35 +427,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &620843382 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7551128530492296418, guid: cc5277af5abd8dd4484cd6eef9d91964, type: 3}
-  m_PrefabInstance: {fileID: 986625905}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &620843383
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 620843382}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 30c56fb6c93ccf54fa88e862f42baec3, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
---- !u!212 &620843388 stripped
-SpriteRenderer:
-  m_CorrespondingSourceObject: {fileID: 7551128530492296412, guid: cc5277af5abd8dd4484cd6eef9d91964, type: 3}
-  m_PrefabInstance: {fileID: 986625905}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &638429945
 GameObject:
   m_ObjectHideFlags: 0
@@ -637,62 +608,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 471699658, guid: cc5277af5abd8dd4484cd6eef9d91964, type: 3}
-      propertyPath: layerThatDestroy
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 471699659, guid: cc5277af5abd8dd4484cd6eef9d91964, type: 3}
-      propertyPath: m_Size.x
-      value: 2.676481
-      objectReference: {fileID: 0}
-    - target: {fileID: 471699659, guid: cc5277af5abd8dd4484cd6eef9d91964, type: 3}
-      propertyPath: m_Size.y
-      value: 0.028173208
-      objectReference: {fileID: 0}
-    - target: {fileID: 471699659, guid: cc5277af5abd8dd4484cd6eef9d91964, type: 3}
-      propertyPath: m_Offset.x
-      value: 0.10371983
-      objectReference: {fileID: 0}
-    - target: {fileID: 471699659, guid: cc5277af5abd8dd4484cd6eef9d91964, type: 3}
-      propertyPath: m_Offset.y
-      value: 0.33623683
-      objectReference: {fileID: 0}
-    - target: {fileID: 1870044907, guid: cc5277af5abd8dd4484cd6eef9d91964, type: 3}
-      propertyPath: m_SurfaceArc
-      value: 154
-      objectReference: {fileID: 0}
-    - target: {fileID: 7551128530492296412, guid: cc5277af5abd8dd4484cd6eef9d91964, type: 3}
-      propertyPath: m_SortingOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7551128530492296413, guid: cc5277af5abd8dd4484cd6eef9d91964, type: 3}
-      propertyPath: m_Size.x
-      value: 3.0500362
-      objectReference: {fileID: 0}
-    - target: {fileID: 7551128530492296413, guid: cc5277af5abd8dd4484cd6eef9d91964, type: 3}
-      propertyPath: m_Offset.x
-      value: 0.0019272566
-      objectReference: {fileID: 0}
     - target: {fileID: 7551128530492296414, guid: cc5277af5abd8dd4484cd6eef9d91964, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 1301166157}
-    - target: {fileID: 7551128530492296414, guid: cc5277af5abd8dd4484cd6eef9d91964, type: 3}
-      propertyPath: animatorself
-      value: 
-      objectReference: {fileID: 620843383}
-    - target: {fileID: 7551128530492296414, guid: cc5277af5abd8dd4484cd6eef9d91964, type: 3}
-      propertyPath: timeToRespawn
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 7551128530492296414, guid: cc5277af5abd8dd4484cd6eef9d91964, type: 3}
-      propertyPath: timeBeforDestroy
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7551128530492296414, guid: cc5277af5abd8dd4484cd6eef9d91964, type: 3}
-      propertyPath: spriteRendererSelf
-      value: 
-      objectReference: {fileID: 620843388}
     - target: {fileID: 7551128530492296415, guid: cc5277af5abd8dd4484cd6eef9d91964, type: 3}
       propertyPath: m_RootOrder
       value: 1
