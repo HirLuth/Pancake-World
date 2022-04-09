@@ -66,7 +66,8 @@ public class EventManager : MonoBehaviour
         yield return new WaitForSeconds(duree);
         
         Character.Instance.gameObject.SetActive(false);
-        
+
+        isDead = false;
         Restart();
     }
 }

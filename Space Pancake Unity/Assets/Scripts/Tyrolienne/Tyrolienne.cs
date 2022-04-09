@@ -50,11 +50,11 @@ public class Tyrolienne : MonoBehaviour
 
     private void Start()
     {
+        player = Character.Instance.gameObject;
+        
         // On recupère certains éléments
         rb = player.GetComponent<Rigidbody2D>();
         stockageGravity = rb.gravityScale;
-
-        player = Character.Instance.gameObject;
 
         // On détermine la direction que va prendre la tyrolienne
         direction = poteau2.transform.position - poteau1.transform.position;

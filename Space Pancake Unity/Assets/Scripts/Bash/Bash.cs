@@ -75,11 +75,12 @@ public class Bash : MonoBehaviour
         {
             wantsToUseSerpe = true;
         }
+        
         else if(controls.Personnage.Serpe.WasReleasedThisFrame())
         {
             wantsToUseSerpe = false;
         }
-
+        
         if (usingSerpe)
         {
             if (timerEffets <= 1)
