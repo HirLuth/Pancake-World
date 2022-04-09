@@ -67,6 +67,6 @@ public class EventManager : MonoBehaviour
         
         Character.Instance.gameObject.SetActive(false);
         
-        UI.SetActive(true);
+        Restart();
     }
 }
