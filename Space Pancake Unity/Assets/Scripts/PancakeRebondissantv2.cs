@@ -5,9 +5,7 @@ using UnityEngine;
 
 public class PancakeRebondissantv2 : MonoBehaviour
 {
-    public Character character;
     public Rigidbody2D rbCharacter;
-    public GameObject gameObjectCharacter;
     public Animator animatorSelf;
     [SerializeField] float bounceForce;
     [SerializeField] float timerBounce;
@@ -15,7 +13,12 @@ public class PancakeRebondissantv2 : MonoBehaviour
     [SerializeField] private float stockageVelocityX;
     [SerializeField] private bool isOnThePancake;
     [SerializeField] private LayerMask layerPlayer;
-    
+
+
+    private void Start()
+    {
+        rbCharacter = Character.Instance.rb;
+    }
 
     private void Update()
     {
