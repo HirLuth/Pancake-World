@@ -25,11 +25,14 @@ public class CameraSpeciales : MonoBehaviour
     public BoxCollider2D bc;
     private bool isAtRange;
     private float stockageZoom;
+    private float zoomActuel;
     
 
 
     private void Update()
     {
+        zoomActuel = CameraMovements.Instance.stockageSize + Mathf.Lerp(0, CameraMovements.Instance.dezoomMax, Mathf.SmoothStep(0, 1, CameraMovements.Instance.dezoomActuel));
+        
         if (isAtRange)
         {
             if (cameraFixe)
@@ -64,30 +67,59 @@ public class CameraSpeciales : MonoBehaviour
                     Mathf.Lerp(transform.position.x + bc.offset.x, Character.Instance.transform.position.x, Mathf.Abs(avancee)),
                     Mathf.Lerp(transform.position.y + bc.offset.y, Character.Instance.transform.position.y, Mathf.Abs(avancee)));
                 
-                CameraMovements.Instance.camera.orthographicSize = Mathf.Lerp(newZoom, stockageZoom, Mathf.Abs(avancee));
+                CameraMovements.Instance.camera.orthographicSize = Mathf.Lerp(newZoom, zoomActuel, Mathf.Abs(avancee));
                 
                 CameraMovements.Instance.transform.localScale = new Vector3(
-                    Mathf.Lerp((newZoom / stockageZoom), 1, Mathf.Abs(avancee)), 
-                    Mathf.Lerp((newZoom / stockageZoom), 1, Mathf.Abs(avancee)), 
+                    Mathf.Lerp((newZoom / zoomActuel), 1, Mathf.Abs(avancee)), 
+                    Mathf.Lerp((newZoom / zoomActuel), 1, Mathf.Abs(avancee)), 
                     1);
             }
-
-
+            
             else
             {
                 CameraMovements.Instance.targetPosition = new Vector2(transform.position.x, transform.position.y) + bc.offset;
                 CameraMovements.Instance.camera.orthographicSize = newZoom;
 
-                CameraMovements.Instance.transform.localScale = new Vector3(newZoom / stockageZoom, newZoom / stockageZoom, 1);
+                CameraMovements.Instance.transform.localScale = new Vector3(newZoom / zoomActuel, newZoom / zoomActuel, 1);
             }
         }
         
         else
         {
+            float xMin = (transform.position.x + bc.offset.x - bc.size.x / 2) + largeurTransition;
+            float xMax = (transform.position.x + bc.offset.x + bc.size.x / 2) - largeurTransition;
+
+            if (xMin > Character.Instance.transform.position.x || xMax < Character.Instance.transform.position.x)
+            {
+                float avancee;
+
+                if (xMin > Character.Instance.transform.position.x)
+                {
+                    avancee = (Character.Instance.transform.position.x - xMin) / largeurTransition;
+                }
+                else
+                {
+                    avancee = (Character.Instance.transform.position.x - xMax) / largeurTransition;
+                }
+                
+
+                CameraMovements.Instance.targetPosition = new Vector2(
+                    Mathf.Lerp(transform.position.x + bc.offset.x, Character.Instance.transform.position.x, Mathf.Abs(avancee)),
+                    Mathf.Lerp(transform.position.y + bc.offset.y, Character.Instance.transform.position.y, Mathf.Abs(avancee)));
+                
+                CameraMovements.Instance.camera.orthographicSize = Mathf.Lerp(newZoom, zoomActuel, Mathf.Abs(avancee));
+                
+                CameraMovements.Instance.transform.localScale = new Vector3(
+                    Mathf.Lerp((newZoom / zoomActuel), 1, Mathf.Abs(avancee)), 
+                    Mathf.Lerp((newZoom / zoomActuel), 1, Mathf.Abs(avancee)), 
+                    1);
+            }
+            
+            
             CameraMovements.Instance.targetPosition = positionManuelle;
             CameraMovements.Instance.camera.orthographicSize = newZoom;
 
-            CameraMovements.Instance.transform.localScale = new Vector3(newZoom / stockageZoom, newZoom / stockageZoom, 1);
+            CameraMovements.Instance.transform.localScale = new Vector3(newZoom / zoomActuel, newZoom / zoomActuel, 1);
         }
     }
 
@@ -98,8 +130,6 @@ public class CameraSpeciales : MonoBehaviour
         {
             CameraMovements.Instance.followPlayer = false;
             isAtRange = true;
-            
-            stockageZoom = CameraMovements.Instance.camera.orthographicSize;
         }
     }
 
