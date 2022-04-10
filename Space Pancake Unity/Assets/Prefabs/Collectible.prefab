@@ -128,7 +128,7 @@ MonoBehaviour:
   numberOfPointsGiven: 1
   stockagePosition: {x: 0, y: 0}
   timer: 0
-  timeToGoUp: 0.3
+  timeToGoUp: 0.5
   timeToDestroy: 0.5
   hauteurAnimation: 3
   asCollected: 0
