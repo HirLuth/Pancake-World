@@ -1183,11 +1183,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 067e3ae90fd00f74a96de1387df487e1, type: 3}
---- !u!95 &1946652786 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 6646121197209017299, guid: dd4022dfdad95ab44b04c278fbb9b03d, type: 3}
-  m_PrefabInstance: {fileID: 6667967544709450368}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2030285363
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1462,26 +1457,6 @@ PrefabInstance:
     - target: {fileID: 6667967545553100193, guid: dd4022dfdad95ab44b04c278fbb9b03d, type: 3}
       propertyPath: m_Name
       value: Collectible
-      objectReference: {fileID: 0}
-    - target: {fileID: 6667967545553100194, guid: dd4022dfdad95ab44b04c278fbb9b03d, type: 3}
-      propertyPath: timeToGoUp
-      value: 0.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 6667967545553100194, guid: dd4022dfdad95ab44b04c278fbb9b03d, type: 3}
-      propertyPath: animatorSelf
-      value: 
-      objectReference: {fileID: 1946652786}
-    - target: {fileID: 6667967545553100194, guid: dd4022dfdad95ab44b04c278fbb9b03d, type: 3}
-      propertyPath: eventManager
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6667967545553100194, guid: dd4022dfdad95ab44b04c278fbb9b03d, type: 3}
-      propertyPath: timeToDestroy
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6667967545553100194, guid: dd4022dfdad95ab44b04c278fbb9b03d, type: 3}
-      propertyPath: hauteurAnimation
-      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6667967545553100197, guid: dd4022dfdad95ab44b04c278fbb9b03d, type: 3}
       propertyPath: m_RootOrder
