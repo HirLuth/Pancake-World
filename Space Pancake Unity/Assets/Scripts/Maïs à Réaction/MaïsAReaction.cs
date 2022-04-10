@@ -37,9 +37,7 @@ public class MaïsAReaction : MonoBehaviour
     [SerializeField] private bool launchedWithoutPlayer;
     [SerializeField] private float timer;
     [SerializeField] private float timerExplosion;
-    [SerializeField] private float stockageGravityScaleJoueur;
     [SerializeField] private float horizontaleSpeedSide;
-    [SerializeField] private float stockageJumpForce;
 
 
     [Header("Variable UI")] 
@@ -50,8 +48,6 @@ public class MaïsAReaction : MonoBehaviour
     {
         controls = new PlayerControls();
         playerIsAtRange = false;
-        stockageGravityScaleJoueur = playerRB.gravityScale;
-        stockageJumpForce = character.jumpForce;
         stockagePosition = transform.position;
     }
 
@@ -93,7 +89,7 @@ public class MaïsAReaction : MonoBehaviour
             timer += Time.deltaTime;
             playerRB.gravityScale = 0;
             character.noControl = true;
-            character.jumpForce = jumpOutForceMultiplicator*stockageJumpForce;
+            character.jumpForce = jumpOutForceMultiplicator*character.stockageJumpForce;
 
             if (controls.Personnage.MoveRight.WasPerformedThisFrame())
             {
@@ -146,7 +142,7 @@ public class MaïsAReaction : MonoBehaviour
 
     public void ReintialiseWhenGetOut()
     {
-        playerRB.gravityScale = stockageGravityScaleJoueur;
+        playerRB.gravityScale = character.stockageGravityScale;
         character.noControl = false;
         isOnTheRide = false;
     }
@@ -177,6 +173,6 @@ public class MaïsAReaction : MonoBehaviour
     {
         playerIsAtRange = false;
         spriteSelf.color = colorNotAtRange;
-        character.jumpForce = stockageJumpForce;
+        character.jumpForce = character.stockageJumpForce;
     }
 }
