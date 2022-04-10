@@ -76,6 +76,8 @@ public class Character: MonoBehaviour
     private bool isRunning;
     private bool isJumping;
     private bool isFalling;
+    private bool isOnWall;
+    private bool isWallJumping;
 
 
     [Header("Camera")]
@@ -103,6 +105,8 @@ public class Character: MonoBehaviour
     [HideInInspector] public bool usingSerpe;
     public static Character Instance;
     [SerializeField] private bool activatespawnpoint;
+    public float stockageJumpForce;
+    public float stockageGravityScale;
 
 
 
@@ -123,6 +127,8 @@ public class Character: MonoBehaviour
         controls.Personnage.Sauter.canceled += ctx => jump = false;
 
         stockageWallJump = forceWallJump;
+        stockageJumpForce = jumpForce;
+        stockageGravityScale = rb.gravityScale;
         Instance = this;
     }
     
@@ -149,11 +155,11 @@ public class Character: MonoBehaviour
     private void Update()
     {
         // Tous les raycasts
-        onGround = Physics2D.Raycast(transform.position - new Vector3(0.45f,0,0), Vector2.down, tailleRaycastGround, ground);
+        onGround = Physics2D.Raycast(transform.position - new Vector3(0.4f,0,0), Vector2.down, tailleRaycastGround, ground);
         
         if (!onGround)
         {
-            onGround = Physics2D.Raycast(transform.position + new Vector3(0.45f,0,0), Vector2.down, tailleRaycastGround, ground);
+            onGround = Physics2D.Raycast(transform.position + new Vector3(0.4f,0,0), Vector2.down, tailleRaycastGround, ground);
         }
         else if (!onGround)
         {
@@ -214,7 +220,10 @@ public class Character: MonoBehaviour
                 isJumping = false;
                 isFalling = false;
                 stop = false;
+                isOnWall = false;
                 timerWallJump = 0;
+                
+                
                 MoveCharacter();
             }
 
@@ -222,6 +231,7 @@ public class Character: MonoBehaviour
             {
                 if (canWallJumpLeft || canWallJumpRight || wallJump)
                 {
+                    isOnWall = true;
                     WallJump();
                 }
             }
@@ -287,6 +297,8 @@ public class Character: MonoBehaviour
         anim.SetBool("isJumping", isJumping);
         anim.SetBool("isFalling", isFalling);
         anim.SetBool("isOnGround", onGround);
+        anim.SetBool("isOnWall", isOnWall);
+        anim.SetBool("isWallJumping", isWallJumping);
 
 
         if (jumping || !stopStretch)
@@ -610,6 +622,9 @@ public class Character: MonoBehaviour
                 wallJump = false;
                 timerWallJump = 0;
             }
+            
+            isOnWall = false;
+            isWallJumping = false;
         }
 
         
@@ -654,6 +669,8 @@ public class Character: MonoBehaviour
                     rb.velocity = new Vector2(-1 * directionWallJump.x * forceWallJump, directionWallJump.y * forceWallJump);
                 }
             }
+
+            isWallJumping = true;
         }
         
         // Si le joueur glisse sur le mur
@@ -664,6 +681,7 @@ public class Character: MonoBehaviour
                 rb.velocity = new Vector2(0, rb.velocity.y);
             }
 
+            isOnWall = true;
             runAirControl = false;
             timerWallJump = 0;
             forceWallJump = stockageWallJump;
