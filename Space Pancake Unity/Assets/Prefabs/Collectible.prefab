@@ -124,7 +124,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eventManager: {fileID: 0}
+  animatorSelf: {fileID: 6646121197209017299}
   numberOfPointsGiven: 1
+  stockagePosition: {x: 0, y: 0}
+  timer: 0
+  timeToGoUp: 0.3
+  timeToDestroy: 0.5
+  hauteurAnimation: 3
+  asCollected: 0
 --- !u!95 &6646121197209017299
 Animator:
   serializedVersion: 3
