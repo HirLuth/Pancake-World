@@ -32,9 +32,18 @@ public class CameraMovements : MonoBehaviour
     [HideInInspector] public Camera camera;
 
 
+    [Header("Tyrolienne")] 
+    public float offsetTyrolienneMax;
+    public float offsetSpeed;
+    [HideInInspector] public bool tyrolienneCamera;
+    private float offsetTyrolienne;
+
+
     [Header("Autres")] 
     public static CameraMovements Instance;
     [HideInInspector] public bool followPlayer;
+    
+    
 
 
     private void Start()
@@ -43,6 +52,7 @@ public class CameraMovements : MonoBehaviour
         
         camera = gameObject.GetComponent<Camera>();
         stockageSize = camera.orthographicSize;
+        followPlayer = true;
     }
 
 
@@ -64,6 +74,7 @@ public class CameraMovements : MonoBehaviour
         {
             newPositionX = Mathf.Lerp(transform.position.x, targetPosition.x, Time.fixedDeltaTime * (Mathf.Abs(differenceX) - smoothFactorX));
         }
+        
 
 
         // Rattrapage de la camera lorsque le joueur court vers la gauche + dezoom
@@ -129,6 +140,30 @@ public class CameraMovements : MonoBehaviour
         if (Mathf.Abs(differenceY) >= deadZoneY)
         {
             newPositionY = Mathf.Lerp(transform.position.y, targetPosition.y, Time.fixedDeltaTime * (Mathf.Abs(differenceY) - smoothFactorY));
+        }
+        
+        
+        if (tyrolienneCamera)
+        {
+            offsetTyrolienne += Time.deltaTime * offsetSpeed;
+
+
+            offset.x += offsetTyrolienne;
+            
+            if (offset.x > offsetTyrolienneMax)
+            {
+                offsetTyrolienne -= Time.deltaTime * offsetSpeed;
+                offset.x = offsetTyrolienneMax;
+            }
+        }
+        
+        else
+        {
+            if (offsetTyrolienne > 0)
+            {
+                offsetTyrolienne -= Time.deltaTime * offsetSpeed * 2;
+                offset.x += offsetTyrolienne;
+            }
         }
         
         transform.position = new Vector3(newPositionX, newPositionY, transform.position.z);

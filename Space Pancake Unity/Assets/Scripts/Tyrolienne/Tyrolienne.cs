@@ -29,11 +29,13 @@ public class Tyrolienne : MonoBehaviour
 
     [Header("Autres")]
     private bool isOnThisZipline;
+    public static Tyrolienne Instance;
 
 
     private void Awake()
     {
         controls = new PlayerControls();
+        Instance = this;
     }
     
     private void OnEnable()
@@ -80,6 +82,8 @@ public class Tyrolienne : MonoBehaviour
     {
         if (usingTyrolienne)
         {
+            CameraMovements.Instance.tyrolienneCamera = true;
+            
             // Si le personnage peut utiliser la tyrolienne
             if (usingTyrolienne && player.transform.position.x < poteau2.transform.position.x && player.transform.position.x > poteau1.transform.position.x && Detection.canUseZipline)
             {
@@ -120,6 +124,8 @@ public class Tyrolienne : MonoBehaviour
                 usingTyrolienne = false;
                 Character.Instance.noControl = false;
                 rb.gravityScale = stockageGravity;
+                
+                CameraMovements.Instance.tyrolienneCamera = false;
             }
         }
 
