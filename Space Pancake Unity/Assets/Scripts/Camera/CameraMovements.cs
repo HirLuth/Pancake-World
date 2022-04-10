@@ -34,9 +34,17 @@ public class CameraMovements : MonoBehaviour
 
     [Header("Tyrolienne")] 
     public float offsetTyrolienneMax;
-    public float offsetSpeed;
+    public float offsetTyrolienneSpeed;
     [HideInInspector] public bool tyrolienneCamera;
     private float offsetTyrolienne;
+
+
+    [Header("Maïs")] 
+    public float offsetMaïsMax;
+    public float offsetSpeedMaïs;
+    [HideInInspector] public bool maïsCamera;
+    private float offsetMaïs;
+    
 
 
     [Header("Autres")] 
@@ -145,11 +153,9 @@ public class CameraMovements : MonoBehaviour
         
         if (tyrolienneCamera)
         {
-            offsetTyrolienne += Time.deltaTime * offsetSpeed;
-
-
-            offset.x += offsetTyrolienne;
+            offsetTyrolienne += Time.deltaTime * offsetTyrolienne;
             
+            offset.x += offsetTyrolienne;
             if (offset.x > offsetTyrolienneMax)
             {
                 offset.x = offsetTyrolienneMax;
@@ -162,17 +168,34 @@ public class CameraMovements : MonoBehaviour
             {
                 offsetTyrolienne = offsetTyrolienneMax - offset.x;
             }
-            
             else if (offsetTyrolienne + offset.x > offsetTyrolienneMax)
             {
                 offsetTyrolienne -= offset.x;
             }
             
-            
             if (offsetTyrolienne > 0)
             {
-                offsetTyrolienne -= Time.deltaTime * offsetSpeed * 2;
+                offsetTyrolienne -= Time.deltaTime * offsetTyrolienne * 2;
                 offset.x += offsetTyrolienne;
+            }
+        }
+        
+        if (maïsCamera)
+        {
+            if (offsetMaïs < offsetMaïsMax)
+            {
+                offsetMaïs += Time.deltaTime * offsetSpeedMaïs;
+            }
+            
+            offset.y = offsetMaïs;
+        }
+        
+        else
+        {
+            if (offsetMaïs > 0)
+            {
+                offsetMaïs -= Time.deltaTime * offsetSpeedMaïs * 2;
+                offset.y = offsetMaïs;
             }
         }
 

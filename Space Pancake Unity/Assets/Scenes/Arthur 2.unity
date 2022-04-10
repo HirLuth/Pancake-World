@@ -90899,6 +90899,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8646431942676905212, guid: dcbfa8e4e5b37eb4187196dfba0ee7ed, type: 3}
+      propertyPath: "offsetMa\xEFsMax"
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8646431942676905212, guid: dcbfa8e4e5b37eb4187196dfba0ee7ed, type: 3}
+      propertyPath: "offsetSpeedMa\xEFs"
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8646431942676905212, guid: dcbfa8e4e5b37eb4187196dfba0ee7ed, type: 3}
+      propertyPath: offsetTyrolienneSpeed
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dcbfa8e4e5b37eb4187196dfba0ee7ed, type: 3}
 --- !u!1001 &7574779630277210779
