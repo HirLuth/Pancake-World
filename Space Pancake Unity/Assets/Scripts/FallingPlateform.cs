@@ -53,7 +53,6 @@ public class FallingPlateform : MonoBehaviour
 
          if (timerToDestroy >= timeToRespawn - timeBeforDestroy)
          {
-            Debug.Log("respawn");
             transform.position = stockagePosition;
             spriteRendererSelf.enabled = true;
             animatorself.SetBool("IsRespawning", true);

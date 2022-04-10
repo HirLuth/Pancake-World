@@ -234,6 +234,10 @@ public class Character: MonoBehaviour
                     isOnWall = true;
                     WallJump();
                 }
+                else
+                {
+                    isOnWall = false;
+                }
             }
 
             if ((jump && onGround) || jumping)
@@ -250,6 +254,7 @@ public class Character: MonoBehaviour
         }
         
         VFX();
+
 
         // Pour la camera
         if(!dontChangeZoom)
