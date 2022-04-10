@@ -1190,6 +1190,9 @@ MonoBehaviour:
   stockageSize: 0
   dezoomActuel: 0
   camera: {fileID: 0}
+  offsetTyrolienneMax: 9
+  offsetSpeed: 9
+  tyrolienneCamera: 0
   followPlayer: 0
 --- !u!81 &8646431942676905088
 AudioListener:

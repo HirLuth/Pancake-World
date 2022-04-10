@@ -26,12 +26,14 @@ public class CameraSpeciales : MonoBehaviour
     private bool isAtRange;
     private float stockageZoom;
     private float zoomActuel;
+    private float offsetActuel;
     
 
 
     private void Update()
     {
         zoomActuel = CameraMovements.Instance.stockageSize + Mathf.Lerp(0, CameraMovements.Instance.dezoomMax, Mathf.SmoothStep(0, 1, CameraMovements.Instance.dezoomActuel));
+        offsetActuel = CameraMovements.Instance.offset.x;
         
         if (isAtRange)
         {
@@ -64,8 +66,8 @@ public class CameraSpeciales : MonoBehaviour
                 
 
                 CameraMovements.Instance.targetPosition = new Vector2(
-                    Mathf.Lerp(transform.position.x + bc.offset.x, Character.Instance.transform.position.x, Mathf.Abs(avancee)),
-                    Mathf.Lerp(transform.position.y + bc.offset.y, Character.Instance.transform.position.y, Mathf.Abs(avancee)));
+                    Mathf.Lerp(transform.position.x + bc.offset.x, Character.Instance.transform.position.x + offsetActuel, Mathf.Abs(avancee)),
+                    Mathf.Lerp(transform.position.y + bc.offset.y, Character.Instance.transform.position.y + offsetActuel, Mathf.Abs(avancee)));
                 
                 CameraMovements.Instance.camera.orthographicSize = Mathf.Lerp(newZoom, zoomActuel, Mathf.Abs(avancee));
                 
@@ -104,8 +106,8 @@ public class CameraSpeciales : MonoBehaviour
                 
 
                 CameraMovements.Instance.targetPosition = new Vector2(
-                    Mathf.Lerp(transform.position.x + bc.offset.x, Character.Instance.transform.position.x, Mathf.Abs(avancee)),
-                    Mathf.Lerp(transform.position.y + bc.offset.y, Character.Instance.transform.position.y, Mathf.Abs(avancee)));
+                    Mathf.Lerp(transform.position.x + bc.offset.x, Character.Instance.transform.position.x + offsetActuel, Mathf.Abs(avancee)),
+                    Mathf.Lerp(transform.position.y + bc.offset.y, Character.Instance.transform.position.y + offsetActuel, Mathf.Abs(avancee)));
                 
                 CameraMovements.Instance.camera.orthographicSize = Mathf.Lerp(newZoom, zoomActuel, Mathf.Abs(avancee));
                 

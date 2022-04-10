@@ -82,14 +82,13 @@ public class Tyrolienne : MonoBehaviour
     {
         if (usingTyrolienne)
         {
-            CameraMovements.Instance.tyrolienneCamera = true;
-            
             // Si le personnage peut utiliser la tyrolienne
             if (usingTyrolienne && player.transform.position.x < poteau2.transform.position.x && player.transform.position.x > poteau1.transform.position.x && Detection.canUseZipline)
             {
                 // Tout d'abord on retire la gravité du personnage 
                 rb.gravityScale = 0;
                 Character.Instance.noControl = true;
+                CameraMovements.Instance.tyrolienneCamera = true;
 
                 // Si le joueur décide de sauter sur la tyrolienne
                 if (controls.Personnage.Sauter.WasPressedThisFrame() && rb.velocity.x > 0)
@@ -101,6 +100,7 @@ public class Tyrolienne : MonoBehaviour
                     usingTyrolienne = false;
                     Character.Instance.noAirControl = true;
                     rb.gravityScale = stockageGravity;
+                    CameraMovements.Instance.tyrolienneCamera = false;
                 }
 
                 // Gain de vitesse de la tyrolienne 

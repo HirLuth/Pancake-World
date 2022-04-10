@@ -152,20 +152,30 @@ public class CameraMovements : MonoBehaviour
             
             if (offset.x > offsetTyrolienneMax)
             {
-                offsetTyrolienne -= Time.deltaTime * offsetSpeed;
                 offset.x = offsetTyrolienneMax;
             }
         }
         
         else
         {
+            if (offsetTyrolienne > offsetTyrolienneMax)
+            {
+                offsetTyrolienne = offsetTyrolienneMax - offset.x;
+            }
+            
+            else if (offsetTyrolienne + offset.x > offsetTyrolienneMax)
+            {
+                offsetTyrolienne -= offset.x;
+            }
+            
+            
             if (offsetTyrolienne > 0)
             {
                 offsetTyrolienne -= Time.deltaTime * offsetSpeed * 2;
                 offset.x += offsetTyrolienne;
             }
         }
-        
+
         transform.position = new Vector3(newPositionX, newPositionY, transform.position.z);
     }
 }
