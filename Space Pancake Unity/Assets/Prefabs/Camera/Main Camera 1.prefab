@@ -1191,8 +1191,11 @@ MonoBehaviour:
   dezoomActuel: 0
   camera: {fileID: 0}
   offsetTyrolienneMax: 9
-  offsetSpeed: 9
+  offsetTyrolienneSpeed: 8
   tyrolienneCamera: 0
+  "offsetMa\xEFsMax": 7
+  "offsetSpeedMa\xEFs": 5
+  "ma\xEFsCamera": 0
   followPlayer: 0
 --- !u!81 &8646431942676905088
 AudioListener:

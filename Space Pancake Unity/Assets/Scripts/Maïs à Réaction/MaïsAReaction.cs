@@ -80,8 +80,11 @@ public class MaïsAReaction : MonoBehaviour
         {
             isOnTheRide = true;
         }
+        
         if (isOnTheRide)
         {
+            CameraMovements.Instance.maïsCamera = true;
+            
             spriteSelf.color = colorNotAtRange;
             animatorSelf.SetBool("maïsIsGoingUp", true);
             character.jumping = false;
@@ -149,6 +152,7 @@ public class MaïsAReaction : MonoBehaviour
 
     private void Destruction()
     {
+        CameraMovements.Instance.maïsCamera = false;
         animatorSelf.SetBool("maïsIsExploding", true);
         timerExplosion += Time.deltaTime;
         rbSelf.velocity = Vector2.zero;
@@ -171,6 +175,7 @@ public class MaïsAReaction : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
+        CameraMovements.Instance.maïsCamera = false;
         playerIsAtRange = false;
         spriteSelf.color = colorNotAtRange;
         character.jumpForce = character.stockageJumpForce;
