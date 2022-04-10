@@ -51,6 +51,7 @@ public class EventManager : MonoBehaviour
 
         // On immobilise le joueur
         Character.Instance.noControl = true;
+        Character.Instance.apparition = true;
         Character.Instance.rb.gravityScale = 0;
         Character.Instance.rb.velocity = new Vector2(0, 0);
 

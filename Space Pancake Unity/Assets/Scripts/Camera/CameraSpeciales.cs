@@ -24,8 +24,8 @@ public class CameraSpeciales : MonoBehaviour
     public Color gizmosColor;
     public BoxCollider2D bc;
     private bool isAtRange;
-    private float stockageZoom;
     private float zoomActuel;
+    private float zoomActuelFond;
     private float offsetActuel;
     
 
@@ -33,6 +33,7 @@ public class CameraSpeciales : MonoBehaviour
     private void Update()
     {
         zoomActuel = CameraMovements.Instance.stockageSize + Mathf.Lerp(0, CameraMovements.Instance.dezoomMax, Mathf.SmoothStep(0, 1, CameraMovements.Instance.dezoomActuel));
+        zoomActuelFond = newZoom / CameraMovements.Instance.stockageSize;
         offsetActuel = CameraMovements.Instance.offset.x;
         
         if (isAtRange)
@@ -67,13 +68,13 @@ public class CameraSpeciales : MonoBehaviour
 
                 CameraMovements.Instance.targetPosition = new Vector2(
                     Mathf.Lerp(transform.position.x + bc.offset.x, Character.Instance.transform.position.x + offsetActuel, Mathf.Abs(avancee)),
-                    Mathf.Lerp(transform.position.y + bc.offset.y, Character.Instance.transform.position.y + offsetActuel, Mathf.Abs(avancee)));
+                    Mathf.Lerp(transform.position.y + bc.offset.y, Character.Instance.transform.position.y, Mathf.Abs(avancee)));
                 
                 CameraMovements.Instance.camera.orthographicSize = Mathf.Lerp(newZoom, zoomActuel, Mathf.Abs(avancee));
                 
                 CameraMovements.Instance.transform.localScale = new Vector3(
-                    Mathf.Lerp((newZoom / zoomActuel), 1, Mathf.Abs(avancee)), 
-                    Mathf.Lerp((newZoom / zoomActuel), 1, Mathf.Abs(avancee)), 
+                    Mathf.Lerp(zoomActuelFond, 1, Mathf.Abs(avancee)), 
+                    Mathf.Lerp(zoomActuelFond, 1, Mathf.Abs(avancee)), 
                     1);
             }
             
@@ -82,7 +83,7 @@ public class CameraSpeciales : MonoBehaviour
                 CameraMovements.Instance.targetPosition = new Vector2(transform.position.x, transform.position.y) + bc.offset;
                 CameraMovements.Instance.camera.orthographicSize = newZoom;
 
-                CameraMovements.Instance.transform.localScale = new Vector3(newZoom / zoomActuel, newZoom / zoomActuel, 1);
+                CameraMovements.Instance.transform.localScale = new Vector3(zoomActuelFond, zoomActuelFond, 1);
             }
         }
         
@@ -107,13 +108,13 @@ public class CameraSpeciales : MonoBehaviour
 
                 CameraMovements.Instance.targetPosition = new Vector2(
                     Mathf.Lerp(transform.position.x + bc.offset.x, Character.Instance.transform.position.x + offsetActuel, Mathf.Abs(avancee)),
-                    Mathf.Lerp(transform.position.y + bc.offset.y, Character.Instance.transform.position.y + offsetActuel, Mathf.Abs(avancee)));
+                    Mathf.Lerp(transform.position.y + bc.offset.y, Character.Instance.transform.position.y, Mathf.Abs(avancee)));
                 
                 CameraMovements.Instance.camera.orthographicSize = Mathf.Lerp(newZoom, zoomActuel, Mathf.Abs(avancee));
                 
                 CameraMovements.Instance.transform.localScale = new Vector3(
-                    Mathf.Lerp((newZoom / zoomActuel), 1, Mathf.Abs(avancee)), 
-                    Mathf.Lerp((newZoom / zoomActuel), 1, Mathf.Abs(avancee)), 
+                    Mathf.Lerp(zoomActuelFond, 1, Mathf.Abs(avancee)), 
+                    Mathf.Lerp(zoomActuelFond, 1, Mathf.Abs(avancee)), 
                     1);
             }
             
@@ -121,7 +122,7 @@ public class CameraSpeciales : MonoBehaviour
             CameraMovements.Instance.targetPosition = positionManuelle;
             CameraMovements.Instance.camera.orthographicSize = newZoom;
 
-            CameraMovements.Instance.transform.localScale = new Vector3(newZoom / zoomActuel, newZoom / zoomActuel, 1);
+            CameraMovements.Instance.transform.localScale = new Vector3(zoomActuelFond, zoomActuelFond, 1);
         }
     }
 

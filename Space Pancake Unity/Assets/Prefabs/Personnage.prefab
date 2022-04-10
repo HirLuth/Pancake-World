@@ -319,8 +319,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0.009104705
-      value: 0.0022278428
+      time: 0
+      value: 0
       inSlope: 0.021914197
       outSlope: 0.021914197
       tangentMode: 0
@@ -449,8 +449,9 @@ MonoBehaviour:
   rb: {fileID: 887262781076718216}
   dureeSpawn: 0.66
   noControl: 0
+  apparition: 0
   usingSerpe: 0
-  activatespawnpoint: 1
+  activatespawnpoint: 0
   stockageJumpForce: 0
   stockageGravityScale: 0
 --- !u!95 &7250847303676680922

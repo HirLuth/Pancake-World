@@ -102,6 +102,7 @@ public class Character: MonoBehaviour
     public Rigidbody2D rb;
     public float dureeSpawn;
     [HideInInspector] public bool noControl;
+    [HideInInspector] public bool apparition;
     [HideInInspector] public bool usingSerpe;
     public static Character Instance;
     [SerializeField] private bool activatespawnpoint;
@@ -209,7 +210,7 @@ public class Character: MonoBehaviour
         }
 
 
-        if (!usingSerpe && !noControl)
+        if (!usingSerpe && !noControl && !apparition)
         {
             // Lancement des différentes fonctions
             if (onGround)
@@ -247,6 +248,13 @@ public class Character: MonoBehaviour
 
             RotateCharacter();
         }
+
+        else if (apparition)
+        {
+            rb.velocity = new Vector2(0, 0);
+            transform.position = new Vector3(transform.position.x, transform.position.y, 0.01f);
+        }
+
         else
         {
             jumping = false;
@@ -714,13 +722,13 @@ public class Character: MonoBehaviour
     {
         anim.SetTrigger("isSpawning");
         
-        noControl = true;
+        apparition = true;
         float stockageGravity = rb.gravityScale;
         rb.gravityScale = 0;
 
         yield return new WaitForSeconds(duree);
         
-        noControl = false;
+        apparition = false;
         rb.gravityScale = stockageGravity;
     }
 }

@@ -618,7 +618,7 @@ AnimatorStateTransition:
     m_ConditionEvent: isOnWall
     m_EventTreshold: 0
   - m_ConditionMode: 1
-    m_ConditionEvent: isFalling
+    m_ConditionEvent: isWalking
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 2797312467582410296}

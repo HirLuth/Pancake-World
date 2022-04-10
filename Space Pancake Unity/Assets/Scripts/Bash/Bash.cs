@@ -195,7 +195,6 @@ public class Bash : MonoBehaviour
 
         // Tout le reste 
         arrow.SetActive(false);
-        Character.Instance.noControl = false;
         usingSerpe = false;
         spriteRenderer.color = couleurNonDetection;
 
