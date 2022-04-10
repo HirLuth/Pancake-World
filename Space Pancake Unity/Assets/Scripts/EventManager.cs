@@ -4,18 +4,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using UnityEngine.PlayerLoop;
 
 public class EventManager : MonoBehaviour
 {
     public static EventManager Instance { get; private set; }
 
     // Tout ce qui concerne le score
-    private int pointsNumber;
-    [SerializeField] private TextMeshProUGUI score;
+    [SerializeField] private int pointsNumber;
+    [SerializeField] public TextMeshProUGUI score;
 
 
     // Tout ce qui concerne la mort
-    [SerializeField] private GameObject UI;
+    [SerializeField] public GameObject UI;
     private float timerAnimation;
     public float dureeAnimationMort;
     public bool isDead;
@@ -37,7 +38,7 @@ public class EventManager : MonoBehaviour
         UI = UIPrincipale.Instance.gameObject;
         score = UIPrincipale.Instance.textScore;
     }
-
+    
 
     public void Restart()
     {
@@ -76,4 +77,6 @@ public class EventManager : MonoBehaviour
         isDead = false;
         Restart();
     }
+    
+    
 }
