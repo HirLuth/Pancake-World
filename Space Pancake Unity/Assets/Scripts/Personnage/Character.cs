@@ -103,6 +103,8 @@ public class Character: MonoBehaviour
     [HideInInspector] public bool usingSerpe;
     public static Character Instance;
     [SerializeField] private bool activatespawnpoint;
+    public float stockageJumpForce;
+    public float stockageGravityScale;
 
 
 
@@ -123,6 +125,8 @@ public class Character: MonoBehaviour
         controls.Personnage.Sauter.canceled += ctx => jump = false;
 
         stockageWallJump = forceWallJump;
+        stockageJumpForce = jumpForce;
+        stockageGravityScale = rb.gravityScale;
         Instance = this;
     }
     
