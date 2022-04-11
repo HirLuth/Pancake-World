@@ -50,6 +50,7 @@ public class CameraMovements : MonoBehaviour
     [Header("Autres")] 
     public static CameraMovements Instance;
     [HideInInspector] public bool followPlayer;
+    public float avanceeX;
     
     
 
@@ -67,8 +68,12 @@ public class CameraMovements : MonoBehaviour
     void FixedUpdate()
     {
         if (followPlayer)
-        {
-           targetPosition = Character.Instance.transform.position + offset;
+        { 
+            float stockage = targetPosition.x;
+            
+            targetPosition = Character.Instance.transform.position + offset;
+
+            avanceeX += targetPosition.x - stockage;
         }
            
 
