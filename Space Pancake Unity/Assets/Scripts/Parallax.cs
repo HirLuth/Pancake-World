@@ -10,6 +10,8 @@ public class Parallax : MonoBehaviour
 
     public GameObject cam;
     public float parallaxEffect;
+
+    private float xActuel;
     
     
 
@@ -22,18 +24,23 @@ public class Parallax : MonoBehaviour
 
     void FixedUpdate()
     {
-        float temp = (cam.transform.position.x * (1 - parallaxEffect));
-        float dist = (cam.transform.position.x * parallaxEffect);
-
-        transform.position = new Vector3(startPosX + dist, transform.position.y, transform.position.z);
-
-        if (temp > startPosX + length)
+        if (CameraMovements.Instance.followPlayer)
         {
-            startPosX += length;
-        }
-        else if (temp < startPosX - length)
-        {
-            startPosX -= length;
+            xActuel = CameraMovements.Instance.avanceeX;
+
+            float temp = (xActuel * (1 - parallaxEffect));
+            float dist = (xActuel * parallaxEffect);
+
+            transform.position = new Vector3(startPosX + dist, transform.position.y, transform.position.z);
+
+            if (temp > startPosX + length)
+            {
+                startPosX += length;
+            }
+            else if (temp < startPosX - length)
+            {
+                startPosX -= length;
+            }
         }
     }
 }
