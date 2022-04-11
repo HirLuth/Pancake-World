@@ -78,10 +78,10 @@ public class CameraSpeciales : MonoBehaviour
                 
                 CameraMovements.Instance.camera.orthographicSize = Mathf.Lerp(newZoom, zoomActuel, Mathf.Abs(avanceeX));
                 
-                CameraMovements.Instance.transform.localScale = new Vector3(
+                /* Background.Instance.transform.localScale = new Vector3(
                     Mathf.Lerp(zoomActuelFond, 1, Mathf.Abs(avanceeX)), 
                     Mathf.Lerp(zoomActuelFond, 1, Mathf.Abs(avanceeX)), 
-                    1);
+                    1); */
             }
             
             else
@@ -89,7 +89,7 @@ public class CameraSpeciales : MonoBehaviour
                 CameraMovements.Instance.targetPosition = new Vector2(transform.position.x, transform.position.y) + bc.offset;
                 CameraMovements.Instance.camera.orthographicSize = newZoom;
 
-                CameraMovements.Instance.transform.localScale = new Vector3(zoomActuelFond, zoomActuelFond, 1);
+                //Background.Instance.transform.localScale = new Vector3(zoomActuelFond, zoomActuelFond, 1);
             }
         }
         
@@ -118,17 +118,17 @@ public class CameraSpeciales : MonoBehaviour
                 
                 CameraMovements.Instance.camera.orthographicSize = Mathf.Lerp(newZoom, zoomActuel, Mathf.Abs(avancee));
                 
-                CameraMovements.Instance.transform.localScale = new Vector3(
+                /* Background.Instance.transform.localScale = new Vector3(
                     Mathf.Lerp(zoomActuelFond, 1, Mathf.Abs(avancee)), 
                     Mathf.Lerp(zoomActuelFond, 1, Mathf.Abs(avancee)), 
-                    1);
+                    1); */
             }
             
             
             CameraMovements.Instance.targetPosition = positionManuelle;
             CameraMovements.Instance.camera.orthographicSize = newZoom;
 
-            CameraMovements.Instance.transform.localScale = new Vector3(zoomActuelFond, zoomActuelFond, 1);
+            // Background.Instance.transform.localScale = new Vector3(zoomActuelFond, zoomActuelFond, 1);
         }
     }
 

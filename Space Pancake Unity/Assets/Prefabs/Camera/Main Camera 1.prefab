@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 5286887330513497878}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -109.80001, y: 0, z: 9.99}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.12, y: 1.12, z: 1.12}
   m_Children:
   - {fileID: 5286887330726368436}
   - {fileID: 5286887332039308063}
@@ -1197,6 +1197,7 @@ MonoBehaviour:
   "offsetSpeedMa\xEFs": 5
   "ma\xEFsCamera": 0
   followPlayer: 0
+  avanceeX: 0
 --- !u!81 &8646431942676905088
 AudioListener:
   m_ObjectHideFlags: 0
