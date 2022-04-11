@@ -15,9 +15,9 @@ public class Tyrolienne : MonoBehaviour
     [SerializeField] GameObject poteau1;
     [SerializeField] GameObject poteau2;
     
+    
     [Header("Player")]
-    public GameObject player;
-    public Character character;
+    private GameObject player;
     private Rigidbody2D rb;
     private float stockageGravity;
     private PlayerControls controls;
@@ -29,11 +29,13 @@ public class Tyrolienne : MonoBehaviour
 
     [Header("Autres")]
     private bool isOnThisZipline;
+    public static Tyrolienne Instance;
 
 
     private void Awake()
     {
         controls = new PlayerControls();
+        Instance = this;
     }
     
     private void OnEnable()
@@ -50,10 +52,12 @@ public class Tyrolienne : MonoBehaviour
 
     private void Start()
     {
+        player = Character.Instance.gameObject;
+        
         // On recupère certains éléments
         rb = player.GetComponent<Rigidbody2D>();
         stockageGravity = rb.gravityScale;
-        
+
         // On détermine la direction que va prendre la tyrolienne
         direction = poteau2.transform.position - poteau1.transform.position;
     }
@@ -83,18 +87,20 @@ public class Tyrolienne : MonoBehaviour
             {
                 // Tout d'abord on retire la gravité du personnage 
                 rb.gravityScale = 0;
-                character.noControl = true;
+                Character.Instance.noControl = true;
+                CameraMovements.Instance.tyrolienneCamera = true;
 
                 // Si le joueur décide de sauter sur la tyrolienne
                 if (controls.Personnage.Sauter.WasPressedThisFrame() && rb.velocity.x > 0)
                 {
                     // On le fait sauter 
                     timer = 0;
-                    character.Jump();
-                    character.noControl = false;
+                    Character.Instance.Jump();
+                    Character.Instance.noControl = false;
                     usingTyrolienne = false;
-                    character.noAirControl = true;
+                    Character.Instance.noAirControl = true;
                     rb.gravityScale = stockageGravity;
+                    CameraMovements.Instance.tyrolienneCamera = false;
                 }
 
                 // Gain de vitesse de la tyrolienne 
@@ -116,12 +122,14 @@ public class Tyrolienne : MonoBehaviour
             {
                 isOnThisZipline = false;
                 usingTyrolienne = false;
-                character.noControl = false;
+                Character.Instance.noControl = false;
                 rb.gravityScale = stockageGravity;
+                
+                CameraMovements.Instance.tyrolienneCamera = false;
             }
         }
 
-        else if (character.noAirControl)
+        else if (Character.Instance.noAirControl)
         {
             // Tout ce qui concerne l'absence d'air control 
             timer += Time.deltaTime;
@@ -130,7 +138,7 @@ public class Tyrolienne : MonoBehaviour
             {
                 Detection.canUseZipline = false;
                 isOnThisZipline = false;
-                character.noAirControl = false;
+                Character.Instance.noAirControl = false;
             }
         }
     }

@@ -8,8 +8,8 @@ public class Character: MonoBehaviour
 {
     [Header("Inputs")]
     private PlayerControls controls;
-    private bool moveLeft;
-    private bool moveRight;
+    [HideInInspector] public bool moveLeft;
+    [HideInInspector] public bool moveRight;
     private bool run;
     private bool jump;
     private bool wallJump;
@@ -32,7 +32,7 @@ public class Character: MonoBehaviour
     public float vitesseRunDecelerationCurve;
     public float vitesseRunDemiTourCurve;
     private float abscisseRunCurve;   // Abscisse utilisée pour lire la courbe de course, elle évolue en fonction du temps et de la vitesse qu'on lui donne
-    private bool running;    // Utilisé pour éviter que le joueur sorte de l'état de course sans transition
+    [HideInInspector] public bool running;    // Utilisé pour éviter que le joueur sorte de l'état de course sans transition
     public float runSpeed;    // Vitesse de la course
     private bool stopDemiTourRun;    // Utilisé pour sortir de l'état de demi-tour
     private float stockageDemiTour;    // Permet de sortir de l'état de demi-tour avec une vitesse adaptée à l'inertie initale du pesonnage
@@ -76,6 +76,8 @@ public class Character: MonoBehaviour
     private bool isRunning;
     private bool isJumping;
     private bool isFalling;
+    private bool isOnWall;
+    private bool isWallJumping;
 
 
     [Header("Camera")]
@@ -92,12 +94,20 @@ public class Character: MonoBehaviour
     private bool stopStretch;
 
 
+    [Header("VFX")] 
+    [SerializeField] private ParticleSystem particulesGauches;
+
+
     [Header("Autres")]
     public Rigidbody2D rb;
     public float dureeSpawn;
     [HideInInspector] public bool noControl;
+    [HideInInspector] public bool apparition;
     [HideInInspector] public bool usingSerpe;
     public static Character Instance;
+    [SerializeField] private bool activatespawnpoint;
+    public float stockageJumpForce;
+    public float stockageGravityScale;
 
 
 
@@ -118,13 +128,15 @@ public class Character: MonoBehaviour
         controls.Personnage.Sauter.canceled += ctx => jump = false;
 
         stockageWallJump = forceWallJump;
+        stockageJumpForce = jumpForce;
+        stockageGravityScale = rb.gravityScale;
         Instance = this;
     }
     
     private void OnEnable()
     {
-        if (SpawnPointManagement.spawnWasModifiedOnce)
-        { 
+        if (activatespawnpoint && SpawnPointManagement.spawnWasModifiedOnce)
+        {
             transform.position = SpawnPointManagement.spawnPointLocation;
         }
         controls.Personnage.Enable();
@@ -144,33 +156,33 @@ public class Character: MonoBehaviour
     private void Update()
     {
         // Tous les raycasts
-        onGround = Physics2D.Raycast(transform.position - new Vector3(0.6f,0,0), Vector2.down, tailleRaycastGround, ground);
+        onGround = Physics2D.Raycast(transform.position - new Vector3(0.4f,0,0), Vector2.down, tailleRaycastGround, ground);
         
         if (!onGround)
         {
-            onGround = Physics2D.Raycast(transform.position + new Vector3(0.6f,0,0), Vector2.down, tailleRaycastGround, ground);
+            onGround = Physics2D.Raycast(transform.position + new Vector3(0.4f,0,0), Vector2.down, tailleRaycastGround, ground);
         }
         else if (!onGround)
         {
             onGround = Physics2D.Raycast(transform.position, Vector2.down, tailleRaycastGround, ground);
         }
 
-        canWallJumpLeft = Physics2D.Raycast(transform.position + new Vector3(0,0.6f,0), Vector2.left, tailleRaycastWall, ground);
+        canWallJumpLeft = Physics2D.Raycast(transform.position + new Vector3(0,0.5f,0), Vector2.left, tailleRaycastWall, ground);
 
         if (!canWallJumpLeft)
         {
-            canWallJumpLeft = Physics2D.Raycast(transform.position - new Vector3(0,0.6f,0), Vector2.left, tailleRaycastWall, ground);
+            canWallJumpLeft = Physics2D.Raycast(transform.position - new Vector3(0,0.5f,0), Vector2.left, tailleRaycastWall, ground);
         }
         else if (!canWallJumpLeft)
         {
             canWallJumpLeft = Physics2D.Raycast(transform.position, Vector2.left, tailleRaycastWall, ground);
         }
         
-        canWallJumpRight = Physics2D.Raycast(transform.position + new Vector3(0,0.6f,0), Vector2.right, tailleRaycastWall, ground);
+        canWallJumpRight = Physics2D.Raycast(transform.position + new Vector3(0,0.5f,0), Vector2.right, tailleRaycastWall, ground);
 
         if (!canWallJumpRight)
         {
-            canWallJumpRight = Physics2D.Raycast(transform.position - new Vector3(0,0.6f,0), Vector2.right, tailleRaycastWall, ground);
+            canWallJumpRight = Physics2D.Raycast(transform.position - new Vector3(0,0.5f,0), Vector2.right, tailleRaycastWall, ground);
         }
         else if (!canWallJumpRight)
         {
@@ -198,7 +210,7 @@ public class Character: MonoBehaviour
         }
 
 
-        if (!usingSerpe && !noControl)
+        if (!usingSerpe && !noControl && !apparition)
         {
             // Lancement des différentes fonctions
             if (onGround)
@@ -209,7 +221,10 @@ public class Character: MonoBehaviour
                 isJumping = false;
                 isFalling = false;
                 stop = false;
+                isOnWall = false;
                 timerWallJump = 0;
+                
+                
                 MoveCharacter();
             }
 
@@ -217,7 +232,12 @@ public class Character: MonoBehaviour
             {
                 if (canWallJumpLeft || canWallJumpRight || wallJump)
                 {
+                    isOnWall = true;
                     WallJump();
+                }
+                else
+                {
+                    isOnWall = false;
                 }
             }
 
@@ -228,11 +248,21 @@ public class Character: MonoBehaviour
 
             RotateCharacter();
         }
+
+        else if (apparition)
+        {
+            rb.velocity = new Vector2(0, 0);
+            transform.position = new Vector3(transform.position.x, transform.position.y, 0.01f);
+        }
+
         else
         {
             jumping = false;
             abscisseJumpCurve = 0;
         }
+        
+        VFX();
+
 
         // Pour la camera
         if(!dontChangeZoom)
@@ -260,7 +290,7 @@ public class Character: MonoBehaviour
 
         dezoomCamera = Mathf.Lerp(0, dezoomMax, Mathf.SmoothStep(0.0f, 1.0f, timerDezoom));
 
-        CinemachineMovements.Instance.CameraSize(dezoomCamera);
+        //CinemachineMovements.Instance.CameraSize(dezoomCamera);
 
 
         // Pour les animations
@@ -280,6 +310,8 @@ public class Character: MonoBehaviour
         anim.SetBool("isJumping", isJumping);
         anim.SetBool("isFalling", isFalling);
         anim.SetBool("isOnGround", onGround);
+        anim.SetBool("isOnWall", isOnWall);
+        anim.SetBool("isWallJumping", isWallJumping);
 
 
         if (jumping || !stopStretch)
@@ -297,7 +329,7 @@ public class Character: MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (jumping && other.gameObject.layer == ground)
+        if (jumping && other.gameObject.layer == 6)
         {
             jumping = false;
             jump = false;
@@ -590,7 +622,7 @@ public class Character: MonoBehaviour
             timerWallJump += Time.deltaTime;
 
             // On ajoute encore un peu de force au personnage
-            if(0.2f > timerWallJump)
+            if(0.15f > timerWallJump)
             {
                 forceWallJump -= Time.deltaTime * 25;
                 rb.velocity = new Vector2(Mathf.Sign(rb.velocity.x) * directionWallJump.x * forceWallJump, directionWallJump.y * forceWallJump);
@@ -603,6 +635,9 @@ public class Character: MonoBehaviour
                 wallJump = false;
                 timerWallJump = 0;
             }
+            
+            isOnWall = false;
+            isWallJumping = false;
         }
 
         
@@ -647,6 +682,8 @@ public class Character: MonoBehaviour
                     rb.velocity = new Vector2(-1 * directionWallJump.x * forceWallJump, directionWallJump.y * forceWallJump);
                 }
             }
+
+            isWallJumping = true;
         }
         
         // Si le joueur glisse sur le mur
@@ -657,24 +694,41 @@ public class Character: MonoBehaviour
                 rb.velocity = new Vector2(0, rb.velocity.y);
             }
 
+            isOnWall = true;
             runAirControl = false;
             timerWallJump = 0;
             forceWallJump = stockageWallJump;
             rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -grabForceWall, float.MaxValue));
         }
     }
+
+
+    void VFX()
+    {
+        var emissionGauche = particulesGauches.emission;
+
+        if (running && onGround && Mathf.Abs(rb.velocity.x) > speed)
+        {
+            emissionGauche.enabled = true;
+        }
+        else
+        {
+            emissionGauche.enabled = false;
+        }
+    }
+    
     
     public IEnumerator WaitSpawn(float duree)
     {
         anim.SetTrigger("isSpawning");
         
-        noControl = true;
+        apparition = true;
         float stockageGravity = rb.gravityScale;
         rb.gravityScale = 0;
 
         yield return new WaitForSeconds(duree);
         
-        noControl = false;
+        apparition = false;
         rb.gravityScale = stockageGravity;
     }
 }

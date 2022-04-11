@@ -37,9 +37,7 @@ public class MaïsAReaction : MonoBehaviour
     [SerializeField] private bool launchedWithoutPlayer;
     [SerializeField] private float timer;
     [SerializeField] private float timerExplosion;
-    [SerializeField] private float stockageGravityScaleJoueur;
     [SerializeField] private float horizontaleSpeedSide;
-    [SerializeField] private float stockageJumpForce;
 
 
     [Header("Variable UI")] 
@@ -50,12 +48,17 @@ public class MaïsAReaction : MonoBehaviour
     {
         controls = new PlayerControls();
         playerIsAtRange = false;
-        stockageGravityScaleJoueur = playerRB.gravityScale;
-        stockageJumpForce = character.jumpForce;
         stockagePosition = transform.position;
     }
-    
-    
+
+    private void Start()
+    {
+        playerGameObject = Character.Instance.gameObject;
+        character = Character.Instance;
+        playerRB = Character.Instance.rb;
+    }
+
+
     private void OnEnable()
     {
         controls.Personnage.Enable();
@@ -77,8 +80,11 @@ public class MaïsAReaction : MonoBehaviour
         {
             isOnTheRide = true;
         }
+        
         if (isOnTheRide)
         {
+            CameraMovements.Instance.maïsCamera = true;
+            
             spriteSelf.color = colorNotAtRange;
             animatorSelf.SetBool("maïsIsGoingUp", true);
             character.jumping = false;
@@ -86,7 +92,7 @@ public class MaïsAReaction : MonoBehaviour
             timer += Time.deltaTime;
             playerRB.gravityScale = 0;
             character.noControl = true;
-            character.jumpForce = jumpOutForceMultiplicator*stockageJumpForce;
+            character.jumpForce = jumpOutForceMultiplicator*character.stockageJumpForce;
 
             if (controls.Personnage.MoveRight.WasPerformedThisFrame())
             {
@@ -139,13 +145,14 @@ public class MaïsAReaction : MonoBehaviour
 
     public void ReintialiseWhenGetOut()
     {
-        playerRB.gravityScale = stockageGravityScaleJoueur;
+        playerRB.gravityScale = character.stockageGravityScale;
         character.noControl = false;
         isOnTheRide = false;
     }
 
     private void Destruction()
     {
+        CameraMovements.Instance.maïsCamera = false;
         animatorSelf.SetBool("maïsIsExploding", true);
         timerExplosion += Time.deltaTime;
         rbSelf.velocity = Vector2.zero;
@@ -168,8 +175,9 @@ public class MaïsAReaction : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
+        CameraMovements.Instance.maïsCamera = false;
         playerIsAtRange = false;
         spriteSelf.color = colorNotAtRange;
-        character.jumpForce = stockageJumpForce;
+        character.jumpForce = character.stockageJumpForce;
     }
 }

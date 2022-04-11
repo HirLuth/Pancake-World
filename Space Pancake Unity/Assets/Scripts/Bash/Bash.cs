@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -51,6 +52,11 @@ public class Bash : MonoBehaviour
         controls = new PlayerControls();
     }
 
+    private void Start()
+    {
+        rb = Character.Instance.rb;
+    }
+
     private void OnEnable()
     {
         controls.Personnage.Enable();
@@ -69,11 +75,12 @@ public class Bash : MonoBehaviour
         {
             wantsToUseSerpe = true;
         }
+        
         else if(controls.Personnage.Serpe.WasReleasedThisFrame())
         {
             wantsToUseSerpe = false;
         }
-
+        
         if (usingSerpe)
         {
             if (timerEffets <= 1)
@@ -176,6 +183,7 @@ public class Bash : MonoBehaviour
         }
     }
 
+    
     private void OnTriggerExit2D(Collider2D other)
     {
         canUseSerpe = false;
@@ -187,7 +195,6 @@ public class Bash : MonoBehaviour
 
         // Tout le reste 
         arrow.SetActive(false);
-        Character.Instance.noControl = false;
         usingSerpe = false;
         spriteRenderer.color = couleurNonDetection;
 

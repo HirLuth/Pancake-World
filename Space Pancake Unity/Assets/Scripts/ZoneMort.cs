@@ -8,6 +8,9 @@ public class ZoneMort : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D other)
     {
-        EventManager.Instance.Death();
+        if (other.gameObject.CompareTag("Character"))
+        {
+            EventManager.Instance.Death(); 
+        }
     }
 }
