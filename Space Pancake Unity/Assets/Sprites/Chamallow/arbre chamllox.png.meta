@@ -1,0 +1,545 @@
+fileFormatVersion: 2
+guid: 7e135a7d5d49f334db361450695c8b79
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 7458377298985137641
+    second: arbre chamllox_0
+  - first:
+      213: -6826781653264381801
+    second: arbre chamllox_1
+  - first:
+      213: 3298112694844022328
+    second: arbre chamllox_2
+  - first:
+      213: -8609034535803632028
+    second: arbre chamllox_3
+  - first:
+      213: 5386523723609387543
+    second: arbre chamllox_4
+  - first:
+      213: 5846901149717243667
+    second: arbre chamllox_5
+  - first:
+      213: -8999434362440940235
+    second: arbre chamllox_6
+  - first:
+      213: -4680704075213429158
+    second: arbre chamllox_7
+  - first:
+      213: -2156073616385532396
+    second: arbre chamllox_8
+  - first:
+      213: -7750497092096418128
+    second: arbre chamllox_9
+  - first:
+      213: 2605472535999720498
+    second: arbre chamllox_10
+  - first:
+      213: -7053931820279086560
+    second: arbre chamllox_11
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: arbre chamllox_0
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 44
+        width: 5
+        height: 86
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9e5b8d223aa718760800000000000000
+      internalID: 7458377298985137641
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: arbre chamllox_1
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 104
+        width: 21
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -7.5, y: 4.5}
+        - {x: -7.5, y: 5.5}
+        - {x: -8.5, y: 5.5}
+        - {x: -8.5, y: 6.5}
+        - {x: -9.5, y: 6.5}
+        - {x: -9.5, y: 7.5}
+        - {x: -10.5, y: 7.5}
+        - {x: -7.5, y: 7.5}
+        - {x: 7.5, y: 7.5}
+        - {x: 10.5, y: 7.5}
+        - {x: 10.5, y: 7.5}
+        - {x: 10.5, y: 7.5}
+        - {x: 10.5, y: -8.5}
+        - {x: 6.5, y: -11.5}
+        - {x: -3.5, y: -11.5}
+        - {x: -7.5, y: -8.5}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 798c50691466241a0800000000000000
+      internalID: -6826781653264381801
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: arbre chamllox_2
+      rect:
+        serializedVersion: 2
+        x: 165
+        y: 16
+        width: 21
+        height: 119
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -2.5, y: -59.5}
+        - {x: -2.5, y: -20.5}
+        - {x: -4.5, y: -20.5}
+        - {x: -7.5, y: -17.5}
+        - {x: -7.5, y: -4.5}
+        - {x: -10.5, y: -1.5}
+        - {x: -2.5, y: -1.5}
+        - {x: -2.5, y: 2.5}
+        - {x: -2.5, y: 26.5}
+        - {x: -4.5, y: 26.5}
+        - {x: -7.5, y: 29.5}
+        - {x: -7.5, y: 42.5}
+        - {x: -10.5, y: 46.5}
+        - {x: -2.5, y: 46.5}
+        - {x: -2.5, y: 49.5}
+        - {x: -2.5, y: 59.5}
+        - {x: 2.5, y: 59.5}
+        - {x: 2.5, y: 49.5}
+        - {x: 2.5, y: 46.5}
+        - {x: 10.5, y: 46.5}
+        - {x: 10.5, y: 29.5}
+        - {x: 7.5, y: 26.5}
+        - {x: 2.5, y: 26.5}
+        - {x: 2.5, y: 2.5}
+        - {x: 2.5, y: -1.5}
+        - {x: 7.5, y: -1.5}
+        - {x: 10.5, y: -1.5}
+        - {x: 10.5, y: -17.5}
+        - {x: 7.5, y: -20.5}
+        - {x: 2.5, y: -20.5}
+        - {x: 2.5, y: -59.5}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 83e5265950045cd20800000000000000
+      internalID: 3298112694844022328
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: arbre chamllox_3
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 79
+        width: 21
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -4.5, y: -11.5}
+        - {x: -4.5, y: -10.5}
+        - {x: -5.5, y: -10.5}
+        - {x: -5.5, y: -9.5}
+        - {x: -6.5, y: -9.5}
+        - {x: -6.5, y: -8.5}
+        - {x: -7.5, y: -8.5}
+        - {x: -7.5, y: 4.5}
+        - {x: -7.5, y: 5.5}
+        - {x: -8.5, y: 5.5}
+        - {x: -8.5, y: 6.5}
+        - {x: -9.5, y: 6.5}
+        - {x: -9.5, y: 7.5}
+        - {x: -10.5, y: 7.5}
+        - {x: 10.5, y: 7.5}
+        - {x: 10.5, y: -8.5}
+        - {x: 9.5, y: -8.5}
+        - {x: 9.5, y: -9.5}
+        - {x: 8.5, y: -9.5}
+        - {x: 8.5, y: -10.5}
+        - {x: 7.5, y: -10.5}
+        - {x: 7.5, y: -11.5}
+      - - {x: 9.5, y: -9.5}
+        - {x: 9.5, y: -8.5}
+        - {x: 9.5, y: -8.5}
+        - {x: 9.5, y: -9.5}
+      - - {x: 9.5, y: -9.5}
+        - {x: 9.5, y: -8.5}
+        - {x: 9.5, y: -8.5}
+        - {x: 9.5, y: -9.5}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 466ca5ac3b0968880800000000000000
+      internalID: -8609034535803632028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: arbre chamllox_4
+      rect:
+        serializedVersion: 2
+        x: 125
+        y: 16
+        width: 5
+        height: 71
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 712b3ff99c6c0ca40800000000000000
+      internalID: 5386523723609387543
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: arbre chamllox_5
+      rect:
+        serializedVersion: 2
+        x: 133
+        y: 16
+        width: 21
+        height: 87
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -2.5, y: -43.5}
+        - {x: -2.5, y: -11.5}
+        - {x: -4.5, y: -11.5}
+        - {x: -7.5, y: -8.5}
+        - {x: -7.5, y: 4.5}
+        - {x: -10.5, y: 7.5}
+        - {x: -2.5, y: 7.5}
+        - {x: -2.5, y: 11.5}
+        - {x: -2.5, y: 13.5}
+        - {x: -4.5, y: 13.5}
+        - {x: -7.5, y: 16.5}
+        - {x: -7.5, y: 29.5}
+        - {x: -10.5, y: 32.5}
+        - {x: -2.5, y: 32.5}
+        - {x: -2.5, y: 32.5}
+        - {x: -2.5, y: 42.5}
+        - {x: -1.5, y: 43.5}
+        - {x: 1.5, y: 43.5}
+        - {x: 2.5, y: 42.5}
+        - {x: 2.5, y: 32.5}
+        - {x: 10.5, y: 32.5}
+        - {x: 10.5, y: 32.5}
+        - {x: 10.5, y: 16.5}
+        - {x: 7.5, y: 13.5}
+        - {x: 2.5, y: 13.5}
+        - {x: 2.5, y: 7.5}
+        - {x: 10.5, y: 7.5}
+        - {x: 10.5, y: -8.5}
+        - {x: 7.5, y: -11.5}
+        - {x: 2.5, y: -11.5}
+        - {x: 2.5, y: -43.5}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 31728b11e9d542150800000000000000
+      internalID: 5846901149717243667
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: arbre chamllox_6
+      rect:
+        serializedVersion: 2
+        x: 157
+        y: 16
+        width: 5
+        height: 87
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 535834fd0269b1380800000000000000
+      internalID: -8999434362440940235
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: arbre chamllox_7
+      rect:
+        serializedVersion: 2
+        x: 202
+        y: 0
+        width: 21
+        height: 80
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -2.5, y: -40}
+        - {x: -2.5, y: -8}
+        - {x: -4.5, y: -8}
+        - {x: -7.5, y: -4.685169}
+        - {x: -7.5, y: 8}
+        - {x: -10.5, y: 11}
+        - {x: -2.5, y: 11}
+        - {x: -2.5, y: 39}
+        - {x: -1.5, y: 40}
+        - {x: 1.5, y: 40}
+        - {x: 2.5, y: 39}
+        - {x: 2.5, y: 11}
+        - {x: 10.5, y: 11}
+        - {x: 10.5, y: -5}
+        - {x: 7.5, y: -8}
+        - {x: 2.5, y: -8}
+        - {x: 2.5, y: -40}
+      tessellationDetail: 0
+      bones: []
+      spriteID: a562e2a617cca0fb0800000000000000
+      internalID: -4680704075213429158
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: arbre chamllox_8
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 68
+        width: 6
+        height: 4
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 41e9fb128761412e0800000000000000
+      internalID: -2156073616385532396
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: arbre chamllox_9
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 21
+        width: 5
+        height: 54
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0be15e865f3b07490800000000000000
+      internalID: -7750497092096418128
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: arbre chamllox_10
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 0
+        width: 21
+        height: 75
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 10.5, y: 4.5}
+        - {x: 10.5, y: -11.5}
+        - {x: 7.5, y: -14.5}
+        - {x: 2.5, y: -14.5}
+        - {x: 2.5, y: -37.5}
+        - {x: -2.5, y: -37.5}
+        - {x: -2.5, y: -14.5}
+        - {x: -4.5, y: -14.5}
+        - {x: -7.5, y: -11.5}
+        - {x: -7.5, y: 1.5}
+        - {x: -10.5, y: 4.5}
+        - {x: -2.5, y: 4.5}
+        - {x: -2.5, y: 8.5}
+        - {x: -2.5, y: 35.5}
+        - {x: -1.5, y: 37.5}
+        - {x: 1.5, y: 37.5}
+        - {x: 2.5, y: 35.5}
+        - {x: 2.5, y: 8.5}
+        - {x: 2.5, y: 4.5}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 23cac44977f782420800000000000000
+      internalID: 2605472535999720498
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: arbre chamllox_11
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 21
+        width: 16
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -8, y: -13}
+        - {x: 5, y: 13}
+        - {x: 8, y: 13}
+        - {x: 8, y: 6}
+        - {x: -2, y: -13}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 022c07ef1666b1e90800000000000000
+      internalID: -7053931820279086560
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

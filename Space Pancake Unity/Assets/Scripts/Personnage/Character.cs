@@ -230,7 +230,7 @@ public class Character: MonoBehaviour
 
             else if (!noAirControl)
             {
-                if (canWallJumpLeft || canWallJumpRight || wallJump)
+                if (canWallJumpLeft || canWallJumpRight || isWallJumping)
                 {
                     isOnWall = true;
                     WallJump();
@@ -342,7 +342,7 @@ public class Character: MonoBehaviour
     {
         if(!noControl && !noAirControl && !usingSerpe && !onGround)
         {
-            if (!wallJump)
+            if (!isWallJumping)
             {
                 AirControl();
             }
@@ -609,13 +609,18 @@ public class Character: MonoBehaviour
         }
         else
         {
-            rb.AddForce(new Vector2(Mathf.Sign(-rb.velocity.x) * noButtonForce, 0), ForceMode2D.Impulse);
+            if (rb.velocity.x > 0.01f)
+            {
+                rb.AddForce(new Vector2(Mathf.Sign(-rb.velocity.x) * noButtonForce, 0), ForceMode2D.Impulse);
+            }
         }
     }
 
     
     void WallJump()
     {
+        Debug.Log(timerWallJump);
+
         // Partie pour après que le personnage a quitté le mur
         if(timerWallJump > 0)
         {
@@ -632,17 +637,16 @@ public class Character: MonoBehaviour
             if(dureeNoAirControl < timerWallJump)
             {
                 forceWallJump = stockageWallJump;
-                wallJump = false;
                 timerWallJump = 0;
+                isWallJumping = false;
             }
             
             isOnWall = false;
-            isWallJumping = false;
         }
 
-        
+
         // si le joueur saute du mur
-        else if (wallJump && timerWallJump == 0)
+        else if (!isWallJumping && wallJump && timerWallJump == 0)
         {
             runAirControl = true;
             timerWallJump += Time.deltaTime;
@@ -650,6 +654,7 @@ public class Character: MonoBehaviour
             // On arrête l'état de saut actuel
             jump = false;
             jumping = false;
+            wallJump = false;
             abscisseJumpCurve = 0;
 
             
@@ -685,8 +690,7 @@ public class Character: MonoBehaviour
 
             isWallJumping = true;
         }
-        
-        // Si le joueur glisse sur le mur
+
         else
         {
             if ((canWallJumpLeft && rb.velocity.x < 0) || (canWallJumpRight && rb.velocity.x > 0))
@@ -696,6 +700,7 @@ public class Character: MonoBehaviour
 
             isOnWall = true;
             runAirControl = false;
+            isWallJumping = false;
             timerWallJump = 0;
             forceWallJump = stockageWallJump;
             rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -grabForceWall, float.MaxValue));
@@ -732,3 +737,5 @@ public class Character: MonoBehaviour
         rb.gravityScale = stockageGravity;
     }
 }
+
+

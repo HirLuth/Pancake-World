@@ -343,7 +343,7 @@ MonoBehaviour:
   vitesseMouvementsCurve: 5
   vitesseDecelerationCurve: 10
   vitesseDemiTourCurve: 20
-  speed: 7
+  speed: 9
   runCurve:
     serializedVersion: 2
     m_Curve:
@@ -433,8 +433,8 @@ MonoBehaviour:
   ground:
     serializedVersion: 2
     m_Bits: 64
-  airControlForce: 15
-  noButtonForce: 4
+  airControlForce: 16
+  noButtonForce: 4.4
   noAirControl: 0
   directionWallJump: {x: 1, y: 1.2}
   forceWallJump: 16.5
