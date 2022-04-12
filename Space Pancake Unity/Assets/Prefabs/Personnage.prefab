@@ -439,7 +439,7 @@ MonoBehaviour:
   directionWallJump: {x: 1, y: 1.2}
   forceWallJump: 16.5
   grabForceWall: 3
-  tailleRaycastWall: 0.75
+  tailleRaycastWall: 0.55
   dureeNoAirControl: 0.25
   anim: {fileID: 7250847303676680922}
   dezoomMax: 1
