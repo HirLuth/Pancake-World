@@ -66,10 +66,17 @@ public class CameraSpeciales : MonoBehaviour
                 {
                     avanceeX = (Character.Instance.transform.position.x - xMin) / largeurTransitionX;
                 }
-                else
+                else if(xMax < Character.Instance.transform.position.x)
                 {
                     avanceeX = (Character.Instance.transform.position.x - xMax) / largeurTransitionX;
                 }
+                else
+                {
+                    avanceeX = 0;
+                }
+
+                float avanceeY;
+                if(yMin < Character.Instance.transform.position.y)
                 
 
                 CameraMovements.Instance.targetPosition = new Vector2(
