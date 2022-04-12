@@ -56,10 +56,11 @@ public class CameraSpeciales : MonoBehaviour
             float xMin = (transform.position.x + bc.offset.x - bc.size.x / 2) + largeurTransitionX;
             float xMax = (transform.position.x + bc.offset.x + bc.size.x / 2) - largeurTransitionX;
 
-            float yMax = (transform.position.y + bc.offset.y - bc.size.y / 2) + largeurTransitionY;
-            float yMin = (transform.position.y + bc.offset.y + bc.size.y / 2) - largeurTransitionY;
+            float yMax = (transform.position.y + bc.offset.y + bc.size.y / 2) - largeurTransitionY;
+            float yMin = (transform.position.y + bc.offset.y - bc.size.y / 2) + largeurTransitionY;
 
-            if (xMin > Character.Instance.transform.position.x || xMax < Character.Instance.transform.position.x)
+            if (xMin > Character.Instance.transform.position.x || xMax < Character.Instance.transform.position.x || 
+                yMin > Character.Instance.transform.position.y || yMax < Character.Instance.transform.position.y)
             {
                 float avanceeX;
                 if (xMin > Character.Instance.transform.position.x)
@@ -76,14 +77,27 @@ public class CameraSpeciales : MonoBehaviour
                 }
 
                 float avanceeY;
-                if(yMin < Character.Instance.transform.position.y)
+                if (yMin > Character.Instance.transform.position.y)
+                {
+                    avanceeY = (yMin -Character.Instance.transform.position.y) / largeurTransitionY;
+                }
+                else if (yMax < Character.Instance.transform.position.y)
+                {
+                    avanceeY = (yMax - Character.Instance.transform.position.y) / largeurTransitionY;
+                }
+                else
+                {
+                    avanceeY = 0;
+                }
+                
+                Debug.Log(avanceeY);
                 
 
                 CameraMovements.Instance.targetPosition = new Vector2(
                     Mathf.Lerp(transform.position.x + bc.offset.x, Character.Instance.transform.position.x + offsetActuelX, Mathf.Abs(avanceeX)),
-                    Mathf.Lerp(transform.position.y + bc.offset.y, Character.Instance.transform.position.y, Mathf.Abs(avanceeX)));
+                    Mathf.Lerp(transform.position.y + bc.offset.y, Character.Instance.transform.position.y, Mathf.Abs(avanceeY)));
                 
-                CameraMovements.Instance.camera.orthographicSize = Mathf.Lerp(newZoom, zoomActuel, Mathf.Abs(avanceeX));
+                CameraMovements.Instance.camera.orthographicSize = Mathf.Lerp(newZoom, zoomActuel, Mathf.Abs(avanceeX / avanceeY));
                 
                 /* Background.Instance.transform.localScale = new Vector3(
                     Mathf.Lerp(zoomActuelFond, 1, Mathf.Abs(avanceeX)), 
@@ -104,26 +118,46 @@ public class CameraSpeciales : MonoBehaviour
         {
             float xMin = (transform.position.x + bc.offset.x - bc.size.x / 2) + largeurTransitionX;
             float xMax = (transform.position.x + bc.offset.x + bc.size.x / 2) - largeurTransitionX;
+            
+            float yMax = (transform.position.y + bc.offset.y - bc.size.y / 2) + largeurTransitionY;
+            float yMin = (transform.position.y + bc.offset.y + bc.size.y / 2) - largeurTransitionY;
 
             if (xMin > Character.Instance.transform.position.x || xMax < Character.Instance.transform.position.x)
             {
-                float avancee;
-
+                float avanceeX;
                 if (xMin > Character.Instance.transform.position.x)
                 {
-                    avancee = (Character.Instance.transform.position.x - xMin) / largeurTransitionX;
+                    avanceeX = (Character.Instance.transform.position.x - xMin) / largeurTransitionX;
+                }
+                else if(xMax < Character.Instance.transform.position.x)
+                {
+                    avanceeX = (Character.Instance.transform.position.x - xMax) / largeurTransitionX;
                 }
                 else
                 {
-                    avancee = (Character.Instance.transform.position.x - xMax) / largeurTransitionX;
+                    avanceeX = 0;
+                }
+
+                float avanceeY;
+                if (yMin > Character.Instance.transform.position.y)
+                {
+                    avanceeY = (Character.Instance.transform.position.y - yMin) / largeurTransitionY;
+                }
+                else if (yMax < Character.Instance.transform.position.y)
+                {
+                    avanceeY = (Character.Instance.transform.position.y - yMax) / largeurTransitionY;
+                }
+                else
+                {
+                    avanceeY = 0;
                 }
                 
-
-                CameraMovements.Instance.targetPosition = new Vector2(
-                    Mathf.Lerp(transform.position.x + bc.offset.x, Character.Instance.transform.position.x + offsetActuelX, Mathf.Abs(avancee)),
-                    Mathf.Lerp(transform.position.y + bc.offset.y, Character.Instance.transform.position.y, Mathf.Abs(avancee)));
                 
-                CameraMovements.Instance.camera.orthographicSize = Mathf.Lerp(newZoom, zoomActuel, Mathf.Abs(avancee));
+                CameraMovements.Instance.targetPosition = new Vector2(
+                    Mathf.Lerp(transform.position.x + bc.offset.x, Character.Instance.transform.position.x + offsetActuelX, Mathf.Abs(avanceeX)),
+                    Mathf.Lerp(transform.position.y + bc.offset.y, Character.Instance.transform.position.y, Mathf.Abs(avanceeY)));
+                
+                CameraMovements.Instance.camera.orthographicSize = Mathf.Lerp(newZoom, zoomActuel, Mathf.Abs((avanceeX + avanceeY) / 2));
                 
                 /* Background.Instance.transform.localScale = new Vector3(
                     Mathf.Lerp(zoomActuelFond, 1, Mathf.Abs(avancee)), 
