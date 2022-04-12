@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4800337254454177871}
   - component: {fileID: 4800337254454177866}
   - component: {fileID: 4800337254454177867}
+  - component: {fileID: 548351840}
   m_Layer: 0
   m_Name: Soldat fraise
   m_TagString: Untagged
@@ -76,7 +77,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 20
-  m_Sprite: {fileID: 21300000, guid: 37dd16182108128458b490e35cd74bfd, type: 3}
+  m_Sprite: {fileID: 1076646533447067305, guid: 73905405767e3f2478f056e59e1648af, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -100,18 +101,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.9037781, y: 0.116743326}
+  m_Offset: {x: -0.9125452, y: 0.9134766}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.6, y: 0.3}
-    oldSize: {x: 2, y: 2.5833333}
+    pivot: {x: 0.7, y: 0.2}
+    oldSize: {x: 2.909091, y: 4.090909}
     newSize: {x: 10.24, y: 10.24}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.08465576, y: 1.8153195}
+  m_Size: {x: 0.10219002, y: 3.4087865}
   m_EdgeRadius: 0
 --- !u!61 &4800337254454177871
 BoxCollider2D:
@@ -126,18 +127,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.00630188, y: -0.10695267}
+  m_Offset: {x: 0.028768063, y: 0.063681304}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.6, y: 0.3}
-    oldSize: {x: 2, y: 2.5833333}
+    pivot: {x: 0.7, y: 0.2}
+    oldSize: {x: 2.909091, y: 4.090909}
     newSize: {x: 10.24, y: 10.24}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.9194031, y: 1.3213482}
+  m_Size: {x: 0.8492632, y: 1.330777}
   m_EdgeRadius: 0
 --- !u!50 &4800337254454177866
 Rigidbody2D:
@@ -175,15 +176,41 @@ MonoBehaviour:
   rbSelf: {fileID: 4800337254454177866}
   spriteSelf: {fileID: 4800337254454177865}
   lanceCollider: {fileID: 4800337254454177870}
+  animatorSelf: {fileID: 548351840}
   eventManager: {fileID: 0}
+  bash: {fileID: 8410556147302117320}
   movementSpeed: 5
   patrollingDistanceRight: 5
   patrollingDistanceLeft: 5
   iaIsWalking: 1
   startingWalkingSideIsRight: 1
+  timeStun: 2.5
+  timeToGrow: 0.5
   startPostion: {x: 0, y: 0}
   isGoingRight: 0
   gizmoColor: {r: 0.21960784, g: 0.49510214, b: 0.6862745, a: 0.74509805}
+  grabLance: 0
+  stunPeriod: 0
+  timer: 0
+--- !u!95 &548351840
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4800337254454177868}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 15fbc9b136bbcd9459746783af1d4a51, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &4800337254776924428
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -209,11 +236,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3901934828180129479, guid: 8a128419a089cc346b36dcf9e3af8355, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.9338894
+      value: -0.9
       objectReference: {fileID: 0}
     - target: {fileID: 3901934828180129479, guid: 8a128419a089cc346b36dcf9e3af8355, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.55
+      value: 2.9
       objectReference: {fileID: 0}
     - target: {fileID: 3901934828180129479, guid: 8a128419a089cc346b36dcf9e3af8355, type: 3}
       propertyPath: m_LocalPosition.z
@@ -254,3 +281,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3901934828180129479, guid: 8a128419a089cc346b36dcf9e3af8355, type: 3}
   m_PrefabInstance: {fileID: 4800337254776924428}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8410556147302117320 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3901934828180129476, guid: 8a128419a089cc346b36dcf9e3af8355, type: 3}
+  m_PrefabInstance: {fileID: 4800337254776924428}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e18675db877974a4698af6ff7bbdd8ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -10,19 +10,26 @@ public class SoldatFraise : MonoBehaviour
     [SerializeField] private Rigidbody2D rbSelf;
     [SerializeField] private SpriteRenderer spriteSelf;
     [SerializeField] private Collider2D lanceCollider;
+    [SerializeField] private Animator animatorSelf;
     [Header("other référence")]
     [SerializeField] private EventManager eventManager;
+    [SerializeField] private Bash bash;
     [Header("Variables modifiable")]
     [SerializeField] private float movementSpeed;
     [SerializeField] private float patrollingDistanceRight;
     [SerializeField] private float patrollingDistanceLeft;
     [SerializeField] private bool iaIsWalking;
     [SerializeField] private bool startingWalkingSideIsRight;
+    [SerializeField] private float timeStun;
+    [SerializeField] private float timeToGrow;
 
     [Header("Variables de fonctionnement")] 
     [SerializeField] private Vector2 startPostion;
     [SerializeField] private bool isGoingRight;
     [SerializeField] private Color gizmoColor;
+    [SerializeField] private bool grabLance;
+    [SerializeField] private bool stunPeriod;
+    [SerializeField] private float timer;
 
     private void Awake()
     {
@@ -44,13 +51,43 @@ public class SoldatFraise : MonoBehaviour
 
     void Update()
     {
-        if (Character.Instance.usingSerpe)
+        if (bash.usingSerpe)
         {
             lanceCollider.enabled = false;
+            grabLance = true;
         }
-        else
+
+        if (grabLance)
         {
-            lanceCollider.enabled = true;
+            if (!bash.usingSerpe)
+            {
+                stunPeriod = true;
+                bash.exitEffects = false;
+            }
+        }
+
+        if (stunPeriod)
+        {
+            grabLance = false;
+            rbSelf.velocity = Vector2.zero;
+            timer += Time.deltaTime;
+            animatorSelf.SetBool("BriseLance", true);
+            bash.gameObject.SetActive(false);
+            if (timer >= timeStun)
+            {
+                animatorSelf.SetBool("Repousse", true);
+            }
+
+            if (timer >= timeStun + timeToGrow)
+            {
+                bash.gameObject.SetActive(true);
+                animatorSelf.SetBool("BriseLance", false);
+                animatorSelf.SetBool("Repousse", false);
+                timer = 0;
+                lanceCollider.enabled = true;
+                stunPeriod = false;
+            }
+            return;
         }
         if (iaIsWalking)
         {

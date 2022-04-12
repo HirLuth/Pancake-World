@@ -10,7 +10,7 @@ public class Bash : MonoBehaviour
 
     [Header("Inputs")]
     private PlayerControls controls;
-    private bool wantsToUseSerpe;
+    public bool wantsToUseSerpe;
 
 
     [Header("Detection")]
@@ -40,7 +40,7 @@ public class Bash : MonoBehaviour
     private float distance;
     private float timerEffets;
     private float puissanceEffets;
-    private bool exitEffects;
+    public bool exitEffects;
     
 
     [Header("Vibrations")]
