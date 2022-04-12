@@ -32,6 +32,8 @@ public class Bash : MonoBehaviour
     [SerializeField] Rigidbody2D rb;
     [HideInInspector] public bool usingSerpe;
     private float ralenti;
+    private bool isOnGrab;
+
 
     [Header("Effets")]
     public Volume volume;
@@ -71,6 +73,7 @@ public class Bash : MonoBehaviour
 
     void Update()
     {
+        //Détection des contrôles
         if (controls.Personnage.Serpe.WasPerformedThisFrame())
         {
             wantsToUseSerpe = true;
@@ -81,6 +84,7 @@ public class Bash : MonoBehaviour
             wantsToUseSerpe = false;
         }
         
+        // Tout de qui concerne les effets spéciaux (le future)
         if (usingSerpe)
         {
             if (timerEffets <= 1)
@@ -106,6 +110,7 @@ public class Bash : MonoBehaviour
             volume.weight = timerEffets;
         }
 
+        // Fonctionnement pur de la serpe
         if ((canUseSerpe && wantsToUseSerpe) || usingSerpe)
         {
             UseSerpe();
@@ -136,7 +141,7 @@ public class Bash : MonoBehaviour
                 direction = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical") + 0.23f);
                 rb.velocity = direction * force;
 
-                //CinemachineShake.Instance.Shake(duration, amplitude);   // Camera shake
+                Character.Instance.anim.SetTrigger("isUsingSerpe");
             }
 
 
@@ -162,6 +167,8 @@ public class Bash : MonoBehaviour
                 Character.Instance.noControl = true;
                 usingSerpe = true;
                 arrow.SetActive(true);
+
+                Character.Instance.anim.SetBool("isGrabbing", true);
             }
         }
         else
@@ -203,5 +210,7 @@ public class Bash : MonoBehaviour
         {
             timerEffets = 0;
         }
+
+        Character.Instance.anim.SetBool("isGrabbing", false);
     }
 }

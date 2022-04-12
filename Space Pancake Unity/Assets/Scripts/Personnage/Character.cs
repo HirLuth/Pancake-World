@@ -619,8 +619,6 @@ public class Character: MonoBehaviour
     
     void WallJump()
     {
-        Debug.Log(timerWallJump);
-
         // Partie pour après que le personnage a quitté le mur
         if(timerWallJump > 0)
         {
