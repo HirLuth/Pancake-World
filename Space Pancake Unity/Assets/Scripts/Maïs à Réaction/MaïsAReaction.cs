@@ -80,7 +80,21 @@ public class MaïsAReaction : MonoBehaviour
         {
             isOnTheRide = true;
         }
-        
+
+        if (controls.Personnage.MoveRight.WasPerformedThisFrame())
+        {
+            horizontaleSpeedSide = 1;
+        }
+        else if (controls.Personnage.MoveLeft.WasPerformedThisFrame())
+        {
+            horizontaleSpeedSide = -1;
+        }
+
+        else if (controls.Personnage.MoveLeft.WasReleasedThisFrame() || controls.Personnage.MoveRight.WasReleasedThisFrame())
+        {
+            horizontaleSpeedSide = 0;
+        }
+
         if (isOnTheRide)
         {
             CameraMovements.Instance.maïsCamera = true;
@@ -93,20 +107,6 @@ public class MaïsAReaction : MonoBehaviour
             playerRB.gravityScale = 0;
             character.noControl = true;
             character.jumpForce = jumpOutForceMultiplicator*character.stockageJumpForce;
-
-            if (controls.Personnage.MoveRight.WasPerformedThisFrame())
-            {
-                horizontaleSpeedSide = 1;
-            }
-            else if (controls.Personnage.MoveLeft.WasPerformedThisFrame())
-            {
-                horizontaleSpeedSide = -1;
-            }
-
-            else if (controls.Personnage.MoveLeft.WasReleasedThisFrame() || controls.Personnage.MoveRight.WasReleasedThisFrame())
-            {
-                horizontaleSpeedSide = 0;
-            }
 
             if (controls.Personnage.Sauter.WasPerformedThisFrame())
             {
