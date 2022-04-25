@@ -157,11 +157,11 @@ public class Character: MonoBehaviour
     private void Update()
     {
         // Tous les raycasts
-        onGround = Physics2D.Raycast(transform.position - new Vector3(0.35f,0,0), Vector2.down, tailleRaycastGround, ground);
+        onGround = Physics2D.Raycast(transform.position - new Vector3(0.30f,0,0), Vector2.down, tailleRaycastGround, ground);
         
         if (!onGround)
         {
-            onGround = Physics2D.Raycast(transform.position + new Vector3(0.35f,0,0), Vector2.down, tailleRaycastGround, ground);
+            onGround = Physics2D.Raycast(transform.position + new Vector3(0.30f,0,0), Vector2.down, tailleRaycastGround, ground);
         }
         else if (!onGround)
         {
