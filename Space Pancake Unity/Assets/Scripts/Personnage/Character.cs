@@ -157,12 +157,27 @@ public class Character: MonoBehaviour
     private void Start()
     {
         StartCoroutine(WaitSpawn(dureeSpawn));
+        
+        if (controls.Personnage.MoveLeft.WasPerformedThisFrame())
+        {
+            moveLeft = true;
+            moveRight = false;
+            direction = -1;
+        }
+
+        if (controls.Personnage.MoveRight.WasPerformedThisFrame())
+        {
+            moveRight = true;
+            moveLeft = false;
+            direction = 1;
+        }
     }
 
 
     private void Update()
     {
         // Tous les raycasts
+        // Raycast de détection du sol
         onGround = Physics2D.Raycast(transform.position - new Vector3(0.30f,0,0), Vector2.down, tailleRaycastGround, ground);
         
         if (!onGround)
@@ -174,6 +189,7 @@ public class Character: MonoBehaviour
             onGround = Physics2D.Raycast(transform.position, Vector2.down, tailleRaycastGround, ground);
         }
 
+        // Raycast de détection de mur à gauche
         canWallJumpLeft = Physics2D.Raycast(transform.position + new Vector3(0,0.5f,0), Vector2.left, tailleRaycastWall, ground);
 
         if (!canWallJumpLeft)
@@ -185,6 +201,7 @@ public class Character: MonoBehaviour
             canWallJumpLeft = Physics2D.Raycast(transform.position, Vector2.left, tailleRaycastWall, ground);
         }
         
+        // Raycast de détection de mur à droite
         canWallJumpRight = Physics2D.Raycast(transform.position + new Vector3(0,0.5f,0), Vector2.right, tailleRaycastWall, ground);
 
         if (!canWallJumpRight)
@@ -310,8 +327,6 @@ public class Character: MonoBehaviour
         }
 
         dezoomCamera = Mathf.Lerp(0, dezoomMax, Mathf.SmoothStep(0.0f, 1.0f, timerDezoom));
-
-        //CinemachineMovements.Instance.CameraSize(dezoomCamera);
 
 
         // Pour les animations
