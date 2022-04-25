@@ -94,6 +94,12 @@ public class Character: MonoBehaviour
     private bool stopStretch;
 
 
+    [Header("GhostJump")] 
+    public float dureeGhostJump;
+    private bool jumped;
+    private float ghostJumpTimer;
+
+
     [Header("VFX")] 
     [SerializeField] private ParticleSystem particulesGauches;
 
@@ -218,6 +224,9 @@ public class Character: MonoBehaviour
             {
                 Detection.canUseZipline = false;
                 noAirControl = false;
+
+                ghostJumpTimer = 0;
+                jumped = false;
                 
                 isJumping = false;
                 isFalling = false;
@@ -262,6 +271,17 @@ public class Character: MonoBehaviour
         }
         
         VFX();
+        
+        // Ghost jump
+        if (!onGround && !jumped && ghostJumpTimer < dureeGhostJump)
+        {
+            ghostJumpTimer += Time.deltaTime;
+
+            if (jump)
+            {
+                Jump();
+            }
+        }
         
         
         // Limite de la vitesse de chute
@@ -498,6 +518,7 @@ public class Character: MonoBehaviour
     {
         jumping = true;   // Pour retourner dans cette fonction à chaque update
         isJumping = true;    // Pour les animations
+        jumped = true;   // Pour le ghostjump
         
         // On test si le joueur continuer à appuyer sur la touche saut et donc le faire suater plus longtemps
         if (jump || abscisseJumpCurve > 0.8f)
