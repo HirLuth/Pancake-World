@@ -651,6 +651,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e18675db877974a4698af6ff7bbdd8ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  wantsToUseSerpe: 0
   spriteRenderer: {fileID: 152893742}
   couleurDetection: {r: 0.5566038, g: 0.27284315, b: 0.08139017, a: 1}
   couleurNonDetection: {r: 0.3764706, g: 0.19607843, b: 0.07450981, a: 1}
@@ -661,6 +662,7 @@ MonoBehaviour:
   rb: {fileID: 610618416}
   usingSerpe: 0
   volume: {fileID: 0}
+  exitEffects: 0
 --- !u!58 &152893741
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -2915,11 +2917,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 887262781076718223, guid: 8f7f6f34241a1484b82df60f07839aa9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 324.6
+      value: 332.3
       objectReference: {fileID: 0}
     - target: {fileID: 887262781076718223, guid: 8f7f6f34241a1484b82df60f07839aa9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -16.5
+      value: 6.9
       objectReference: {fileID: 0}
     - target: {fileID: 887262781076718223, guid: 8f7f6f34241a1484b82df60f07839aa9, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2986,6 +2988,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e18675db877974a4698af6ff7bbdd8ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  wantsToUseSerpe: 0
   spriteRenderer: {fileID: 783498651}
   couleurDetection: {r: 0.5566038, g: 0.27284315, b: 0.08139017, a: 1}
   couleurNonDetection: {r: 0.3764706, g: 0.19607843, b: 0.07450981, a: 1}
@@ -2996,6 +2999,7 @@ MonoBehaviour:
   rb: {fileID: 610618416}
   usingSerpe: 0
   volume: {fileID: 0}
+  exitEffects: 0
 --- !u!58 &783498650
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -3194,6 +3198,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e18675db877974a4698af6ff7bbdd8ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  wantsToUseSerpe: 0
   spriteRenderer: {fileID: 798831087}
   couleurDetection: {r: 0.5566038, g: 0.27284315, b: 0.08139017, a: 1}
   couleurNonDetection: {r: 0.3764706, g: 0.19607843, b: 0.07450981, a: 1}
@@ -3204,6 +3209,7 @@ MonoBehaviour:
   rb: {fileID: 610618416}
   usingSerpe: 0
   volume: {fileID: 0}
+  exitEffects: 0
 --- !u!58 &798831086
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -88760,6 +88766,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e18675db877974a4698af6ff7bbdd8ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  wantsToUseSerpe: 0
   spriteRenderer: {fileID: 1558306032}
   couleurDetection: {r: 0.5566038, g: 0.27284315, b: 0.08139017, a: 1}
   couleurNonDetection: {r: 0.3764706, g: 0.19607843, b: 0.07450981, a: 1}
@@ -88770,6 +88777,7 @@ MonoBehaviour:
   rb: {fileID: 610618416}
   usingSerpe: 0
   volume: {fileID: 0}
+  exitEffects: 0
 --- !u!58 &1558306031
 CircleCollider2D:
   m_ObjectHideFlags: 0

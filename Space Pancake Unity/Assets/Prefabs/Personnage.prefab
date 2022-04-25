@@ -455,6 +455,7 @@ MonoBehaviour:
   activatespawnpoint: 0
   stockageJumpForce: 0
   stockageGravityScale: 0
+  limiteVitesseChute: 20
 --- !u!95 &7250847303676680922
 Animator:
   serializedVersion: 3
@@ -508,7 +509,7 @@ TrailRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 887262781076718219}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1

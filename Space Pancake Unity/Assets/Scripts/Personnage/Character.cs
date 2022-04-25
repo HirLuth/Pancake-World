@@ -108,6 +108,7 @@ public class Character: MonoBehaviour
     [SerializeField] private bool activatespawnpoint;
     public float stockageJumpForce;
     public float stockageGravityScale;
+    public float limiteVitesseChute;
 
 
 
@@ -224,7 +225,6 @@ public class Character: MonoBehaviour
                 isOnWall = false;
                 timerWallJump = 0;
                 
-                
                 MoveCharacter();
             }
 
@@ -262,25 +262,26 @@ public class Character: MonoBehaviour
         }
         
         VFX();
+        
+        
+        // Limite de la vitesse de chute
+        if (rb.velocity.y < -limiteVitesseChute)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, -limiteVitesseChute);
+        }
 
 
         // Pour la camera
         if(!dontChangeZoom)
         {
-            if (Mathf.Abs(rb.velocity.x) > speed + 0.1f)
+            if (Mathf.Abs(rb.velocity.x) > speed + 0.1f && timerDezoom < 1f)
             {
-                if (timerDezoom < 1f)
-                {
-                    timerDezoom += Time.deltaTime * vitesseDezoom;
-                }
+                timerDezoom += Time.deltaTime * vitesseDezoom;
             }
 
-            else
+            else if (timerDezoom > 0f)
             {
-                if (timerDezoom > 0f)
-                {
-                    timerDezoom -= Time.deltaTime * vitesseZoom;
-                }
+                timerDezoom -= Time.deltaTime * vitesseZoom;
             }
         }
         else
