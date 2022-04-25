@@ -268,7 +268,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0531967, y: -0.038393617}
+  m_Offset: {x: 0.027366206, y: -0.038393617}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -279,7 +279,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.7410763, y: 0.9414611}
+  m_Size: {x: 0.564041, y: 0.9414611}
   m_EdgeRadius: 0.02
 --- !u!50 &887262781076718216
 Rigidbody2D:
@@ -343,7 +343,7 @@ MonoBehaviour:
   vitesseMouvementsCurve: 5
   vitesseDecelerationCurve: 10
   vitesseDemiTourCurve: 20
-  speed: 9
+  speed: 8.5
   runCurve:
     serializedVersion: 2
     m_Curve:
@@ -368,11 +368,11 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  vitesseRunCurve: 2.5
-  vitesseRunDecelerationCurve: 3
-  vitesseRunDemiTourCurve: 2
+  vitesseRunCurve: 3.5
+  vitesseRunDecelerationCurve: 4
+  vitesseRunDemiTourCurve: 3
   running: 0
-  runSpeed: 13
+  runSpeed: 13.5
   jumpCurve:
     serializedVersion: 2
     m_Curve:
@@ -439,13 +439,14 @@ MonoBehaviour:
   directionWallJump: {x: 1, y: 1.2}
   forceWallJump: 16.5
   grabForceWall: 3
-  tailleRaycastWall: 0.55
+  tailleRaycastWall: 0.5
   dureeNoAirControl: 0.25
   anim: {fileID: 7250847303676680922}
   dezoomMax: 1
   vitesseDezoom: 1.25
   vitesseZoom: 0.75
   stretch: 0.007
+  dureeGhostJump: 0.2
   particulesGauches: {fileID: 1640844497153725294}
   rb: {fileID: 887262781076718216}
   dureeSpawn: 0.66
@@ -455,6 +456,7 @@ MonoBehaviour:
   activatespawnpoint: 0
   stockageJumpForce: 0
   stockageGravityScale: 0
+  limiteVitesseChute: 20
 --- !u!95 &7250847303676680922
 Animator:
   serializedVersion: 3
@@ -487,7 +489,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.051050916, y: 0.4518693}
+  m_Offset: {x: 0.031244457, y: 0.4518693}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -498,7 +500,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.659677, y: 0.09111202}
+  m_Size: {x: 0.5110167, y: 0.09111202}
   m_EdgeRadius: 0
 --- !u!96 &610618420
 TrailRenderer:
@@ -508,7 +510,7 @@ TrailRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 887262781076718219}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
