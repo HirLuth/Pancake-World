@@ -44,8 +44,11 @@ public class CameraMovements : MonoBehaviour
     public float offsetSpeedMaïs;
     [HideInInspector] public bool maïsCamera;
     private float offsetMaïs;
-    
 
+
+    [Header("Rail")] 
+    public bool isOnRail;
+    
 
     [Header("Autres")] 
     public static CameraMovements Instance;
@@ -67,7 +70,9 @@ public class CameraMovements : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (followPlayer)
+        if (!isOnRail)
+        {
+            if (followPlayer)
         { 
             float stockage = targetPosition.x;
             
@@ -156,6 +161,7 @@ public class CameraMovements : MonoBehaviour
         }
         
         
+        // Partie tyrolienne
         if (tyrolienneCamera)
         {
             offsetTyrolienne += Time.deltaTime * offsetTyrolienneSpeed;
@@ -185,6 +191,8 @@ public class CameraMovements : MonoBehaviour
             }
         }
         
+        
+        // Partie maïs
         if (maïsCamera)
         {
             if (offsetMaïs < offsetMaïsMax)
@@ -205,5 +213,6 @@ public class CameraMovements : MonoBehaviour
         }
 
         transform.position = new Vector3(newPositionX, newPositionY, transform.position.z);
+        }
     }
 }
