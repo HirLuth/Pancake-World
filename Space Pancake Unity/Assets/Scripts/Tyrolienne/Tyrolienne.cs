@@ -26,6 +26,9 @@ public class Tyrolienne : MonoBehaviour
     [Header("PlayerAirControl")]
     private float timer;
 
+    [Header("Animations")] 
+    private bool isUsingZipline;
+
 
     [Header("Autres")]
     private bool isOnThisZipline;
@@ -141,6 +144,8 @@ public class Tyrolienne : MonoBehaviour
                 Character.Instance.noAirControl = false;
             }
         }
+        
+        Character.Instance.anim.SetBool("isOnTyroMaïs", usingTyrolienne);
     }
 
 
