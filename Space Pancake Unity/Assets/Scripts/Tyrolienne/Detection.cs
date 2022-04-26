@@ -12,7 +12,6 @@ public class Detection : MonoBehaviour
         if (other.gameObject.tag == "Character")
         {
             canUseZipline = true;
-
         }
     }
 }
