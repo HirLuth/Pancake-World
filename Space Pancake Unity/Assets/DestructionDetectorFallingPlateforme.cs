@@ -10,11 +10,9 @@ public class DestructionDetectorFallingPlateforme : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log(other.gameObject.layer);
         if (other.gameObject.layer == layerThatDestroy)
         {
             fallingPlateform.Destruction();
-            Debug.Log("Touché");
         }
     }
 }
