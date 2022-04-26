@@ -172,7 +172,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.25}
+  m_Offset: {x: 0, y: -0.38020134}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -183,7 +183,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.5, y: 2.3013246}
+  m_Size: {x: 4.062439, y: 4.5407677}
   m_EdgeRadius: 0
 --- !u!50 &7228419546840578206
 Rigidbody2D:
@@ -273,8 +273,6 @@ MonoBehaviour:
   multiplicatorTimeToGetInPosition: 2
   directionnalModificator: 3
   jumpOutForceMultiplicator: 3.5
-  maisAReaction: {fileID: 7228419546840578203}
-  clone: {fileID: 0}
   stockagePosition: {x: 0, y: 0}
   isInDestroyingAnmation: 0
   playerIsAtRange: 0
@@ -282,9 +280,8 @@ MonoBehaviour:
   launchedWithoutPlayer: 0
   timer: 0
   timerExplosion: 0
-  stockageGravityScaleJoueur: 0
   horizontaleSpeedSide: 0
-  stockageJumpForce: 0
+  grabKeyPressed: 0
   colorNotAtRange: {r: 1, g: 1, b: 1, a: 1}
   colorAtRange: {r: 1, g: 1, b: 1, a: 1}
 --- !u!95 &5362935187791216378
