@@ -18,7 +18,9 @@ public class CameraSpeciales : MonoBehaviour
     public Vector2 positionManuelle;
     public float newZoom;
     public float largeurTransitionX;
+    public float largeurTransitionX2;
     public float largeurTransitionY;
+    public float largeurTransitionY2;
 
 
     [Header("Autres")] 
@@ -54,10 +56,10 @@ public class CameraSpeciales : MonoBehaviour
         if (positionAutomatique)
         {
             float xMin = (transform.position.x + bc.offset.x - bc.size.x / 2) + largeurTransitionX;
-            float xMax = (transform.position.x + bc.offset.x + bc.size.x / 2) - largeurTransitionX;
+            float xMax = (transform.position.x + bc.offset.x + bc.size.x / 2) - largeurTransitionX2;
 
             float yMax = (transform.position.y + bc.offset.y + bc.size.y / 2) - largeurTransitionY;
-            float yMin = (transform.position.y + bc.offset.y - bc.size.y / 2) + largeurTransitionY;
+            float yMin = (transform.position.y + bc.offset.y - bc.size.y / 2) + largeurTransitionY2;
 
             if (xMin > Character.Instance.transform.position.x || xMax < Character.Instance.transform.position.x || 
                 yMin > Character.Instance.transform.position.y || yMax < Character.Instance.transform.position.y)
@@ -112,10 +114,10 @@ public class CameraSpeciales : MonoBehaviour
         else
         {
             float xMin = (transform.position.x + bc.offset.x - bc.size.x / 2) + largeurTransitionX;
-            float xMax = (transform.position.x + bc.offset.x + bc.size.x / 2) - largeurTransitionX;
+            float xMax = (transform.position.x + bc.offset.x + bc.size.x / 2) - largeurTransitionX2;
             
             float yMax = (transform.position.y + bc.offset.y - bc.size.y / 2) + largeurTransitionY;
-            float yMin = (transform.position.y + bc.offset.y + bc.size.y / 2) - largeurTransitionY;
+            float yMin = (transform.position.y + bc.offset.y + bc.size.y / 2) - largeurTransitionY2;
 
             if (xMin > Character.Instance.transform.position.x || xMax < Character.Instance.transform.position.x)
             {
