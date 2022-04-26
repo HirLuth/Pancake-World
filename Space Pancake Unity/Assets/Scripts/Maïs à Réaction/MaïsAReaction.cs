@@ -38,6 +38,7 @@ public class MaïsAReaction : MonoBehaviour
     [SerializeField] private float timer;
     [SerializeField] private float timerExplosion;
     [SerializeField] private float horizontaleSpeedSide;
+    [SerializeField] private bool grabKeyPressed;
 
 
     [Header("Variable UI")] 
@@ -76,7 +77,7 @@ public class MaïsAReaction : MonoBehaviour
             Destruction();
             return;
         }
-        if (playerIsAtRange && controls.Personnage.Serpe.WasPressedThisFrame())
+        if (playerIsAtRange && controls.Personnage.Serpe.WasPerformedThisFrame())
         {
             isOnTheRide = true;
         }
