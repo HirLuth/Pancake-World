@@ -48,14 +48,15 @@ public class CameraMovements : MonoBehaviour
 
     [Header("Rail")] 
     public bool isOnRail;
+    public GameObject zoneMort;
     
 
     [Header("Autres")] 
+    public float avanceeX;
     public static CameraMovements Instance;
     [HideInInspector] public bool followPlayer;
-    public float avanceeX;
-    
-    
+
+
 
 
     private void Start()

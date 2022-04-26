@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -31,7 +32,7 @@ public class Mover : MonoBehaviour
 
 
 
-    void Update()
+    void FixedUpdate()
     {
         if (!isCompleted && go)
             Play();
@@ -47,14 +48,35 @@ public class Mover : MonoBehaviour
         // Tout ce qui concerne le changement de rythme du scrolling
         Vector3 positionCamera = CameraMovements.Instance.transform.position;
         Vector3 positionCharacter = Character.Instance.transform.position;
-        
-        float differenceX = positionCamera.x - positionCharacter.x;
-        float differenceY = positionCamera.y - positionCharacter.y;
-        
-        float differenceX2 = positionCharacter.x - positionCamera.x;
-        float differenceY2 = positionCharacter.y - positionCamera.y;
-        
-        
+
+        float differenceX;
+        float differenceY;
+        float differenceX2;
+        float differenceY2;
+
+        if (rail.nodes[currentSeg].position.x < rail.nodes[currentSeg + 1].position.x)
+        {
+            differenceX = positionCamera.x - positionCharacter.x;
+            differenceX2 = positionCharacter.x - positionCamera.x;
+        }
+        else
+        {
+            differenceX = positionCharacter.x - positionCamera.x;
+            differenceX2 = positionCamera.x - positionCharacter.x;
+        }
+
+        if (rail.nodes[currentSeg].position.y < rail.nodes[currentSeg + 1].position.y)
+        {
+            differenceY = positionCamera.y - positionCharacter.y;
+            differenceY2 = positionCharacter.y - positionCamera.y;
+        }
+        else
+        {
+            differenceY2 = positionCamera.y - positionCharacter.y;
+            differenceY = positionCharacter.y - positionCamera.y;
+        }
+
+
         if (differenceX > moinsViteX)
         {
             float transitionVitesse = (differenceX - moinsViteX) / largeurTransitionX;
@@ -116,7 +138,10 @@ public class Mover : MonoBehaviour
         {
             isCompleted = true;
         }
+    }
 
-        
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        go = true;
     }
 }
