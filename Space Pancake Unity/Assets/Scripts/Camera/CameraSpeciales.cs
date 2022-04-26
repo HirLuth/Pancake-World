@@ -71,7 +71,7 @@ public class CameraSpeciales : MonoBehaviour
                 }
                 else if(xMax < Character.Instance.transform.position.x)
                 {
-                    avanceeX = (Character.Instance.transform.position.x - xMax) / largeurTransitionX;
+                    avanceeX = (Character.Instance.transform.position.x - xMax) / largeurTransitionX2;
                 }
                 else
                 {
@@ -81,11 +81,11 @@ public class CameraSpeciales : MonoBehaviour
                 float avanceeY;
                 if (yMin > Character.Instance.transform.position.y)
                 {
-                    avanceeY = (yMin -Character.Instance.transform.position.y) / largeurTransitionY;
+                    avanceeY = (yMin - Character.Instance.transform.position.y) / largeurTransitionY;
                 }
                 else if (yMax < Character.Instance.transform.position.y)
                 {
-                    avanceeY = (yMax - Character.Instance.transform.position.y) / largeurTransitionY;
+                    avanceeY = (yMax - Character.Instance.transform.position.y) / largeurTransitionY2;
                 }
                 else
                 {
@@ -115,20 +115,23 @@ public class CameraSpeciales : MonoBehaviour
         {
             float xMin = (transform.position.x + bc.offset.x - bc.size.x / 2) + largeurTransitionX;
             float xMax = (transform.position.x + bc.offset.x + bc.size.x / 2) - largeurTransitionX2;
-            
-            float yMax = (transform.position.y + bc.offset.y - bc.size.y / 2) + largeurTransitionY;
-            float yMin = (transform.position.y + bc.offset.y + bc.size.y / 2) - largeurTransitionY2;
 
-            if (xMin > Character.Instance.transform.position.x || xMax < Character.Instance.transform.position.x)
+            float yMax = (transform.position.y + bc.offset.y + bc.size.y / 2) - largeurTransitionY2;
+            float yMin = (transform.position.y + bc.offset.y - bc.size.y / 2) + largeurTransitionY;
+            
+            Debug.Log(yMin);
+
+            if (xMin > Character.Instance.transform.position.x || xMax < Character.Instance.transform.position.x || 
+                yMin > Character.Instance.transform.position.y || yMax < Character.Instance.transform.position.y)
             {
                 float avanceeX;
                 if (xMin > Character.Instance.transform.position.x)
                 {
-                    avanceeX = (Character.Instance.transform.position.x - xMin) / largeurTransitionX;
+                    avanceeX = (xMin - Character.Instance.transform.position.x) / largeurTransitionX;
                 }
                 else if(xMax < Character.Instance.transform.position.x)
                 {
-                    avanceeX = (Character.Instance.transform.position.x - xMax) / largeurTransitionX;
+                    avanceeX = (xMax - Character.Instance.transform.position.x) / largeurTransitionX2;
                 }
                 else
                 {
@@ -138,22 +141,30 @@ public class CameraSpeciales : MonoBehaviour
                 float avanceeY;
                 if (yMin > Character.Instance.transform.position.y)
                 {
-                    avanceeY = (Character.Instance.transform.position.y - yMin) / largeurTransitionY;
+                    avanceeY = (yMin - Character.Instance.transform.position.y) / largeurTransitionY;
                 }
                 else if (yMax < Character.Instance.transform.position.y)
                 {
-                    avanceeY = (Character.Instance.transform.position.y - yMax) / largeurTransitionY;
+                    avanceeY = (yMax - Character.Instance.transform.position.y) / largeurTransitionY2;
                 }
                 else
                 {
                     avanceeY = 0;
                 }
                 
-                
-                CameraMovements.Instance.targetPosition = new Vector2(
-                    Mathf.Lerp(transform.position.x + bc.offset.x, Character.Instance.transform.position.x + offsetActuelX, Mathf.Abs(avanceeX)),
-                    Mathf.Lerp(transform.position.y + bc.offset.y, Character.Instance.transform.position.y, Mathf.Abs(avanceeY)));
-                
+                if (Mathf.Abs(avanceeX) > Mathf.Abs(avanceeY))
+                {
+                    CameraMovements.Instance.targetPosition = new Vector2(
+                        Mathf.Lerp(positionManuelle.x, Character.Instance.transform.position.x + offsetActuelX, Mathf.Abs(avanceeX)),
+                        Mathf.Lerp(positionManuelle.y, Character.Instance.transform.position.y, Mathf.Abs(avanceeX)));
+                }
+                else
+                {
+                    CameraMovements.Instance.targetPosition = new Vector2(
+                        Mathf.Lerp(positionManuelle.x, Character.Instance.transform.position.x + offsetActuelX, Mathf.Abs(avanceeY)),
+                        Mathf.Lerp(positionManuelle.y, Character.Instance.transform.position.y, Mathf.Abs(avanceeY)));
+                }
+
                 CameraMovements.Instance.camera.orthographicSize = Mathf.Lerp(newZoom, zoomActuel, Mathf.Abs(avanceeX + avanceeY));;
                 
                 /* Background.Instance.transform.localScale = new Vector3(
@@ -162,11 +173,13 @@ public class CameraSpeciales : MonoBehaviour
                     1); */
             }
             
-            
-            CameraMovements.Instance.targetPosition = positionManuelle;
-            CameraMovements.Instance.camera.orthographicSize = newZoom;
+            else
+            {
+                CameraMovements.Instance.targetPosition = positionManuelle;
+                CameraMovements.Instance.camera.orthographicSize = newZoom;
 
-            // Background.Instance.transform.localScale = new Vector3(zoomActuelFond, zoomActuelFond, 1);
+                // Background.Instance.transform.localScale = new Vector3(zoomActuelFond, zoomActuelFond, 1);
+            }
         }
     }
 

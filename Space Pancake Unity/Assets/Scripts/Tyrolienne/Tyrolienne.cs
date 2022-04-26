@@ -100,6 +100,7 @@ public class Tyrolienne : MonoBehaviour
                     timer = 0;
                     Character.Instance.Jump();
                     Character.Instance.noControl = false;
+                    Detection.canUseZipline = false;
                     usingTyrolienne = false;
                     Character.Instance.noAirControl = true;
                     rb.gravityScale = stockageGravity;
@@ -126,6 +127,8 @@ public class Tyrolienne : MonoBehaviour
                 isOnThisZipline = false;
                 usingTyrolienne = false;
                 Character.Instance.noControl = false;
+                Character.Instance.noAirControl = false;
+                Detection.canUseZipline = false;
                 rb.gravityScale = stockageGravity;
                 
                 CameraMovements.Instance.tyrolienneCamera = false;
@@ -144,6 +147,11 @@ public class Tyrolienne : MonoBehaviour
                 Character.Instance.noAirControl = false;
             }
         }
+
+        else
+        {
+            isOnThisZipline = false;
+        }
         
         Character.Instance.anim.SetBool("isOnTyroMaïs", usingTyrolienne);
     }
@@ -151,8 +159,9 @@ public class Tyrolienne : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Character")
+        if (collision.gameObject.tag == "Character" && Detection.canUseZipline)
         {
+            Debug.Log(125);
             stockageGravity = rb.gravityScale;
             isOnThisZipline = true;
             usingTyrolienne = true;
