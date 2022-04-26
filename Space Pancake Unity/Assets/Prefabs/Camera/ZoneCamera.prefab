@@ -45,7 +45,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 10.422493, y: -10.896184}
+  m_Offset: {x: 13.512493, y: 2.5}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -56,7 +56,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 34.715637, y: 24.242132}
+  m_Size: {x: 31.86, y: 25.3}
   m_EdgeRadius: 0
 --- !u!114 &7574779629296397595
 MonoBehaviour:
@@ -72,9 +72,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraFixe: 1
   cameraVerticale: 0
-  positionAutomatique: 1
-  positionManuelle: {x: 118, y: 0}
+  positionAutomatique: 0
+  positionManuelle: {x: 190.88, y: -13.71}
   newZoom: 11
-  largeurTransition: 10
+  largeurTransitionX: 7
+  largeurTransitionX2: 7
+  largeurTransitionY: 6
+  largeurTransitionY2: 0
   gizmosColor: {r: 0, g: 1, b: 0.43595576, a: 0.19215687}
   bc: {fileID: 7574779629296397797}
