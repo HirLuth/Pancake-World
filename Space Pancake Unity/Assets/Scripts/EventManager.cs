@@ -49,6 +49,8 @@ public class EventManager : MonoBehaviour
     {
         isDead = true;
 
+        CameraMovements.Instance.zoneMort.SetActive(false);
+
         // On immobilise le joueur
         Character.Instance.noControl = true;
         Character.Instance.apparition = true;
