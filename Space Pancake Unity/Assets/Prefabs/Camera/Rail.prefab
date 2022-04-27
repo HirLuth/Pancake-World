@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3164695463368029275}
   - component: {fileID: 3164695463368029272}
+  - component: {fileID: 641547366}
   m_Layer: 0
   m_Name: Node (1)
   m_TagString: Untagged
@@ -82,6 +83,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &641547366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3164695463368029274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e5b2ebac9291a64d83ab2c1d3fee22c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vitesseLente: 3
+  vitesseNormale: 6
+  vitesseRapide: 9
 --- !u!1 &3164695463912075879
 GameObject:
   m_ObjectHideFlags: 0
@@ -108,7 +124,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3164695463912075879}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -34.8, y: -2.84, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -137,11 +153,11 @@ MonoBehaviour:
   - {fileID: 3164695463368029275}
   - {fileID: 3164695464196074002}
   - {fileID: 3164695464309472484}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  vitessesNodes:
+  - {fileID: 1572911352}
+  - {fileID: 641547366}
+  - {fileID: 216910037}
+  - {fileID: 769728097}
 --- !u!114 &3164695463912075882
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -155,10 +171,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rail: {fileID: 3164695463912075876}
+  currentSeg: 0
   go: 0
-  vitesseNormal: 2
-  vitesseRalenti: 1
-  vitesseRapide: 3
+  vitesseNormal: 6
+  vitesseRalenti: 3
+  vitesseRapide: 9
   moinsViteX: 8
   moinsViteY: 4
   plusViteX: 7
@@ -199,6 +216,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3164695464196074002}
   - component: {fileID: 3164695464196074003}
+  - component: {fileID: 216910037}
   m_Layer: 0
   m_Name: Node (2)
   m_TagString: Untagged
@@ -271,6 +289,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &216910037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3164695464196073997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e5b2ebac9291a64d83ab2c1d3fee22c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vitesseLente: 3
+  vitesseNormale: 6
+  vitesseRapide: 9
 --- !u!1 &3164695464309472487
 GameObject:
   m_ObjectHideFlags: 0
@@ -281,6 +314,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3164695464309472484}
   - component: {fileID: 3164695464309472485}
+  - component: {fileID: 769728097}
   m_Layer: 0
   m_Name: Node (3)
   m_TagString: Untagged
@@ -296,7 +330,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3164695464309472487}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 55.1, y: 5.8, z: 0}
+  m_LocalPosition: {x: 59.96, y: 7.4, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 3164695463912075877}
@@ -353,6 +387,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &769728097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3164695464309472487}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e5b2ebac9291a64d83ab2c1d3fee22c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vitesseLente: 3
+  vitesseNormale: 6
+  vitesseRapide: 9
 --- !u!1 &3164695464381526107
 GameObject:
   m_ObjectHideFlags: 0
@@ -363,6 +412,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3164695464381526104}
   - component: {fileID: 3164695464381526105}
+  - component: {fileID: 1572911352}
   m_Layer: 0
   m_Name: Node
   m_TagString: Untagged
@@ -378,7 +428,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3164695464381526107}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 13.8, y: 0.33, z: 0}
+  m_LocalPosition: {x: 10.01, y: 0.21, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 3164695463912075877}
@@ -435,3 +485,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1572911352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3164695464381526107}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e5b2ebac9291a64d83ab2c1d3fee22c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vitesseLente: 3
+  vitesseNormale: 6
+  vitesseRapide: 9

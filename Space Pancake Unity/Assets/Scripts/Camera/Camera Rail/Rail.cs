@@ -8,14 +8,14 @@ using UnityEngine;
 public class Rail : MonoBehaviour
 {
     public Transform[] nodes;
-    public GameObject[] vitessesNodes;
+    public Nodes[] vitessesNodes;
 
     public static Rail Instance;
 
     private void Start()
     {
         nodes = GetComponentsInChildren<Transform>();
-        vitessesNodes = GetComponentsInChildren<GameObject>();
+        vitessesNodes = GetComponentsInChildren<Nodes>();
         Instance = this;
     }
 
