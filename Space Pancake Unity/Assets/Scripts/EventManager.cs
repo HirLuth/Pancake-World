@@ -75,8 +75,10 @@ public class EventManager : MonoBehaviour
     {
         yield return new WaitForSeconds(duree);
         
-        Character.Instance.gameObject.SetActive(false);
+        Character.Instance.transform.position = SpawnPointManagement.spawnPointLocation;
 
+        Character.Instance.isSpawning = true;
+        Character.Instance.transform.position = Character.Instance.coordonnesApparition;
         isDead = false;
         Restart();
     }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.Sockets;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Vector2 = UnityEngine.Vector2;
@@ -117,6 +118,8 @@ public class Character: MonoBehaviour
     public float stockageJumpForce;
     public float stockageGravityScale;
     public float limiteVitesseChute;
+    public bool isSpawning;
+    public Vector3 coordonnesApparition;
 
 
 
@@ -137,7 +140,16 @@ public class Character: MonoBehaviour
         stockageWallJump = forceWallJump;
         stockageJumpForce = jumpForce;
         stockageGravityScale = rb.gravityScale;
-        Instance = this;
+
+        isSpawning = true;
+
+        if(Instance == null)
+        {    
+            Instance = this; // In first scene, make us the singleton.
+            DontDestroyOnLoad(gameObject);
+        }
+        else if(Instance != this)
+            Destroy(gameObject); // On reload, singleton already set, so destroy duplicate.
     }
     
     private void OnEnable()
@@ -149,14 +161,14 @@ public class Character: MonoBehaviour
         controls.Personnage.Enable();
     }
 
-    /*private void OnDisable()
+    private void OnDisable()
     {
         controls.Personnage.Disable();
-    }*/
+    }
 
     private void Start()
     {
-        StartCoroutine(WaitSpawn(dureeSpawn));
+        coordonnesApparition = transform.position;
         
         if (controls.Personnage.MoveLeft.WasPerformedThisFrame())
         {
@@ -176,6 +188,9 @@ public class Character: MonoBehaviour
 
     private void Update()
     {
+        if(isSpawning)
+            StartCoroutine(WaitSpawn(dureeSpawn));
+            
         // Tous les raycasts
         // Raycast de détection du sol
         onGround = Physics2D.Raycast(transform.position - new Vector3(0.30f,0,0), Vector2.down, tailleRaycastGround, ground);
@@ -214,15 +229,14 @@ public class Character: MonoBehaviour
         }
 
         // Détection des différents contrôles
-        if (controls.Personnage.MoveLeft.IsPressed())
+        if (controls.Personnage.MoveLeft.WasPerformedThisFrame())
         {
-            Debug.Log(12);
             moveLeft = true;
             moveRight = false;
             direction = -1;
         }
 
-        if (controls.Personnage.MoveRight.IsPressed())
+        if (controls.Personnage.MoveRight.WasPerformedThisFrame())
         {
             moveRight = true;
             moveLeft = false;
@@ -778,15 +792,22 @@ public class Character: MonoBehaviour
     public IEnumerator WaitSpawn(float duree)
     {
         anim.SetTrigger("isSpawning");
+
+        if (!activatespawnpoint)
+        {
+            transform.position = coordonnesApparition;
+        }
         
+        isSpawning = false;
         apparition = true;
-        float stockageGravity = rb.gravityScale;
         rb.gravityScale = 0;
+        abscisseMovementsCurve = 0;
+        abscisseRunCurve = 0;
 
         yield return new WaitForSeconds(duree);
         
         apparition = false;
-        rb.gravityScale = stockageGravity;
+        rb.gravityScale = stockageGravityScale;
     }
 }
 

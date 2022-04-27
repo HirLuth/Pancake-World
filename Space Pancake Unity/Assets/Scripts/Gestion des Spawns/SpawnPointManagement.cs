@@ -31,6 +31,7 @@ public class SpawnPointManagement : MonoBehaviour
         if (activerCheckpoint)
         {
             spawnPointLocation = newSpawnPointLocation;
+            spawnPointLocation = spawnPointLocation + new Vector2(0, 1f);
             spawnWasModifiedOnce = true;
         }
     }
