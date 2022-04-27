@@ -161,7 +161,6 @@ public class Tyrolienne : MonoBehaviour
     {
         if (collision.gameObject.tag == "Character" && Detection.canUseZipline)
         {
-            Debug.Log(125);
             stockageGravity = rb.gravityScale;
             isOnThisZipline = true;
             usingTyrolienne = true;
