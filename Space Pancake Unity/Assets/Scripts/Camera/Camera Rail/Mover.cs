@@ -76,13 +76,16 @@ public class Mover : MonoBehaviour
             differenceY = positionCharacter.y - positionCamera.y;
         }
 
+        float distance = Mathf.Sqrt(Mathf.Pow(rail.nodes[currentSeg + 1].position.x - rail.nodes[currentSeg].position.x, 2) +
+        Mathf.Pow(rail.nodes[currentSeg + 1].position.y - rail.nodes[currentSeg].position.y, 2));
+
 
         if (differenceX > moinsViteX)
         {
             float transitionVitesse = (differenceX - moinsViteX) / largeurTransitionX;
             float vitesseActuel = Mathf.Lerp(vitesseNormal, vitesseRalenti, transitionVitesse);
                 
-            transition += Time.deltaTime * vitesseActuel;
+            transition += Time.deltaTime * vitesseActuel / distance;
         }
         
         else if (differenceY > moinsViteY)
@@ -90,7 +93,7 @@ public class Mover : MonoBehaviour
             float transitionVitesse = (differenceY - moinsViteY) / largeurTransitionY;
             float vitesseActuel = Mathf.Lerp(vitesseNormal, vitesseRalenti, transitionVitesse);
                 
-            transition += Time.deltaTime * vitesseActuel;
+            transition += Time.deltaTime * vitesseActuel / distance;
         }
         
         
@@ -99,7 +102,7 @@ public class Mover : MonoBehaviour
             float transitionVitesse = (differenceX2 - plusViteX) / largeurTransitionX;
             float vitesseActuel = Mathf.Lerp(vitesseNormal, vitesseRapide, transitionVitesse);
                 
-            transition += Time.deltaTime * vitesseActuel;
+            transition += Time.deltaTime * vitesseActuel / distance;
         }
         
         else if (differenceY2 > plusViteY)
@@ -107,13 +110,13 @@ public class Mover : MonoBehaviour
             float transitionVitesse = (differenceY2 - plusViteY) / largeurTransitionY;
             float vitesseActuel = Mathf.Lerp(vitesseNormal, vitesseRapide, transitionVitesse);
                 
-            transition += Time.deltaTime * vitesseActuel;
+            transition += Time.deltaTime * vitesseActuel / distance;
         }
         
         
         else
         {
-            transition += Time.deltaTime * vitesseNormal;
+            transition += Time.deltaTime * vitesseNormal / distance;
         }
         
 
