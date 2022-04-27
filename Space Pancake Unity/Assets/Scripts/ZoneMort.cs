@@ -9,7 +9,7 @@ public class ZoneMort : MonoBehaviour
 
         private void OnCollisionEnter2D(Collision2D other)
         {
-            if (other.gameObject.CompareTag("Character"))
+            if (other.gameObject.CompareTag("Character") && !EventManager.Instance.isDead)
             {
                 EventManager.Instance.Death(); 
             } 
@@ -17,7 +17,7 @@ public class ZoneMort : MonoBehaviour
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (other.gameObject.CompareTag("Character"))
+            if (other.gameObject.CompareTag("Character") && !EventManager.Instance.isDead)
             {
                 EventManager.Instance.Death(); 
             } 
