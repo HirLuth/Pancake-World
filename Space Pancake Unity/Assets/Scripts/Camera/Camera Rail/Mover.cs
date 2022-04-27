@@ -6,8 +6,9 @@ using UnityEngine;
 public class Mover : MonoBehaviour
 {
     public Rail rail;
+    public static Mover Instance;
 
-    private int currentSeg;
+    public int currentSeg;
     private float transition;
     private bool isCompleted;
 
@@ -30,6 +31,10 @@ public class Mover : MonoBehaviour
     public float plusViteX;
     public float plusViteY;
 
+    public void Start()
+    {
+        Instance = this;
+    }
 
 
     void FixedUpdate()
