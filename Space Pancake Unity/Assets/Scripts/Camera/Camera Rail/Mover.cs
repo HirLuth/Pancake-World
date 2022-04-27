@@ -82,7 +82,7 @@ public class Mover : MonoBehaviour
             float transitionVitesse = (differenceX - moinsViteX) / largeurTransitionX;
             float vitesseActuel = Mathf.Lerp(vitesseNormal, vitesseRalenti, transitionVitesse);
                 
-            transition += Time.deltaTime / vitesseActuel;
+            transition += Time.deltaTime * vitesseActuel;
         }
         
         else if (differenceY > moinsViteY)
@@ -90,7 +90,7 @@ public class Mover : MonoBehaviour
             float transitionVitesse = (differenceY - moinsViteY) / largeurTransitionY;
             float vitesseActuel = Mathf.Lerp(vitesseNormal, vitesseRalenti, transitionVitesse);
                 
-            transition += Time.deltaTime / vitesseActuel;
+            transition += Time.deltaTime * vitesseActuel;
         }
         
         
@@ -99,7 +99,7 @@ public class Mover : MonoBehaviour
             float transitionVitesse = (differenceX2 - plusViteX) / largeurTransitionX;
             float vitesseActuel = Mathf.Lerp(vitesseNormal, vitesseRapide, transitionVitesse);
                 
-            transition += Time.deltaTime / vitesseActuel;
+            transition += Time.deltaTime * vitesseActuel;
         }
         
         else if (differenceY2 > plusViteY)
@@ -107,13 +107,13 @@ public class Mover : MonoBehaviour
             float transitionVitesse = (differenceY2 - plusViteY) / largeurTransitionY;
             float vitesseActuel = Mathf.Lerp(vitesseNormal, vitesseRapide, transitionVitesse);
                 
-            transition += Time.deltaTime / vitesseActuel;
+            transition += Time.deltaTime * vitesseActuel;
         }
         
         
         else
         {
-            transition += Time.deltaTime / vitesseNormal;
+            transition += Time.deltaTime * vitesseNormal;
         }
         
 

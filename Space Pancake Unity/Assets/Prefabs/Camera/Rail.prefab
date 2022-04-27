@@ -156,9 +156,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rail: {fileID: 3164695463912075876}
   go: 0
-  vitesseNormal: 3
-  vitesseRalenti: 5
-  vitesseRapide: 1
+  vitesseNormal: 2
+  vitesseRalenti: 1
+  vitesseRapide: 3
   moinsViteX: 8
   moinsViteY: 4
   plusViteX: 7
