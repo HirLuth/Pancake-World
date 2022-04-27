@@ -12,7 +12,10 @@ public class PointDeSpawn : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        SpawnPointManagement.instance.SetSpawnPoint(transform.position);
+        if (other.CompareTag("Character"))
+        {
+            SpawnPointManagement.instance.SetSpawnPoint(transform.position);
+        }
     }
 
     private void OnDrawGizmos()

@@ -25,9 +25,7 @@ public class SpawnPointManagement : MonoBehaviour
             DontDestroyOnLoad(this.gameObject);
         }
     }
-
     
-
     public void SetSpawnPoint(Vector2 newSpawnPointLocation)
     {
         if (activerCheckpoint)
