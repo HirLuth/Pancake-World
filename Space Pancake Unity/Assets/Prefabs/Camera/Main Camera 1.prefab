@@ -48,7 +48,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -19.386509, y: 0.36210442}
+  m_Offset: {x: -20.860138, y: 1.5082722}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -59,7 +59,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.4456711, y: 20.55363}
+  m_Size: {x: 0.7439575, y: 22.845966}
   m_EdgeRadius: 0
 --- !u!61 &183777874
 BoxCollider2D:
@@ -100,7 +100,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 18.940838, y: -0.055706978}
+  m_Offset: {x: 19.993439, y: 0.99689674}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -111,7 +111,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.8885803, y: 21.389257}
+  m_Size: {x: 0.8417969, y: 23.494465}
   m_EdgeRadius: 0
 --- !u!61 &183777872
 BoxCollider2D:
@@ -126,7 +126,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.36210346, y: 11.113841}
+  m_Offset: {x: -0.3621025, y: 12.818617}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -137,7 +137,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 39.271637, y: 1.0557575}
+  m_Size: {x: 39.271637, y: 0.3923998}
   m_EdgeRadius: 0
 --- !u!114 &183777871
 MonoBehaviour:
@@ -1350,6 +1350,8 @@ MonoBehaviour:
   "ma\xEFsCamera": 0
   isOnRail: 0
   zoneMort: {fileID: 183777869}
+  newPositionX: 0
+  newPositionY: 0
   avanceeX: 0
   followPlayer: 0
 --- !u!81 &8646431942676905088
