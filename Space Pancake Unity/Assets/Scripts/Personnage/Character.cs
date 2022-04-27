@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using Vector2 = UnityEngine.Vector2;
 
 public class Character: MonoBehaviour
@@ -123,12 +124,10 @@ public class Character: MonoBehaviour
     private void Awake()
     {
         controls = new PlayerControls();
-        controls.Personnage.MoveLeft.performed += ctx => moveLeft = true;
+
         controls.Personnage.MoveLeft.canceled += ctx => moveLeft = false;
-
-        controls.Personnage.MoveRight.performed += ctx => moveRight = true;
         controls.Personnage.MoveRight.canceled += ctx => moveRight = false;
-
+        
         controls.Personnage.Run.performed += ctx => run = true;
         controls.Personnage.Run.canceled += ctx => run = false;
 
@@ -150,10 +149,10 @@ public class Character: MonoBehaviour
         controls.Personnage.Enable();
     }
 
-    private void OnDisable()
+    /*private void OnDisable()
     {
         controls.Personnage.Disable();
-    }
+    }*/
 
     private void Start()
     {
@@ -215,14 +214,15 @@ public class Character: MonoBehaviour
         }
 
         // Détection des différents contrôles
-        if (controls.Personnage.MoveLeft.WasPressedThisFrame())
+        if (controls.Personnage.MoveLeft.IsPressed())
         {
+            Debug.Log(12);
             moveLeft = true;
             moveRight = false;
             direction = -1;
         }
 
-        if (controls.Personnage.MoveRight.WasPressedThisFrame())
+        if (controls.Personnage.MoveRight.IsPressed())
         {
             moveRight = true;
             moveLeft = false;
