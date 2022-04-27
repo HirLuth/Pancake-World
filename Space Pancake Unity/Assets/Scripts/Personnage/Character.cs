@@ -646,7 +646,7 @@ public class Character: MonoBehaviour
         }
         else
         {
-            if (rb.velocity.x > 0.01f)
+            if (Mathf.Abs(rb.velocity.x) > 0.01f)
             {
                 rb.AddForce(new Vector2(Mathf.Sign(-rb.velocity.x) * noButtonForce, 0), ForceMode2D.Impulse);
             }
