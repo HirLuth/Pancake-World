@@ -58,6 +58,8 @@ public class Mover : MonoBehaviour
         float differenceY;
         float differenceX2;
         float differenceY2;
+        
+        //vitesseNormal = rail.vitessesNodes[currentSeg].Nodes
 
         if (rail.nodes[currentSeg].position.x < rail.nodes[currentSeg + 1].position.x)
         {

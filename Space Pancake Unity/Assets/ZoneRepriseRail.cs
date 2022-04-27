@@ -9,7 +9,7 @@ public class ZoneRepriseRail : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (!Mover.Instance.go)
+        if (!Mover.Instance.go && other.tag == "Character")
         {
             Mover.Instance.currentSeg = pointReprise;
             Mover.Instance.go = true;
