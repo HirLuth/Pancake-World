@@ -68,6 +68,7 @@ public class Character: MonoBehaviour
     private float timerWallJump;
     private float stockageWallJump;
     [SerializeField] float dureeNoAirControl;
+    private float resistanceWall;
 
 
     [Header("Animations")]
@@ -250,6 +251,8 @@ public class Character: MonoBehaviour
                 stop = false;
                 isOnWall = false;
                 timerWallJump = 0;
+
+                resistanceWall = 0;
                 
                 MoveCharacter();
             }
@@ -380,7 +383,14 @@ public class Character: MonoBehaviour
         {
             if (!isWallJumping)
             {
-                AirControl();
+                if ((canWallJumpLeft || canWallJumpRight) && resistanceWall > 0.15f)
+                {
+                    AirControl();
+                }
+                else if (!canWallJumpLeft && !canWallJumpRight)
+                {
+                    AirControl();
+                }
             }
         }
     }
@@ -475,12 +485,11 @@ public class Character: MonoBehaviour
         {
             stopDemiTourRun = false;
 
-            abscisseMovementsCurve = 0.5f; // Pour garder la courbe de la marche à son max et donc avoir une transition entre les deux smooth
-
             // Si le joueur bouge
             if ((moveLeft || moveRight) && abscisseRunCurve < 0.5f)
             {
                 running = true;
+                abscisseMovementsCurve = 0.5f; // Pour garder la courbe de la marche à son max et donc avoir une transition entre les deux smooth
                 abscisseRunCurve += Time.deltaTime * vitesseRunCurve;
             }
 
@@ -662,20 +671,20 @@ public class Character: MonoBehaviour
             timerWallJump += Time.deltaTime;
 
             // On ajoute encore un peu de force au personnage
-            if(0.15f > timerWallJump)
+            if (0.15f > timerWallJump)
             {
                 forceWallJump -= Time.deltaTime * 25;
                 rb.velocity = new Vector2(Mathf.Sign(rb.velocity.x) * directionWallJump.x * forceWallJump, directionWallJump.y * forceWallJump);
             }
 
             // Retour à l'air control normal
-            if(dureeNoAirControl < timerWallJump)
+            if (dureeNoAirControl < timerWallJump)
             {
                 forceWallJump = stockageWallJump;
                 timerWallJump = 0;
                 isWallJumping = false;
             }
-            
+
             isOnWall = false;
         }
 
@@ -685,6 +694,7 @@ public class Character: MonoBehaviour
         {
             runAirControl = true;
             timerWallJump += Time.deltaTime;
+            resistanceWall = 0;
 
             // On arrête l'état de saut actuel
             jump = false;
@@ -733,6 +743,13 @@ public class Character: MonoBehaviour
                 rb.velocity = new Vector2(0, rb.velocity.y);
             }
 
+            if (moveLeft && canWallJumpRight || moveRight && canWallJumpLeft)
+            {
+                Debug.Log(resistanceWall);
+                resistanceWall += Time.deltaTime;
+            }
+            
+            
             isOnWall = true;
             runAirControl = false;
             isWallJumping = false;
