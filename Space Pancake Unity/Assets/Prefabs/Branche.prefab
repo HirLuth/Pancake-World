@@ -167,7 +167,7 @@ MonoBehaviour:
   couleurDetection: {r: 1, g: 1, b: 1, a: 1}
   couleurNonDetection: {r: 1, g: 1, b: 1, a: 1}
   duration: 0.13
-  amplitude: 6
+  amplitude: 0.6
   arrow: {fileID: 3901934828523366063}
   force: 31.5
   rb: {fileID: 0}

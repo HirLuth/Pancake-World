@@ -119,7 +119,6 @@ public class CameraSpeciales : MonoBehaviour
             float yMax = (transform.position.y + bc.offset.y + bc.size.y / 2) - largeurTransitionY2;
             float yMin = (transform.position.y + bc.offset.y - bc.size.y / 2) + largeurTransitionY;
             
-            Debug.Log(yMin);
 
             if (xMin > Character.Instance.transform.position.x || xMax < Character.Instance.transform.position.x || 
                 yMin > Character.Instance.transform.position.y || yMax < Character.Instance.transform.position.y)

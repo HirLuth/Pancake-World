@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 using XInputDotNetPure;
+using DG.Tweening;
 
 public class Bash : MonoBehaviour
 {
@@ -136,6 +137,9 @@ public class Bash : MonoBehaviour
                 arrow.SetActive(false);   // On retire la fl�che
                 usingSerpe = false;    // On redonne le contr�le du personnage
                 Character.Instance.noControl = false;
+                
+                // Camera shake
+                Camera.main.DOShakePosition(duration, amplitude);
 
                 // On donne de l'�lan au personnage
                 direction = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical") + 0.23f);

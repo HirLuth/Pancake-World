@@ -68,12 +68,7 @@ public class Tyrolienne : MonoBehaviour
 
     void Update()
     {
-        if (isOnThisZipline && !Detection.canUseZipline)
-        {
-            isOnThisZipline = false;
-            usingTyrolienne = false;
-        }
-        
+
         if (isOnThisZipline)
         {
             UseZipline();
@@ -134,7 +129,7 @@ public class Tyrolienne : MonoBehaviour
                 CameraMovements.Instance.tyrolienneCamera = false;
             }
         }
-
+        
         else if (Character.Instance.noAirControl)
         {
             // Tout ce qui concerne l'absence d'air control 
@@ -152,6 +147,7 @@ public class Tyrolienne : MonoBehaviour
         {
             isOnThisZipline = false;
         }
+        
         
         Character.Instance.anim.SetBool("isOnTyroMaïs", usingTyrolienne);
     }
