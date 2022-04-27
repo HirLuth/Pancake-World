@@ -162,16 +162,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e18675db877974a4698af6ff7bbdd8ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  wantsToUseSerpe: 0
   spriteRenderer: {fileID: 3901934828180129478}
   couleurDetection: {r: 1, g: 1, b: 1, a: 1}
   couleurNonDetection: {r: 1, g: 1, b: 1, a: 1}
   duration: 0.13
   amplitude: 6
   arrow: {fileID: 3901934828523366063}
-  force: 25
+  force: 31.5
   rb: {fileID: 0}
   usingSerpe: 0
   volume: {fileID: 1471757931}
+  exitEffects: 0
 --- !u!1 &3901934828523366063
 GameObject:
   m_ObjectHideFlags: 0
