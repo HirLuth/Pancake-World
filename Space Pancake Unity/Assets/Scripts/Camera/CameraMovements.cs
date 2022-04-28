@@ -168,7 +168,7 @@ public class CameraMovements : MonoBehaviour
         if (tyrolienneCamera)
         {
             offsetTyrolienne += Time.deltaTime * offsetTyrolienneSpeed;
-                
+            
             offset.x += offsetTyrolienne;
             if (offset.x > offsetTyrolienneMax)
             {
@@ -183,7 +183,6 @@ public class CameraMovements : MonoBehaviour
             {
                 offsetTyrolienne -= Time.deltaTime * offsetTyrolienneSpeed * 2;
                 offset.x += offsetTyrolienne;
-                Debug.Log(12);
             }
         }
 
