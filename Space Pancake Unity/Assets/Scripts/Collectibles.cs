@@ -16,6 +16,7 @@ public class Collectibles : MonoBehaviour
     [SerializeField] private float timeToDestroy;
     [SerializeField] private float hauteurAnimation;
     [SerializeField] private bool asCollected;
+    private Vector2 locationToRemove;
 
     private void Start()
     {
@@ -33,9 +34,14 @@ public class Collectibles : MonoBehaviour
                 else
                 {
                     eventManager.AddPoints(-numberOfPointsGiven);
-                    spawnPointManagement.locationCollectibleCollected.Remove(location);
+                    locationToRemove = location;
                 }
             }
+        }
+
+        if (locationToRemove != null)
+        {
+            spawnPointManagement.locationCollectibleCollected.Remove(locationToRemove);
         }
     }
 
