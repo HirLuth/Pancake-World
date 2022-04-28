@@ -6,12 +6,14 @@ using UnityEngine;
 public class Mover : MonoBehaviour
 {
     public Rail rail;
+    public static Mover Instance;
 
-    private int currentSeg;
+    public int currentSeg;
     private float transition;
     private bool isCompleted;
 
     public bool go;
+    private float avanceeTransition;
     
     [Header("Vitesses")]
     public float vitesseNormal;
@@ -30,6 +32,10 @@ public class Mover : MonoBehaviour
     public float plusViteX;
     public float plusViteY;
 
+    public void Start()
+    {
+        Instance = this;
+    }
 
 
     void FixedUpdate()
@@ -53,6 +59,10 @@ public class Mover : MonoBehaviour
         float differenceY;
         float differenceX2;
         float differenceY2;
+
+        vitesseNormal = rail.vitessesNodes[currentSeg].vitesseNormale;
+        vitesseRalenti = rail.vitessesNodes[currentSeg].vitesseLente;
+        vitesseRapide = rail.vitessesNodes[currentSeg].vitesseRapide;
 
         if (rail.nodes[currentSeg].position.x < rail.nodes[currentSeg + 1].position.x)
         {
@@ -133,9 +143,30 @@ public class Mover : MonoBehaviour
 
         if(currentSeg < rail.nodes.Length - 1)
         {
-            CameraMovements.Instance.transform.position = rail.CatmullPosition(currentSeg, transition);
-            CameraMovements.Instance.transform.position = new Vector3(CameraMovements.Instance.transform.position.x, CameraMovements.Instance.transform.position.y, -10);
-            CameraMovements.Instance.transform.transform.rotation = rail.Orientation(currentSeg, transition);
+            avanceeTransition += Time.deltaTime;
+            
+            if (avanceeTransition < 1)
+            {
+                Vector3 targetPosition = rail.CatmullPosition(currentSeg, transition);
+                targetPosition = new Vector3(targetPosition.x, targetPosition.y, -10);
+            
+                Vector3 actualPosition = new Vector3(CameraMovements.Instance.newPositionX, CameraMovements.Instance.newPositionY, -10);
+                
+                Vector3 newPosition = new Vector3(Mathf.Lerp(actualPosition.x, targetPosition.x, avanceeTransition),
+                    Mathf.Lerp(actualPosition.y, targetPosition.y, avanceeTransition), -10);
+                
+                CameraMovements.Instance.transform.position = newPosition;
+                CameraMovements.Instance.transform.rotation = rail.Orientation(currentSeg, transition);
+            }
+
+            else
+            {
+                CameraMovements.Instance.transform.position = rail.CatmullPosition(currentSeg, transition);
+                CameraMovements.Instance.transform.position = new Vector3(CameraMovements.Instance.transform.position.x, 
+                    CameraMovements.Instance.transform.position.y, -10);
+                
+                CameraMovements.Instance.transform.rotation = rail.Orientation(currentSeg, transition);
+            }
         }
         else
         {

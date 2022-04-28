@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.Sockets;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using Vector2 = UnityEngine.Vector2;
 
 public class Character: MonoBehaviour
@@ -68,6 +70,7 @@ public class Character: MonoBehaviour
     private float timerWallJump;
     private float stockageWallJump;
     [SerializeField] float dureeNoAirControl;
+    private float resistanceWall;
 
 
     [Header("Animations")]
@@ -115,6 +118,8 @@ public class Character: MonoBehaviour
     public float stockageJumpForce;
     public float stockageGravityScale;
     public float limiteVitesseChute;
+    public bool isSpawning;
+    public Vector3 coordonnesApparition;
 
 
 
@@ -122,12 +127,10 @@ public class Character: MonoBehaviour
     private void Awake()
     {
         controls = new PlayerControls();
-        controls.Personnage.MoveLeft.performed += ctx => moveLeft = true;
+
         controls.Personnage.MoveLeft.canceled += ctx => moveLeft = false;
-
-        controls.Personnage.MoveRight.performed += ctx => moveRight = true;
         controls.Personnage.MoveRight.canceled += ctx => moveRight = false;
-
+        
         controls.Personnage.Run.performed += ctx => run = true;
         controls.Personnage.Run.canceled += ctx => run = false;
 
@@ -137,7 +140,16 @@ public class Character: MonoBehaviour
         stockageWallJump = forceWallJump;
         stockageJumpForce = jumpForce;
         stockageGravityScale = rb.gravityScale;
-        Instance = this;
+
+        isSpawning = true;
+
+        if(Instance == null)
+        {    
+            Instance = this; // In first scene, make us the singleton.
+            DontDestroyOnLoad(gameObject);
+        }
+        else if(Instance != this)
+            Destroy(gameObject); // On reload, singleton already set, so destroy duplicate.
     }
     
     private void OnEnable()
@@ -156,7 +168,7 @@ public class Character: MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(WaitSpawn(dureeSpawn));
+        coordonnesApparition = transform.position;
         
         if (controls.Personnage.MoveLeft.WasPerformedThisFrame())
         {
@@ -176,6 +188,9 @@ public class Character: MonoBehaviour
 
     private void Update()
     {
+        if(isSpawning)
+            StartCoroutine(WaitSpawn(dureeSpawn));
+            
         // Tous les raycasts
         // Raycast de détection du sol
         onGround = Physics2D.Raycast(transform.position - new Vector3(0.30f,0,0), Vector2.down, tailleRaycastGround, ground);
@@ -214,14 +229,14 @@ public class Character: MonoBehaviour
         }
 
         // Détection des différents contrôles
-        if (controls.Personnage.MoveLeft.WasPressedThisFrame())
+        if (controls.Personnage.MoveLeft.WasPerformedThisFrame())
         {
             moveLeft = true;
             moveRight = false;
             direction = -1;
         }
 
-        if (controls.Personnage.MoveRight.WasPressedThisFrame())
+        if (controls.Personnage.MoveRight.WasPerformedThisFrame())
         {
             moveRight = true;
             moveLeft = false;
@@ -250,6 +265,8 @@ public class Character: MonoBehaviour
                 stop = false;
                 isOnWall = false;
                 timerWallJump = 0;
+
+                resistanceWall = 0;
                 
                 MoveCharacter();
             }
@@ -380,7 +397,14 @@ public class Character: MonoBehaviour
         {
             if (!isWallJumping)
             {
-                AirControl();
+                if ((canWallJumpLeft || canWallJumpRight) && resistanceWall > 0.15f)
+                {
+                    AirControl();
+                }
+                else if (!canWallJumpLeft && !canWallJumpRight)
+                {
+                    AirControl();
+                }
             }
         }
     }
@@ -475,12 +499,11 @@ public class Character: MonoBehaviour
         {
             stopDemiTourRun = false;
 
-            abscisseMovementsCurve = 0.5f; // Pour garder la courbe de la marche à son max et donc avoir une transition entre les deux smooth
-
             // Si le joueur bouge
             if ((moveLeft || moveRight) && abscisseRunCurve < 0.5f)
             {
                 running = true;
+                abscisseMovementsCurve = 0.5f; // Pour garder la courbe de la marche à son max et donc avoir une transition entre les deux smooth
                 abscisseRunCurve += Time.deltaTime * vitesseRunCurve;
             }
 
@@ -662,20 +685,20 @@ public class Character: MonoBehaviour
             timerWallJump += Time.deltaTime;
 
             // On ajoute encore un peu de force au personnage
-            if(0.15f > timerWallJump)
+            if (0.15f > timerWallJump)
             {
                 forceWallJump -= Time.deltaTime * 25;
                 rb.velocity = new Vector2(Mathf.Sign(rb.velocity.x) * directionWallJump.x * forceWallJump, directionWallJump.y * forceWallJump);
             }
 
             // Retour à l'air control normal
-            if(dureeNoAirControl < timerWallJump)
+            if (dureeNoAirControl < timerWallJump)
             {
                 forceWallJump = stockageWallJump;
                 timerWallJump = 0;
                 isWallJumping = false;
             }
-            
+
             isOnWall = false;
         }
 
@@ -685,6 +708,7 @@ public class Character: MonoBehaviour
         {
             runAirControl = true;
             timerWallJump += Time.deltaTime;
+            resistanceWall = 0;
 
             // On arrête l'état de saut actuel
             jump = false;
@@ -733,6 +757,13 @@ public class Character: MonoBehaviour
                 rb.velocity = new Vector2(0, rb.velocity.y);
             }
 
+            if (moveLeft && canWallJumpRight || moveRight && canWallJumpLeft)
+            {
+                Debug.Log(resistanceWall);
+                resistanceWall += Time.deltaTime;
+            }
+            
+            
             isOnWall = true;
             runAirControl = false;
             isWallJumping = false;
@@ -761,15 +792,22 @@ public class Character: MonoBehaviour
     public IEnumerator WaitSpawn(float duree)
     {
         anim.SetTrigger("isSpawning");
+
+        if (!activatespawnpoint)
+        {
+            transform.position = coordonnesApparition;
+        }
         
+        isSpawning = false;
         apparition = true;
-        float stockageGravity = rb.gravityScale;
         rb.gravityScale = 0;
+        abscisseMovementsCurve = 0;
+        abscisseRunCurve = 0;
 
         yield return new WaitForSeconds(duree);
         
         apparition = false;
-        rb.gravityScale = stockageGravity;
+        rb.gravityScale = stockageGravityScale;
     }
 }
 
