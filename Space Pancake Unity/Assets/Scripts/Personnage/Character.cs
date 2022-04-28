@@ -154,10 +154,6 @@ public class Character: MonoBehaviour
     
     private void OnEnable()
     {
-        if (activatespawnpoint && SpawnPointManagement.spawnWasModifiedOnce)
-        {
-            transform.position = SpawnPointManagement.spawnPointLocation;
-        }
         controls.Personnage.Enable();
     }
 
@@ -169,28 +165,26 @@ public class Character: MonoBehaviour
     private void Start()
     {
         coordonnesApparition = transform.position;
-        
-        if (controls.Personnage.MoveLeft.WasPerformedThisFrame())
-        {
-            moveLeft = true;
-            moveRight = false;
-            direction = -1;
-        }
-
-        if (controls.Personnage.MoveRight.WasPerformedThisFrame())
-        {
-            moveRight = true;
-            moveLeft = false;
-            direction = 1;
-        }
     }
 
 
     private void Update()
     {
-        if(isSpawning)
+        if (isSpawning)
+        {
+            if (activatespawnpoint && SpawnPointManagement.spawnWasModifiedOnce)
+            {
+                transform.position = SpawnPointManagement.spawnPointLocation;
+            }
+            else
+            {
+                transform.position = coordonnesApparition;
+            }
+        
             StartCoroutine(WaitSpawn(dureeSpawn));
-            
+        }
+
+
         // Tous les raycasts
         // Raycast de détection du sol
         onGround = Physics2D.Raycast(transform.position - new Vector3(0.30f,0,0), Vector2.down, tailleRaycastGround, ground);
@@ -759,7 +753,6 @@ public class Character: MonoBehaviour
 
             if (moveLeft && canWallJumpRight || moveRight && canWallJumpLeft)
             {
-                Debug.Log(resistanceWall);
                 resistanceWall += Time.deltaTime;
             }
             
