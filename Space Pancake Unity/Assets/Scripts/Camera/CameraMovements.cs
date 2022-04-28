@@ -74,7 +74,7 @@ public class CameraMovements : MonoBehaviour
     void FixedUpdate()
     {
         zoneMort.SetActive(false);
-            
+        
         if (followPlayer)
         { 
             float stockage = targetPosition.x;
@@ -83,7 +83,8 @@ public class CameraMovements : MonoBehaviour
 
             avanceeX += targetPosition.x - stockage;
         }
-               
+
+        offset.x = 0;
 
         float differenceX = transform.position.x - targetPosition.x;
         float differenceY = transform.position.y - targetPosition.y;
@@ -95,7 +96,7 @@ public class CameraMovements : MonoBehaviour
         {
             newPositionX = Mathf.Lerp(transform.position.x, targetPosition.x, Time.fixedDeltaTime * (Mathf.Abs(differenceX) - smoothFactorX));
         }
-            
+        
         
         // Rattrapage de la camera lorsque le joueur court vers la gauche + dezoom
         if (Character.Instance.moveLeft && Character.Instance.running && !goingRight)
@@ -155,64 +156,57 @@ public class CameraMovements : MonoBehaviour
 
 
             // Déplacements camera sur l'axe y
-            newPositionY = transform.position.y;
+        newPositionY = transform.position.y;
             
-            if (Mathf.Abs(differenceY) >= deadZoneY)
-            {
-                newPositionY = Mathf.Lerp(transform.position.y, targetPosition.y, Time.fixedDeltaTime * (Mathf.Abs(differenceY) - smoothFactorY));
-            }
+        if (Mathf.Abs(differenceY) >= deadZoneY)
+        {
+            newPositionY = Mathf.Lerp(transform.position.y, targetPosition.y, Time.fixedDeltaTime * (Mathf.Abs(differenceY) - smoothFactorY));
+        }
             
             
-            // Partie tyrolienne
-            if (tyrolienneCamera)
-            {
-                offsetTyrolienne += Time.deltaTime * offsetTyrolienneSpeed;
+        // Partie tyrolienne
+        if (tyrolienneCamera)
+        {
+            offsetTyrolienne += Time.deltaTime * offsetTyrolienneSpeed;
                 
+            offset.x += offsetTyrolienne;
+            if (offset.x > offsetTyrolienneMax)
+            {
+                offsetTyrolienne -= Time.deltaTime * offsetTyrolienneSpeed;
+                offset.x = offsetTyrolienneMax;
+            }
+        }
+            
+        else
+        {
+            if (offsetTyrolienne > 0)
+            {
+                offsetTyrolienne -= Time.deltaTime * offsetTyrolienneSpeed * 2;
                 offset.x += offsetTyrolienne;
-                if (offset.x > offsetTyrolienneMax)
-                {
-                    offset.x = offsetTyrolienneMax;
-                }
+                Debug.Log(12);
             }
-            
-            else
+        }
+
+
+        // Partie maïs
+        if (maïsCamera)
+        {
+            if (offsetMaïs < offsetMaïsMax)
             {
-                if (offsetTyrolienne > offsetTyrolienneMax)
-                {
-                    offsetTyrolienne = offsetTyrolienneMax - offset.x;
-                }
-                else if (offsetTyrolienne + offset.x > offsetTyrolienneMax)
-                {
-                    offsetTyrolienne -= offset.x;
-                }
-                
-                if (offsetTyrolienne > 0)
-                {
-                    offsetTyrolienne -= Time.deltaTime * offsetTyrolienneSpeed * 2;
-                    offset.x += offsetTyrolienne;
-                }
+                offsetMaïs += Time.deltaTime * offsetSpeedMaïs;
             }
-            
-            
-            // Partie maïs
-            if (maïsCamera)
-            {
-                if (offsetMaïs < offsetMaïsMax)
-                {
-                    offsetMaïs += Time.deltaTime * offsetSpeedMaïs;
-                }
                 
+            offset.y = offsetMaïs;
+        }
+            
+        else
+        {
+            if (offsetMaïs > 0)
+            {
+                offsetMaïs -= Time.deltaTime * offsetSpeedMaïs * 2;
                 offset.y = offsetMaïs;
             }
-            
-            else
-            {
-                if (offsetMaïs > 0)
-                {
-                    offsetMaïs -= Time.deltaTime * offsetSpeedMaïs * 2;
-                    offset.y = offsetMaïs;
-                }
-            }
+        }
 
         if (!isOnRail)
         {
