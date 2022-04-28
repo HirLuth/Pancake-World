@@ -47,5 +47,5 @@ MonoBehaviour:
   "ma\xEFsAReactionReference": {fileID: 7228419546840578203, guid: fcbd2af8d7ba81a4991ede8199e47281, type: 3}
   "ma\xEFsAReactionActuel": {fileID: 0}
   timer: 0
-  timerToRespawn: 4
+  timerToRespawn: 3
   gizmoSize: 1
