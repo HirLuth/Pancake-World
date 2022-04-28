@@ -78,7 +78,7 @@ public class EventManager : MonoBehaviour
         Character.Instance.transform.position = SpawnPointManagement.spawnPointLocation;
 
         Character.Instance.isSpawning = true;
-        Character.Instance.transform.position = Character.Instance.coordonnesApparition;
+        //Character.Instance.transform.position;
         isDead = false;
         Restart();
     }
