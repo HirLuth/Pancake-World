@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: Liquide
   m_EditorClassIdentifier: 
   m_AnimatedSprites:
-  - {fileID: 8747453081141851033, guid: dd2a1b07430c65340bcf38e4cb20e73a, type: 3}
-  - {fileID: 2576015353839002947, guid: dd2a1b07430c65340bcf38e4cb20e73a, type: 3}
-  - {fileID: -2108299420381075333, guid: dd2a1b07430c65340bcf38e4cb20e73a, type: 3}
-  - {fileID: 8277720981107199757, guid: dd2a1b07430c65340bcf38e4cb20e73a, type: 3}
-  - {fileID: -4524925872771483731, guid: dd2a1b07430c65340bcf38e4cb20e73a, type: 3}
-  m_MinSpeed: 7
-  m_MaxSpeed: 7
+  - {fileID: -2084168506026583074, guid: dbc16ad40ffdc6244b41c52f3412cdb0, type: 3}
+  - {fileID: -4395126128950826969, guid: dbc16ad40ffdc6244b41c52f3412cdb0, type: 3}
+  - {fileID: -7747559480278919478, guid: dbc16ad40ffdc6244b41c52f3412cdb0, type: 3}
+  - {fileID: 4028494026858746976, guid: dbc16ad40ffdc6244b41c52f3412cdb0, type: 3}
+  - {fileID: 8960744920133042970, guid: dbc16ad40ffdc6244b41c52f3412cdb0, type: 3}
+  m_MinSpeed: 6
+  m_MaxSpeed: 6
   m_AnimationStartTime: 0
   m_AnimationStartFrame: 0
   m_TileColliderType: 0
