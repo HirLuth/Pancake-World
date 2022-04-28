@@ -174,7 +174,6 @@ public class Character: MonoBehaviour
         {
             if (activatespawnpoint && SpawnPointManagement.spawnWasModifiedOnce)
             {
-                Debug.Log(12);
                 transform.position = SpawnPointManagement.spawnPointLocation;
             }
             else

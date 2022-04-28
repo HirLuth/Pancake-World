@@ -33,8 +33,6 @@ public class SpawnPointManagement : MonoBehaviour
         {
             spawnPointLocation = newSpawnPointLocation;
             spawnWasModifiedOnce = true;
-            
-            Debug.Log(spawnPointLocation);
         }
     }
 
