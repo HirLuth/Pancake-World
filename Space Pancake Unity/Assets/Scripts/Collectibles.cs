@@ -7,6 +7,7 @@ using UnityEngine.PlayerLoop;
 public class Collectibles : MonoBehaviour
 {
     [SerializeField] private EventManager eventManager;
+    [SerializeField] private SpawnPointManagement spawnPointManagement;
     [SerializeField] private Animator animatorSelf;
     [SerializeField] private int numberOfPointsGiven;
     [SerializeField] private Vector2 stockagePosition;
@@ -19,10 +20,23 @@ public class Collectibles : MonoBehaviour
     private void Start()
     {
         eventManager = EventManager.Instance;
-        eventManager.UI = UIPrincipale.Instance.gameObject;
-        eventManager.score = UIPrincipale.Instance.textScore;
-        eventManager.AddPoints(0);
+        spawnPointManagement = SpawnPointManagement.instance; 
         stockagePosition = transform.position;
+        foreach (var location in spawnPointManagement.locationCollectibleCollected)
+        {
+            if (location == stockagePosition)
+            {
+                if (stockagePosition.x < SpawnPointManagement.spawnPointLocation.x)
+                {
+                    Destroy(this.gameObject);  
+                }
+                else
+                {
+                    eventManager.AddPoints(-numberOfPointsGiven);
+                    spawnPointManagement.locationCollectibleCollected.Remove(location);
+                }
+            }
+        }
     }
 
     private void Update()
@@ -34,6 +48,7 @@ public class Collectibles : MonoBehaviour
             transform.position = Vector3.Lerp(stockagePosition, new Vector2(stockagePosition.x,stockagePosition.y + hauteurAnimation), timer/timeToGoUp);
             if (timer >= timeToDestroy)
             {
+                spawnPointManagement.IamCollected(stockagePosition);
                 Destroy(this.gameObject);
             }
         }
