@@ -11,7 +11,8 @@ public class SpawnPointManagement : MonoBehaviour
     public static Vector2 spawnPointLocation;
     public static bool spawnWasModifiedOnce;
     [SerializeField] private bool activerCheckpoint;
-    
+    public List<Vector2> locationCollectibleCollected;
+
     private void Awake()
     {
         if (activerCheckpoint)
@@ -33,6 +34,11 @@ public class SpawnPointManagement : MonoBehaviour
             spawnPointLocation = newSpawnPointLocation;
             spawnWasModifiedOnce = true;
         }
+    }
+
+    public void IamCollected(Vector2 locationToAdd)
+    {
+        locationCollectibleCollected.Add(locationToAdd);
     }
 
 }
