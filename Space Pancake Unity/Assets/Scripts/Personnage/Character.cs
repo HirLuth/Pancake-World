@@ -154,10 +154,6 @@ public class Character: MonoBehaviour
     
     private void OnEnable()
     {
-        if (activatespawnpoint && SpawnPointManagement.spawnWasModifiedOnce)
-        {
-            transform.position = SpawnPointManagement.spawnPointLocation;
-        }
         controls.Personnage.Enable();
     }
 
@@ -169,20 +165,6 @@ public class Character: MonoBehaviour
     private void Start()
     {
         coordonnesApparition = transform.position;
-        
-        if (controls.Personnage.MoveLeft.WasPerformedThisFrame())
-        {
-            moveLeft = true;
-            moveRight = false;
-            direction = -1;
-        }
-
-        if (controls.Personnage.MoveRight.WasPerformedThisFrame())
-        {
-            moveRight = true;
-            moveLeft = false;
-            direction = 1;
-        }
     }
 
 
