@@ -42,6 +42,7 @@ public class Bash : MonoBehaviour
     private float timerEffets;
     private float puissanceEffets;
     public bool exitEffects;
+    private float debutRalenti = 1f;
     
 
     [Header("Vibrations")]
@@ -98,6 +99,8 @@ public class Bash : MonoBehaviour
         
         else if (exitEffects)
         {
+            debutRalenti = 1;
+            
             if (timerEffets > 0)
             {
                 timerEffets -= Time.deltaTime * 2;
@@ -108,7 +111,7 @@ public class Bash : MonoBehaviour
             }
 
             puissanceEffets = Mathf.Lerp(0, 1, timerEffets);
-            volume.weight = timerEffets;
+            volume.weight = puissanceEffets;
         }
 
         // Fonctionnement pur de la serpe
@@ -155,8 +158,7 @@ public class Bash : MonoBehaviour
                 distance = Mathf.Sqrt((Mathf.Pow(transform.position.x - Character.Instance.transform.position.x, 2)) + Mathf.Pow(transform.position.y - Character.Instance.transform.position.y, 2));
                 
                 Time.fixedDeltaTime = 0.02f * Time.timeScale;
-                
-                
+
                 if (distance < 1)
                 {
                     volume.weight = 0.5f * puissanceEffets;
@@ -165,9 +167,15 @@ public class Bash : MonoBehaviour
                 else
                 {
                     volume.weight = 1f - distance * 0.5f * puissanceEffets;
-                    Time.timeScale = distance * 0.035f;
+                    Time.timeScale = 0.3f * distance / 10;
                 }
-                
+
+                if (debutRalenti > puissanceEffets)
+                {
+                    debutRalenti -= Time.deltaTime * 25;
+                    volume.weight = debutRalenti;
+                }
+
                 Character.Instance.noControl = true;
                 usingSerpe = true;
                 arrow.SetActive(true);

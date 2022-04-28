@@ -31,7 +31,6 @@ public class SpawnPointManagement : MonoBehaviour
     {
         if (activerCheckpoint)
         {
-            Debug.Log(555);
             spawnPointLocation = newSpawnPointLocation;
             spawnWasModifiedOnce = true;
         }
