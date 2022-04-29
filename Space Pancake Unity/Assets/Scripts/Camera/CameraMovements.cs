@@ -181,7 +181,7 @@ public class CameraMovements : MonoBehaviour
         {
             if (offsetTyrolienne > 0)
             {
-                offsetTyrolienne -= Time.deltaTime * offsetTyrolienneSpeed * 2;
+                offsetTyrolienne -= Time.deltaTime * offsetTyrolienneSpeed * 4;
                 offset.x += offsetTyrolienne;
             }
         }
