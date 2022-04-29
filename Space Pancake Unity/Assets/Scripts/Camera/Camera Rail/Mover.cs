@@ -60,9 +60,14 @@ public class Mover : MonoBehaviour
         float differenceX2;
         float differenceY2;
 
-        vitesseNormal = rail.vitessesNodes[currentSeg].vitesseNormale;
-        vitesseRalenti = rail.vitessesNodes[currentSeg].vitesseLente;
-        vitesseRapide = rail.vitessesNodes[currentSeg].vitesseRapide;
+        if (currentSeg >= 1)
+        {
+            vitesseNormal = rail.vitessesNodes[currentSeg].vitesseNormale;
+            vitesseRalenti = rail.vitessesNodes[currentSeg].vitesseLente;
+            vitesseRapide = rail.vitessesNodes[currentSeg].vitesseRapide;
+        }
+        
+        Debug.Log(vitesseNormal);
 
         if (rail.nodes[currentSeg].position.x < rail.nodes[currentSeg + 1].position.x)
         {
