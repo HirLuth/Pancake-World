@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Back Vert
   m_EditorClassIdentifier: 
   m_AnimatedSprites:
-  - {fileID: 7597235539333005220, guid: 3941f3eaa2537b7488eb6bd11d473ddd, type: 3}
-  - {fileID: 3442979315598750371, guid: 3941f3eaa2537b7488eb6bd11d473ddd, type: 3}
   - {fileID: -1914713274806578347, guid: 3941f3eaa2537b7488eb6bd11d473ddd, type: 3}
   - {fileID: -5761662183795787864, guid: 3941f3eaa2537b7488eb6bd11d473ddd, type: 3}
+  - {fileID: 7597235539333005220, guid: 3941f3eaa2537b7488eb6bd11d473ddd, type: 3}
+  - {fileID: 3442979315598750371, guid: 3941f3eaa2537b7488eb6bd11d473ddd, type: 3}
   m_MinSpeed: 6
   m_MaxSpeed: 6
   m_AnimationStartTime: 0

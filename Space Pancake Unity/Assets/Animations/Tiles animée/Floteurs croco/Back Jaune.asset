@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Back Jaune
   m_EditorClassIdentifier: 
   m_AnimatedSprites:
+  - {fileID: 5128556514756379741, guid: 3941f3eaa2537b7488eb6bd11d473ddd, type: 3}
   - {fileID: 1105381892681522053, guid: 3941f3eaa2537b7488eb6bd11d473ddd, type: 3}
   - {fileID: 8907026888276455868, guid: 3941f3eaa2537b7488eb6bd11d473ddd, type: 3}
   - {fileID: 5351585972400421957, guid: 3941f3eaa2537b7488eb6bd11d473ddd, type: 3}
-  - {fileID: 5128556514756379741, guid: 3941f3eaa2537b7488eb6bd11d473ddd, type: 3}
   m_MinSpeed: 6
   m_MaxSpeed: 6
   m_AnimationStartTime: 0

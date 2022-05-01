@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Rondelle Rouge
   m_EditorClassIdentifier: 
   m_AnimatedSprites:
-  - {fileID: -8634864300129823457, guid: 5be1ead5d0677d44894250ecd5e2942b, type: 3}
-  - {fileID: 667277118724071951, guid: 5be1ead5d0677d44894250ecd5e2942b, type: 3}
   - {fileID: -6781255264109357166, guid: 5be1ead5d0677d44894250ecd5e2942b, type: 3}
   - {fileID: -7522664234932025640, guid: 5be1ead5d0677d44894250ecd5e2942b, type: 3}
+  - {fileID: -8634864300129823457, guid: 5be1ead5d0677d44894250ecd5e2942b, type: 3}
+  - {fileID: 667277118724071951, guid: 5be1ead5d0677d44894250ecd5e2942b, type: 3}
   m_MinSpeed: 6
   m_MaxSpeed: 6
   m_AnimationStartTime: 0

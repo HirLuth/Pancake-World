@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Front Vert
   m_EditorClassIdentifier: 
   m_AnimatedSprites:
-  - {fileID: -4701116957023765848, guid: 3941f3eaa2537b7488eb6bd11d473ddd, type: 3}
-  - {fileID: -4173650782945076304, guid: 3941f3eaa2537b7488eb6bd11d473ddd, type: 3}
   - {fileID: 1405402255946821758, guid: 3941f3eaa2537b7488eb6bd11d473ddd, type: 3}
   - {fileID: 4241457156106761365, guid: 3941f3eaa2537b7488eb6bd11d473ddd, type: 3}
+  - {fileID: -4701116957023765848, guid: 3941f3eaa2537b7488eb6bd11d473ddd, type: 3}
+  - {fileID: -4173650782945076304, guid: 3941f3eaa2537b7488eb6bd11d473ddd, type: 3}
   m_MinSpeed: 6
   m_MaxSpeed: 6
   m_AnimationStartTime: 0

@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Front Jaune
   m_EditorClassIdentifier: 
   m_AnimatedSprites:
+  - {fileID: 7704908241099160780, guid: 3941f3eaa2537b7488eb6bd11d473ddd, type: 3}
   - {fileID: -4627452061950042481, guid: 3941f3eaa2537b7488eb6bd11d473ddd, type: 3}
   - {fileID: 6599911535321192616, guid: 3941f3eaa2537b7488eb6bd11d473ddd, type: 3}
   - {fileID: 2169403732287151468, guid: 3941f3eaa2537b7488eb6bd11d473ddd, type: 3}
-  - {fileID: 7704908241099160780, guid: 3941f3eaa2537b7488eb6bd11d473ddd, type: 3}
   m_MinSpeed: 6
   m_MaxSpeed: 6
   m_AnimationStartTime: 0

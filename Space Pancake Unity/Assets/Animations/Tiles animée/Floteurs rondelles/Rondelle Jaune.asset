@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Rondelle Jaune
   m_EditorClassIdentifier: 
   m_AnimatedSprites:
+  - {fileID: -7418921620234776343, guid: 5be1ead5d0677d44894250ecd5e2942b, type: 3}
   - {fileID: 9208466340769071243, guid: 5be1ead5d0677d44894250ecd5e2942b, type: 3}
   - {fileID: 3654808602187469141, guid: 5be1ead5d0677d44894250ecd5e2942b, type: 3}
   - {fileID: 3471993267709850440, guid: 5be1ead5d0677d44894250ecd5e2942b, type: 3}
-  - {fileID: -7418921620234776343, guid: 5be1ead5d0677d44894250ecd5e2942b, type: 3}
   m_MinSpeed: 6
   m_MaxSpeed: 6
   m_AnimationStartTime: 0

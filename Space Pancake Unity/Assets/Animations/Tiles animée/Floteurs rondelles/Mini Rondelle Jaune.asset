@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Mini Rondelle Jaune
   m_EditorClassIdentifier: 
   m_AnimatedSprites:
-  - {fileID: 7779938812017807500, guid: 5be1ead5d0677d44894250ecd5e2942b, type: 3}
-  - {fileID: -9093824630373130207, guid: 5be1ead5d0677d44894250ecd5e2942b, type: 3}
   - {fileID: -1346607966632909823, guid: 5be1ead5d0677d44894250ecd5e2942b, type: 3}
   - {fileID: -2802974080631910739, guid: 5be1ead5d0677d44894250ecd5e2942b, type: 3}
+  - {fileID: 7779938812017807500, guid: 5be1ead5d0677d44894250ecd5e2942b, type: 3}
+  - {fileID: -9093824630373130207, guid: 5be1ead5d0677d44894250ecd5e2942b, type: 3}
   m_MinSpeed: 6
   m_MaxSpeed: 6
   m_AnimationStartTime: 0
