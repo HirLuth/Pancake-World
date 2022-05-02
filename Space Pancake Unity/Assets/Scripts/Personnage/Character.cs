@@ -114,7 +114,7 @@ public class Character: MonoBehaviour
     [HideInInspector] public bool apparition;
     [HideInInspector] public bool usingSerpe;
     public static Character Instance;
-    [SerializeField] private bool activatespawnpoint;
+    public bool activatespawnpoint;
     public float stockageJumpForce;
     public float stockageGravityScale;
     public float limiteVitesseChute;
@@ -172,6 +172,9 @@ public class Character: MonoBehaviour
     {
         if (isSpawning)
         {
+            isRunning = false;
+            isWalking = false;
+            
             if (activatespawnpoint && SpawnPointManagement.spawnWasModifiedOnce)
             {
                 transform.position = SpawnPointManagement.spawnPointLocation;
@@ -180,6 +183,7 @@ public class Character: MonoBehaviour
             {
                 transform.position = coordonnesApparition;
             }
+    
         
             StartCoroutine(WaitSpawn(dureeSpawn));
         }
@@ -784,6 +788,8 @@ public class Character: MonoBehaviour
     
     public IEnumerator WaitSpawn(float duree)
     {
+        EventManager.Instance.dieOnce = false;
+        
         anim.SetTrigger("isSpawning");
 
         if (!activatespawnpoint)

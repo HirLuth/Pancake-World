@@ -28,6 +28,7 @@ public class PancakeRebondissantv2 : MonoBehaviour
             timerBounce += Time.deltaTime;
             stockageVelocityX = rbCharacter.velocity.x;
             rbCharacter.velocity = Vector2.zero;
+            
             if (timerBounce > limitTimerBounce)
             {
                 rbCharacter.velocity = new Vector2(stockageVelocityX, bounceForce);
