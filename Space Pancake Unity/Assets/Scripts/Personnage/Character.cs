@@ -114,7 +114,7 @@ public class Character: MonoBehaviour
     [HideInInspector] public bool apparition;
     [HideInInspector] public bool usingSerpe;
     public static Character Instance;
-    [SerializeField] private bool activatespawnpoint;
+    public bool activatespawnpoint;
     public float stockageJumpForce;
     public float stockageGravityScale;
     public float limiteVitesseChute;

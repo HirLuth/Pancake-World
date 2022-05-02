@@ -102,6 +102,18 @@ public class EventManager : MonoBehaviour
         CameraMovements.Instance.fondu.GetComponent<SpriteRenderer>().DOFade(1, dureeZoom);
         
         yield return new WaitForSeconds(dureeZoom);
+        
+        if (Character.Instance.activatespawnpoint && SpawnPointManagement.spawnWasModifiedOnce)
+        {
+            Character.Instance.transform.position = SpawnPointManagement.spawnPointLocation;
+        }
+        else
+        {
+            Character.Instance.transform.position = Character.Instance.coordonnesApparition;
+        }
+
+        CameraMovements.Instance.transform.position = new Vector3(Character.Instance.transform.position.x,
+            Character.Instance.transform.position.y, -10);
 
         cameraPos = CameraMovements.Instance.transform.position;
         
