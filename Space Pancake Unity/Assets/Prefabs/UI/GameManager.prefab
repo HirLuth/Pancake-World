@@ -50,7 +50,10 @@ MonoBehaviour:
   dureeAnimationMort: 0.65
   isDead: 0
   newZoom: 1
-  dureeZoom: 0.7
+  stockageZoom: 9
+  dureeZoom: 1
+  cameraPos: {x: 0, y: 0, z: 0}
+  dieOnce: 0
 --- !u!114 &4315512679870263101
 MonoBehaviour:
   m_ObjectHideFlags: 0

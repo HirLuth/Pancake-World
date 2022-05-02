@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
 public class CameraMovements : MonoBehaviour
@@ -56,6 +57,7 @@ public class CameraMovements : MonoBehaviour
     [Header("Autres")] 
     public float avanceeX;
     public static CameraMovements Instance;
+    public GameObject fondu;
     [HideInInspector] public bool followPlayer;
 
 
@@ -66,156 +68,166 @@ public class CameraMovements : MonoBehaviour
         Instance = this;
         
         camera = gameObject.GetComponent<Camera>();
-        stockageSize = camera.orthographicSize;
+        stockageSize = EventManager.Instance.stockageZoom;
         followPlayer = true;
 
-        transform.position = Character.Instance.transform.position + new Vector3(0,0, -10);
+        transform.position = new Vector3(Character.Instance.transform.position.x, Character.Instance.transform.position.y, -10);
+        
+        fondu.SetActive(true);
+        fondu.GetComponent<SpriteRenderer>().DOFade(0, EventManager.Instance.dureeZoom);
+        
+        camera.orthographicSize = EventManager.Instance.newZoom;
+        camera.DOOrthoSize(EventManager.Instance.stockageZoom, EventManager.Instance.dureeZoom);
     }
 
 
     void FixedUpdate()
     {
-        zoneMort.SetActive(false);
+        if (!Character.Instance.isSpawning && !EventManager.Instance.isDead)
+        {
+            zoneMort.SetActive(false);
         
-        if (followPlayer)
-        { 
-            float stockage = targetPosition.x;
-                
-            targetPosition = Character.Instance.transform.position + offset;
+            if (followPlayer)
+            { 
+                float stockage = targetPosition.x;
+                    
+                targetPosition = Character.Instance.transform.position + offset;
 
-            avanceeX += targetPosition.x - stockage;
-        }
-
-        offset.x = 0;
-
-        float differenceX = transform.position.x - targetPosition.x;
-        float differenceY = transform.position.y - targetPosition.y;
-
-
-        // Déplacements camera sur l'axe x
-        newPositionX = transform.position.x;
-        if (Mathf.Abs(differenceX) >= deadZoneX)
-        {
-            newPositionX = Mathf.Lerp(transform.position.x, targetPosition.x, Time.fixedDeltaTime * (Mathf.Abs(differenceX) - smoothFactorX));
-        }
-        
-        
-        // Rattrapage de la camera lorsque le joueur court vers la gauche + dezoom
-        if (Character.Instance.moveLeft && Character.Instance.running && !goingRight)
-        {
-            goingLeft = true;
-
-            if (offsetActuel < offsetMax)
-            {
-                offsetActuel += Time.deltaTime * speedRattrapage;
-                offset.x = Mathf.Lerp(0, -offsetMax, Mathf.SmoothStep(0, 1, offsetActuel));
-            }
-                
-            if (dezoomActuel < 1)
-            {
-                dezoomActuel += Time.deltaTime * vitesseDezoom;
-            }
-                
-            camera.orthographicSize = stockageSize + Mathf.Lerp(0, dezoomMax, Mathf.SmoothStep(0, 1, dezoomActuel));
-        }
-            
-        // Rattrapage de la camera lorsque le joueur court vers la droite + dezoom
-        else if (Character.Instance.moveRight && Character.Instance.running && !goingLeft)
-        {
-            goingRight = true;
-
-            if (offsetActuel < offsetMax)
-            {
-                offsetActuel += Time.deltaTime * speedRattrapage;
-                offset.x = Mathf.Lerp(0, offsetMax, Mathf.SmoothStep(0, 1, offsetActuel));
+                avanceeX += targetPosition.x - stockage;
             }
 
-            if (dezoomActuel < 1)
-            {
-                dezoomActuel += Time.deltaTime * vitesseDezoom;
-            }
-                
-            camera.orthographicSize = stockageSize + Mathf.Lerp(0, dezoomMax, Mathf.SmoothStep(0, 1, dezoomActuel));
-        }
-
-        // Quand le joueur s'arrête ou change de direction
-        else
-        {
-            goingLeft = false;
-            goingRight = false;
-                
-            offsetActuel = 0;
             offset.x = 0;
 
-                
-            if (dezoomActuel > 0)
-            {
-                dezoomActuel -= Time.deltaTime * vitesseZoom;
-            }
-                
-            camera.orthographicSize = stockageSize + Mathf.Lerp(0, dezoomMax, Mathf.SmoothStep(0, 1, dezoomActuel));
-        }
+            float differenceX = transform.position.x - targetPosition.x;
+            float differenceY = transform.position.y - targetPosition.y;
 
 
-            // Déplacements camera sur l'axe y
-        newPositionY = transform.position.y;
-            
-        if (Mathf.Abs(differenceY) >= deadZoneY)
-        {
-            newPositionY = Mathf.Lerp(transform.position.y, targetPosition.y, Time.fixedDeltaTime * (Mathf.Abs(differenceY) - smoothFactorY));
-        }
-            
-            
-        // Partie tyrolienne
-        if (tyrolienneCamera)
-        {
-            offsetTyrolienne += Time.deltaTime * offsetTyrolienneSpeed;
-            
-            offset.x += offsetTyrolienne;
-            if (offset.x > offsetTyrolienneMax)
+            // Déplacements camera sur l'axe x
+            newPositionX = transform.position.x;
+            if (Mathf.Abs(differenceX) >= deadZoneX)
             {
-                offsetTyrolienne -= Time.deltaTime * offsetTyrolienneSpeed;
-                offset.x = offsetTyrolienneMax;
+                newPositionX = Mathf.Lerp(transform.position.x, targetPosition.x, Time.fixedDeltaTime * (Mathf.Abs(differenceX) - smoothFactorX));
             }
-        }
             
-        else
-        {
-            if (offsetTyrolienne > 0)
+            
+            // Rattrapage de la camera lorsque le joueur court vers la gauche + dezoom
+            if (Character.Instance.moveLeft && Character.Instance.running && !goingRight)
             {
-                offsetTyrolienne -= Time.deltaTime * offsetTyrolienneSpeed * 4;
+                goingLeft = true;
+
+                if (offsetActuel < offsetMax)
+                {
+                    offsetActuel += Time.deltaTime * speedRattrapage;
+                    offset.x = Mathf.Lerp(0, -offsetMax, Mathf.SmoothStep(0, 1, offsetActuel));
+                }
+                    
+                if (dezoomActuel < 1)
+                {
+                    dezoomActuel += Time.deltaTime * vitesseDezoom;
+                }
+                    
+                camera.orthographicSize = stockageSize + Mathf.Lerp(0, dezoomMax, Mathf.SmoothStep(0, 1, dezoomActuel));
+            }
+                
+            // Rattrapage de la camera lorsque le joueur court vers la droite + dezoom
+            else if (Character.Instance.moveRight && Character.Instance.running && !goingLeft)
+            {
+                goingRight = true;
+
+                if (offsetActuel < offsetMax)
+                {
+                    offsetActuel += Time.deltaTime * speedRattrapage;
+                    offset.x = Mathf.Lerp(0, offsetMax, Mathf.SmoothStep(0, 1, offsetActuel));
+                }
+
+                if (dezoomActuel < 1)
+                {
+                    dezoomActuel += Time.deltaTime * vitesseDezoom;
+                }
+                    
+                camera.orthographicSize = stockageSize + Mathf.Lerp(0, dezoomMax, Mathf.SmoothStep(0, 1, dezoomActuel));
+            }
+
+            // Quand le joueur s'arrête ou change de direction
+            else
+            {
+                goingLeft = false;
+                goingRight = false;
+                    
+                offsetActuel = 0;
+                offset.x = 0;
+
+                    
+                if (dezoomActuel > 0)
+                {
+                    dezoomActuel -= Time.deltaTime * vitesseZoom;
+                }
+                    
+                camera.orthographicSize = stockageSize + Mathf.Lerp(0, dezoomMax, Mathf.SmoothStep(0, 1, dezoomActuel));
+            }
+
+
+                // Déplacements camera sur l'axe y
+            newPositionY = transform.position.y;
+                
+            if (Mathf.Abs(differenceY) >= deadZoneY)
+            {
+                newPositionY = Mathf.Lerp(transform.position.y, targetPosition.y, Time.fixedDeltaTime * (Mathf.Abs(differenceY) - smoothFactorY));
+            }
+                
+                
+            // Partie tyrolienne
+            if (tyrolienneCamera)
+            {
+                offsetTyrolienne += Time.deltaTime * offsetTyrolienneSpeed;
+                
                 offset.x += offsetTyrolienne;
-            }
-        }
-
-
-        // Partie maïs
-        if (maïsCamera)
-        {
-            if (offsetMaïs < offsetMaïsMax)
-            {
-                offsetMaïs += Time.deltaTime * offsetSpeedMaïs;
+                if (offset.x > offsetTyrolienneMax)
+                {
+                    offsetTyrolienne -= Time.deltaTime * offsetTyrolienneSpeed;
+                    offset.x = offsetTyrolienneMax;
+                }
             }
                 
-            offset.y = offsetMaïs;
-        }
-            
-        else
-        {
-            if (offsetMaïs > 0)
+            else
             {
-                offsetMaïs -= Time.deltaTime * offsetSpeedMaïs * 2;
+                if (offsetTyrolienne > 0)
+                {
+                    offsetTyrolienne -= Time.deltaTime * offsetTyrolienneSpeed * 4;
+                    offset.x += offsetTyrolienne;
+                }
+            }
+
+
+            // Partie maïs
+            if (maïsCamera)
+            {
+                if (offsetMaïs < offsetMaïsMax)
+                {
+                    offsetMaïs += Time.deltaTime * offsetSpeedMaïs;
+                }
+                    
                 offset.y = offsetMaïs;
             }
-        }
+                
+            else
+            {
+                if (offsetMaïs > 0)
+                {
+                    offsetMaïs -= Time.deltaTime * offsetSpeedMaïs * 2;
+                    offset.y = offsetMaïs;
+                }
+            }
 
-        if (!isOnRail)
-        {
-            transform.position = new Vector3(newPositionX, newPositionY, transform.position.z);
+            if (!isOnRail)
+            {
+                transform.position = new Vector3(newPositionX, newPositionY, transform.position.z);
+            }
+            else 
+            { 
+                zoneMort.SetActive(true);
+            }
         }
-        else 
-        { 
-            zoneMort.SetActive(true);
-        }
+        
     }
 }

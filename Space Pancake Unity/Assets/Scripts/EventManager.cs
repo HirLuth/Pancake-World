@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
 using UnityEngine.PlayerLoop;
+using Color = System.Drawing.Color;
 
 public class EventManager : MonoBehaviour
 {
@@ -24,9 +25,12 @@ public class EventManager : MonoBehaviour
     public bool isDead;
     
     public float newZoom;
+    public float stockageZoom;
     public float dureeZoom;
-    private float stockageZoom;
-    
+
+    public Vector3 cameraPos;
+    public bool dieOnce;
+
     private Camera camera;
 
 
@@ -46,7 +50,6 @@ public class EventManager : MonoBehaviour
     {
         UI = UIPrincipale.Instance.gameObject;
         score = UIPrincipale.Instance.textScore;
-        stockageZoom = CameraMovements.Instance.camera.orthographicSize;
     }
     
 
@@ -57,27 +60,32 @@ public class EventManager : MonoBehaviour
     
     public void Death()
     {
-        if (CameraMovements.Instance.isOnRail)
+        if (!dieOnce)
         {
-            CameraMovements.Instance.isOnRail = false;
-            Mover.Instance.go = false;
-        }
+            dieOnce = true;
+            
+            if (CameraMovements.Instance.isOnRail)
+            {
+                CameraMovements.Instance.isOnRail = false;
+                Mover.Instance.go = false;
+            }
         
-        isDead = true;
+            isDead = true;
 
-        CameraMovements.Instance.zoneMort.SetActive(false);
+            CameraMovements.Instance.zoneMort.SetActive(false);
 
-        // On immobilise le joueur
-        Character.Instance.noControl = true;
-        Character.Instance.apparition = true;
-        Character.Instance.rb.gravityScale = 0;
-        Character.Instance.rb.velocity = new Vector2(0, 0);
+            // On immobilise le joueur
+            Character.Instance.noControl = true;
+            Character.Instance.apparition = true;
+            Character.Instance.rb.gravityScale = 0;
+            Character.Instance.rb.velocity = new Vector2(0, 0);
 
-        // On lance son animation
-        Character.Instance.anim.SetTrigger("isDead");
+            // On lance son animation
+            Character.Instance.anim.SetTrigger("isDead");
 
-        // Attente de la fin de l'animation
-        StartCoroutine(WaitAnimation(dureeAnimationMort));
+            // Attente de la fin de l'animation
+            StartCoroutine(WaitAnimation(dureeAnimationMort));
+        }
     }
     
     public void AddPoints(int points)
@@ -91,14 +99,15 @@ public class EventManager : MonoBehaviour
     {
         CameraMovements.Instance.camera.DOOrthoSize(newZoom, dureeZoom);
         CameraMovements.Instance.transform.DOMove(Character.Instance.transform.position + new Vector3(0, 0, -10), dureeZoom);
+        CameraMovements.Instance.fondu.GetComponent<SpriteRenderer>().DOFade(1, dureeZoom);
         
-        yield return new WaitForSeconds(dureeZoom );
-        
+        yield return new WaitForSeconds(dureeZoom);
+
+        cameraPos = CameraMovements.Instance.transform.position;
         
         //Character.Instance.transform.position = SpawnPointManagement.spawnPointLocation;
 
         Character.Instance.isSpawning = true;
-        //Character.Instance.transform.position;
         isDead = false;
         Restart();
     }

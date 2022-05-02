@@ -183,6 +183,7 @@ public class Character: MonoBehaviour
             {
                 transform.position = coordonnesApparition;
             }
+    
         
             StartCoroutine(WaitSpawn(dureeSpawn));
         }
@@ -787,6 +788,8 @@ public class Character: MonoBehaviour
     
     public IEnumerator WaitSpawn(float duree)
     {
+        EventManager.Instance.dieOnce = false;
+        
         anim.SetTrigger("isSpawning");
 
         if (!activatespawnpoint)
