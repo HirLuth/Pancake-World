@@ -26,19 +26,45 @@ public class SpawnPointManagement : MonoBehaviour
             DontDestroyOnLoad(this.gameObject);
         }
     }
+
+#if !UNITY_EDITOR
+    private void Start()
+    {
+        if (GetSpawn() != Vector2.zero)
+        {
+            Character.Instance.transform.position = GetSpawn();
+        }
+    }  
+#endif
     
+
     public void SetSpawnPoint(Vector2 newSpawnPointLocation)
     {
         if (activerCheckpoint)
         {
             spawnPointLocation = newSpawnPointLocation;
             spawnWasModifiedOnce = true;
+            RecordSpawn(newSpawnPointLocation);
         }
     }
 
     public void IamCollected(Vector2 locationToAdd)
     {
         locationCollectibleCollected.Add(locationToAdd);
+    }
+
+    public Vector2 GetSpawn()
+    {
+        Vector2 position = new Vector2();
+        position.x = PlayerPrefs.GetFloat("posX", 0);
+        position.y = PlayerPrefs.GetFloat("posY", 0);
+        return position;
+    }
+
+    public void RecordSpawn(Vector2 spawnLocation)
+    {
+        PlayerPrefs.SetFloat("posX", spawnLocation.x);
+        PlayerPrefs.SetFloat("posY", spawnLocation.y);
     }
 
 }

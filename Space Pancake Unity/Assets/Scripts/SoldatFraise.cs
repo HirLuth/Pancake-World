@@ -18,7 +18,7 @@ public class SoldatFraise : MonoBehaviour
     [SerializeField] private float movementSpeed;
     [SerializeField] private float patrollingDistanceRight;
     [SerializeField] private float patrollingDistanceLeft;
-    [SerializeField] private bool iaIsWalking;
+    [SerializeField] public bool iaIsWalking;
     [SerializeField] private bool startingWalkingSideIsRight;
     [SerializeField] private float timeStun;
     [SerializeField] private float timeToGrow;
