@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
@@ -16,10 +17,17 @@ public class EventManager : MonoBehaviour
 
 
     // Tout ce qui concerne la mort
+    [Header("La mooort")]
     [SerializeField] public GameObject UI;
     private float timerAnimation;
     public float dureeAnimationMort;
     public bool isDead;
+    
+    public float newZoom;
+    public float dureeZoom;
+    private float stockageZoom;
+    
+    private Camera camera;
 
 
     private void Awake()
@@ -31,12 +39,14 @@ public class EventManager : MonoBehaviour
         }
         Instance = this;
         DontDestroyOnLoad(this);
+        
     }
 
     private void Start()
     {
         UI = UIPrincipale.Instance.gameObject;
         score = UIPrincipale.Instance.textScore;
+        stockageZoom = CameraMovements.Instance.camera.orthographicSize;
     }
     
 
@@ -47,6 +57,12 @@ public class EventManager : MonoBehaviour
     
     public void Death()
     {
+        if (CameraMovements.Instance.isOnRail)
+        {
+            CameraMovements.Instance.isOnRail = false;
+            Mover.Instance.go = false;
+        }
+        
         isDead = true;
 
         CameraMovements.Instance.zoneMort.SetActive(false);
@@ -73,9 +89,13 @@ public class EventManager : MonoBehaviour
 
     public IEnumerator WaitAnimation(float duree)
     {
-        yield return new WaitForSeconds(duree);
+        CameraMovements.Instance.camera.DOOrthoSize(newZoom, dureeZoom);
+        CameraMovements.Instance.transform.DOMove(Character.Instance.transform.position + new Vector3(0, 0, -10), dureeZoom);
         
-        Character.Instance.transform.position = SpawnPointManagement.spawnPointLocation;
+        yield return new WaitForSeconds(dureeZoom );
+        
+        
+        //Character.Instance.transform.position = SpawnPointManagement.spawnPointLocation;
 
         Character.Instance.isSpawning = true;
         //Character.Instance.transform.position;

@@ -68,6 +68,8 @@ public class CameraMovements : MonoBehaviour
         camera = gameObject.GetComponent<Camera>();
         stockageSize = camera.orthographicSize;
         followPlayer = true;
+
+        transform.position = Character.Instance.transform.position + new Vector3(0,0, -10);
     }
 
 

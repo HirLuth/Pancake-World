@@ -25,7 +25,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4632943807276934636}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 537.7439, y: 267.55634, z: -106.85956}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -44,10 +44,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acc1d2245fe3fdd498c1ae957f2d980a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pointsNumber: 0
   score: {fileID: 0}
-  UI: {fileID: 8554718855025575701, guid: 067e3ae90fd00f74a96de1387df487e1, type: 3}
+  UI: {fileID: 0}
   dureeAnimationMort: 0.65
   isDead: 0
+  newZoom: 1
+  dureeZoom: 0.7
 --- !u!114 &4315512679870263101
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -61,3 +64,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activerCheckpoint: 1
+  locationCollectibleCollected: []

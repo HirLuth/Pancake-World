@@ -172,6 +172,9 @@ public class Character: MonoBehaviour
     {
         if (isSpawning)
         {
+            isRunning = false;
+            isWalking = false;
+            
             if (activatespawnpoint && SpawnPointManagement.spawnWasModifiedOnce)
             {
                 transform.position = SpawnPointManagement.spawnPointLocation;
