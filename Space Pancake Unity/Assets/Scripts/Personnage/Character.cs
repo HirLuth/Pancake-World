@@ -174,6 +174,9 @@ public class Character: MonoBehaviour
         {
             isRunning = false;
             isWalking = false;
+
+            anim.SetBool("isOnTyroMaïs", false);
+            
             
             if (activatespawnpoint && SpawnPointManagement.spawnWasModifiedOnce)
             {

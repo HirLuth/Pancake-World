@@ -79,7 +79,7 @@ public class EventManager : MonoBehaviour
             Character.Instance.apparition = true;
             Character.Instance.rb.gravityScale = 0;
             Character.Instance.rb.velocity = new Vector2(0, 0);
-            Character.Instance.rb.bodyType = RigidbodyType2D.Kinematic;
+            Character.Instance.rb.bodyType = RigidbodyType2D.Static;
 
             // On lance son animation
             Character.Instance.anim.SetTrigger("isDead");
