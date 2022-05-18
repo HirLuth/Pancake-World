@@ -789,6 +789,7 @@ public class Character: MonoBehaviour
     public IEnumerator WaitSpawn(float duree)
     {
         EventManager.Instance.dieOnce = false;
+        rb.bodyType = RigidbodyType2D.Dynamic;
         
         anim.SetTrigger("isSpawning");
 

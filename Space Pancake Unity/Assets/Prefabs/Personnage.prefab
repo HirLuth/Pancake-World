@@ -243,7 +243,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 3
   m_Sprite: {fileID: 8793639957104055765, guid: 45a75a3e204af904488c69670177d100, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -453,10 +453,12 @@ MonoBehaviour:
   noControl: 0
   apparition: 0
   usingSerpe: 0
-  activatespawnpoint: 0
+  activatespawnpoint: 1
   stockageJumpForce: 0
   stockageGravityScale: 0
   limiteVitesseChute: 20
+  isSpawning: 0
+  coordonnesApparition: {x: 0, y: 0, z: 0}
 --- !u!95 &7250847303676680922
 Animator:
   serializedVersion: 3
