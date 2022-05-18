@@ -15,8 +15,6 @@ public class Mover : MonoBehaviour
     public bool go;
     private float avanceeTransition;
 
-    public GameObject triggerDeathUp;
-
     [Header("Vitesses")]
     public float vitesseNormal;
     public float vitesseRalenti;
@@ -69,10 +67,10 @@ public class Mover : MonoBehaviour
 
         
         if (rail.vitessesNodes[currentSeg].triggerDeathUp)
-            triggerDeathUp.SetActive(true);
+            InstanceCameraMort.Instance.gameObject.SetActive(true);
         
         else
-            triggerDeathUp.SetActive(false);
+            InstanceCameraMort.Instance.gameObject.SetActive(false);
 
         
         if (rail.nodes[currentSeg].position.x < rail.nodes[currentSeg + 1].position.x)
