@@ -30,6 +30,7 @@ public class SoldatFraise : MonoBehaviour
     [SerializeField] private bool grabLance;
     [SerializeField] private bool stunPeriod;
     [SerializeField] private float timer;
+    [SerializeField] private bool freezeMovement;
 
     private void Awake()
     {
@@ -56,6 +57,8 @@ public class SoldatFraise : MonoBehaviour
         {
             lanceCollider.enabled = false;
             grabLance = true;
+            freezeMovement = true;
+            rbSelf.velocity = Vector2.zero;
         }
 
         // Si le joueur arrête d'utiliser la serpe
@@ -65,6 +68,7 @@ public class SoldatFraise : MonoBehaviour
             {
                 stunPeriod = true;
                 bash.soldatFraise = true;
+                freezeMovement = false;
             }
         }
 
@@ -91,7 +95,7 @@ public class SoldatFraise : MonoBehaviour
             }
             return;
         }
-        if (iaIsWalking)
+        if (iaIsWalking && !freezeMovement)
         {
             if (isGoingRight)
             {
