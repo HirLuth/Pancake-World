@@ -14,19 +14,19 @@ public class Mover : MonoBehaviour
 
     public bool go;
     private float avanceeTransition;
-    
+
+    public GameObject triggerDeathUp;
+
     [Header("Vitesses")]
     public float vitesseNormal;
     public float vitesseRalenti;
     public float vitesseRapide;
-
-
+    
     [Header("Ralenti")] 
     public float moinsViteX;
     public float moinsViteY;
     private float largeurTransitionX = 2.75f;
     private float largeurTransitionY = 2;
-
 
     [Header("Acceleration")] 
     public float plusViteX;
@@ -67,6 +67,14 @@ public class Mover : MonoBehaviour
             vitesseRapide = rail.vitessesNodes[currentSeg].vitesseRapide;
         }
 
+        
+        if (rail.vitessesNodes[currentSeg].triggerDeathUp)
+            triggerDeathUp.SetActive(true);
+        
+        else
+            triggerDeathUp.SetActive(false);
+
+        
         if (rail.nodes[currentSeg].position.x < rail.nodes[currentSeg + 1].position.x)
         {
             differenceX = positionCamera.x - positionCharacter.x;

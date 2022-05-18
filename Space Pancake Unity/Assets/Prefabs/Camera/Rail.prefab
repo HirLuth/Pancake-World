@@ -98,6 +98,7 @@ MonoBehaviour:
   vitesseLente: 8
   vitesseNormale: 15
   vitesseRapide: 40
+  triggerDeathUp: 0
 --- !u!1 &1087116350
 GameObject:
   m_ObjectHideFlags: 0
@@ -196,6 +197,7 @@ MonoBehaviour:
   vitesseLente: 8
   vitesseNormale: 15
   vitesseRapide: 40
+  triggerDeathUp: 0
 --- !u!1 &1378048871
 GameObject:
   m_ObjectHideFlags: 0
@@ -294,6 +296,7 @@ MonoBehaviour:
   vitesseLente: 7
   vitesseNormale: 12
   vitesseRapide: 40
+  triggerDeathUp: 0
 --- !u!1 &1451214868
 GameObject:
   m_ObjectHideFlags: 0
@@ -392,6 +395,7 @@ MonoBehaviour:
   vitesseLente: 8
   vitesseNormale: 15
   vitesseRapide: 40
+  triggerDeathUp: 0
 --- !u!1 &2039634472
 GameObject:
   m_ObjectHideFlags: 0
@@ -490,6 +494,7 @@ MonoBehaviour:
   vitesseLente: 4
   vitesseNormale: 8
   vitesseRapide: 40
+  triggerDeathUp: 0
 --- !u!1 &3164695463368029274
 GameObject:
   m_ObjectHideFlags: 0
@@ -588,6 +593,7 @@ MonoBehaviour:
   vitesseLente: 8
   vitesseNormale: 15
   vitesseRapide: 40
+  triggerDeathUp: 0
 --- !u!1 &3164695463912075879
 GameObject:
   m_ObjectHideFlags: 0
@@ -678,8 +684,9 @@ MonoBehaviour:
   rail: {fileID: 3164695463912075876}
   currentSeg: 0
   go: 0
-  vitesseNormal: 20
-  vitesseRalenti: 13
+  triggerDeathUp: {fileID: 0}
+  vitesseNormal: 15
+  vitesseRalenti: 6
   vitesseRapide: 50
   moinsViteX: 8
   moinsViteY: 4
@@ -698,7 +705,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 2.7279854, y: 0}
+  m_Offset: {x: -10.8802185, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -709,7 +716,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 4.544029, y: 20}
+  m_Size: {x: 3.9314575, y: 20}
   m_EdgeRadius: 0
 --- !u!1 &3164695464196073997
 GameObject:
@@ -737,7 +744,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3164695464196073997}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 119.7, y: 6.51, z: 0}
+  m_LocalPosition: {x: 120.42, y: 8.2, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 3164695463912075877}
@@ -809,6 +816,7 @@ MonoBehaviour:
   vitesseLente: 8
   vitesseNormale: 15
   vitesseRapide: 40
+  triggerDeathUp: 0
 --- !u!1 &3164695464309472487
 GameObject:
   m_ObjectHideFlags: 0
@@ -907,6 +915,7 @@ MonoBehaviour:
   vitesseLente: 8
   vitesseNormale: 15
   vitesseRapide: 40
+  triggerDeathUp: 0
 --- !u!1 &3164695464381526107
 GameObject:
   m_ObjectHideFlags: 0
@@ -933,7 +942,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3164695464381526107}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 43.49, y: -1.19, z: 0}
+  m_LocalPosition: {x: 55.18, y: -0.77, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 3164695463912075877}
@@ -1005,3 +1014,4 @@ MonoBehaviour:
   vitesseLente: 8
   vitesseNormale: 15
   vitesseRapide: 60
+  triggerDeathUp: 0

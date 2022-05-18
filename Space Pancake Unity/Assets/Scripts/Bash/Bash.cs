@@ -25,6 +25,9 @@ public class Bash : MonoBehaviour
     [SerializeField] private float duration;
     [SerializeField] private float amplitude;
 
+    [Header("Soldat Fraise")] 
+    [HideInInspector] public bool soldatFraise;
+
 
     [Header("Autres")]
     public GameObject arrow;
@@ -114,8 +117,14 @@ public class Bash : MonoBehaviour
             volume.weight = puissanceEffets;
         }
 
+        if (soldatFraise)
+            gameObject.GetComponent<SpriteRenderer>().enabled = false;
+
+        else
+            gameObject.GetComponent<SpriteRenderer>().enabled = true;
+
         // Fonctionnement pur de la serpe
-        if ((canUseSerpe && wantsToUseSerpe) || usingSerpe)
+        if ((canUseSerpe && wantsToUseSerpe || usingSerpe) && !soldatFraise)
         {
             UseSerpe();
         }
