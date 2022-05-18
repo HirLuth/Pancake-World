@@ -429,7 +429,7 @@ MonoBehaviour:
   abscisseJumpCurve: 0
   jumping: 0
   jumpForce: 27
-  tailleRaycastGround: 0.65
+  tailleRaycastGround: 0.67
   ground:
     serializedVersion: 2
     m_Bits: 64

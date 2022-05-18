@@ -51,18 +51,20 @@ public class SoldatFraise : MonoBehaviour
 
     void Update()
     {
+        // On désactive la hitbox de la lance
         if (bash.usingSerpe)
         {
             lanceCollider.enabled = false;
             grabLance = true;
         }
 
+        // Si le joueur arrête d'utiliser la serpe
         if (grabLance)
         {
             if (!bash.usingSerpe)
             {
                 stunPeriod = true;
-                bash.exitEffects = false;
+                bash.soldatFraise = true;
             }
         }
 
@@ -72,7 +74,7 @@ public class SoldatFraise : MonoBehaviour
             rbSelf.velocity = Vector2.zero;
             timer += Time.deltaTime;
             animatorSelf.SetBool("BriseLance", true);
-            bash.gameObject.SetActive(false);
+
             if (timer >= timeStun)
             {
                 animatorSelf.SetBool("Repousse", true);
@@ -80,7 +82,7 @@ public class SoldatFraise : MonoBehaviour
 
             if (timer >= timeStun + timeToGrow)
             {
-                bash.gameObject.SetActive(true);
+                bash.soldatFraise = false;
                 animatorSelf.SetBool("BriseLance", false);
                 animatorSelf.SetBool("Repousse", false);
                 timer = 0;
