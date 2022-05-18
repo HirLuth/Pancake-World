@@ -7,4 +7,6 @@ public class Nodes : MonoBehaviour
     public float vitesseLente;
     public float vitesseNormale;
     public float vitesseRapide;
+
+    public bool triggerDeathUp;
 }

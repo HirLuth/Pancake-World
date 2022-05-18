@@ -27,6 +27,7 @@ public class Rail : MonoBehaviour
 
         return Vector3.Lerp(p1, p2, ratio);
     }
+    
 
     public Vector2 CatmullPosition(int seg, float ratio)
     {
