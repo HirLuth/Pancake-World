@@ -11,13 +11,16 @@ public class TriggerFraise : MonoBehaviour
 
     [Header("Variables modifiables")] 
     public List<SoldatFraise> listFraiseToControl;
+    private Character character;
 
     void Start()
     {
+        character = Character.Instance;
         foreach (SoldatFraise fraise in listFraiseToControl)
         {
-            if (SpawnPointManagement.spawnPointLocation.x >= transform.position.x)
+            if (SpawnPointManagement.spawnPointLocation.x >= transform.position.x && character.activatespawnpoint)
             {
+                Debug.Log("Ouou");
                 fraise.iaIsWalking = true;
             }
             else

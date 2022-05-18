@@ -10,7 +10,7 @@ public class SpawnPointManagement : MonoBehaviour
     public static SpawnPointManagement instance;
     public static Vector2 spawnPointLocation;
     public static bool spawnWasModifiedOnce;
-    [SerializeField] private bool activerCheckpoint;
+    public bool activerCheckpoint;
     public List<Vector2> locationCollectibleCollected;
 
     private void Awake()
