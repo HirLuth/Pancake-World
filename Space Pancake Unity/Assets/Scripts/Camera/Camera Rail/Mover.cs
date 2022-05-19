@@ -38,6 +38,8 @@ public class Mover : MonoBehaviour
 
     void FixedUpdate()
     {
+        Debug.Log(go);
+        
         if (!isCompleted && go)
             Play();
 
