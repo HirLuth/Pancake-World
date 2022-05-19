@@ -214,24 +214,28 @@ public class Bash : MonoBehaviour
     
     private void OnTriggerExit2D(Collider2D other)
     {
-        canUseSerpe = false;
-
-        // Tout ce qui concerne l'arr�t du ralenti
-        Time.timeScale = 1;
-        Time.fixedDeltaTime = 0.02f * Time.timeScale;
-        volume.weight = 0;
-
-        // Tout le reste 
-        arrow.SetActive(false);
-        Character.Instance.noControl = false;
-        usingSerpe = false;
-        spriteRenderer.color = couleurNonDetection;
-
-        if (!exitEffects)
+        if (other.tag == "Character")
         {
-            timerEffets = 0;
-        }
+            Debug.Log(12);
+            canUseSerpe = false;
 
-        Character.Instance.anim.SetBool("isGrabbing", false);
+            // Tout ce qui concerne l'arr�t du ralenti
+            Time.timeScale = 1;
+            Time.fixedDeltaTime = 0.02f * Time.timeScale;
+            volume.weight = 0;
+
+            // Tout le reste 
+            arrow.SetActive(false);
+            Character.Instance.noControl = false;
+            usingSerpe = false;
+            spriteRenderer.color = couleurNonDetection;
+
+            if (!exitEffects)
+            {
+                timerEffets = 0;
+            }
+
+            Character.Instance.anim.SetBool("isGrabbing", false);
+        }
     }
 }

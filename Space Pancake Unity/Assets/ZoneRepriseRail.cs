@@ -6,13 +6,14 @@ using UnityEngine;
 public class ZoneRepriseRail : MonoBehaviour
 {
     public int pointReprise;
+    public Mover mover;
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (!Mover.Instance.go && other.tag == "Character")
+        if (!mover.go && other.tag == "Character")
         {
-            Mover.Instance.currentSeg = pointReprise;
-            Mover.Instance.go = true;
+            mover.currentSeg = pointReprise;
+            mover.go = true;
         }
     }
 }
