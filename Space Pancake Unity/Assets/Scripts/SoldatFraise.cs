@@ -43,6 +43,15 @@ public class SoldatFraise : MonoBehaviour
         {
             isGoingRight = false;
         }
+
+        if (iaIsWalking)
+        {
+            animatorSelf.SetBool("Walking", true);
+        }
+        else
+        {
+            animatorSelf.SetBool("Walking", false);
+        }
     }
 
     private void Start()
