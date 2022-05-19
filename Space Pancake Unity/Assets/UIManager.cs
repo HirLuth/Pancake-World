@@ -5,17 +5,22 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
+    public static UIManager Instance;
+    
     private GameObject mainUI;
     private GameObject UIPause;
 
     private PlayerControls controls;
 
     [Header("Pause")]
-    private bool pauseActive;
+    [HideInInspector] public bool pauseActive;
+    private float timerSortiePause;
 
     private void Awake()
     {
         controls = new PlayerControls();
+
+        Instance = this;
     }
 
     private void OnEnable()
@@ -35,6 +40,8 @@ public class UIManager : MonoBehaviour
         UIPause = InstancePause.Instance.gameObject;
 
         pauseActive = false;
+
+        timerSortiePause = 1;
     }
 
 
@@ -58,7 +65,15 @@ public class UIManager : MonoBehaviour
 
                 Time.timeScale = 1;
                 Character.Instance.noControl = false;
+
+                timerSortiePause = 0;
             }
+        }
+
+        if (timerSortiePause < 0.1f)
+        {
+            timerSortiePause += Time.deltaTime;
+            Character.Instance.jump = false;
         }
     }
 
@@ -69,5 +84,18 @@ public class UIManager : MonoBehaviour
 
         Time.timeScale = 1;
         Character.Instance.noControl = false;
+        Character.Instance.jump = false;
+        
+        timerSortiePause = 0;
+    }
+
+    public void Restart()
+    {
+        pauseActive = false;
+        UIPause.SetActive(false);
+
+        Time.timeScale = 1;
+
+        EventManager.Instance.Death();
     }
 }
