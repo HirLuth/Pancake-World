@@ -13,7 +13,7 @@ public class Character: MonoBehaviour
     [HideInInspector] public bool moveLeft;
     [HideInInspector] public bool moveRight;
     private bool run;
-    private bool jump;
+    [HideInInspector] public bool jump;
     private bool wallJump;
 
     
@@ -192,6 +192,14 @@ public class Character: MonoBehaviour
         }
 
 
+        if (UIManager.Instance.pauseActive)
+        {
+            jump = false;
+
+        }
+        
+
+
         // Tous les raycasts
         // Raycast de détection du sol
         onGround = Physics2D.Raycast(transform.position - new Vector3(0.30f,0,0), Vector2.down, tailleRaycastGround, ground);
@@ -285,7 +293,7 @@ public class Character: MonoBehaviour
                 }
             }
 
-            if ((jump && onGround) || jumping)
+            if (jump && onGround || jumping)
             {
                 Jump();
             }
@@ -792,8 +800,7 @@ public class Character: MonoBehaviour
     public IEnumerator WaitSpawn(float duree)
     {
         EventManager.Instance.dieOnce = false;
-        rb.bodyType = RigidbodyType2D.Dynamic;
-        
+
         anim.SetTrigger("isSpawning");
 
         if (!activatespawnpoint)
@@ -809,6 +816,8 @@ public class Character: MonoBehaviour
 
         yield return new WaitForSeconds(duree);
         
+        rb.bodyType = RigidbodyType2D.Dynamic;
+        noControl = false;
         apparition = false;
         rb.gravityScale = stockageGravityScale;
     }

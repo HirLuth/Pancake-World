@@ -216,7 +216,6 @@ public class Bash : MonoBehaviour
     {
         if (other.tag == "Character")
         {
-            Debug.Log(12);
             canUseSerpe = false;
 
             // Tout ce qui concerne l'arr�t du ralenti
