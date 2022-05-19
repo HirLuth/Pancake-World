@@ -14,6 +14,7 @@ public class Mover : MonoBehaviour
 
     public bool go;
     private float avanceeTransition;
+    private bool oneTime;
 
     [Header("Vitesses")]
     public float vitesseNormal;
@@ -38,13 +39,14 @@ public class Mover : MonoBehaviour
 
     void FixedUpdate()
     {
-        Debug.Log(go);
-        
         if (!isCompleted && go)
             Play();
 
-        else
+        else if (isCompleted && !oneTime)
+        {
             CameraMovements.Instance.isOnRail = false;
+            oneTime = true;
+        }
     }
 
     private void Play()
