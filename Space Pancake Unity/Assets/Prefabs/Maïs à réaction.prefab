@@ -268,7 +268,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   timerToExplode: 2
-  explosionAnimationTimer: 0.2
+  explosionAnimationTimer: 0.55
   positionSetUpDistanceFromEdge: 1
   multiplicatorTimeToGetInPosition: 2
   directionnalModificator: 3
