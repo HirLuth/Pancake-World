@@ -119,6 +119,7 @@ public class Character: MonoBehaviour
     public float stockageGravityScale;
     public float limiteVitesseChute;
     public bool isSpawning;
+    public bool menuPrincipale;
     public Vector3 coordonnesApparition;
 
 
@@ -141,7 +142,7 @@ public class Character: MonoBehaviour
         stockageJumpForce = jumpForce;
         stockageGravityScale = rb.gravityScale;
 
-        isSpawning = true;
+        isSpawning = false;
 
         if(Instance == null)
         {    
@@ -150,6 +151,8 @@ public class Character: MonoBehaviour
         }
         else if(Instance != this)
             Destroy(gameObject); // On reload, singleton already set, so destroy duplicate.
+
+        menuPrincipale = true;
     }
     
     private void OnEnable()
@@ -170,220 +173,223 @@ public class Character: MonoBehaviour
 
     private void Update()
     {
-        if (isSpawning)
+        if (!menuPrincipale)
         {
-            isRunning = false;
-            isWalking = false;
-
-            anim.SetBool("isOnTyroMaïs", false);
-            
-            
-            if (activatespawnpoint && SpawnPointManagement.spawnWasModifiedOnce)
+            if (isSpawning)
             {
-                transform.position = SpawnPointManagement.spawnPointLocation;
-            }
-            else
-            {
-                transform.position = coordonnesApparition;
-            }
-    
-        
-            StartCoroutine(WaitSpawn(dureeSpawn));
-        }
+                isRunning = false;
+                isWalking = false;
 
-
-        if (UIManager.Instance.pauseActive)
-        {
-            jump = false;
-
-        }
-        
-
-
-        // Tous les raycasts
-        // Raycast de détection du sol
-        onGround = Physics2D.Raycast(transform.position - new Vector3(0.30f,0,0), Vector2.down, tailleRaycastGround, ground);
-        
-        if (!onGround)
-        {
-            onGround = Physics2D.Raycast(transform.position + new Vector3(0.30f,0,0), Vector2.down, tailleRaycastGround, ground);
-        }
-        else if (!onGround)
-        {
-            onGround = Physics2D.Raycast(transform.position, Vector2.down, tailleRaycastGround, ground);
-        }
-
-        // Raycast de détection de mur à gauche
-        canWallJumpLeft = Physics2D.Raycast(transform.position + new Vector3(0,0.5f,0), Vector2.left, tailleRaycastWall, ground);
-
-        if (!canWallJumpLeft)
-        {
-            canWallJumpLeft = Physics2D.Raycast(transform.position - new Vector3(0,0.5f,0), Vector2.left, tailleRaycastWall, ground);
-        }
-        else if (!canWallJumpLeft)
-        {
-            canWallJumpLeft = Physics2D.Raycast(transform.position, Vector2.left, tailleRaycastWall, ground);
-        }
-        
-        // Raycast de détection de mur à droite
-        canWallJumpRight = Physics2D.Raycast(transform.position + new Vector3(0,0.5f,0), Vector2.right, tailleRaycastWall, ground);
-
-        if (!canWallJumpRight)
-        {
-            canWallJumpRight = Physics2D.Raycast(transform.position - new Vector3(0,0.5f,0), Vector2.right, tailleRaycastWall, ground);
-        }
-        else if (!canWallJumpRight)
-        {
-            canWallJumpRight = Physics2D.Raycast(transform.position, Vector2.right, tailleRaycastWall, ground);
-        }
-
-        // Détection des différents contrôles
-        if (controls.Personnage.MoveLeft.WasPerformedThisFrame())
-        {
-            moveLeft = true;
-            moveRight = false;
-            direction = -1;
-        }
-
-        if (controls.Personnage.MoveRight.WasPerformedThisFrame())
-        {
-            moveRight = true;
-            moveLeft = false;
-            direction = 1;
-        }
-
-        if (controls.Personnage.Sauter.WasPressedThisFrame() && (canWallJumpLeft || canWallJumpRight) && !onGround)
-        {
-            wallJump = true;
-        }
-
-
-        if (!usingSerpe && !noControl && !apparition)
-        {
-            // Lancement des différentes fonctions
-            if (onGround)
-            {
-                Detection.canUseZipline = false;
-                noAirControl = false;
-
-                ghostJumpTimer = 0;
-                jumped = false;
+                anim.SetBool("isOnTyroMaïs", false);
                 
-                isJumping = false;
-                isFalling = false;
-                stop = false;
-                isOnWall = false;
-                timerWallJump = 0;
-
-                resistanceWall = 0;
                 
-                MoveCharacter();
-            }
-
-            else if (!noAirControl)
-            {
-                if (canWallJumpLeft || canWallJumpRight || isWallJumping)
+                if (activatespawnpoint && SpawnPointManagement.spawnWasModifiedOnce)
                 {
-                    isOnWall = true;
-                    WallJump();
+                    transform.position = SpawnPointManagement.spawnPointLocation;
                 }
                 else
                 {
+                    transform.position = coordonnesApparition;
+                }
+        
+            
+                StartCoroutine(WaitSpawn(dureeSpawn));
+            }
+
+
+            if (UIManager.Instance.pauseActive)
+            {
+                jump = false;
+
+            }
+            
+
+
+            // Tous les raycasts
+            // Raycast de détection du sol
+            onGround = Physics2D.Raycast(transform.position - new Vector3(0.30f,0,0), Vector2.down, tailleRaycastGround, ground);
+            
+            if (!onGround)
+            {
+                onGround = Physics2D.Raycast(transform.position + new Vector3(0.30f,0,0), Vector2.down, tailleRaycastGround, ground);
+            }
+            else if (!onGround)
+            {
+                onGround = Physics2D.Raycast(transform.position, Vector2.down, tailleRaycastGround, ground);
+            }
+
+            // Raycast de détection de mur à gauche
+            canWallJumpLeft = Physics2D.Raycast(transform.position + new Vector3(0,0.5f,0), Vector2.left, tailleRaycastWall, ground);
+
+            if (!canWallJumpLeft)
+            {
+                canWallJumpLeft = Physics2D.Raycast(transform.position - new Vector3(0,0.5f,0), Vector2.left, tailleRaycastWall, ground);
+            }
+            else if (!canWallJumpLeft)
+            {
+                canWallJumpLeft = Physics2D.Raycast(transform.position, Vector2.left, tailleRaycastWall, ground);
+            }
+            
+            // Raycast de détection de mur à droite
+            canWallJumpRight = Physics2D.Raycast(transform.position + new Vector3(0,0.5f,0), Vector2.right, tailleRaycastWall, ground);
+
+            if (!canWallJumpRight)
+            {
+                canWallJumpRight = Physics2D.Raycast(transform.position - new Vector3(0,0.5f,0), Vector2.right, tailleRaycastWall, ground);
+            }
+            else if (!canWallJumpRight)
+            {
+                canWallJumpRight = Physics2D.Raycast(transform.position, Vector2.right, tailleRaycastWall, ground);
+            }
+
+            // Détection des différents contrôles
+            if (controls.Personnage.MoveLeft.WasPerformedThisFrame())
+            {
+                moveLeft = true;
+                moveRight = false;
+                direction = -1;
+            }
+
+            if (controls.Personnage.MoveRight.WasPerformedThisFrame())
+            {
+                moveRight = true;
+                moveLeft = false;
+                direction = 1;
+            }
+
+            if (controls.Personnage.Sauter.WasPressedThisFrame() && (canWallJumpLeft || canWallJumpRight) && !onGround)
+            {
+                wallJump = true;
+            }
+
+
+            if (!usingSerpe && !noControl && !apparition)
+            {
+                // Lancement des différentes fonctions
+                if (onGround)
+                {
+                    Detection.canUseZipline = false;
+                    noAirControl = false;
+
+                    ghostJumpTimer = 0;
+                    jumped = false;
+                    
+                    isJumping = false;
+                    isFalling = false;
+                    stop = false;
                     isOnWall = false;
+                    timerWallJump = 0;
+
+                    resistanceWall = 0;
+                    
+                    MoveCharacter();
+                }
+
+                else if (!noAirControl)
+                {
+                    if (canWallJumpLeft || canWallJumpRight || isWallJumping)
+                    {
+                        isOnWall = true;
+                        WallJump();
+                    }
+                    else
+                    {
+                        isOnWall = false;
+                    }
+                }
+
+                if (jump && onGround || jumping)
+                {
+                    Jump();
+                }
+
+                RotateCharacter();
+            }
+
+            else if (apparition)
+            {
+                rb.velocity = new Vector2(0, 0);
+                transform.position = new Vector3(transform.position.x, transform.position.y, 0.01f);
+            }
+
+            else
+            {
+                jumping = false;
+                abscisseJumpCurve = 0;
+            }
+            
+            VFX();
+            
+            // Ghost jump
+            if (!onGround && !jumped && ghostJumpTimer < dureeGhostJump)
+            {
+                ghostJumpTimer += Time.deltaTime;
+
+                if (jump)
+                {
+                    Jump();
                 }
             }
-
-            if (jump && onGround || jumping)
+            
+            
+            // Limite de la vitesse de chute
+            if (rb.velocity.y < -limiteVitesseChute)
             {
-                Jump();
+                rb.velocity = new Vector2(rb.velocity.x, -limiteVitesseChute);
             }
 
-            RotateCharacter();
-        }
 
-        else if (apparition)
-        {
-            rb.velocity = new Vector2(0, 0);
-            transform.position = new Vector3(transform.position.x, transform.position.y, 0.01f);
-        }
-
-        else
-        {
-            jumping = false;
-            abscisseJumpCurve = 0;
-        }
-        
-        VFX();
-        
-        // Ghost jump
-        if (!onGround && !jumped && ghostJumpTimer < dureeGhostJump)
-        {
-            ghostJumpTimer += Time.deltaTime;
-
-            if (jump)
+            // Pour la camera
+            if(!dontChangeZoom)
             {
-                Jump();
+                if (Mathf.Abs(rb.velocity.x) > speed + 0.1f && timerDezoom < 1f)
+                {
+                    timerDezoom += Time.deltaTime * vitesseDezoom;
+                }
+
+                else if (timerDezoom > 0f)
+                {
+                    timerDezoom -= Time.deltaTime * vitesseZoom;
+                }
             }
-        }
-        
-        
-        // Limite de la vitesse de chute
-        if (rb.velocity.y < -limiteVitesseChute)
-        {
-            rb.velocity = new Vector2(rb.velocity.x, -limiteVitesseChute);
-        }
-
-
-        // Pour la camera
-        if(!dontChangeZoom)
-        {
-            if (Mathf.Abs(rb.velocity.x) > speed + 0.1f && timerDezoom < 1f)
+            else
             {
-                timerDezoom += Time.deltaTime * vitesseDezoom;
+                dontChangeZoom = false;
             }
 
-            else if (timerDezoom > 0f)
+            dezoomCamera = Mathf.Lerp(0, dezoomMax, Mathf.SmoothStep(0.0f, 1.0f, timerDezoom));
+
+
+            // Pour les animations
+            if (rb.velocity.y < -0.1f)
             {
-                timerDezoom -= Time.deltaTime * vitesseZoom;
+                isFalling = true;
+                jumping = false;
             }
-        }
-        else
-        {
-            dontChangeZoom = false;
-        }
-
-        dezoomCamera = Mathf.Lerp(0, dezoomMax, Mathf.SmoothStep(0.0f, 1.0f, timerDezoom));
-
-
-        // Pour les animations
-        if (rb.velocity.y < -0.1f)
-        {
-            isFalling = true;
-            jumping = false;
-        }
-        else if (rb.velocity.y > 0.1f)
-        {
-            isFalling = false;
-            isJumping = true;
-        }
-
-        anim.SetBool("isRunning", isRunning);
-        anim.SetBool("isWalking", isWalking);
-        anim.SetBool("isJumping", isJumping);
-        anim.SetBool("isFalling", isFalling);
-        anim.SetBool("isOnGround", onGround);
-        anim.SetBool("isOnWall", isOnWall);
-        anim.SetBool("isWallJumping", isWallJumping);
-
-
-        if (jumping || !stopStretch)
-        {
-            stopStretch = false;
-            transform.localScale = new Vector2(1.2f - rb.velocity.y * stretch, 1.2f + rb.velocity.y * stretch);
-
-            if(rb.velocity.y < -0.1f)
+            else if (rb.velocity.y > 0.1f)
             {
-                stopStretch = true;
+                isFalling = false;
+                isJumping = true;
+            }
+
+            anim.SetBool("isRunning", isRunning);
+            anim.SetBool("isWalking", isWalking);
+            anim.SetBool("isJumping", isJumping);
+            anim.SetBool("isFalling", isFalling);
+            anim.SetBool("isOnGround", onGround);
+            anim.SetBool("isOnWall", isOnWall);
+            anim.SetBool("isWallJumping", isWallJumping);
+
+
+            if (jumping || !stopStretch)
+            {
+                stopStretch = false;
+                transform.localScale = new Vector2(1.2f - rb.velocity.y * stretch, 1.2f + rb.velocity.y * stretch);
+
+                if(rb.velocity.y < -0.1f)
+                {
+                    stopStretch = true;
+                }
             }
         }
     }

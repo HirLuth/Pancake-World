@@ -59,31 +59,55 @@ public class CameraMovements : MonoBehaviour
     public static CameraMovements Instance;
     public GameObject fondu;
     [HideInInspector] public bool followPlayer;
+    private float offsetStart;
+    private float avanceeOffsetStart;
 
 
+    private void Awake()
+    {
+        Instance = this;
+    }
 
 
     private void Start()
     {
-        Instance = this;
-        
-        camera = gameObject.GetComponent<Camera>();
-        stockageSize = EventManager.Instance.stockageZoom;
-        followPlayer = true;
+        if (!Character.Instance.menuPrincipale)
+        {
+            camera = gameObject.GetComponent<Camera>();
+            stockageSize = EventManager.Instance.stockageZoom;
+            followPlayer = true;
 
-        transform.position = new Vector3(Character.Instance.transform.position.x, Character.Instance.transform.position.y, -10);
+            transform.position = new Vector3(Character.Instance.transform.position.x, Character.Instance.transform.position.y, -10);
         
-        fondu.SetActive(true);
-        fondu.GetComponent<SpriteRenderer>().DOFade(0, EventManager.Instance.dureeZoom);
+            fondu.SetActive(true);
+            fondu.GetComponent<SpriteRenderer>().DOFade(0, EventManager.Instance.dureeZoom);
         
-        camera.orthographicSize = EventManager.Instance.newZoom;
-        camera.DOOrthoSize(EventManager.Instance.stockageZoom, EventManager.Instance.dureeZoom);
+            camera.orthographicSize = EventManager.Instance.newZoom;
+            camera.DOOrthoSize(EventManager.Instance.stockageZoom, EventManager.Instance.dureeZoom);
+        }
+        
+        else
+        {
+            camera = gameObject.GetComponent<Camera>();
+            stockageSize = EventManager.Instance.stockageZoom;
+            followPlayer = true;
+
+            transform.position = new Vector3(Character.Instance.transform.position.x, Character.Instance.transform.position.y + 15, -10);
+        
+            fondu.SetActive(true);
+            fondu.GetComponent<SpriteRenderer>().DOFade(0, 0);
+        
+            camera.orthographicSize = EventManager.Instance.newZoom;
+            camera.DOOrthoSize(EventManager.Instance.stockageZoom, 0);
+            
+            offsetStart = Character.Instance.transform.position.y - transform.position.y;
+        }
     }
 
 
     void FixedUpdate()
     {
-        if (!Character.Instance.isSpawning && !EventManager.Instance.isDead)
+        if (!Character.Instance.isSpawning && !EventManager.Instance.isDead && !Character.Instance.menuPrincipale)
         {
             zoneMort.SetActive(false);
         
@@ -218,6 +242,17 @@ public class CameraMovements : MonoBehaviour
                     offset.y = offsetMaïs;
                 }
             }
+            
+            
+            // Partie lancement
+            if (offsetStart > 0)
+            {
+                offset.y = offsetStart;
+                avanceeOffsetStart += Time.deltaTime / 2;
+                
+                offsetStart = Mathf.Lerp(15, 0, Mathf.Lerp(0, 1, avanceeOffsetStart));
+            }
+            
 
             if (!isOnRail)
             {
