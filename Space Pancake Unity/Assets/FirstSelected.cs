@@ -16,6 +16,7 @@ public class FirstSelected : MonoBehaviour
     public float speedOscillation;
     private bool goDown;
     private bool goUp;
+    private float timer;
     
     private GameObject bouton;
     private Vector3 originalPosition;
@@ -23,6 +24,9 @@ public class FirstSelected : MonoBehaviour
 
     private GameObject newBouton;
     private Vector3 newOriginalPosition;
+    
+    
+    
     
     
     void Update()
@@ -56,6 +60,7 @@ public class FirstSelected : MonoBehaviour
 
             goUp = true;
             goDown = false;
+            timer = 0;
             
             bouton = eventSystem.currentSelectedGameObject;
             originalPosition = bouton.transform.position;
@@ -69,7 +74,13 @@ public class FirstSelected : MonoBehaviour
                 goUp = false;
                 bouton.transform.DOMoveY(originalPosition.y + 10, speedOscillation);
 
-                StartCoroutine(BoutonUp());
+                timer += Time.deltaTime;
+
+                if (timer >= speedOscillation)
+                {
+                    timer = 0;
+                    goDown = true;
+                }
             }
             
             if (goDown)
@@ -77,7 +88,13 @@ public class FirstSelected : MonoBehaviour
                 goDown = false;
                 bouton.transform.DOMoveY(originalPosition.y - 10, speedOscillation);
 
-                StartCoroutine(BoutonDown());
+                timer += Time.deltaTime;
+
+                if (timer >= speedOscillation)
+                {
+                    timer = 0;
+                    goUp = true;
+                }
             }
         }
     }
