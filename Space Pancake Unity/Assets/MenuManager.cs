@@ -29,10 +29,9 @@ public class MenuManager : MonoBehaviour
             Time.timeScale = 0;
         }
 
-        else
+        else 
         {
             menu.SetActive(false);
-            Time.timeScale = 1;
         }
     }
 

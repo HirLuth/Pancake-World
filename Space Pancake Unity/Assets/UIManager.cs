@@ -56,6 +56,8 @@ public class UIManager : MonoBehaviour
 
                 Time.timeScale = 0;
                 Character.Instance.noControl = true;
+                
+                Debug.Log(12);
             }
 
             else
