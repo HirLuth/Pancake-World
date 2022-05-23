@@ -101,6 +101,8 @@ public class CameraMovements : MonoBehaviour
             camera.DOOrthoSize(EventManager.Instance.stockageZoom, 0);
             
             offsetStart = Character.Instance.transform.position.y - transform.position.y;
+            
+            Debug.Log(12);
         }
     }
 
