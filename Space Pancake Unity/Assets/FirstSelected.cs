@@ -44,7 +44,7 @@ public class FirstSelected : MonoBehaviour
 
 
         
-        if (eventSystem.currentSelectedGameObject != bouton)
+        if (eventSystem.currentSelectedGameObject != bouton && eventSystem.currentSelectedGameObject)
         {
             if (bouton != null)
             {
