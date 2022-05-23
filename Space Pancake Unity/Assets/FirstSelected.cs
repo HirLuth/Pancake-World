@@ -14,6 +14,8 @@ public class FirstSelected : MonoBehaviour
 
     [Header("Oscillation")] 
     public float speedOscillation;
+    private bool goDown;
+    private bool goUp;
     
     private GameObject bouton;
     private Vector3 originalPosition;
@@ -46,35 +48,51 @@ public class FirstSelected : MonoBehaviour
         {
             if (bouton != null)
             {
-                StopCoroutines(BoutonSelected());
+                StopCoroutine(BoutonUp());
+                StopCoroutine(BoutonDown());
+                
                 bouton.transform.DOMoveY(originalPosition.y, speedOscillation);
             }
 
-            stop = false;
+            goUp = true;
+            goDown = false;
+            
             bouton = eventSystem.currentSelectedGameObject;
             originalPosition = bouton.transform.position;
-            
-            Debug.Log(12);
         }
         
 
-        if (eventSystem.currentSelectedGameObject && !stop)
+        if (eventSystem.currentSelectedGameObject)
         {
-            stop = true;
-            StartCoroutine(BoutonSelected());
+            if (goUp)
+            {
+                goUp = false;
+                bouton.transform.DOMoveY(originalPosition.y + 10, speedOscillation);
+
+                StartCoroutine(BoutonUp());
+            }
+            
+            if (goDown)
+            {
+                goDown = false;
+                bouton.transform.DOMoveY(originalPosition.y - 10, speedOscillation);
+
+                StartCoroutine(BoutonDown());
+            }
         }
     }
 
 
-    public IEnumerator BoutonSelected()
+    public IEnumerator BoutonUp()
     {
-        bouton.transform.DOMoveY(originalPosition.y + 10, speedOscillation);
         yield return new WaitForSeconds(speedOscillation);
-        
-        bouton.transform.DOMoveY(originalPosition.y - 10, speedOscillation);
+        goDown = true;
+    }
+
+    public IEnumerator BoutonDown()
+    {
         yield return new WaitForSeconds(speedOscillation);
-        
-        stop = false;
+        goUp = true;
     }
 
     public IEnumerator BoutonCanceled()
