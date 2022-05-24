@@ -101,7 +101,7 @@ public class MaïsAReaction : MonoBehaviour
             CameraMovements.Instance.maïsCamera = true;
             
             Character.Instance.anim.SetBool("isOnTyroMaïs", true);
-            Character.Instance.GetComponent<SpriteRenderer>().sortingOrder = -10;
+            Character.Instance.GetComponent<SpriteRenderer>().sortingOrder = -1;
             
             spriteSelf.color = colorNotAtRange;
             animatorSelf.SetBool("maïsIsGoingUp", true);
@@ -122,7 +122,8 @@ public class MaïsAReaction : MonoBehaviour
                 Character.Instance.GetComponent<SpriteRenderer>().sortingOrder = 3;
             }
             
-            if (playerGameObject.transform.position == transform.position + new Vector3(-0.35f, -1, 0) * positionSetUpDistanceFromEdge)
+            if (playerGameObject.transform.position == transform.position + new Vector3(-0.40f, -1, 0) * positionSetUpDistanceFromEdge || 
+                playerGameObject.transform.position == transform.position + new Vector3(0.30f, -1, 0) * positionSetUpDistanceFromEdge)
             {
                 
                 playerRB.velocity = new Vector2(horizontaleSpeedSide*directionnalModificator, courbeAccelerationMonté.Evaluate(timer/timerToExplode) * maxSpeedGoingUp) ;
@@ -133,9 +134,15 @@ public class MaïsAReaction : MonoBehaviour
                     isInDestroyingAnmation = true;
                 }
             }
-            else if (!launchedWithoutPlayer)
+            else if (!launchedWithoutPlayer && Character.Instance.transform.rotation.y != 0)
             {
-                playerGameObject.transform.position = Vector3.Lerp(playerGameObject.transform.position, transform.position + new Vector3(-0.35f, -1, 0) * positionSetUpDistanceFromEdge, 
+                playerGameObject.transform.position = Vector3.Lerp(playerGameObject.transform.position, transform.position + new Vector3(0.30f, -1, 0) * positionSetUpDistanceFromEdge, 
+                    timer*multiplicatorTimeToGetInPosition);
+            }
+            
+            else if (!launchedWithoutPlayer && Character.Instance.transform.rotation.y == 0)
+            {
+                playerGameObject.transform.position = Vector3.Lerp(playerGameObject.transform.position, transform.position + new Vector3(-0.40f, -1, 0) * positionSetUpDistanceFromEdge, 
                     timer*multiplicatorTimeToGetInPosition);
             }
         }

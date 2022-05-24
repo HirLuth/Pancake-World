@@ -62,6 +62,7 @@ public class EventManager : MonoBehaviour
     {
         if (!dieOnce)
         {
+            Debug.Log(12);
             dieOnce = true;
             Time.timeScale = 1;
 
@@ -81,6 +82,7 @@ public class EventManager : MonoBehaviour
             Character.Instance.rb.gravityScale = 0;
             Character.Instance.rb.velocity = new Vector2(0, 0);
             Character.Instance.rb.bodyType = RigidbodyType2D.Static;
+            Character.Instance.GetComponent<SpriteRenderer>().sortingOrder = 3;
 
             // On lance son animation
             Character.Instance.anim.SetTrigger("isDead");

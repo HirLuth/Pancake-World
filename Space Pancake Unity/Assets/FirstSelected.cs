@@ -72,7 +72,7 @@ public class FirstSelected : MonoBehaviour
             if (goUp)
             {
                 goUp = false;
-                bouton.transform.DOMoveY(originalPosition.y + 10, speedOscillation);
+                bouton.transform.DOMoveY(originalPosition.y + 4, speedOscillation);
                 bouton.transform.DOScale(newSize, speedOscillation);
 
                 timer += Time.deltaTime;
@@ -87,7 +87,7 @@ public class FirstSelected : MonoBehaviour
             if (goDown)
             {
                 goDown = false;
-                bouton.transform.DOMoveY(originalPosition.y - 10, speedOscillation);
+                bouton.transform.DOMoveY(originalPosition.y - 4, speedOscillation);
 
                 timer += Time.deltaTime;
 
