@@ -71,6 +71,9 @@ public class Character: MonoBehaviour
     private float stockageWallJump;
     [SerializeField] float dureeNoAirControl;
     private float resistanceWall;
+    private bool wantsToWallJump;
+    private float timerWallJumpBuffer;
+    public float maxTimerWallJumpBuffer;
 
 
     [Header("Animations")]
@@ -297,6 +300,23 @@ public class Character: MonoBehaviour
                     {
                         isOnWall = false;
                     }
+
+                    
+                    if (controls.Personnage.Sauter.WasPerformedThisFrame())
+                    {
+                        wantsToWallJump = true;
+                    }
+
+                    if (wantsToWallJump)
+                    {
+                        timerWallJumpBuffer += Time.deltaTime;
+
+                        if (timerWallJumpBuffer > maxTimerWallJumpBuffer)
+                        {
+                            wantsToWallJump = false;
+                            timerWallJumpBuffer = 0;
+                        }
+                    }
                 }
 
                 if (jump && onGround || jumping)
@@ -309,7 +329,6 @@ public class Character: MonoBehaviour
 
             else if (apparition)
             {
-                rb.velocity = new Vector2(0, 0);
                 transform.position = new Vector3(transform.position.x, transform.position.y, 0.01f);
             }
 
@@ -720,7 +739,7 @@ public class Character: MonoBehaviour
 
 
         // si le joueur saute du mur
-        else if (!isWallJumping && wallJump && timerWallJump == 0)
+        else if (!isWallJumping && wallJump && timerWallJump == 0 || wantsToWallJump)
         {
             runAirControl = true;
             timerWallJump += Time.deltaTime;
@@ -818,6 +837,15 @@ public class Character: MonoBehaviour
         isSpawning = false;
         apparition = true;
         rb.gravityScale = 0;
+        abscisseMovementsCurve = 0;
+        abscisseRunCurve = 0;
+        
+        timerWallJumpBuffer = 0;
+        timerDezoom = 0;
+        timerWallJump = 0;
+        ghostJumpTimer = 0;
+
+        abscisseJumpCurve = 0;
         abscisseMovementsCurve = 0;
         abscisseRunCurve = 0;
 
