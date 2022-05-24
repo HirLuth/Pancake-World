@@ -336,6 +336,7 @@ public class Character: MonoBehaviour
             else
             {
                 jumping = false;
+                timerWallJumpBuffer = 0;
                 abscisseJumpCurve = 0;
             }
             
@@ -849,6 +850,8 @@ public class Character: MonoBehaviour
         abscisseJumpCurve = 0;
         abscisseMovementsCurve = 0;
         abscisseRunCurve = 0;
+
+        GetComponent<SpriteRenderer>().sortingOrder = 3;
 
         yield return new WaitForSeconds(duree);
         
