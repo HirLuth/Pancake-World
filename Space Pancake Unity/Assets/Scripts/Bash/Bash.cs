@@ -157,8 +157,8 @@ public class Bash : MonoBehaviour
                 // On donne de l'�lan au personnage
                 direction = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical") + 0.23f);
                 rb.velocity = direction.normalized * force;
-
-                //Character.Instance.anim.SetTrigger("isUsingSerpe");
+                
+                // Animations
                 Character.Instance.anim.SetBool("isUsingSerpe2", true);
                 Character.Instance.anim.SetBool("isGrabbing", false);
             }
