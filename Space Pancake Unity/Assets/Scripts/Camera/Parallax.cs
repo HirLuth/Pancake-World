@@ -18,29 +18,25 @@ public class Parallax : MonoBehaviour
     {
         startPosX = CameraMovements.Instance.transform.position.x;
         length = GetComponent<SpriteRenderer>().bounds.size.x;
-
-        float dist = (CameraMovements.Instance.transform.position.x * parallaxEffect);
+        
         transform.position = new Vector3(startPosX, transform.position.y, transform.position.z);
     }
 
 
     void FixedUpdate()
     {
-        if (!Character.Instance.menuPrincipale)
+        float temp = (CameraMovements.Instance.transform.position.x * (1 - parallaxEffect));
+        float dist = (CameraMovements.Instance.transform.position.x * parallaxEffect);
+
+        transform.position = new Vector3(startPosX + dist, transform.position.y, transform.position.z);
+
+        if (temp > startPosX + length)
+        { 
+            startPosX += length;
+        }
+        else if (temp < startPosX - length)
         {
-            float temp = (CameraMovements.Instance.transform.position.x * (1 - parallaxEffect));
-            float dist = (CameraMovements.Instance.transform.position.x * parallaxEffect);
-
-            transform.position = new Vector3(startPosX + dist, transform.position.y, transform.position.z);
-
-            if (temp > startPosX + length)
-            {
-                startPosX += length;
-            }
-            else if (temp < startPosX - length)
-            {
-                startPosX -= length;
-            }
+            startPosX -= length;
         }
     }
 }
