@@ -62,6 +62,7 @@ public class EventManager : MonoBehaviour
     {
         if (!dieOnce)
         {
+            Debug.Log(12);
             dieOnce = true;
             Time.timeScale = 1;
 
