@@ -89,7 +89,7 @@ public class Tyrolienne : MonoBehaviour
                 CameraMovements.Instance.tyrolienneCamera = true;
 
                 // Si le joueur décide de sauter sur la tyrolienne
-                if (controls.Personnage.Sauter.WasPressedThisFrame() && rb.velocity.x > 0)
+                if (controls.Personnage.Sauter.WasPressedThisFrame() && rb.velocity.x > 0 || Character.Instance.wantsToJump && rb.velocity.x > 0)
                 {
                     // On le fait sauter 
                     timer = 0;
@@ -100,6 +100,7 @@ public class Tyrolienne : MonoBehaviour
                     Character.Instance.noAirControl = true;
                     rb.gravityScale = stockageGravity;
                     CameraMovements.Instance.tyrolienneCamera = false;
+                    Character.Instance.wantsToJump = false;
                 }
 
                 // Gain de vitesse de la tyrolienne 

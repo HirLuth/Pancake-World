@@ -50,6 +50,7 @@ public class Character: MonoBehaviour
     private bool onGround;    // Permet de vérifier si le personnage est au sol
     [SerializeField] float tailleRaycastGround;    // Longueur du raycast permettant de détecter le sol
     [SerializeField] LayerMask ground;
+    [HideInInspector] public bool wantsToJump;
 
 
     [Header("AirControl")] 
@@ -71,7 +72,6 @@ public class Character: MonoBehaviour
     private float stockageWallJump;
     [SerializeField] float dureeNoAirControl;
     private float resistanceWall;
-    private bool wantsToWallJump;
     private float timerWallJumpBuffer;
     public float maxTimerWallJumpBuffer;
 
@@ -304,16 +304,17 @@ public class Character: MonoBehaviour
                     
                     if (controls.Personnage.Sauter.WasPerformedThisFrame())
                     {
-                        wantsToWallJump = true;
+                        wantsToJump = true;
+                        timerWallJumpBuffer = 0;
                     }
 
-                    if (wantsToWallJump)
+                    if (wantsToJump)
                     {
                         timerWallJumpBuffer += Time.deltaTime;
 
                         if (timerWallJumpBuffer > maxTimerWallJumpBuffer)
                         {
-                            wantsToWallJump = false;
+                            wantsToJump = false;
                             timerWallJumpBuffer = 0;
                         }
                     }
@@ -739,7 +740,7 @@ public class Character: MonoBehaviour
 
 
         // si le joueur saute du mur
-        else if (!isWallJumping && wallJump && timerWallJump == 0 || wantsToWallJump)
+        else if (!isWallJumping && wallJump && timerWallJump == 0 || wantsToJump)
         {
             runAirControl = true;
             timerWallJump += Time.deltaTime;
