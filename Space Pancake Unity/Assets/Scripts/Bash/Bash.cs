@@ -123,6 +123,7 @@ public class Bash : MonoBehaviour
         else
             gameObject.GetComponent<SpriteRenderer>().enabled = true;
 
+        
         // Fonctionnement pur de la serpe
         if ((canUseSerpe && wantsToUseSerpe || usingSerpe) && !soldatFraise)
         {
@@ -137,7 +138,7 @@ public class Bash : MonoBehaviour
         {
             spriteRenderer.color = couleurDetection;
 
-            // Si le joueur s'�lance
+            // Si le joueur s'élance
             if (!wantsToUseSerpe)
             {
                 // On sort du ralenti
