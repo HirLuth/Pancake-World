@@ -63,7 +63,8 @@ public class EventManager : MonoBehaviour
         if (!dieOnce)
         {
             dieOnce = true;
-            
+            Time.timeScale = 1;
+
             if (CameraMovements.Instance.isOnRail)
             {
                 CameraMovements.Instance.isOnRail = false;

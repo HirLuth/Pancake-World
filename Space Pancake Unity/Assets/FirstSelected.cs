@@ -14,6 +14,8 @@ public class FirstSelected : MonoBehaviour
 
     [Header("Oscillation")] 
     public float speedOscillation;
+    public Vector3 newSize;
+    public Vector3 normalSize;
     private bool goDown;
     private bool goUp;
     private float timer;
@@ -52,10 +54,8 @@ public class FirstSelected : MonoBehaviour
         {
             if (bouton != null)
             {
-                StopCoroutine(BoutonUp());
-                StopCoroutine(BoutonDown());
-                
                 bouton.transform.DOMoveY(originalPosition.y, speedOscillation);
+                bouton.transform.DOScale(normalSize, speedOscillation);
             }
 
             goUp = true;
@@ -73,6 +73,7 @@ public class FirstSelected : MonoBehaviour
             {
                 goUp = false;
                 bouton.transform.DOMoveY(originalPosition.y + 10, speedOscillation);
+                bouton.transform.DOScale(newSize, speedOscillation);
 
                 timer += Time.deltaTime;
 
