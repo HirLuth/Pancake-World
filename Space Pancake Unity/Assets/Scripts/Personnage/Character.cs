@@ -301,13 +301,13 @@ public class Character: MonoBehaviour
                         isOnWall = false;
                     }
 
-                    
+                    // Pour le buffer des tyroliennes et du wall jump
                     if (controls.Personnage.Sauter.WasPerformedThisFrame())
                     {
                         wantsToJump = true;
                         timerWallJumpBuffer = 0;
                     }
-
+                    
                     if (wantsToJump)
                     {
                         timerWallJumpBuffer += Time.deltaTime;
