@@ -227,6 +227,10 @@ PrefabInstance:
       propertyPath: rb
       value: 
       objectReference: {fileID: 887262781076718216, guid: 8f7f6f34241a1484b82df60f07839aa9, type: 3}
+    - target: {fileID: 3901934828180129476, guid: 8a128419a089cc346b36dcf9e3af8355, type: 3}
+      propertyPath: vfx
+      value: 
+      objectReference: {fileID: 2675227524759462930}
     - target: {fileID: 3901934828180129478, guid: 8a128419a089cc346b36dcf9e3af8355, type: 3}
       propertyPath: m_SortingOrder
       value: 30
@@ -293,3 +297,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e18675db877974a4698af6ff7bbdd8ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &2675227524759462930 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7475526842090245406, guid: 8a128419a089cc346b36dcf9e3af8355, type: 3}
+  m_PrefabInstance: {fileID: 4800337254776924428}
+  m_PrefabAsset: {fileID: 0}
