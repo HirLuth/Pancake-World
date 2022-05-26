@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 public class SpawnPointManagement : MonoBehaviour
 {
     public static SpawnPointManagement instance;
-    public static Vector2 spawnPointLocation;
+    public static Vector2 spawnPointLocation = Vector2.zero;
     public static bool spawnWasModifiedOnce;
     public bool activerCheckpoint;
     public List<Vector2> locationCollectibleCollected;
