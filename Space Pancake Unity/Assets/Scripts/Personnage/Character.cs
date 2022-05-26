@@ -126,6 +126,10 @@ public class Character: MonoBehaviour
     public Vector3 coordonnesApparition;
 
 
+    [Header("Lancement")] 
+    public bool menuPrinc;
+
+
 
     // Tout ce qui concerne le controller
     private void Awake()
@@ -154,8 +158,8 @@ public class Character: MonoBehaviour
         }
         else if(Instance != this)
             Destroy(gameObject); // On reload, singleton already set, so destroy duplicate.
-
-        menuPrincipale = true;
+        
+        menuPrincipale = menuPrinc;
     }
     
     private void OnEnable()

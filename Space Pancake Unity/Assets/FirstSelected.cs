@@ -29,11 +29,9 @@ public class FirstSelected : MonoBehaviour
     
     
     
-    
-    
     void Update()
     {
-        if (Character.Instance.menuPrincipale && !eventSystem.currentSelectedGameObject)
+        if (MenuManager.Instance.ActivateOnThisScene && !eventSystem.currentSelectedGameObject)
         {
             eventSystem.SetSelectedGameObject(menuPrincipale);
         }
@@ -43,7 +41,7 @@ public class FirstSelected : MonoBehaviour
             eventSystem.SetSelectedGameObject(menuPause);
         }
         
-        else if(!Character.Instance.menuPrincipale && !UIManager.Instance.pauseActive)
+        else if(!MenuManager.Instance.ActivateOnThisScene && !UIManager.Instance.pauseActive)
         {
             eventSystem.SetSelectedGameObject(null);
         }
