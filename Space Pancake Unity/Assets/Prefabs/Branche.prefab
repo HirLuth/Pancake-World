@@ -170,6 +170,7 @@ MonoBehaviour:
   duration: 0.13
   amplitude: 0.6
   soldatFraise: 0
+  vfx: {fileID: 7475526842090245406}
   arrow: {fileID: 3901934828523366063}
   force: 31.5
   rb: {fileID: 0}
@@ -328,6 +329,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0f4787180978fd740af7f0b124b4b94d, type: 3}
+--- !u!1 &7475526842090245406 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5729078196145658857, guid: 0f4787180978fd740af7f0b124b4b94d, type: 3}
+  m_PrefabInstance: {fileID: 2900228333874534135}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7475526842090245379 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5729078196145658868, guid: 0f4787180978fd740af7f0b124b4b94d, type: 3}

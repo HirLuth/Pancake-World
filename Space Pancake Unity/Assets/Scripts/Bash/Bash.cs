@@ -27,6 +27,7 @@ public class Bash : MonoBehaviour
 
     [Header("Soldat Fraise")] 
     [HideInInspector] public bool soldatFraise;
+    [SerializeField] public GameObject vfx;
 
 
     [Header("Autres")]
@@ -117,11 +118,11 @@ public class Bash : MonoBehaviour
             volume.weight = puissanceEffets;
         }
 
-        if (soldatFraise)
-            gameObject.GetComponent<SpriteRenderer>().enabled = false;
+        if (soldatFraise && vfx != null)
+            vfx.SetActive(false);
 
         else
-            gameObject.GetComponent<SpriteRenderer>().enabled = true;
+            vfx.SetActive(true);
 
         
         // Fonctionnement pur de la serpe
