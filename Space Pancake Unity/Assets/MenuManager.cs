@@ -73,6 +73,8 @@ public class MenuManager : MonoBehaviour
     public void NouvellePartie()
     {
         SpawnPointManagement.spawnWasModifiedOnce = false;
+        SpawnPointManagement.spawnPointLocation = new Vector2(-47.3f, -4.2f);
+        
         EventManager.Instance.menuToGame = true;
         
         StartCoroutine(Fondu(2));
@@ -81,20 +83,9 @@ public class MenuManager : MonoBehaviour
 
     public void Continuer()
     {
-        SceneManager.LoadScene("Léontine");
-
-        if (Character.Instance.activatespawnpoint && SpawnPointManagement.spawnWasModifiedOnce)
-        {
-            Character.Instance.transform.position = SpawnPointManagement.spawnPointLocation;
-        }
-
-        Character.Instance.menuPrincipale = false;
-        menu.SetActive(false);
-        Time.timeScale = 1;
-
-        Character.Instance.noControl = true;
-        timerSortieMenue = 0;
-        timerActif = true;
+        EventManager.Instance.menuToGame = true;
+        
+        StartCoroutine(Fondu(2));
     }
 
 

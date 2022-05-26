@@ -49,7 +49,6 @@ public class EventManager : MonoBehaviour
         }
         Instance = this;
         DontDestroyOnLoad(this);
-        
     }
 
     private void Start()
@@ -70,7 +69,10 @@ public class EventManager : MonoBehaviour
                 fondu.DOFade(1, 0);
                 fondu.DOFade(0, 1);
 
+                Character.Instance.isSpawning = true;
                 menuToGame = false;
+                
+                Character.Instance.rb.bodyType = RigidbodyType2D.Dynamic;
             }
         }
         
@@ -84,6 +86,7 @@ public class EventManager : MonoBehaviour
                 fondu.DOFade(1, 0);
                 fondu.DOFade(0, 1);
 
+                Character.Instance.isSpawning = true;
                 gameToMenu = false;
             }
         }
