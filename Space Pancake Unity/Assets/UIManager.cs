@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class UIManager : MonoBehaviour
 {
@@ -15,6 +16,8 @@ public class UIManager : MonoBehaviour
     [Header("Pause")]
     [HideInInspector] public bool pauseActive;
     private float timerSortiePause;
+    public EventSystem eventSystem;
+    
 
     private void Awake()
     {
@@ -56,8 +59,6 @@ public class UIManager : MonoBehaviour
 
                 Time.timeScale = 0;
                 Character.Instance.noControl = true;
-                
-                Debug.Log(12);
             }
 
             else
@@ -99,5 +100,17 @@ public class UIManager : MonoBehaviour
         Time.timeScale = 1;
 
         EventManager.Instance.Death();
+    }
+
+    public void Menu()
+    {
+        pauseActive = false;
+        UIPause.SetActive(false);
+        
+        Time.timeScale = 1;
+
+        Character.Instance.menuPrincipale = true;
+        
+        eventSystem.SetSelectedGameObject(null);
     }
 }
