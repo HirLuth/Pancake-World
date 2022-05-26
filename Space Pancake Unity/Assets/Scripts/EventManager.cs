@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
 using UnityEngine.PlayerLoop;
+using UnityEngine.UI;
 using Color = System.Drawing.Color;
 
 public class EventManager : MonoBehaviour
@@ -33,6 +34,11 @@ public class EventManager : MonoBehaviour
 
     private Camera camera;
 
+    [Header("Transitions")]
+    public bool menuToGame;
+    public bool gameToMenu;
+    public Image fondu;
+
 
     private void Awake()
     {
@@ -50,6 +56,37 @@ public class EventManager : MonoBehaviour
     {
         UI = UIPrincipale.Instance.gameObject;
         score = UIPrincipale.Instance.textScore;
+    }
+
+    void Update()
+    {
+        // Transition lorsque l'on passe de la scene de menue à la scene de jeu
+        if (menuToGame)
+        {
+            if (SceneManager.GetActiveScene().name == "Léontine")
+            {
+                fondu = MenuManager.Instance.fondu;
+                
+                fondu.DOFade(1, 0);
+                fondu.DOFade(0, 1);
+
+                menuToGame = false;
+            }
+        }
+        
+        // Transition lorsque l'on passe de la scene de jeu à la scene de menu
+        else if (gameToMenu)
+        {
+            if (SceneManager.GetActiveScene().name == "Menu Principal")
+            {
+                fondu = MenuManager.Instance.fondu;
+                
+                fondu.DOFade(1, 0);
+                fondu.DOFade(0, 1);
+
+                gameToMenu = false;
+            }
+        }
     }
     
 

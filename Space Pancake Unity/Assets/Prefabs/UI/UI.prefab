@@ -3206,6 +3206,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 879564204252948931, guid: 2587f535c198a0149ad04f1cd70e1772, type: 3}
+      propertyPath: fondu
+      value: 
+      objectReference: {fileID: 838429675}
+    - target: {fileID: 879564204252948931, guid: 2587f535c198a0149ad04f1cd70e1772, type: 3}
       propertyPath: eventSystem
       value: 
       objectReference: {fileID: 8910444647241764463}

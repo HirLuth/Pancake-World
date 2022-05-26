@@ -16,6 +16,7 @@ public class MenuManager : MonoBehaviour
 
     public bool ActivateOnThisScene;
     public Image fondu;
+    private bool stop;
 
 
     private void Awake()
@@ -49,6 +50,9 @@ public class MenuManager : MonoBehaviour
         else
         {
             menu.SetActive(false);
+            
+            if(!stop)
+                StartCoroutine(DéFondu(1));
         }
 
         // Pour que le personnage ne saute pas au lancement de la partie
@@ -68,8 +72,12 @@ public class MenuManager : MonoBehaviour
 
     public void NouvellePartie()
     {
+        SpawnPointManagement.spawnWasModifiedOnce = false;
+        EventManager.Instance.menuToGame = true;
+        
         StartCoroutine(Fondu(2));
     }
+    
 
     public void Continuer()
     {
@@ -98,6 +106,7 @@ public class MenuManager : MonoBehaviour
         }
     }
 
+    
     IEnumerator Fondu(float duree)
     {
         fondu.DOFade(1, duree);
@@ -124,5 +133,13 @@ public class MenuManager : MonoBehaviour
             timerSortieMenue = 0;
             timerActif = true;
         }
+    }
+
+    IEnumerator DéFondu(float duree)
+    {
+        fondu.DOFade(0, duree);
+        stop = true;
+        
+        yield return new WaitForSeconds(duree);
     }
 }

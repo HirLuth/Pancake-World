@@ -1,8 +1,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 
 public class UIManager : MonoBehaviour
 {
@@ -10,6 +14,7 @@ public class UIManager : MonoBehaviour
     
     private GameObject mainUI;
     private GameObject UIPause;
+    public Image fondu;
 
     private PlayerControls controls;
 
@@ -17,6 +22,7 @@ public class UIManager : MonoBehaviour
     [HideInInspector] public bool pauseActive;
     private float timerSortiePause;
     public EventSystem eventSystem;
+    
     
 
     private void Awake()
@@ -80,6 +86,7 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    
     public void Reprendre()
     {
         pauseActive = false;
@@ -92,6 +99,7 @@ public class UIManager : MonoBehaviour
         timerSortiePause = 0;
     }
 
+    
     public void Restart()
     {
         pauseActive = false;
@@ -102,6 +110,7 @@ public class UIManager : MonoBehaviour
         EventManager.Instance.Death();
     }
 
+    
     public void Menu()
     {
         pauseActive = false;
@@ -109,8 +118,34 @@ public class UIManager : MonoBehaviour
         
         Time.timeScale = 1;
 
-        Character.Instance.menuPrincipale = true;
+        EventManager.Instance.gameToMenu = true;
         
         eventSystem.SetSelectedGameObject(null);
+
+        StartCoroutine(Fondu(1));
+    }
+    
+    
+    IEnumerator Fondu(float duree)
+    {
+        fondu.DOFade(1, duree);
+
+        yield return new WaitForSeconds(duree);
+        
+        SceneManager.LoadScene("Menu Principal");
+
+        if (SceneManager.GetActiveScene().name != "Menu Principal")
+        {
+            StartCoroutine(WaitForSceneLoad("Menu Principal"));
+        }
+    }
+    
+    
+    IEnumerator WaitForSceneLoad(string sceneName)
+    {
+        while (SceneManager.GetActiveScene().name != sceneName)
+        {
+            yield return null;
+        }
     }
 }
