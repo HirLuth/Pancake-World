@@ -10,26 +10,26 @@ public class BoutonContinue : MonoBehaviour
     public Color okayColor;
     public Color notOkayColor;
     
-    // Start is called before the first frame update
+    
     void Start()
     {
         bouton = GetComponent<Button>();
     }
-
-    // Update is called once per frame
+    
+    
     void Update()
     {
-        if (SpawnPointManagement.spawnWasModifiedOnce)
+        if (SpawnPointManagement.spawnPointLocation.x == 0 || !SpawnPointManagement.spawnWasModifiedOnce)
         {
             ColorBlock cb = bouton.colors;
-            cb.normalColor = okayColor;
+            cb.normalColor = notOkayColor;
             bouton.colors = cb;
         }
 
         else
         {
             ColorBlock cb = bouton.colors;
-            cb.normalColor = notOkayColor;
+            cb.normalColor = okayColor;
             bouton.colors = cb;
         }
     }
