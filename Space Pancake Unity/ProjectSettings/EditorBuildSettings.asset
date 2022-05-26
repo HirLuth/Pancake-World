@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Ancien/PlayTest1.unity
     guid: 1e7b9103e36d44745ab60f0fc439ef45
   - enabled: 1
+    path: Assets/Scenes/Final/Menu Principal.unity
+    guid: 146171f6204ab5747b4b23ffaeb514b2
+  - enabled: 1
     path: "Assets/Scenes/L\xE9ontine.unity"
     guid: d88c5616f29540648903838423b83dc3
   m_configObjects:
