@@ -126,6 +126,4 @@ public class EventManager : MonoBehaviour
         isDead = false;
         Restart();
     }
-    
-    
 }
