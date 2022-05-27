@@ -39,9 +39,12 @@ public class AudioManager : MonoBehaviour
 
     public void SetForestAmbiance()
     {
-        mainAudioSource.Stop();
-        secondaryAudioSource.clip = listClip[2];
-        mainAudioSource.Play();
+        if (mainAudioSource.clip != listClip[2])
+        {
+            mainAudioSource.Stop();
+            secondaryAudioSource.clip = listClip[2];
+            mainAudioSource.Play();
+        }
     }
 
     public void SetSurvivalTheme()
