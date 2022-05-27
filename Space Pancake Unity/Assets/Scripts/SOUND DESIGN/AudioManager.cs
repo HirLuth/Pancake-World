@@ -42,7 +42,7 @@ public class AudioManager : MonoBehaviour
         if (mainAudioSource.clip != listClip[2])
         {
             mainAudioSource.Stop();
-            secondaryAudioSource.clip = listClip[2];
+            mainAudioSource.clip = listClip[2];
             mainAudioSource.Play();
         }
     }
