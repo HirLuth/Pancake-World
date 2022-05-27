@@ -174,7 +174,7 @@ public class Character: MonoBehaviour
 
     private void Start()
     {
-        coordonnesApparition = transform.position;
+        coordonnesApparition = SpawnPointManagement.instance.originalPosition;
     }
 
 
@@ -191,13 +191,13 @@ public class Character: MonoBehaviour
                 anim.SetBool("isOnTyroMaïs", false);
                 
                 
-                if (activatespawnpoint && SpawnPointManagement.spawnWasModifiedOnce)
+                if (activatespawnpoint)
                 {
                     transform.position = SpawnPointManagement.spawnPointLocation;
                 }
                 else
                 {
-                    transform.position = coordonnesApparition;
+                    transform.position = SpawnPointManagement.instance.originalPosition;
                 }
         
             

@@ -13,6 +13,8 @@ public class SpawnPointManagement : MonoBehaviour
     public bool activerCheckpoint;
     public List<Vector2> locationCollectibleCollected;
 
+    public Vector3 originalPosition;
+
     private void Awake()
     {
         if (activerCheckpoint)
@@ -36,7 +38,13 @@ public class SpawnPointManagement : MonoBehaviour
         }
     }  
 #endif
-    
+
+
+    private void Start()
+    {
+        //originalPosition = Character.Instance.transform.position;
+    }
+
 
     public void SetSpawnPoint(Vector2 newSpawnPointLocation)
     {

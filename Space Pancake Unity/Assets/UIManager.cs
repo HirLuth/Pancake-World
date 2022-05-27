@@ -119,6 +119,7 @@ public class UIManager : MonoBehaviour
         Time.timeScale = 1;
 
         EventManager.Instance.gameToMenu = true;
+        Character.Instance.rb.bodyType = RigidbodyType2D.Static;
         
         eventSystem.SetSelectedGameObject(null);
 
