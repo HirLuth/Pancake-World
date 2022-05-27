@@ -40,5 +40,6 @@ public class Bird : MonoBehaviour
     {
         if (other.tag == "Character")
             fly = true;
+        AudioManager.instance.LaunchBirdsSound();
     }
 }

@@ -66,6 +66,7 @@ public class Collectibles : MonoBehaviour
         {
             if (!asCollected)
             {
+                AudioManager.instance.LaunchCollectibleSound();
                 eventManager.AddPoints(numberOfPointsGiven);
                 asCollected = true;
             }
