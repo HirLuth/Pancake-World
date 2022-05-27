@@ -56,7 +56,7 @@ public class UIManager : MonoBehaviour
 
     void Update()
     {
-        if (controls.Personnage.Pause.WasPerformedThisFrame())
+        if (controls.Personnage.Pause.WasPerformedThisFrame() && !MenuManager.Instance.ActivateOnThisScene && !EventManager.Instance.isDead)
         {
             if (!pauseActive)
             {

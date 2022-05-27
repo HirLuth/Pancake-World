@@ -22,8 +22,6 @@ public class AudioManager : MonoBehaviour
         {
             SetSurvivalTheme();
         }
-        
-        Debug.Log(mainAudioSource.isPlaying);
     }
 
     public void SetForestAmbiance()

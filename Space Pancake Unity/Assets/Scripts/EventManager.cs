@@ -57,6 +57,7 @@ public class EventManager : MonoBehaviour
         score = UIPrincipale.Instance.textScore;
     }
 
+    
     void Update()
     {
         // Transition lorsque l'on passe de la scene de menue à la scene de jeu
@@ -97,6 +98,7 @@ public class EventManager : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
+    
     
     public void Death()
     {
@@ -140,24 +142,28 @@ public class EventManager : MonoBehaviour
 
     public IEnumerator WaitAnimation(float duree)
     {
+        // Zoom vers le personnage
         CameraMovements.Instance.camera.DOOrthoSize(newZoom, dureeZoom);
         CameraMovements.Instance.transform.DOMove(Character.Instance.transform.position + new Vector3(0, 0, -10), dureeZoom);
         CameraMovements.Instance.fondu.GetComponent<SpriteRenderer>().DOFade(1, dureeZoom);
         
+        // On attend que ça soit finit
         yield return new WaitForSeconds(dureeZoom);
         
-        if (Character.Instance.activatespawnpoint && SpawnPointManagement.spawnWasModifiedOnce)
+        // Respawn du joueur
+        if (Character.Instance.activatespawnpoint)
         {
-            Character.Instance.transform.position = SpawnPointManagement.spawnPointLocation;
+            Character.Instance.transform.position = SpawnPointManagement.instance.GetSpawn();
         }
         else
         {
             Character.Instance.transform.position = Character.Instance.coordonnesApparition;
         }
 
+        // On replace la camera
         CameraMovements.Instance.transform.position = new Vector3(Character.Instance.transform.position.x,
             Character.Instance.transform.position.y, -10);
-
+        
         cameraPos = CameraMovements.Instance.transform.position;
         
         //Character.Instance.transform.position = SpawnPointManagement.spawnPointLocation;

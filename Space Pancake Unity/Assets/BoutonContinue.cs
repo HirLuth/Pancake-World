@@ -19,17 +19,19 @@ public class BoutonContinue : MonoBehaviour
     
     void Update()
     {
-        if (SpawnPointManagement.spawnPointLocation.x == 0 || !SpawnPointManagement.spawnWasModifiedOnce)
+        if (SpawnPointManagement.instance.GetSpawn() == new Vector2(-47.3f, -4.2f))
         {
             ColorBlock cb = bouton.colors;
             cb.normalColor = notOkayColor;
             bouton.colors = cb;
+            bouton.interactable = false;
         }
 
         else
         {
             ColorBlock cb = bouton.colors;
             cb.normalColor = okayColor;
+            bouton.interactable = true;
             bouton.colors = cb;
         }
     }

@@ -175,11 +175,25 @@ public class Character: MonoBehaviour
     private void Start()
     {
         coordonnesApparition = SpawnPointManagement.instance.originalPosition;
+        
+        if (activatespawnpoint)
+        {
+            transform.position = SpawnPointManagement.instance.GetSpawn();
+        }
+        else
+        {
+            transform.position = coordonnesApparition;
+        }
     }
 
 
     private void Update()
     {
+        if (MenuManager.Instance.ActivateOnThisScene)
+        {
+            rb.bodyType = RigidbodyType2D.Static;
+        }
+        
         if (!menuPrincipale)
         {
             if (isSpawning)
@@ -193,11 +207,11 @@ public class Character: MonoBehaviour
                 
                 if (activatespawnpoint)
                 {
-                    transform.position = SpawnPointManagement.spawnPointLocation;
+                    transform.position = SpawnPointManagement.instance.GetSpawn();
                 }
                 else
                 {
-                    transform.position = SpawnPointManagement.instance.originalPosition;
+                    transform.position = coordonnesApparition;
                 }
         
             
@@ -835,11 +849,6 @@ public class Character: MonoBehaviour
 
         anim.SetTrigger("isSpawning");
 
-        if (!activatespawnpoint)
-        {
-            transform.position = coordonnesApparition;
-        }
-        
         isSpawning = false;
         apparition = true;
         rb.gravityScale = 0;

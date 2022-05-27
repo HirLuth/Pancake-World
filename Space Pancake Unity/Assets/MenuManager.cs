@@ -18,6 +18,8 @@ public class MenuManager : MonoBehaviour
     public Image fondu;
     private bool stop;
 
+    [Header("Options")] public GameObject options;
+
 
     private void Awake()
     {
@@ -72,20 +74,28 @@ public class MenuManager : MonoBehaviour
 
     public void NouvellePartie()
     {
+        // On modifie la sauvegarde actuelle
         SpawnPointManagement.spawnWasModifiedOnce = false;
-        SpawnPointManagement.spawnPointLocation = new Vector2(-47.3f, -4.2f);
+
+        SpawnPointManagement.instance.RecordSpawn(new Vector2(-47.3f, -4.2f));
         
+        // Transition de scene en scene
         EventManager.Instance.menuToGame = true;
-        
         StartCoroutine(Fondu(2));
     }
     
 
     public void Continuer()
     {
+        // Transition de scene en scene
         EventManager.Instance.menuToGame = true;
-        
         StartCoroutine(Fondu(2));
+    }
+
+
+    public void Options()
+    {
+        options.SetActive(true);
     }
 
 

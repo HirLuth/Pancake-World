@@ -71,27 +71,13 @@ public class CameraMovements : MonoBehaviour
 
     private void Start()
     {
-        if (!Character.Instance.menuPrincipale)
-        {
-            camera = gameObject.GetComponent<Camera>();
-            stockageSize = EventManager.Instance.stockageZoom;
-            followPlayer = true;
+        camera = gameObject.GetComponent<Camera>();
+        
+        stockageSize = EventManager.Instance.stockageZoom;
+        followPlayer = true;
 
-            transform.position = new Vector3(Character.Instance.transform.position.x, Character.Instance.transform.position.y, -10);
-        
-            fondu.SetActive(true);
-            fondu.GetComponent<SpriteRenderer>().DOFade(0, EventManager.Instance.dureeZoom);
-        
-            camera.orthographicSize = EventManager.Instance.newZoom;
-            camera.DOOrthoSize(EventManager.Instance.stockageZoom, EventManager.Instance.dureeZoom);
-        }
-        
-        else
+        if (EventManager.Instance.menuToGame)
         {
-            camera = gameObject.GetComponent<Camera>();
-            stockageSize = EventManager.Instance.stockageZoom;
-            followPlayer = true;
-
             transform.position = new Vector3(Character.Instance.transform.position.x, Character.Instance.transform.position.y + 15, -10);
         
             fondu.SetActive(true);
@@ -101,6 +87,19 @@ public class CameraMovements : MonoBehaviour
             camera.DOOrthoSize(EventManager.Instance.stockageZoom, 0);
             
             offsetStart = Character.Instance.transform.position.y - transform.position.y;
+        }
+
+        else
+        {
+            Debug.Log(12);
+            
+            transform.position = new Vector3(Character.Instance.transform.position.x, Character.Instance.transform.position.y, -10);
+            
+            fondu.SetActive(true);
+            fondu.GetComponent<SpriteRenderer>().DOFade(0, 1);
+        
+            camera.orthographicSize = EventManager.Instance.newZoom;
+            camera.DOOrthoSize(EventManager.Instance.stockageZoom, 1);
         }
     }
 
