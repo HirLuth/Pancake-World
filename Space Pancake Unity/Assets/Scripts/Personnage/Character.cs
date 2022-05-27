@@ -190,8 +190,6 @@ public class Character: MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(inverseRun);
-        
         if (MenuManager.Instance.ActivateOnThisScene)
         {
             rb.bodyType = RigidbodyType2D.Static;
@@ -471,6 +469,19 @@ public class Character: MonoBehaviour
     // Déplacements au sol du personnage
     void MoveCharacter()
     {
+        if (inverseRun)
+        {
+            if (controls.Personnage.Run.IsPressed())
+            {
+                run = false;
+            }
+            else
+            {
+                run = true;
+            }
+        }
+
+        
         // Si le joueur fait demi-tour...
         if (((moveLeft && rb.velocity.x > 0.1f) || (moveRight && rb.velocity.x < -0.1f)) && !stopDemiTourRun && !stopDemiTourWalk)
         {
@@ -569,7 +580,9 @@ public class Character: MonoBehaviour
             else if (abscisseRunCurve >= 0)
             {
                 abscisseRunCurve -= Time.deltaTime * vitesseRunDecelerationCurve;
+                Debug.Log(abscisseRunCurve);
             }
+            
             
             rb.velocity = new Vector2(Mathf.Sign(direction) * runCurve.Evaluate(abscisseRunCurve) * runSpeed, rb.velocity.y);
         }

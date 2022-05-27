@@ -105,13 +105,9 @@ public class MenuManager : MonoBehaviour
     }
 
     
-    public void WalkRun()
+    public void WalkRun(bool inverse)
     {
-        if(Character.Instance.inverseRun)
-            Character.Instance.inverseRun = true;
-
-        else
-            Character.Instance.inverseRun = true;
+        Character.Instance.inverseRun = inverse;
     }
 
 
