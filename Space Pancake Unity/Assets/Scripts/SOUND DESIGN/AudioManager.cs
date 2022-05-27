@@ -14,15 +14,15 @@ public class AudioManager : MonoBehaviour
     public int actualNeutralSoundEffect;
 
     [Header("Volume Sound Effects")] 
-    [SerializeField] private float masterVolume = 1;
-    [SerializeField] private float neutralBackgroundVolume;
-    [SerializeField] private float neutralSoundEffectVolume;
-    [SerializeField] private float volumeMainTheme;
-    [SerializeField] private float volumeSurvivalTheme;
-    [SerializeField] private float volumeForestAmbiance;
-    [SerializeField] private float volumeBirds;
-    [SerializeField] private float volumeCollectibles;
-    [SerializeField] private float volumeSerpe;
+    [SerializeField] [Range(0,1)] private float masterVolume = 1;
+    [SerializeField] [Range(0,1)] private float neutralBackgroundVolume;
+    [SerializeField] [Range(0,1)] private float neutralSoundEffectVolume;
+    [SerializeField] [Range(0,1)] private float volumeMainTheme;
+    [SerializeField] [Range(0,1)] private float volumeSurvivalTheme;
+    [SerializeField] [Range(0,1)] private float volumeForestAmbiance;
+    [SerializeField] [Range(0,1)] private float volumeBirds;
+    [SerializeField] [Range(0,1)] private float volumeCollectibles;
+    [SerializeField] [Range(0,1)] private float volumeSerpe;
 
 
     private void Awake()
@@ -44,8 +44,7 @@ public class AudioManager : MonoBehaviour
         actualNeutralBackground = 1;
         actualNeutralSoundEffect = 0;
     }
-
-    // Update is called once per frame
+    
     void Update()
     {
         Debug.Log(secondaryAudioSource.isPlaying);
