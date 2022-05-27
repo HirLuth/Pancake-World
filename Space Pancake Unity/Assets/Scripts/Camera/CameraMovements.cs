@@ -91,8 +91,7 @@ public class CameraMovements : MonoBehaviour
 
         else
         {
-            Debug.Log(12);
-            
+
             transform.position = new Vector3(Character.Instance.transform.position.x, Character.Instance.transform.position.y, -10);
             
             fondu.SetActive(true);

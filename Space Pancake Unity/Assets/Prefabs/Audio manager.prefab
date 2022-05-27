@@ -54,6 +54,14 @@ MonoBehaviour:
   - {fileID: 8300000, guid: bbec8c77137c16f42a3a34b0e3389f4e, type: 3}
   mainAudioSource: {fileID: 5146711195465452341}
   secondaryAudioSource: {fileID: 1979781201112652393}
+  actualNeutralBackground: 0
+  actualNeutralSoundEffect: 0
+  masterVolume: 1
+  neutralBackgroundVolume: 1
+  neutralSoundEffectVolume: 1
+  volumeMainTheme: 1
+  volumeSurvivalTheme: 1
+  volumeForestAmbiance: 1
   volumeBirds: 0.5
   volumeCollectibles: 0.3
   volumeSerpe: 0.5
@@ -178,7 +186,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6791941270890645239}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -24.577763, y: -14.83311, z: -818.24786}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5146711195465452343}

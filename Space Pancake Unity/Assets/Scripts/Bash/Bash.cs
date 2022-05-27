@@ -93,6 +93,7 @@ public class Bash : MonoBehaviour
         // Tout de qui concerne les effets spéciaux (le future)
         if (usingSerpe)
         {
+            AudioManager.instance.SetSerpeSound();
             if (timerEffets <= 1)
             {
                 timerEffets += Time.fixedDeltaTime * 5;
@@ -116,6 +117,7 @@ public class Bash : MonoBehaviour
 
             puissanceEffets = Mathf.Lerp(0, 1, timerEffets);
             volume.weight = puissanceEffets;
+            
         }
 
         if (soldatFraise && vfx != null)
@@ -233,6 +235,7 @@ public class Bash : MonoBehaviour
             Character.Instance.noControl = false;
             usingSerpe = false;
             spriteRenderer.color = couleurNonDetection;
+            AudioManager.instance.BackToNeutralSoundEffect1();
 
             if (!exitEffects)
             {
