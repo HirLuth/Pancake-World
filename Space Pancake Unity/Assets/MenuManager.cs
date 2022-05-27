@@ -93,9 +93,25 @@ public class MenuManager : MonoBehaviour
     }
 
 
-    public void Options()
+    public void LancerOptions()
     {
         options.SetActive(true);
+    }
+
+    
+    public void QuitterOptions()
+    {
+        options.SetActive(false);
+    }
+
+    
+    public void WalkRun()
+    {
+        if(Character.Instance.inverseRun)
+            Character.Instance.inverseRun = true;
+
+        else
+            Character.Instance.inverseRun = true;
     }
 
 

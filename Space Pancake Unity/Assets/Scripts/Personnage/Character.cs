@@ -15,6 +15,7 @@ public class Character: MonoBehaviour
     private bool run;
     [HideInInspector] public bool jump;
     private bool wallJump;
+    [HideInInspector] public bool inverseRun;
 
     
     [Header("Déplacements")] 
@@ -189,6 +190,8 @@ public class Character: MonoBehaviour
 
     private void Update()
     {
+        Debug.Log(inverseRun);
+        
         if (MenuManager.Instance.ActivateOnThisScene)
         {
             rb.bodyType = RigidbodyType2D.Static;
