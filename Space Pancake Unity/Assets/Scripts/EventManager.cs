@@ -74,6 +74,7 @@ public class EventManager : MonoBehaviour
                 menuToGame = false;
                 
                 Character.Instance.rb.bodyType = RigidbodyType2D.Dynamic;
+                AudioManager.instance.SetForestAmbiance();
             }
         }
         
