@@ -123,6 +123,17 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &49922809 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1978175549, guid: 067e3ae90fd00f74a96de1387df487e1, type: 3}
+  m_PrefabInstance: {fileID: 1204940392}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d3131ef9033f4446bdd889897916cf3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &83447866
 GameObject:
   m_ObjectHideFlags: 0
@@ -666,11 +677,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &805914392 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 887262781076718219, guid: 8f7f6f34241a1484b82df60f07839aa9, type: 3}
-  m_PrefabInstance: {fileID: 929423453}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &824933022
 GameObject:
   m_ObjectHideFlags: 0
@@ -1187,12 +1193,28 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7472896316350520639, guid: 067e3ae90fd00f74a96de1387df487e1, type: 3}
+      propertyPath: m_IsOn
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7472896316350520639, guid: 067e3ae90fd00f74a96de1387df487e1, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7472896316350520639, guid: 067e3ae90fd00f74a96de1387df487e1, type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 805914392}
+      objectReference: {fileID: 49922809}
     - target: {fileID: 7472896316350520639, guid: 067e3ae90fd00f74a96de1387df487e1, type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: 
+      value: WalkRun
+      objectReference: {fileID: 0}
+    - target: {fileID: 7472896316350520639, guid: 067e3ae90fd00f74a96de1387df487e1, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: MenuManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7472896316350520639, guid: 067e3ae90fd00f74a96de1387df487e1, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8554718855025575701, guid: 067e3ae90fd00f74a96de1387df487e1, type: 3}
       propertyPath: m_Name
