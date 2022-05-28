@@ -19,6 +19,7 @@ public class MaïsAReaction : MonoBehaviour
     [SerializeField] private Rigidbody2D rbSelf;
     [SerializeField] private float maxSpeedGoingUp;
     [SerializeField] private Animator animatorSelf;
+    [SerializeField] private ParticleSystem explosionParticle;
     [Header("Variables modifiables")] 
     [SerializeField] private AnimationCurve courbeAccelerationMonté;
     [SerializeField] private float timerToExplode;
@@ -57,6 +58,7 @@ public class MaïsAReaction : MonoBehaviour
         playerGameObject = Character.Instance.gameObject;
         character = Character.Instance;
         playerRB = Character.Instance.rb;
+        explosionParticle.Stop(withChildren:true);
     }
 
 
@@ -167,9 +169,12 @@ public class MaïsAReaction : MonoBehaviour
 
     private void Destruction()
     {
-        CameraMovements.Instance.maïsCamera = false;
-        animatorSelf.SetBool("maïsIsExploding", true);
-        
+        if (!explosionParticle.isPlaying)
+        {
+            explosionParticle.Play(withChildren:true);
+            CameraMovements.Instance.maïsCamera = false;
+            animatorSelf.SetBool("maïsIsExploding", true);
+        }
         Character.Instance.anim.SetBool("isOnTyroMaïs", false);
         Character.Instance.GetComponent<SpriteRenderer>().sortingOrder = 3;
         
@@ -179,8 +184,6 @@ public class MaïsAReaction : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
-        
-        
     }
 
     private void OnTriggerEnter2D(Collider2D other)
