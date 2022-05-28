@@ -106,6 +106,7 @@ Transform:
   m_Children:
   - {fileID: 1379497010}
   - {fileID: 2304924717721922731}
+  - {fileID: 8468521372686039944}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -227,6 +228,7 @@ MonoBehaviour:
   maxSpeedGoingUp: 10
   animatorSelf: {fileID: 5362935187791216378}
   explosionParticle: {fileID: 5417504999078783531}
+  "fum\xE9Particles": {fileID: 7307867528530545559}
   "courbeAccelerationMont\xE9":
     serializedVersion: 2
     m_Curve:
@@ -375,4 +377,71 @@ Transform:
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 1984627925225000988, guid: 0d6e839b84eaa9448835bc0057b24dd7, type: 3}
   m_PrefabInstance: {fileID: 5810778777154042423}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &7590917452918129384
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 7228419546840578201}
+    m_Modifications:
+    - target: {fileID: 2080206067010025824, guid: 7d3266bfca2017343a53c69d42334e0c, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2080206067010025824, guid: 7d3266bfca2017343a53c69d42334e0c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2080206067010025824, guid: 7d3266bfca2017343a53c69d42334e0c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2080206067010025824, guid: 7d3266bfca2017343a53c69d42334e0c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2080206067010025824, guid: 7d3266bfca2017343a53c69d42334e0c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2080206067010025824, guid: 7d3266bfca2017343a53c69d42334e0c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2080206067010025824, guid: 7d3266bfca2017343a53c69d42334e0c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2080206067010025824, guid: 7d3266bfca2017343a53c69d42334e0c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2080206067010025824, guid: 7d3266bfca2017343a53c69d42334e0c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2080206067010025824, guid: 7d3266bfca2017343a53c69d42334e0c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2080206067010025824, guid: 7d3266bfca2017343a53c69d42334e0c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7034011136736302886, guid: 7d3266bfca2017343a53c69d42334e0c, type: 3}
+      propertyPath: m_Name
+      value: "Fum\xE9e Pop corn"
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7d3266bfca2017343a53c69d42334e0c, type: 3}
+--- !u!4 &8468521372686039944 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2080206067010025824, guid: 7d3266bfca2017343a53c69d42334e0c, type: 3}
+  m_PrefabInstance: {fileID: 7590917452918129384}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &7307867528530545559 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 878934168188438911, guid: 7d3266bfca2017343a53c69d42334e0c, type: 3}
+  m_PrefabInstance: {fileID: 7590917452918129384}
   m_PrefabAsset: {fileID: 0}

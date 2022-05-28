@@ -20,6 +20,7 @@ public class MaïsAReaction : MonoBehaviour
     [SerializeField] private float maxSpeedGoingUp;
     [SerializeField] private Animator animatorSelf;
     [SerializeField] private ParticleSystem explosionParticle;
+    [SerializeField] private ParticleSystem fuméParticles;
     [Header("Variables modifiables")] 
     [SerializeField] private AnimationCurve courbeAccelerationMonté;
     [SerializeField] private float timerToExplode;
@@ -59,6 +60,7 @@ public class MaïsAReaction : MonoBehaviour
         character = Character.Instance;
         playerRB = Character.Instance.rb;
         explosionParticle.Stop(withChildren:true);
+        fuméParticles.Stop(withChildren:true);
     }
 
 
@@ -100,6 +102,11 @@ public class MaïsAReaction : MonoBehaviour
 
         if (isOnTheRide)
         {
+            if (!fuméParticles.isPlaying)
+            {
+                fuméParticles.Play(withChildren:true);
+            }
+            
             CameraMovements.Instance.maïsCamera = true;
             
             Character.Instance.anim.SetBool("isOnTyroMaïs", true);
@@ -172,9 +179,9 @@ public class MaïsAReaction : MonoBehaviour
         if (!explosionParticle.isPlaying)
         {
             explosionParticle.Play(withChildren:true);
-            CameraMovements.Instance.maïsCamera = false;
-            animatorSelf.SetBool("maïsIsExploding", true);
         }
+        CameraMovements.Instance.maïsCamera = false;
+        animatorSelf.SetBool("maïsIsExploding", true);
         Character.Instance.anim.SetBool("isOnTyroMaïs", false);
         Character.Instance.GetComponent<SpriteRenderer>().sortingOrder = 3;
         
