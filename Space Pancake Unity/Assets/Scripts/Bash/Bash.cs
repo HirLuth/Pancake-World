@@ -27,7 +27,10 @@ public class Bash : MonoBehaviour
 
     [Header("Soldat Fraise")] 
     [HideInInspector] public bool soldatFraise;
+    
+    [Header("VFX")]
     [SerializeField] public GameObject vfx;
+    [SerializeField] private ParticleSystem particleBash;
 
 
     [Header("Autres")]
@@ -63,6 +66,7 @@ public class Bash : MonoBehaviour
     private void Start()
     {
         rb = Character.Instance.rb;
+        particleBash.Stop();
     }
 
     private void OnEnable()
@@ -164,6 +168,9 @@ public class Bash : MonoBehaviour
                 // Animations
                 Character.Instance.anim.SetBool("isUsingSerpe2", true);
                 Character.Instance.anim.SetBool("isGrabbing", false);
+                
+                //VFX
+                particleBash.Play();
             }
 
 

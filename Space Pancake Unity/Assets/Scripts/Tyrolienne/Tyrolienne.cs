@@ -75,7 +75,6 @@ public class Tyrolienne : MonoBehaviour
         {
             UseZipline();
         }
-        Debug.Log(Character.Instance.particuleVitesse.isPlaying);
     }
 
 
