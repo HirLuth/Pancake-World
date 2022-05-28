@@ -32,6 +32,7 @@ public class PancakeRebondissantv2 : MonoBehaviour
             if (timerBounce > limitTimerBounce)
             {
                 rbCharacter.velocity = new Vector2(stockageVelocityX, bounceForce);
+                Character.Instance.particuleImpulsionPancake.gameObject.transform.rotation = Quaternion.LookRotation(new Vector2(stockageVelocityX, bounceForce));
             }
         }
         else
