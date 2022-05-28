@@ -33,6 +33,8 @@ public class Tyrolienne : MonoBehaviour
     [Header("Autres")]
     private bool isOnThisZipline;
     public static Tyrolienne Instance;
+    
+    bool oui = true;
 
 
     private void Awake()
@@ -73,6 +75,7 @@ public class Tyrolienne : MonoBehaviour
         {
             UseZipline();
         }
+        Debug.Log(Character.Instance.particuleVitesse.isPlaying);
     }
 
 
@@ -87,7 +90,10 @@ public class Tyrolienne : MonoBehaviour
                 rb.gravityScale = 0;
                 Character.Instance.noControl = true;
                 CameraMovements.Instance.tyrolienneCamera = true;
-
+                if (!Character.Instance.particuleVitesse.isPlaying)
+                {
+                    Character.Instance.particuleVitesse.Play();
+                }
                 // Si le joueur décide de sauter sur la tyrolienne
                 if (controls.Personnage.Sauter.WasPressedThisFrame() && rb.velocity.x > 0 || Character.Instance.wantsToJump && rb.velocity.x > 0)
                 {
@@ -101,6 +107,7 @@ public class Tyrolienne : MonoBehaviour
                     rb.gravityScale = stockageGravity;
                     CameraMovements.Instance.tyrolienneCamera = false;
                     Character.Instance.wantsToJump = false;
+                    Character.Instance.particuleVitesse.Stop();
                 }
 
                 // Gain de vitesse de la tyrolienne 
@@ -128,6 +135,8 @@ public class Tyrolienne : MonoBehaviour
                 rb.gravityScale = stockageGravity;
                 
                 CameraMovements.Instance.tyrolienneCamera = false;
+                Character.Instance.particuleVitesse.Stop();
+                
             }
         }
         

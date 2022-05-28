@@ -47,7 +47,6 @@ public class AudioManager : MonoBehaviour
     
     void Update()
     {
-        Debug.Log(secondaryAudioSource.isPlaying);
         if (CameraMovements.Instance != null)
         {
             if (CameraMovements.Instance.isOnRail)

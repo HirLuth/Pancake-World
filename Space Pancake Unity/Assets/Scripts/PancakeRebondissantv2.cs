@@ -18,7 +18,6 @@ public class PancakeRebondissantv2 : MonoBehaviour
     private void Start()
     {
         rbCharacter = Character.Instance.rb;
-        Character.Instance.particuleImpulsionPancake.Stop();
     }
 
     private void Update()

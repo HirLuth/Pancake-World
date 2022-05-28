@@ -110,6 +110,7 @@ public class Character: MonoBehaviour
     [Header("VFX")] 
     [SerializeField] private ParticleSystem particulesGauches;
     [SerializeField] public ParticleSystem particuleImpulsionPancake;
+    [SerializeField] public ParticleSystem particuleVitesse;
 
 
     [Header("Autres")]
@@ -177,7 +178,7 @@ public class Character: MonoBehaviour
     private void Start()
     {
         coordonnesApparition = SpawnPointManagement.instance.originalPosition;
-        
+
         if (activatespawnpoint)
         {
             transform.position = SpawnPointManagement.instance.GetSpawn();
@@ -186,6 +187,9 @@ public class Character: MonoBehaviour
         {
             transform.position = coordonnesApparition;
         }
+        particuleImpulsionPancake.Stop();
+        particuleVitesse.Stop();
+        
     }
 
 
@@ -581,7 +585,7 @@ public class Character: MonoBehaviour
             else if (abscisseRunCurve >= 0)
             {
                 abscisseRunCurve -= Time.deltaTime * vitesseRunDecelerationCurve;
-                Debug.Log(abscisseRunCurve);
+                //Debug.Log(abscisseRunCurve);
             }
             
             
