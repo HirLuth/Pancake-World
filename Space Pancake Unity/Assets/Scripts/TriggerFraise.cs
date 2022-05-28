@@ -20,7 +20,6 @@ public class TriggerFraise : MonoBehaviour
         {
             if (SpawnPointManagement.spawnPointLocation.x >= transform.position.x && character.activatespawnpoint)
             {
-                Debug.Log("Ouou");
                 fraise.iaIsWalking = true;
             }
             else
