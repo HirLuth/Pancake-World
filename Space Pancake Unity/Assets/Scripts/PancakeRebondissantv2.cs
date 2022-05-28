@@ -18,6 +18,7 @@ public class PancakeRebondissantv2 : MonoBehaviour
     private void Start()
     {
         rbCharacter = Character.Instance.rb;
+        Character.Instance.particuleImpulsionPancake.Stop();
     }
 
     private void Update()
@@ -45,6 +46,7 @@ public class PancakeRebondissantv2 : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Character"))
         {
+            Character.Instance.particuleImpulsionPancake.Play();
             isOnThePancake = true;
         }
         
@@ -55,6 +57,7 @@ public class PancakeRebondissantv2 : MonoBehaviour
         if (other.gameObject.CompareTag("Character"))
         {
             isOnThePancake = false;
+            
         }
     }
     

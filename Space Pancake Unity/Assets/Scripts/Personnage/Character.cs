@@ -109,6 +109,7 @@ public class Character: MonoBehaviour
 
     [Header("VFX")] 
     [SerializeField] private ParticleSystem particulesGauches;
+    [SerializeField] public ParticleSystem particuleImpulsionPancake;
 
 
     [Header("Autres")]
