@@ -111,6 +111,8 @@ public class Character: MonoBehaviour
     [SerializeField] private ParticleSystem particulesGauches;
     [SerializeField] public ParticleSystem particuleImpulsionPancake;
     [SerializeField] public ParticleSystem particuleVitesse;
+    [SerializeField] private ParticleSystem particuleAtterissage;
+    [SerializeField] private bool playAtterrissage = true;
 
 
     [Header("Autres")]
@@ -189,7 +191,7 @@ public class Character: MonoBehaviour
         }
         particuleImpulsionPancake.Stop();
         particuleVitesse.Stop();
-        
+        particuleAtterissage.Stop();
     }
 
 
@@ -245,6 +247,20 @@ public class Character: MonoBehaviour
             {
                 onGround = Physics2D.Raycast(transform.position, Vector2.down, tailleRaycastGround, ground);
             }
+
+            if (onGround)
+            {
+                if (playAtterrissage)
+                {
+                    particuleAtterissage.Play();
+                    playAtterrissage = false; 
+                }
+            }
+            else
+            {
+                playAtterrissage = true;
+            }
+            
 
             // Raycast de détection de mur à gauche
             canWallJumpLeft = Physics2D.Raycast(transform.position + new Vector3(0,0.5f,0), Vector2.left, tailleRaycastWall, ground);
