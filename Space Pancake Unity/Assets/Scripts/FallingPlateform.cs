@@ -61,6 +61,7 @@ public class FallingPlateform : MonoBehaviour
             if (timerToDestroy >= timeToRespawn)
             {
                animatorself.SetBool("IsRespawning", false);
+               timerToFall = 0;
                colliderSelf.enabled = true;
                isDestroying = false;
             }
