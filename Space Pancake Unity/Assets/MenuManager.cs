@@ -18,7 +18,9 @@ public class MenuManager : MonoBehaviour
     public Image fondu;
     private bool stop;
 
-    [Header("Options")] public GameObject options;
+    [Header("Options")] 
+    public GameObject options;
+    public bool optionsActives;
 
 
     private void Awake()
@@ -95,12 +97,20 @@ public class MenuManager : MonoBehaviour
 
     public void LancerOptions()
     {
+        optionsActives = true;
+        
+        FirstSelected.Instance.FermetureMenu();
+
         options.SetActive(true);
     }
 
     
     public void QuitterOptions()
     {
+        optionsActives = false;
+        
+        FirstSelected.Instance.FermetureMenu();
+
         options.SetActive(false);
     }
 

@@ -1,13 +1,20 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using DG.Tweening;
+using UnityEngine.InputSystem.UI;
 
 public class FirstSelected : MonoBehaviour
 {
+    public static FirstSelected Instance;
+    
     public GameObject menuPrincipale;
     public GameObject menuPause;
+    public GameObject menuOptions;
+
+    public InputSystemUIInputModule menuPrincipalControls;
 
     public EventSystem eventSystem;
 
@@ -26,28 +33,33 @@ public class FirstSelected : MonoBehaviour
 
     private GameObject newBouton;
     private Vector3 newOriginalPosition;
-    
-    
-    
+
+
+    private void Awake()
+    {
+        Instance = this;
+    }
+
+
     void Update()
     {
-        if (MenuManager.Instance.ActivateOnThisScene && !eventSystem.currentSelectedGameObject)
+        if (MenuManager.Instance.ActivateOnThisScene && !eventSystem.currentSelectedGameObject && !MenuManager.Instance.optionsActives)
         {
             eventSystem.SetSelectedGameObject(menuPrincipale);
+        }
+        
+        else if (MenuManager.Instance.optionsActives && !eventSystem.currentSelectedGameObject)
+        {
+            eventSystem.SetSelectedGameObject(menuOptions);
         }
 
         else if (UIManager.Instance.pauseActive && !eventSystem.currentSelectedGameObject)
         {
             eventSystem.SetSelectedGameObject(menuPause);
         }
-        
-        else if(!MenuManager.Instance.ActivateOnThisScene && !UIManager.Instance.pauseActive)
-        {
-            eventSystem.SetSelectedGameObject(null);
-        }
 
 
-        
+
         if (eventSystem.currentSelectedGameObject != bouton && eventSystem.currentSelectedGameObject)
         {
             if (bouton != null)
@@ -67,7 +79,7 @@ public class FirstSelected : MonoBehaviour
 
         if (eventSystem.currentSelectedGameObject)
         {
-            if (goUp)
+            if (goUp && eventSystem.currentSelectedGameObject.tag == "Button")
             {
                 goUp = false;
                 bouton.transform.DOMoveY(originalPosition.y + 4, speedOscillation);
@@ -98,6 +110,12 @@ public class FirstSelected : MonoBehaviour
         }
     }
 
+
+    public void FermetureMenu()
+    {
+        eventSystem.SetSelectedGameObject(null);
+    }
+    
 
     public IEnumerator BoutonUp()
     {

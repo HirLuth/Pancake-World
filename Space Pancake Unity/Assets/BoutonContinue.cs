@@ -19,20 +19,22 @@ public class BoutonContinue : MonoBehaviour
     
     void Update()
     {
-        if (SpawnPointManagement.instance.GetSpawn() == new Vector2(-47.3f, -4.2f))
-        {
-            ColorBlock cb = bouton.colors;
-            cb.normalColor = notOkayColor;
-            bouton.colors = cb;
-            bouton.interactable = false;
-        }
-
-        else
+        Debug.Log(SpawnPointManagement.instance.GetSpawn());
+        
+        if (!MenuManager.Instance.optionsActives && SpawnPointManagement.instance.GetSpawn().x > 0)
         {
             ColorBlock cb = bouton.colors;
             cb.normalColor = okayColor;
             bouton.interactable = true;
             bouton.colors = cb;
+        }
+
+        else
+        {
+            ColorBlock cb = bouton.colors;
+            cb.normalColor = notOkayColor;
+            bouton.colors = cb;
+            bouton.interactable = false;
         }
     }
 }
