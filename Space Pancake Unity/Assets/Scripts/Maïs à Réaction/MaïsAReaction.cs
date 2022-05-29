@@ -76,6 +76,7 @@ public class MaïsAReaction : MonoBehaviour
 
     private void Update()
     {
+        
         if (isInDestroyingAnmation)
         {
             Destruction();
@@ -179,6 +180,11 @@ public class MaïsAReaction : MonoBehaviour
         if (!explosionParticle.isPlaying)
         {
             explosionParticle.Play(withChildren:true);
+        }
+
+        if (fuméParticles != null)
+        {
+            Destroy(fuméParticles.gameObject);
         }
         CameraMovements.Instance.maïsCamera = false;
         animatorSelf.SetBool("maïsIsExploding", true);

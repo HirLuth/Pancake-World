@@ -13,6 +13,7 @@ public class PancakeRebondissantv2 : MonoBehaviour
     [SerializeField] private float stockageVelocityX;
     [SerializeField] private bool isOnThePancake;
     [SerializeField] private LayerMask layerPlayer;
+    [SerializeField] private ParticleSystem particleSystem;
 
 
     private void Start()
@@ -31,8 +32,10 @@ public class PancakeRebondissantv2 : MonoBehaviour
             
             if (timerBounce > limitTimerBounce)
             {
-                rbCharacter.velocity = new Vector2(stockageVelocityX, bounceForce);
-                Character.Instance.particuleImpulsionPancake.gameObject.transform.rotation = Quaternion.LookRotation(new Vector2(stockageVelocityX, bounceForce));
+                var vector = new Vector2(stockageVelocityX, bounceForce);
+                rbCharacter.velocity = vector;
+                //Debug.Log(Vector2.Angle(vector.normalized, Vector2.down));
+                //particleSystem.main.startRotation.constant = Vector2.Angle(vector.normalized, Vector2.down);
             }
         }
         else

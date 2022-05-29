@@ -58,8 +58,6 @@ public class AudioManager : MonoBehaviour
                 SetForestAmbiance();
             }
         }
-        Debug.Log(mainAudioSource.isPlaying);
-        Debug.Log(mainAudioSource.clip);
     }
 
     public void SetBackGroundSound(int numberIntheList, float volume)
