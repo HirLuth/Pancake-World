@@ -9,7 +9,7 @@ using Vector2 = UnityEngine.Vector2;
 public class Character: MonoBehaviour
 {
     [Header("Inputs")]
-    private PlayerControls controls;
+    public PlayerControls controls;
     [HideInInspector] public bool moveLeft;
     [HideInInspector] public bool moveRight;
     private bool run;
