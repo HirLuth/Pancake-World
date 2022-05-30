@@ -26,11 +26,15 @@ public class ScriptFinDeJeu : MonoBehaviour
     private Vector2 originalPos;
     private float timerGuimauve;
     private bool stop;
+    public ParticleSystem particule;
+    private bool particuleActives;
 
 
     void Start()
     {
         originalPos = guimauve.transform.position;
+        
+        particule.Stop(true);
     }
     
     
@@ -113,6 +117,11 @@ public class ScriptFinDeJeu : MonoBehaviour
             {
                 stop = true;
                 guimauve.transform.DOMoveY(originalPos.y + 2, 2);
+
+                if (!particule.isPlaying)
+                {
+                    particule.Play(true);
+                }
             }
 
             else
