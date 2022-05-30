@@ -21,6 +21,7 @@ public class MaïsAReaction : MonoBehaviour
     [SerializeField] private Animator animatorSelf;
     [SerializeField] private ParticleSystem explosionParticle;
     [SerializeField] private ParticleSystem fuméParticles;
+    
     [Header("Variables modifiables")] 
     [SerializeField] private AnimationCurve courbeAccelerationMonté;
     [SerializeField] private float timerToExplode;
@@ -29,11 +30,13 @@ public class MaïsAReaction : MonoBehaviour
     [SerializeField] private float multiplicatorTimeToGetInPosition;
     [SerializeField] private float directionnalModificator;
     [SerializeField] private float jumpOutForceMultiplicator;
+    [SerializeField] private float timeRespawn = 1;
 
 
     [Header("Variables de fonctionnement")]
     [SerializeField] private Vector2 stockagePosition;
     [SerializeField] public bool isInDestroyingAnmation;
+    [SerializeField] private bool isInSpawningAnimation;
     [SerializeField] private bool playerIsAtRange;
     [SerializeField] private bool isOnTheRide;
     [SerializeField] private bool launchedWithoutPlayer;
@@ -61,6 +64,7 @@ public class MaïsAReaction : MonoBehaviour
         playerRB = Character.Instance.rb;
         explosionParticle.Stop(withChildren:true);
         fuméParticles.Stop(withChildren:true);
+        isInSpawningAnimation = true;
     }
 
 
@@ -76,11 +80,23 @@ public class MaïsAReaction : MonoBehaviour
 
     private void Update()
     {
-        
+        if (isInSpawningAnimation)
+        {
+            animatorSelf.SetBool("maïsIsSpawning", true);
+            timer += Time.deltaTime;
+            if (timer >= timeRespawn)
+            {
+                animatorSelf.SetBool("maïsIsSpawning", false);
+                isInSpawningAnimation = false;
+                timer = 0;
+            }
+            return;
+        }
         if (isInDestroyingAnmation)
         {
             Destruction();
             return;
+            Debug.Log("destroy");
         }
         if (playerIsAtRange && controls.Personnage.Serpe.WasPerformedThisFrame())
         {
