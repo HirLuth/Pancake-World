@@ -164,7 +164,7 @@ public class EventManager : MonoBehaviour
         // On replace la camera
         CameraMovements.Instance.transform.position = new Vector3(Character.Instance.transform.position.x,
             Character.Instance.transform.position.y, -10);
-        
+
         cameraPos = CameraMovements.Instance.transform.position;
         
         //Character.Instance.transform.position = SpawnPointManagement.spawnPointLocation;
