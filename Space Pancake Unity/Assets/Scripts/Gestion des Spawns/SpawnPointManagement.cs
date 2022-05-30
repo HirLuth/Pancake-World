@@ -38,12 +38,7 @@ public class SpawnPointManagement : MonoBehaviour
         }
     }  
 #endif
-
-
-    private void Start()
-    {
-        //originalPosition = Character.Instance.transform.position;
-    }
+    
 
 
     public void SetSpawnPoint(Vector2 newSpawnPointLocation)
