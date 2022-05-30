@@ -91,6 +91,8 @@ public class UIManager : MonoBehaviour
     {
         pauseActive = false;
         UIPause.SetActive(false);
+        
+        FirstSelected.Instance.FermetureMenu();
 
         Time.timeScale = 1;
         Character.Instance.noControl = false;
@@ -104,6 +106,8 @@ public class UIManager : MonoBehaviour
     {
         pauseActive = false;
         UIPause.SetActive(false);
+        
+        FirstSelected.Instance.FermetureMenu();
 
         Time.timeScale = 1;
 
@@ -115,6 +119,8 @@ public class UIManager : MonoBehaviour
     {
         pauseActive = false;
         UIPause.SetActive(false);
+        
+        FirstSelected.Instance.FermetureMenu();
         
         Time.timeScale = 1;
 
