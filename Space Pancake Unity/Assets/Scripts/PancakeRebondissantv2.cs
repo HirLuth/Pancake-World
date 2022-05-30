@@ -14,6 +14,7 @@ public class PancakeRebondissantv2 : MonoBehaviour
     [SerializeField] private bool isOnThePancake;
     [SerializeField] private LayerMask layerPlayer;
     [SerializeField] private ParticleSystem particleSystem;
+    [SerializeField] private bool canStopPlayer = true;
 
 
     private void Start()
@@ -28,15 +29,23 @@ public class PancakeRebondissantv2 : MonoBehaviour
             animatorSelf.SetBool("IsBouncing",true);
             timerBounce += Time.deltaTime;
             stockageVelocityX = rbCharacter.velocity.x;
-            rbCharacter.velocity = Vector2.zero;
+            if (canStopPlayer)
+            {
+                rbCharacter.bodyType = RigidbodyType2D.Static;
+                canStopPlayer = false;
+            }
             
+
             if (timerBounce > limitTimerBounce)
             {
+                Debug.Log("oui");
+                rbCharacter.bodyType = RigidbodyType2D.Dynamic;
                 var vector = new Vector2(stockageVelocityX, bounceForce);
                 rbCharacter.velocity = vector;
                 //Debug.Log(Vector2.Angle(vector.normalized, Vector2.down));
                 //particleSystem.main.startRotation.constant = Vector2.Angle(vector.normalized, Vector2.down);
             }
+            
         }
         else
         {
@@ -45,7 +54,7 @@ public class PancakeRebondissantv2 : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Character"))
         {
@@ -55,13 +64,12 @@ public class PancakeRebondissantv2 : MonoBehaviour
         
     }
 
-    private void OnCollisionExit2D(Collision2D other)
+    private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Character"))
+        if (other.gameObject.CompareTag("Character") && rbCharacter.bodyType != RigidbodyType2D.Static)
         {
             isOnThePancake = false;
-            
+            canStopPlayer = true;
         }
     }
-    
 }
