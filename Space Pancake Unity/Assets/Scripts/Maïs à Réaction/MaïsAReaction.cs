@@ -42,7 +42,7 @@ public class MaïsAReaction : MonoBehaviour
     [SerializeField] private bool launchedWithoutPlayer;
     [SerializeField] private float timer;
     [SerializeField] private float timerExplosion;
-    [SerializeField] private float horizontaleSpeedSide;
+    [SerializeField] [Range(-1,1)] private float horizontaleSpeedSide;
     [SerializeField] private bool grabKeyPressed;
 
 
@@ -65,6 +65,14 @@ public class MaïsAReaction : MonoBehaviour
         explosionParticle.Stop(withChildren:true);
         fuméParticles.Stop(withChildren:true);
         isInSpawningAnimation = true;
+        if (horizontaleSpeedSide > 1)
+        {
+            horizontaleSpeedSide = 1;
+        }
+        if (horizontaleSpeedSide < -1)
+        {
+            horizontaleSpeedSide = -1;
+        }
     }
 
 
@@ -96,7 +104,6 @@ public class MaïsAReaction : MonoBehaviour
         {
             Destruction();
             return;
-            Debug.Log("destroy");
         }
         if (playerIsAtRange && controls.Personnage.Serpe.WasPerformedThisFrame())
         {
