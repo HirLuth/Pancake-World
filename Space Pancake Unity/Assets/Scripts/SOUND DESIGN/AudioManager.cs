@@ -25,6 +25,8 @@ public class AudioManager : MonoBehaviour
     [SerializeField] [Range(0,1)] private float volumeBirds;
     [SerializeField] [Range(0,1)] private float volumeCollectibles;
     [SerializeField] [Range(0,1)] private float volumeSerpe;
+    private float lastSpeVolumeBackGround;
+    private float lastSpeVolumeSoundEffect;
 
 
     private void Awake()
@@ -70,6 +72,7 @@ public class AudioManager : MonoBehaviour
             mainAudioSource.Stop();
             mainAudioSource.clip = listClip[numberIntheList];
             mainAudioSource.Play();
+            lastSpeVolumeBackGround = volume;
         }
     }
 
@@ -81,6 +84,7 @@ public class AudioManager : MonoBehaviour
             secondaryAudioSource.Stop();
             secondaryAudioSource.clip = listClip[numberIntheList];
             secondaryAudioSource.Play();
+            lastSpeVolumeSoundEffect = volume;
         }
     }
 
@@ -112,6 +116,12 @@ public class AudioManager : MonoBehaviour
         {
             SetSoundEffect1(actualNeutralSoundEffect, neutralSoundEffectVolume);
         }
+    }
+
+    public void UpdateVolume()
+    {
+        mainAudioSource.volume = lastSpeVolumeBackGround * masterVolume * playermastervolume;
+        secondaryAudioSource.volume = lastSpeVolumeSoundEffect * masterVolume * playermastervolume;
     }
 
     public void SetForestAmbiance()
