@@ -37,12 +37,11 @@ public class PancakeRebondissantv2 : MonoBehaviour
             }
             if (timerBounce > limitTimerBounce)
             {
-                Debug.Log("oui");
                 var vector = new Vector2(stockageVelocityX, bounceForce);
                 rbCharacter.velocity = vector;
-                var mainModule = particleSystem.main;
-                mainModule.startRotation = Vector2.Angle(particleSystem.transform.forward,vector);
-                Debug.Log(Vector2.Angle(vector.normalized, Vector2.down));
+                //var mainModule = particleSystem.main;
+                //mainModule.startRotation = Vector2.Angle(particleSystem.transform.forward,vector);
+                //Debug.Log(Vector2.Angle(vector.normalized, Vector2.down));
                 
             }
             

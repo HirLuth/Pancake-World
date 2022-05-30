@@ -15,6 +15,7 @@ public class AudioManager : MonoBehaviour
     public int actualNeutralSoundEffect;
 
     [Header("Volume Sound Effects")] 
+    public float playermastervolume;
     [SerializeField] [Range(0,1)] private float masterVolume = 1;
     [SerializeField] [Range(0,1)] private float neutralBackgroundVolume;
     [SerializeField] [Range(0,1)] private float neutralSoundEffectVolume;
@@ -24,6 +25,8 @@ public class AudioManager : MonoBehaviour
     [SerializeField] [Range(0,1)] private float volumeBirds;
     [SerializeField] [Range(0,1)] private float volumeCollectibles;
     [SerializeField] [Range(0,1)] private float volumeSerpe;
+    private float lastSpeVolumeBackGround;
+    private float lastSpeVolumeSoundEffect;
 
 
     private void Awake()
@@ -65,10 +68,11 @@ public class AudioManager : MonoBehaviour
     {
         if (mainAudioSource.clip != listClip[numberIntheList] || !mainAudioSource.isPlaying)
         {
-            mainAudioSource.volume = volume * masterVolume;
+            mainAudioSource.volume = volume * masterVolume * playermastervolume;
             mainAudioSource.Stop();
             mainAudioSource.clip = listClip[numberIntheList];
             mainAudioSource.Play();
+            lastSpeVolumeBackGround = volume;
         }
     }
 
@@ -76,16 +80,17 @@ public class AudioManager : MonoBehaviour
     {
         if (secondaryAudioSource.clip != listClip[numberIntheList] || !secondaryAudioSource.isPlaying)
         {
-            secondaryAudioSource.volume = volume * masterVolume;
+            secondaryAudioSource.volume = volume * masterVolume * playermastervolume;
             secondaryAudioSource.Stop();
             secondaryAudioSource.clip = listClip[numberIntheList];
             secondaryAudioSource.Play();
+            lastSpeVolumeSoundEffect = volume;
         }
     }
 
     public void PlayOneshotSoundEffect(int numberIntheList, float volume)
     {
-        mainAudioSource.PlayOneShot(listClip[numberIntheList], volume * masterVolume);
+        mainAudioSource.PlayOneShot(listClip[numberIntheList], volume * masterVolume * playermastervolume);
     }
 
     public void BackToNeutralMain()
@@ -111,6 +116,12 @@ public class AudioManager : MonoBehaviour
         {
             SetSoundEffect1(actualNeutralSoundEffect, neutralSoundEffectVolume);
         }
+    }
+
+    public void UpdateVolume()
+    {
+        mainAudioSource.volume = lastSpeVolumeBackGround * masterVolume * playermastervolume;
+        secondaryAudioSource.volume = lastSpeVolumeSoundEffect * masterVolume * playermastervolume;
     }
 
     public void SetForestAmbiance()
