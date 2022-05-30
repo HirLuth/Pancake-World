@@ -4000,8 +4000,9 @@ GameObject:
   - component: {fileID: 5203512453074615774}
   - component: {fileID: 1643473911149436685}
   - component: {fileID: 3302265254659882555}
+  - component: {fileID: 8881253414362548783}
   m_Layer: 0
-  m_Name: Canvas
+  m_Name: Score
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4089,6 +4090,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &8881253414362548783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6745928897657347430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1115042ed7055144832a84fe6bf01f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6921261346501153268
 GameObject:
   m_ObjectHideFlags: 0
