@@ -61,6 +61,7 @@ public class CameraMovements : MonoBehaviour
     [HideInInspector] public bool followPlayer;
     private float offsetStart;
     private float avanceeOffsetStart;
+    private bool groundCheck;
 
 
     private void Awake()
@@ -75,6 +76,8 @@ public class CameraMovements : MonoBehaviour
         
         stockageSize = EventManager.Instance.stockageZoom;
         followPlayer = true;
+
+        groundCheck = true;
 
         if (EventManager.Instance.menuToGame)
         {
@@ -199,8 +202,10 @@ public class CameraMovements : MonoBehaviour
                 
                 
             // Partie tyrolienne
-            if (tyrolienneCamera)
+            if (tyrolienneCamera || (!groundCheck && !Character.Instance.onGround))
             {
+                groundCheck = false;
+                
                 offsetTyrolienne += Time.deltaTime * offsetTyrolienneSpeed;
                 
                 offset.x += offsetTyrolienne;
@@ -211,8 +216,10 @@ public class CameraMovements : MonoBehaviour
                 }
             }
                 
-            else
+            else if (Character.Instance.onGround || groundCheck)
             {
+                groundCheck = true;
+                
                 if (offsetTyrolienne > 0)
                 {
                     offsetTyrolienne -= Time.deltaTime * offsetTyrolienneSpeed * 4;
