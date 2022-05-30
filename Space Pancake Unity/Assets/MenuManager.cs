@@ -114,6 +114,11 @@ public class MenuManager : MonoBehaviour
         options.SetActive(false);
     }
 
+    public void QuitterJeu()
+    {
+        Application.Quit();
+    }
+
     
     public void WalkRun(bool inverse)
     {
