@@ -60,7 +60,7 @@ public class FirstSelected : MonoBehaviour
 
 
 
-        if (eventSystem.currentSelectedGameObject != bouton && eventSystem.currentSelectedGameObject && eventSystem.currentSelectedGameObject.tag == "Button")
+        if (eventSystem.currentSelectedGameObject != bouton && eventSystem.currentSelectedGameObject && (eventSystem.currentSelectedGameObject.tag == "Button" || MenuManager.Instance.ActivateOnThisScene))
         {
             if (bouton != null)
             {

@@ -137,7 +137,7 @@ public class EventManager : MonoBehaviour
     public void AddPoints(int points)
     {
         pointsNumber += points;
-        score.text = "SCORE : " + pointsNumber;
+        score.text = "X " + pointsNumber;
     }
 
 
