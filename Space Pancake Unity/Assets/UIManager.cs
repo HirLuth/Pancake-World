@@ -74,6 +74,8 @@ public class UIManager : MonoBehaviour
 
                 Time.timeScale = 1;
                 Character.Instance.noControl = false;
+                
+                FirstSelected.Instance.FermetureMenu();
 
                 timerSortiePause = 0;
             }
@@ -91,13 +93,12 @@ public class UIManager : MonoBehaviour
     {
         pauseActive = false;
         UIPause.SetActive(false);
-        
-        FirstSelected.Instance.FermetureMenu();
 
         Time.timeScale = 1;
         Character.Instance.noControl = false;
-        Character.Instance.jump = false;
-        
+                
+        FirstSelected.Instance.FermetureMenu();
+
         timerSortiePause = 0;
     }
 
