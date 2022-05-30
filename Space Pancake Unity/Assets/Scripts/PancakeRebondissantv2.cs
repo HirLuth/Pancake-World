@@ -42,8 +42,8 @@ public class PancakeRebondissantv2 : MonoBehaviour
                 rbCharacter.bodyType = RigidbodyType2D.Dynamic;
                 var vector = new Vector2(stockageVelocityX, bounceForce);
                 rbCharacter.velocity = vector;
-                //Debug.Log(Vector2.Angle(vector.normalized, Vector2.down));
-                //particleSystem.main.startRotation.constant = Vector2.Angle(vector.normalized, Vector2.down);
+                //ParticleSystem.MainModule mainModule = particleSystem.main;
+                //mainModule.startRotation =Vector2.Angle(vector.normalized, Vector2.down);
             }
             
         }

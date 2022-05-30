@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine.Audio;
 using UnityEngine;
+using Random = System.Random;
 
 
 public class AudioManager : MonoBehaviour
@@ -136,4 +137,5 @@ public class AudioManager : MonoBehaviour
     {
         SetSoundEffect1(5, volumeSerpe);
     }
+    
 }
