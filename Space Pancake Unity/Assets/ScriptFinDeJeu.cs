@@ -56,7 +56,7 @@ public class ScriptFinDeJeu : MonoBehaviour
         {
             timer += Time.deltaTime;
 
-            if (timer < 2)
+            if (timer < 1)
             {
                 Character.Instance.rb.velocity = new Vector2(5, 0);
                 
@@ -66,7 +66,7 @@ public class ScriptFinDeJeu : MonoBehaviour
                 Character.Instance.isFalling = false;
             }
             
-            else if (timer < 4)
+            else if (timer < 3)
             {
                 fondu.DOFade(1.1f, 2);
                 Character.Instance.rb.velocity = new Vector2(5, 0);
@@ -77,7 +77,7 @@ public class ScriptFinDeJeu : MonoBehaviour
                 Character.Instance.isFalling = false;
             }
 
-            else if (timer < 4.1f)
+            else if (timer < 3.1f)
             {
                 Character.Instance.transform.position = teleportation;
 
@@ -86,7 +86,7 @@ public class ScriptFinDeJeu : MonoBehaviour
                 CameraMovements.Instance.camera.DOOrthoSize(zoom1, 0);
             }
             
-            else if (timer < 6.5f)
+            else if (timer < 5.5f)
             {
                 fondu.DOFade(0, 1.5f);
                 Character.Instance.rb.velocity = new Vector2(5, 0);
@@ -97,7 +97,7 @@ public class ScriptFinDeJeu : MonoBehaviour
                 Character.Instance.isFalling = false;
             }
 
-            else if (timer < 8f)
+            else if (timer < 7f)
             {
                 Character.Instance.rb.velocity = new Vector2(0, 0);
 
@@ -109,7 +109,7 @@ public class ScriptFinDeJeu : MonoBehaviour
                 Character.Instance.isFalling = false;
             }
             
-            else if(timer < 10.5f)
+            else if(timer < 9.5f)
             {
                 stop = true;
                 guimauve.transform.DOMoveY(originalPos.y + 2, 2);
@@ -117,8 +117,12 @@ public class ScriptFinDeJeu : MonoBehaviour
 
             else
             {
-                fondu.DOFade(1.1f, 1f);
+                SpawnPointManagement.instance.RecordSpawn(new Vector2(-90.4f, -4.2f));
+                SpawnPointManagement.spawnWasModifiedOnce = false;
+                
+                UIManager.Instance.Menu();
             }
+            
         }
     }
 
