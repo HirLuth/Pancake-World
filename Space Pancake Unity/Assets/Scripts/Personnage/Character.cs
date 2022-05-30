@@ -79,10 +79,10 @@ public class Character: MonoBehaviour
 
     [Header("Animations")]
     public Animator anim;
-    private bool isWalking;
-    private bool isRunning;
-    private bool isJumping;
-    private bool isFalling;
+    public bool isWalking;
+    public bool isRunning;
+    public bool isJumping;
+    public bool isFalling;
     private bool isOnWall;
     private bool isWallJumping;
 

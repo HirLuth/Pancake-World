@@ -10,5 +10,7 @@ public class SetVolume : MonoBehaviour
     public void SetLevel(float sliderValue)
     {
         AudioManager.instance.playermastervolume = sliderValue;
+        
+        AudioManager.instance.UpdateVolume();
     }
 }
