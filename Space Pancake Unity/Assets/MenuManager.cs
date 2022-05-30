@@ -79,7 +79,7 @@ public class MenuManager : MonoBehaviour
         // On modifie la sauvegarde actuelle
         SpawnPointManagement.spawnWasModifiedOnce = false;
 
-        SpawnPointManagement.instance.RecordSpawn(new Vector2(-47.3f, -4.2f));
+        SpawnPointManagement.instance.RecordSpawn(new Vector2(-90.4f, -4.2f));
         
         // Transition de scene en scene
         EventManager.Instance.menuToGame = true;
