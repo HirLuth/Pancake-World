@@ -48,7 +48,7 @@ public class Character: MonoBehaviour
     [HideInInspector] public float abscisseJumpCurve;    // Abscisse utilisée pour lire l'ordonnée actuelle de la courbe de saut
     [HideInInspector] public bool jumping;    // Permet de retourner dans la fonction saut
     public float jumpForce;    // Puissance du saut
-    private bool onGround;    // Permet de vérifier si le personnage est au sol
+    [HideInInspector] public bool onGround;    // Permet de vérifier si le personnage est au sol
     [SerializeField] float tailleRaycastGround;    // Longueur du raycast permettant de détecter le sol
     [SerializeField] LayerMask ground;
     [HideInInspector] public bool wantsToJump;
