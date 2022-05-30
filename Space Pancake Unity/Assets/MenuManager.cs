@@ -18,6 +18,8 @@ public class MenuManager : MonoBehaviour
     public Image fondu;
     private bool stop;
 
+    public Animator anim;
+
     [Header("Options")] 
     public GameObject options;
     public bool optionsActives;
@@ -83,7 +85,9 @@ public class MenuManager : MonoBehaviour
         
         // Transition de scene en scene
         EventManager.Instance.menuToGame = true;
-        StartCoroutine(Fondu(2));
+        anim.SetTrigger("Balade");
+        
+        StartCoroutine(Fondu(1.3f));
     }
     
 
@@ -137,6 +141,8 @@ public class MenuManager : MonoBehaviour
     
     IEnumerator Fondu(float duree)
     {
+        yield return new WaitForSeconds(1);
+        
         fondu.DOFade(1, duree);
 
         yield return new WaitForSeconds(duree);
