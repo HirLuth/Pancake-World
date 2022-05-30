@@ -60,7 +60,7 @@ public class FirstSelected : MonoBehaviour
 
 
 
-        if (eventSystem.currentSelectedGameObject != bouton && eventSystem.currentSelectedGameObject)
+        if (eventSystem.currentSelectedGameObject != bouton && eventSystem.currentSelectedGameObject && eventSystem.currentSelectedGameObject.tag == "Button")
         {
             if (bouton != null)
             {
@@ -81,6 +81,7 @@ public class FirstSelected : MonoBehaviour
         {
             if (goUp && eventSystem.currentSelectedGameObject.tag == "Button")
             {
+                Debug.Log(12);
                 goUp = false;
                 bouton.transform.DOMoveY(originalPosition.y + 4, speedOscillation);
                 bouton.transform.DOScale(newSize, speedOscillation);

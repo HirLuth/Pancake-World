@@ -19,8 +19,6 @@ public class BoutonContinue : MonoBehaviour
     
     void Update()
     {
-        Debug.Log(SpawnPointManagement.instance.GetSpawn());
-        
         if (!MenuManager.Instance.optionsActives && SpawnPointManagement.instance.GetSpawn().x > 0)
         {
             ColorBlock cb = bouton.colors;
