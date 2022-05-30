@@ -1,0 +1,708 @@
+fileFormatVersion: 2
+guid: bc3e462aeeee669469154e4c3df26bb3
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 196527886423603947
+    second: panneau tuto mais-Sheet_0
+  - first:
+      213: -7155671848948119572
+    second: panneau tuto mais-Sheet_1
+  - first:
+      213: -1412792066663075116
+    second: panneau tuto mais-Sheet_2
+  - first:
+      213: 2962247161891709987
+    second: panneau tuto mais-Sheet_3
+  - first:
+      213: -4766258553175851394
+    second: panneau tuto mais-Sheet_4
+  - first:
+      213: -4952768358262957408
+    second: panneau tuto mais-Sheet_5
+  - first:
+      213: 2964371992954512815
+    second: panneau tuto mais-Sheet_6
+  - first:
+      213: 7633554423480182832
+    second: panneau tuto mais-Sheet_7
+  - first:
+      213: -1233953848079196435
+    second: panneau tuto mais-Sheet_8
+  - first:
+      213: 7530275708092914846
+    second: panneau tuto mais-Sheet_9
+  - first:
+      213: -2953116744092984264
+    second: panneau tuto mais-Sheet_10
+  - first:
+      213: 7684603409221572196
+    second: panneau tuto mais-Sheet_11
+  - first:
+      213: 5667729351707954083
+    second: panneau tuto mais-Sheet_12
+  - first:
+      213: -4349082404148503904
+    second: panneau tuto mais-Sheet_13
+  - first:
+      213: -4104295421891713571
+    second: panneau tuto mais-Sheet_14
+  - first:
+      213: -178196915310835226
+    second: panneau tuto mais-Sheet_15
+  - first:
+      213: -1611424225159727919
+    second: panneau tuto mais-Sheet_16
+  - first:
+      213: 4235547858984827120
+    second: panneau tuto mais-Sheet_17
+  - first:
+      213: 5962317466451717264
+    second: panneau tuto mais-Sheet_18
+  - first:
+      213: -3071670208373662473
+    second: panneau tuto mais-Sheet_19
+  - first:
+      213: 2671319966555302045
+    second: panneau tuto mais-Sheet_20
+  - first:
+      213: 4440292120982652151
+    second: panneau tuto mais-Sheet_21
+  - first:
+      213: -2910004865515648197
+    second: panneau tuto mais-Sheet_22
+  - first:
+      213: 2639567091031180070
+    second: panneau tuto mais-Sheet_23
+  - first:
+      213: 6216494189919914842
+    second: panneau tuto mais-Sheet_24
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 20
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: panneau tuto mais-Sheet_0
+      rect:
+        serializedVersion: 2
+        x: 383
+        y: 334
+        width: 104
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: beabcba42153ab200800000000000000
+      internalID: 196527886423603947
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: panneau tuto mais-Sheet_1
+      rect:
+        serializedVersion: 2
+        x: 546
+        y: 334
+        width: 104
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ce74f22ad52f1bc90800000000000000
+      internalID: -7155671848948119572
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: panneau tuto mais-Sheet_2
+      rect:
+        serializedVersion: 2
+        x: 710
+        y: 334
+        width: 102
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d2be05c911c46ce0800000000000000
+      internalID: -1412792066663075116
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: panneau tuto mais-Sheet_3
+      rect:
+        serializedVersion: 2
+        x: 872
+        y: 334
+        width: 104
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 324e67d59140c1920800000000000000
+      internalID: 2962247161891709987
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: panneau tuto mais-Sheet_4
+      rect:
+        serializedVersion: 2
+        x: 1035
+        y: 334
+        width: 104
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e7e394e3919daddb0800000000000000
+      internalID: -4766258553175851394
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: panneau tuto mais-Sheet_5
+      rect:
+        serializedVersion: 2
+        x: 386
+        y: 183
+        width: 103
+        height: 127
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0aa11f64b6b344bb0800000000000000
+      internalID: -4952768358262957408
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: panneau tuto mais-Sheet_6
+      rect:
+        serializedVersion: 2
+        x: 548
+        y: 183
+        width: 104
+        height: 127
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa5ab262f90932920800000000000000
+      internalID: 2964371992954512815
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: panneau tuto mais-Sheet_7
+      rect:
+        serializedVersion: 2
+        x: 711
+        y: 183
+        width: 104
+        height: 127
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 038e529cd45dfe960800000000000000
+      internalID: 7633554423480182832
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: panneau tuto mais-Sheet_8
+      rect:
+        serializedVersion: 2
+        x: 875
+        y: 183
+        width: 103
+        height: 127
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dee5300538d10eee0800000000000000
+      internalID: -1233953848079196435
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: panneau tuto mais-Sheet_9
+      rect:
+        serializedVersion: 2
+        x: 1037
+        y: 183
+        width: 104
+        height: 127
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e9c91a10cd9e08860800000000000000
+      internalID: 7530275708092914846
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: panneau tuto mais-Sheet_10
+      rect:
+        serializedVersion: 2
+        x: 1200
+        y: 183
+        width: 104
+        height: 127
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 83c5410b7fb6407d0800000000000000
+      internalID: -2953116744092984264
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: panneau tuto mais-Sheet_11
+      rect:
+        serializedVersion: 2
+        x: 1363
+        y: 183
+        width: 103
+        height: 127
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 466586ef51235aa60800000000000000
+      internalID: 7684603409221572196
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: panneau tuto mais-Sheet_12
+      rect:
+        serializedVersion: 2
+        x: 1527
+        y: 183
+        width: 103
+        height: 127
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3ab8b9301d1d7ae40800000000000000
+      internalID: 5667729351707954083
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: panneau tuto mais-Sheet_13
+      rect:
+        serializedVersion: 2
+        x: 1689
+        y: 183
+        width: 104
+        height: 127
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0aa93d98894f4a3c0800000000000000
+      internalID: -4349082404148503904
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: panneau tuto mais-Sheet_14
+      rect:
+        serializedVersion: 2
+        x: 1852
+        y: 183
+        width: 104
+        height: 127
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd5e1ec2f0d9a07c0800000000000000
+      internalID: -4104295421891713571
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: panneau tuto mais-Sheet_15
+      rect:
+        serializedVersion: 2
+        x: 2016
+        y: 183
+        width: 103
+        height: 127
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e9c3d289dae68df0800000000000000
+      internalID: -178196915310835226
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: panneau tuto mais-Sheet_16
+      rect:
+        serializedVersion: 2
+        x: 2178
+        y: 183
+        width: 104
+        height: 127
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d435e4743213a9e0800000000000000
+      internalID: -1611424225159727919
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: panneau tuto mais-Sheet_17
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 18
+        width: 103
+        height: 127
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0f8f4fb3650b7ca30800000000000000
+      internalID: 4235547858984827120
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: panneau tuto mais-Sheet_18
+      rect:
+        serializedVersion: 2
+        x: 221
+        y: 18
+        width: 103
+        height: 127
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 09c26f165286eb250800000000000000
+      internalID: 5962317466451717264
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: panneau tuto mais-Sheet_19
+      rect:
+        serializedVersion: 2
+        x: 383
+        y: 18
+        width: 104
+        height: 127
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7fcdcba483c3f55d0800000000000000
+      internalID: -3071670208373662473
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: panneau tuto mais-Sheet_20
+      rect:
+        serializedVersion: 2
+        x: 546
+        y: 18
+        width: 104
+        height: 127
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d98efe73b5f621520800000000000000
+      internalID: 2671319966555302045
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: panneau tuto mais-Sheet_21
+      rect:
+        serializedVersion: 2
+        x: 710
+        y: 18
+        width: 102
+        height: 127
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7f4032a88261f9d30800000000000000
+      internalID: 4440292120982652151
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: panneau tuto mais-Sheet_22
+      rect:
+        serializedVersion: 2
+        x: 872
+        y: 18
+        width: 104
+        height: 127
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b3b08402ef59d97d0800000000000000
+      internalID: -2910004865515648197
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: panneau tuto mais-Sheet_23
+      rect:
+        serializedVersion: 2
+        x: 1035
+        y: 18
+        width: 104
+        height: 127
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62389b5c840a1a420800000000000000
+      internalID: 2639567091031180070
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: panneau tuto mais-Sheet_24
+      rect:
+        serializedVersion: 2
+        x: 1198
+        y: 18
+        width: 103
+        height: 127
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a5bc472878c654650800000000000000
+      internalID: 6216494189919914842
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
