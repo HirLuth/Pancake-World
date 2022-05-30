@@ -20,6 +20,7 @@ public class PancakeRebondissantv2 : MonoBehaviour
     private void Start()
     {
         rbCharacter = Character.Instance.rb;
+        particleSystem = Character.Instance.particuleImpulsionPancake;
     }
 
     private void Update()
@@ -29,21 +30,20 @@ public class PancakeRebondissantv2 : MonoBehaviour
             animatorSelf.SetBool("IsBouncing",true);
             timerBounce += Time.deltaTime;
             stockageVelocityX = rbCharacter.velocity.x;
+            rbCharacter.velocity = Vector2.zero;
             if (canStopPlayer)
             {
-                rbCharacter.bodyType = RigidbodyType2D.Static;
                 canStopPlayer = false;
             }
-            
-
             if (timerBounce > limitTimerBounce)
             {
                 Debug.Log("oui");
-                rbCharacter.bodyType = RigidbodyType2D.Dynamic;
                 var vector = new Vector2(stockageVelocityX, bounceForce);
                 rbCharacter.velocity = vector;
-                //ParticleSystem.MainModule mainModule = particleSystem.main;
-                //mainModule.startRotation =Vector2.Angle(vector.normalized, Vector2.down);
+                var mainModule = particleSystem.main;
+                mainModule.startRotation = Vector2.Angle(particleSystem.transform.forward,vector);
+                Debug.Log(Vector2.Angle(vector.normalized, Vector2.down));
+                
             }
             
         }
@@ -54,7 +54,7 @@ public class PancakeRebondissantv2 : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Character"))
         {
@@ -64,7 +64,7 @@ public class PancakeRebondissantv2 : MonoBehaviour
         
     }
 
-    private void OnTriggerExit2D(Collider2D other)
+    private void OnCollisionExit2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Character") && rbCharacter.bodyType != RigidbodyType2D.Static)
         {
