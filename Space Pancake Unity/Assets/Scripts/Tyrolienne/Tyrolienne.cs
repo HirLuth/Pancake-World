@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
 using UnityEngine;
+using Vector2 = UnityEngine.Vector2;
 
 public class Tyrolienne : MonoBehaviour
 {
@@ -11,9 +13,13 @@ public class Tyrolienne : MonoBehaviour
     [SerializeField] float speedLimit;
     [SerializeField] float acceleration;
     [SerializeField] Vector2 direction;
-
+    
+    [Header("Poteaux")]
     [SerializeField] GameObject poteau1;
     [SerializeField] GameObject poteau2;
+    private Vector2 pos1;
+    private Vector2 pos2;
+    private Vector2 posActuel;
     
     
     [Header("Player")]
@@ -65,12 +71,14 @@ public class Tyrolienne : MonoBehaviour
 
         // On détermine la direction que va prendre la tyrolienne
         direction = poteau2.transform.position - poteau1.transform.position;
+
+        pos1 = poteau1.transform.position;
+        pos2 = poteau2.transform.position;
     }
 
 
     void Update()
     {
-
         if (isOnThisZipline)
         {
             UseZipline();
@@ -89,16 +97,19 @@ public class Tyrolienne : MonoBehaviour
                 rb.gravityScale = 0;
                 Character.Instance.noControl = true;
                 CameraMovements.Instance.tyrolienneCamera = true;
+                
                 if (!Character.Instance.particuleVitesse.isPlaying)
                 {
                     Character.Instance.particuleVitesse.Play();
                 }
+                
                 // Si le joueur décide de sauter sur la tyrolienne
                 if (controls.Personnage.Sauter.WasPressedThisFrame() && rb.velocity.x > 0 || Character.Instance.wantsToJump && rb.velocity.x > 0)
                 {
                     // On le fait sauter 
-                    timer = 0;
                     Character.Instance.Jump();
+                    
+                    timer = 0;
                     Character.Instance.noControl = false;
                     Detection.canUseZipline = false;
                     usingTyrolienne = false;
@@ -106,6 +117,7 @@ public class Tyrolienne : MonoBehaviour
                     rb.gravityScale = stockageGravity;
                     CameraMovements.Instance.tyrolienneCamera = false;
                     Character.Instance.wantsToJump = false;
+                    
                     Character.Instance.particuleVitesse.Stop();
                 }
 
@@ -119,6 +131,12 @@ public class Tyrolienne : MonoBehaviour
 
                     speedTyrolienne += Time.deltaTime * acceleration;
                 }
+
+                posActuel.x = Mathf.Abs(pos1.x - Character.Instance.transform.position.x + Time.deltaTime);
+                posActuel.y = Mathf.Abs(Character.Instance.transform.position.y - pos1.y + Time.deltaTime);
+
+                Character.Instance.transform.position = new Vector2(Character.Instance.transform.position.x, 
+                    Mathf.Lerp(pos1.y - 0.6f, pos2.y - 0.6f, posActuel.x / (pos2.x - pos1.x)));
 
                 rb.velocity = direction.normalized * speedTyrolienne;
             }
@@ -170,6 +188,9 @@ public class Tyrolienne : MonoBehaviour
             isOnThisZipline = true;
             usingTyrolienne = true;
             speedTyrolienne = rb.velocity.x;
+
+            posActuel.x = pos2.x - collision.transform.position.x;
+            posActuel.y = pos2.y - collision.transform.position.y;
         }
     }
 }
