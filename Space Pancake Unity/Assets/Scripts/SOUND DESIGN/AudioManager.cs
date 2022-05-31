@@ -15,16 +15,8 @@ public class AudioManager : MonoBehaviour
     public int actualNeutralSoundEffect;
 
     [Header("Volume Sound Effects")] 
-    public float playermastervolume;
+    [Range(0,1)] public float playermastervolume;
     [SerializeField] [Range(0,1)] private float masterVolume = 1;
-    [SerializeField] [Range(0,1)] private float neutralBackgroundVolume;
-    [SerializeField] [Range(0,1)] private float neutralSoundEffectVolume;
-    [SerializeField] [Range(0,1)] private float volumeMainTheme;
-    [SerializeField] [Range(0,1)] private float volumeSurvivalTheme;
-    [SerializeField] [Range(0,1)] private float volumeForestAmbiance;
-    [SerializeField] [Range(0,1)] private float volumeBirds;
-    [SerializeField] [Range(0,1)] private float volumeCollectibles;
-    [SerializeField] [Range(0,1)] private float volumeSerpe;
     private int backGroundPlaying;
     private int soundEffectPlaying;
 
@@ -42,11 +34,7 @@ public class AudioManager : MonoBehaviour
 
     void Start()
     {
-        mainAudioSource.clip = listClip[0].clip;
-        mainAudioSource.Play();
-        mainAudioSource.volume = volumeMainTheme;
-        actualNeutralBackground = 1;
-        actualNeutralSoundEffect = 0;
+        SetMenuTheme();
     }
     
     void Update()
@@ -69,6 +57,7 @@ public class AudioManager : MonoBehaviour
         if (mainAudioSource.clip != listClip[numberIntheList].clip || !mainAudioSource.isPlaying)
         {
             mainAudioSource.volume = listClip[numberIntheList].volume * masterVolume * playermastervolume;
+            mainAudioSource.pitch = listClip[numberIntheList].pitch;
             mainAudioSource.Stop();
             mainAudioSource.clip = listClip[numberIntheList].clip;
             mainAudioSource.Play();
@@ -81,6 +70,7 @@ public class AudioManager : MonoBehaviour
         if (secondaryAudioSource.clip != listClip[numberIntheList].clip || !secondaryAudioSource.isPlaying)
         {
             secondaryAudioSource.volume = listClip[numberIntheList].volume * masterVolume * playermastervolume;
+            secondaryAudioSource.pitch = listClip[numberIntheList].pitch;
             secondaryAudioSource.Stop();
             secondaryAudioSource.clip = listClip[numberIntheList].clip;
             secondaryAudioSource.Play();
@@ -124,6 +114,12 @@ public class AudioManager : MonoBehaviour
         secondaryAudioSource.volume = listClip[backGroundPlaying].volume * masterVolume * playermastervolume;
     }
 
+
+    public void SetMenuTheme()
+    {
+        SetBackGroundSound(0);
+    }
+    
     public void SetForestAmbiance()
     {
         SetBackGroundSound(2);
