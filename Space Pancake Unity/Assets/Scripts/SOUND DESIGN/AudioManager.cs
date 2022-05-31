@@ -7,7 +7,7 @@ using Random = System.Random;
 
 public class AudioManager : MonoBehaviour
 {
-    public List<AudioClip> listClip;
+    public List<Sound> listClip;
     public AudioSource mainAudioSource;
     public AudioSource secondaryAudioSource;
     public static AudioManager instance;
@@ -15,18 +15,10 @@ public class AudioManager : MonoBehaviour
     public int actualNeutralSoundEffect;
 
     [Header("Volume Sound Effects")] 
-    public float playermastervolume;
+    [Range(0,1)] public float playermastervolume;
     [SerializeField] [Range(0,1)] private float masterVolume = 1;
-    [SerializeField] [Range(0,1)] private float neutralBackgroundVolume;
-    [SerializeField] [Range(0,1)] private float neutralSoundEffectVolume;
-    [SerializeField] [Range(0,1)] private float volumeMainTheme;
-    [SerializeField] [Range(0,1)] private float volumeSurvivalTheme;
-    [SerializeField] [Range(0,1)] private float volumeForestAmbiance;
-    [SerializeField] [Range(0,1)] private float volumeBirds;
-    [SerializeField] [Range(0,1)] private float volumeCollectibles;
-    [SerializeField] [Range(0,1)] private float volumeSerpe;
-    private float lastSpeVolumeBackGround;
-    private float lastSpeVolumeSoundEffect;
+    private int backGroundPlaying;
+    private int soundEffectPlaying;
 
 
     private void Awake()
@@ -42,11 +34,7 @@ public class AudioManager : MonoBehaviour
 
     void Start()
     {
-        mainAudioSource.clip = listClip[0];
-        mainAudioSource.Play();
-        mainAudioSource.volume = volumeMainTheme;
-        actualNeutralBackground = 1;
-        actualNeutralSoundEffect = 0;
+        SetMenuTheme();
     }
     
     void Update()
@@ -64,33 +52,35 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    public void SetBackGroundSound(int numberIntheList, float volume)
+    public void SetBackGroundSound(int numberIntheList)
     {
-        if (mainAudioSource.clip != listClip[numberIntheList] || !mainAudioSource.isPlaying)
+        if (mainAudioSource.clip != listClip[numberIntheList].clip || !mainAudioSource.isPlaying)
         {
-            mainAudioSource.volume = volume * masterVolume * playermastervolume;
+            mainAudioSource.volume = listClip[numberIntheList].volume * masterVolume * playermastervolume;
+            mainAudioSource.pitch = listClip[numberIntheList].pitch;
             mainAudioSource.Stop();
-            mainAudioSource.clip = listClip[numberIntheList];
+            mainAudioSource.clip = listClip[numberIntheList].clip;
             mainAudioSource.Play();
-            lastSpeVolumeBackGround = volume;
+            backGroundPlaying = numberIntheList;
         }
     }
 
-    public void SetSoundEffect1(int numberIntheList, float volume)
+    public void SetSoundEffect1(int numberIntheList)
     {
-        if (secondaryAudioSource.clip != listClip[numberIntheList] || !secondaryAudioSource.isPlaying)
+        if (secondaryAudioSource.clip != listClip[numberIntheList].clip || !secondaryAudioSource.isPlaying)
         {
-            secondaryAudioSource.volume = volume * masterVolume * playermastervolume;
+            secondaryAudioSource.volume = listClip[numberIntheList].volume * masterVolume * playermastervolume;
+            secondaryAudioSource.pitch = listClip[numberIntheList].pitch;
             secondaryAudioSource.Stop();
-            secondaryAudioSource.clip = listClip[numberIntheList];
+            secondaryAudioSource.clip = listClip[numberIntheList].clip;
             secondaryAudioSource.Play();
-            lastSpeVolumeSoundEffect = volume;
+            soundEffectPlaying = numberIntheList;
         }
     }
 
-    public void PlayOneshotSoundEffect(int numberIntheList, float volume)
+    public void PlayOneshotSoundEffect(int numberIntheList)
     {
-        mainAudioSource.PlayOneShot(listClip[numberIntheList], volume * masterVolume * playermastervolume);
+        mainAudioSource.PlayOneShot(listClip[numberIntheList].clip,  listClip[numberIntheList].volume * masterVolume * playermastervolume);
     }
 
     public void BackToNeutralMain()
@@ -101,7 +91,7 @@ public class AudioManager : MonoBehaviour
         }
         else if (actualNeutralBackground != 0)
         {
-            SetBackGroundSound(actualNeutralBackground, neutralBackgroundVolume); 
+            SetBackGroundSound(actualNeutralBackground); 
         }
         
     }
@@ -114,39 +104,45 @@ public class AudioManager : MonoBehaviour
         }
         else if (actualNeutralSoundEffect != 0)
         {
-            SetSoundEffect1(actualNeutralSoundEffect, neutralSoundEffectVolume);
+            SetSoundEffect1(actualNeutralSoundEffect);
         }
     }
 
     public void UpdateVolume()
     {
-        mainAudioSource.volume = lastSpeVolumeBackGround * masterVolume * playermastervolume;
-        secondaryAudioSource.volume = lastSpeVolumeSoundEffect * masterVolume * playermastervolume;
+        mainAudioSource.volume = listClip[backGroundPlaying].volume * masterVolume * playermastervolume;
+        secondaryAudioSource.volume = listClip[backGroundPlaying].volume * masterVolume * playermastervolume;
     }
 
+
+    public void SetMenuTheme()
+    {
+        SetBackGroundSound(0);
+    }
+    
     public void SetForestAmbiance()
     {
-        SetBackGroundSound(2,volumeForestAmbiance);
+        SetBackGroundSound(2);
     }
 
     public void SetSurvivalTheme()
     {
-        SetBackGroundSound(1, volumeSurvivalTheme);
+        SetBackGroundSound(1);
     }
 
     public void LaunchBirdsSound()
     {
-        PlayOneshotSoundEffect(3,volumeBirds);
+        PlayOneshotSoundEffect(3);
     }
 
     public void LaunchCollectibleSound()
     {
-        PlayOneshotSoundEffect(4, volumeCollectibles);
+        PlayOneshotSoundEffect(4);
     }
 
     public void SetSerpeSound()
     {
-        SetSoundEffect1(5, volumeSerpe);
+        SetSoundEffect1(5);
     }
     
 }

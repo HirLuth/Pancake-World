@@ -46,16 +46,35 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   listClip:
-  - {fileID: 8300000, guid: fdb189fb304ada3459b134c7720d1797, type: 3}
-  - {fileID: 8300000, guid: 80da645cd0770ae48a6bd88663bf9519, type: 3}
-  - {fileID: 8300000, guid: 7385705ff33d4544ea4950fece76a903, type: 3}
-  - {fileID: 8300000, guid: 6e37758b2fb172942935b4dfc2f02413, type: 3}
-  - {fileID: 8300000, guid: ececd6a75eb5f214eba581abf5de8770, type: 3}
-  - {fileID: 8300000, guid: bbec8c77137c16f42a3a34b0e3389f4e, type: 3}
+  - clip: {fileID: 8300000, guid: fdb189fb304ada3459b134c7720d1797, type: 3}
+    name: 
+    volume: 1
+    pitch: 1
+  - clip: {fileID: 8300000, guid: 80da645cd0770ae48a6bd88663bf9519, type: 3}
+    name: 
+    volume: 1
+    pitch: 1
+  - clip: {fileID: 8300000, guid: 7385705ff33d4544ea4950fece76a903, type: 3}
+    name: 
+    volume: 1
+    pitch: 1
+  - clip: {fileID: 8300000, guid: 6e37758b2fb172942935b4dfc2f02413, type: 3}
+    name: 
+    volume: 1
+    pitch: 1
+  - clip: {fileID: 8300000, guid: ececd6a75eb5f214eba581abf5de8770, type: 3}
+    name: 
+    volume: 0
+    pitch: 1
+  - clip: {fileID: 8300000, guid: bbec8c77137c16f42a3a34b0e3389f4e, type: 3}
+    name: 
+    volume: 1
+    pitch: 1
   mainAudioSource: {fileID: 5146711195465452341}
   secondaryAudioSource: {fileID: 1979781201112652393}
   actualNeutralBackground: 0
   actualNeutralSoundEffect: 0
+  playermastervolume: 0
   masterVolume: 1
   neutralBackgroundVolume: 1
   neutralSoundEffectVolume: 1
@@ -63,7 +82,7 @@ MonoBehaviour:
   volumeSurvivalTheme: 1
   volumeForestAmbiance: 1
   volumeBirds: 0.5
-  volumeCollectibles: 0
+  volumeCollectibles: 0.3
   volumeSerpe: 0.5
 --- !u!82 &5146711195465452341
 AudioSource:
