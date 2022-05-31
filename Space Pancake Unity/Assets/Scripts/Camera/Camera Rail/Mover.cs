@@ -189,6 +189,9 @@ public class Mover : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        go = true;
+        if (other.tag == "Character")
+        {
+            go = true;
+        }
     }
 }
