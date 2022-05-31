@@ -9,10 +9,10 @@ public class Sound
     public string name;
     
     [Range(0f,1f)]
-    public float volume;
+    public float volume = 1;
     
-    [Range(.1f,3f)]
-    public float pitch;
+    [Range(-3f,3f)]
+    public float pitch = 1;
     
     void Start()
     {
