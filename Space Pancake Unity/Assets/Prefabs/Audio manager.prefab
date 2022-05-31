@@ -76,14 +76,6 @@ MonoBehaviour:
   actualNeutralSoundEffect: 0
   playermastervolume: 0
   masterVolume: 1
-  neutralBackgroundVolume: 1
-  neutralSoundEffectVolume: 1
-  volumeMainTheme: 1
-  volumeSurvivalTheme: 1
-  volumeForestAmbiance: 1
-  volumeBirds: 0.5
-  volumeCollectibles: 0.3
-  volumeSerpe: 0.5
 --- !u!82 &5146711195465452341
 AudioSource:
   m_ObjectHideFlags: 0
