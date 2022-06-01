@@ -67,7 +67,7 @@ public class Tyrolienne : MonoBehaviour
         
         // On recupère certains éléments
         rb = player.GetComponent<Rigidbody2D>();
-        stockageGravity = rb.gravityScale;
+        stockageGravity = 7.3f;
 
         // On détermine la direction que va prendre la tyrolienne
         direction = poteau2.transform.position - poteau1.transform.position;
@@ -144,7 +144,7 @@ public class Tyrolienne : MonoBehaviour
             // Si le joueur n'est plus entre les deux poteaux ou si on n'utilise pas la tyrolienne
             else if (player.transform.position.x >= poteau2.transform.position.x || player.transform.position.x <= poteau1.transform.position.x)
             {
-                Debug.Log(player.transform.position.x);
+                Debug.Log(stockageGravity);
                 
                 isOnThisZipline = false;
                 usingTyrolienne = false;
@@ -186,7 +186,7 @@ public class Tyrolienne : MonoBehaviour
     {
         if (collision.gameObject.tag == "Character" && Detection.canUseZipline)
         {
-            stockageGravity = rb.gravityScale;
+            stockageGravity = 7.3f;
             isOnThisZipline = true;
             usingTyrolienne = true;
             speedTyrolienne = rb.velocity.x;
