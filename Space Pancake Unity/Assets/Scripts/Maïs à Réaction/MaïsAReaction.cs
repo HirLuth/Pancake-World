@@ -139,6 +139,7 @@ public class MaïsAReaction : MonoBehaviour
             spriteSelf.color = colorNotAtRange;
             animatorSelf.SetBool("maïsIsGoingUp", true);
             character.jumping = false;
+            Character.Instance.noJump = false;
             character.abscisseJumpCurve = 0;
             timer += Time.deltaTime;
             playerRB.gravityScale = 0;
@@ -158,7 +159,7 @@ public class MaïsAReaction : MonoBehaviour
             if (playerGameObject.transform.position == transform.position + new Vector3(-0.40f, -1, 0) * positionSetUpDistanceFromEdge || 
                 playerGameObject.transform.position == transform.position + new Vector3(0.30f, -1, 0) * positionSetUpDistanceFromEdge)
             {
-                
+                Debug.Log("oui");
                 playerRB.velocity = new Vector2(horizontaleSpeedSide*directionnalModificator, courbeAccelerationMonté.Evaluate(timer/timerToExplode) * maxSpeedGoingUp) ;
                 rbSelf.velocity = new Vector2(horizontaleSpeedSide*directionnalModificator, courbeAccelerationMonté.Evaluate(timer/timerToExplode) * maxSpeedGoingUp) ;
                 if (timer >= timerToExplode)
@@ -169,12 +170,14 @@ public class MaïsAReaction : MonoBehaviour
             }
             else if (!launchedWithoutPlayer && Character.Instance.transform.rotation.y != 0)
             {
+                playerRB.velocity = Vector2.zero;
                 playerGameObject.transform.position = Vector3.Lerp(playerGameObject.transform.position, transform.position + new Vector3(0.30f, -1, 0) * positionSetUpDistanceFromEdge, 
                     timer*multiplicatorTimeToGetInPosition);
             }
             
             else if (!launchedWithoutPlayer && Character.Instance.transform.rotation.y == 0)
             {
+                playerRB.velocity = Vector2.zero;
                 playerGameObject.transform.position = Vector3.Lerp(playerGameObject.transform.position, transform.position + new Vector3(-0.40f, -1, 0) * positionSetUpDistanceFromEdge, 
                     timer*multiplicatorTimeToGetInPosition);
             }

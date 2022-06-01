@@ -190,6 +190,7 @@ public class Tyrolienne : MonoBehaviour
             isOnThisZipline = true;
             usingTyrolienne = true;
             speedTyrolienne = rb.velocity.x;
+            Character.Instance.noJump = false;
 
             posActuel.x = pos2.x - collision.transform.position.x;
             posActuel.y = pos2.y - collision.transform.position.y;
