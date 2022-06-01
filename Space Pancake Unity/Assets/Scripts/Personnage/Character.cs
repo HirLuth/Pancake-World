@@ -212,6 +212,7 @@ public class Character: MonoBehaviour
                 isWalking = false;
                 jumpForce = stockageJumpForce;
                 rb.gravityScale = stockageGravityScale;
+                noJump = false;
 
                 anim.SetBool("isGrabbing", false);
                 anim.SetBool("isOnTyroMaïs", false);
