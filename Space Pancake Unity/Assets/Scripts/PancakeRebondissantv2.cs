@@ -26,7 +26,7 @@ public class PancakeRebondissantv2 : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(Character.Instance.noJump);
+        //Debug.Log(Character.Instance.noJump);
         if (isOnThePancake)
         {
             animatorSelf.SetBool("IsBouncing",true);

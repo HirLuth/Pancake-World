@@ -80,8 +80,15 @@ public class MenuManager : MonoBehaviour
     {
         // On modifie la sauvegarde actuelle
         SpawnPointManagement.spawnWasModifiedOnce = false;
-
         SpawnPointManagement.instance.RecordSpawn(new Vector2(-90.4f, -4.2f));
+        
+        // Remise à zero des éléments du score
+        PlayerPrefs.SetFloat("timer", 0);
+        EventManager.Instance.timerGame = 0;
+        
+        PlayerPrefs.SetInt("coins", 0);
+        EventManager.Instance.pointsNumber = 0;
+        
         
         // Transition de scene en scene
         EventManager.Instance.menuToGame = true;
