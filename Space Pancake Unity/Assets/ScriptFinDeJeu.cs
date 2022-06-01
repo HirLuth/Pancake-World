@@ -122,6 +122,8 @@ public class ScriptFinDeJeu : MonoBehaviour
             {
                 stop = true;
                 guimauve.transform.DOMoveY(originalPos.y + 2, 2);
+                
+                CameraMovements.Instance.camera.DOOrthoSize(zoom2, 3);
 
                 if (!particule.isPlaying)
                 {
@@ -132,7 +134,9 @@ public class ScriptFinDeJeu : MonoBehaviour
             else
             {
                 UIScore.SetActive(true);
-                textScore.text = "Score : ";
+                textScore.text = "Score : " + CalculScore();
+                
+                CameraMovements.Instance.camera.DOOrthoSize(zoom2, 3);
 
                 /*SpawnPointManagement.instance.RecordSpawn(new Vector2(-90.4f, -4.2f));
                 SpawnPointManagement.spawnWasModifiedOnce = false;
@@ -146,15 +150,15 @@ public class ScriptFinDeJeu : MonoBehaviour
 
     private float CalculScore()
     {
-        float time = PlayerPrefs.GetFloat("time", 0);
-        float coins = PlayerPrefs.GetInt("coins", 0);
+        float time = PlayerPrefs.GetFloat("timer", 0);
+        int coins = PlayerPrefs.GetInt("coins", 0);
 
-        return 15 * coins + Mathf.Pow(1 / Mathf.Round(time) * 400000, 1.25f);
+        return Mathf.Round(15 * coins + Mathf.Pow((1 / Mathf.Round(time) * 400000), 1.25f));
     }
 
     private float CalculPointsTime()
     {
-        float time = PlayerPrefs.GetFloat("time", 0);
+        float time = PlayerPrefs.GetFloat("timer", 0);
 
         return Mathf.Pow(1 / Mathf.Round(time) * 400000, 1.25f);
     }
