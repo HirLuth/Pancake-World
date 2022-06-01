@@ -133,12 +133,14 @@ public class ScriptFinDeJeu : MonoBehaviour
 
             else
             {
+                fondu.DOFade(1.1f, 2);
+                
                 UIScore.SetActive(true);
                 textScore.text = "Score : " + CalculScore();
                 
-                CameraMovements.Instance.camera.DOOrthoSize(zoom2, 3);
+                /*CameraMovements.Instance.camera.DOOrthoSize(zoom2, 3);
 
-                /*SpawnPointManagement.instance.RecordSpawn(new Vector2(-90.4f, -4.2f));
+                SpawnPointManagement.instance.RecordSpawn(new Vector2(-90.4f, -4.2f));
                 SpawnPointManagement.spawnWasModifiedOnce = false;
                 
                 UIManager.Instance.Menu();*/
