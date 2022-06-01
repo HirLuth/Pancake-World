@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using DG.Tweening.Plugins.Options;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Rendering.Universal;
@@ -28,6 +29,10 @@ public class ScriptFinDeJeu : MonoBehaviour
     private bool stop;
     public ParticleSystem particule;
     private bool particuleActives;
+
+    [Header("Score")] 
+    public GameObject UIScore;
+    public TextMeshProUGUI textScore;
 
 
     void Start()
@@ -126,14 +131,41 @@ public class ScriptFinDeJeu : MonoBehaviour
 
             else
             {
-                SpawnPointManagement.instance.RecordSpawn(new Vector2(-90.4f, -4.2f));
+                UIScore.SetActive(true);
+                textScore.text = "Score : ";
+
+                /*SpawnPointManagement.instance.RecordSpawn(new Vector2(-90.4f, -4.2f));
                 SpawnPointManagement.spawnWasModifiedOnce = false;
                 
-                UIManager.Instance.Menu();
+                UIManager.Instance.Menu();*/
             }
             
         }
     }
+
+
+    private float CalculScore()
+    {
+        float time = PlayerPrefs.GetFloat("time", 0);
+        float coins = PlayerPrefs.GetInt("coins", 0);
+
+        return 15 * coins + Mathf.Pow(1 / Mathf.Round(time) * 400000, 1.25f);
+    }
+
+    private float CalculPointsTime()
+    {
+        float time = PlayerPrefs.GetFloat("time", 0);
+
+        return Mathf.Pow(1 / Mathf.Round(time) * 400000, 1.25f);
+    }
+
+    private float CalculPointsCoins()
+    {
+        float coins = PlayerPrefs.GetInt("coins", 0);
+
+        return 15 * coins;
+    }
+    
 
     private void OnTriggerEnter2D(Collider2D other)
     {

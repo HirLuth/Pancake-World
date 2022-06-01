@@ -14,7 +14,7 @@ public class EventManager : MonoBehaviour
     public static EventManager Instance { get; private set; }
 
     // Tout ce qui concerne le score
-    [SerializeField] private int pointsNumber;
+    public int pointsNumber;
     [SerializeField] public TextMeshProUGUI score;
 
 
@@ -61,6 +61,7 @@ public class EventManager : MonoBehaviour
         score = UIPrincipale.Instance.textScore;
 
         timerGame = PlayerPrefs.GetFloat("timer", 0);
+        pointsNumber = PlayerPrefs.GetInt("coins", 0);
     }
 
     
@@ -164,7 +165,9 @@ public class EventManager : MonoBehaviour
     
     public void AddPoints(int points)
     {
-        pointsNumber += points;
+        PlayerPrefs.SetInt("coins", pointsNumber + 1);
+        
+        pointsNumber = PlayerPrefs.GetInt("coins", 0);
         score.text = "" + pointsNumber;
     }
 

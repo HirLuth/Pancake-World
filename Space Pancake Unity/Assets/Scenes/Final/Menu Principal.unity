@@ -1132,6 +1132,10 @@ PrefabInstance:
       propertyPath: anim
       value: 
       objectReference: {fileID: 1382497151}
+    - target: {fileID: 1978175549, guid: 067e3ae90fd00f74a96de1387df487e1, type: 3}
+      propertyPath: ActivateOnThisScene
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2476014768660599495, guid: 067e3ae90fd00f74a96de1387df487e1, type: 3}
       propertyPath: m_RootOrder
       value: 5
