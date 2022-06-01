@@ -15,6 +15,7 @@ public class PancakeRebondissantv2 : MonoBehaviour
     [SerializeField] private LayerMask layerPlayer;
     [SerializeField] private ParticleSystem particleSystem;
     [SerializeField] private bool canStopPlayer = true;
+    [SerializeField] private bool wasPropulsed = false;
 
 
     private void Start()
@@ -25,6 +26,7 @@ public class PancakeRebondissantv2 : MonoBehaviour
 
     private void Update()
     {
+        Debug.Log(Character.Instance.noJump);
         if (isOnThePancake)
         {
             animatorSelf.SetBool("IsBouncing",true);
@@ -38,7 +40,9 @@ public class PancakeRebondissantv2 : MonoBehaviour
             if (timerBounce > limitTimerBounce)
             {
                 var vector = new Vector2(stockageVelocityX, bounceForce);
+                wasPropulsed  = true;
                 rbCharacter.velocity = vector;
+
                 //var mainModule = particleSystem.main;
                 //mainModule.startRotation = Vector2.Angle(particleSystem.transform.forward,vector);
                 //Debug.Log(Vector2.Angle(vector.normalized, Vector2.down));
@@ -51,6 +55,12 @@ public class PancakeRebondissantv2 : MonoBehaviour
             animatorSelf.SetBool("IsBouncing",false);
             timerBounce = 0;
         }
+
+        if (wasPropulsed && Character.Instance.onGround)
+        {
+            Character.Instance.noJump = false;
+            wasPropulsed = false;
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -59,6 +69,7 @@ public class PancakeRebondissantv2 : MonoBehaviour
         {
             Character.Instance.particuleImpulsionPancake.Play();
             isOnThePancake = true;
+            Character.Instance.noJump = true;
         }
         
     }
