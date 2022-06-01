@@ -52,6 +52,8 @@ public class Character: MonoBehaviour
     [SerializeField] float tailleRaycastGround;    // Longueur du raycast permettant de détecter le sol
     [SerializeField] LayerMask ground;
     [HideInInspector] public bool wantsToJump;
+    [HideInInspector] public bool noJump;
+    
 
 
     [Header("AirControl")] 
@@ -360,7 +362,7 @@ public class Character: MonoBehaviour
                     }
                 }
 
-                if (jump && onGround || jumping)
+                if ((jump && onGround || jumping) && !noJump)
                 {
                     Jump();
                 }
