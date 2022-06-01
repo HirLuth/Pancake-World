@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -22,6 +23,10 @@ public class UIManager : MonoBehaviour
     [HideInInspector] public bool pauseActive;
     private float timerSortiePause;
     public EventSystem eventSystem;
+
+
+    [Header("Timer")] public TextMeshProUGUI timer;
+    
     
     
 
@@ -56,6 +61,8 @@ public class UIManager : MonoBehaviour
 
     void Update()
     {
+        Timer();
+        
         if (controls.Personnage.Pause.WasPerformedThisFrame() && !MenuManager.Instance.ActivateOnThisScene && !EventManager.Instance.isDead)
         {
             if (!pauseActive)
@@ -146,6 +153,29 @@ public class UIManager : MonoBehaviour
         {
             StartCoroutine(WaitForSceneLoad("Menu Principal"));
         }
+    }
+
+
+    public void Timer()
+    {
+        if (EventManager.Instance.CallTimerSeconds() < 10)
+        {
+            if (EventManager.Instance.CallTimerMinutes() < 10)
+            {
+                timer.text = "0" + EventManager.Instance.CallTimerMinutes() + ":0" + EventManager.Instance.CallTimerSeconds();
+            }
+            else
+            {
+                timer.text = EventManager.Instance.CallTimerMinutes() + ":0" + EventManager.Instance.CallTimerSeconds();
+            }
+        }
+
+        
+        else if(EventManager.Instance.CallTimerMinutes() < 10)
+            timer.text = "0" + EventManager.Instance.CallTimerMinutes() + ":" + EventManager.Instance.CallTimerSeconds();
+            
+        else
+            timer.text = EventManager.Instance.CallTimerMinutes() + ":" + EventManager.Instance.CallTimerSeconds();
     }
     
     

@@ -83,6 +83,9 @@ public class MenuManager : MonoBehaviour
 
         SpawnPointManagement.instance.RecordSpawn(new Vector2(-90.4f, -4.2f));
         
+        PlayerPrefs.SetFloat("timer", 0);
+        EventManager.Instance.timerGame = 0;
+        
         // Transition de scene en scene
         EventManager.Instance.menuToGame = true;
         anim.SetTrigger("Balade");

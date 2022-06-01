@@ -40,6 +40,10 @@ public class EventManager : MonoBehaviour
     public Image fondu;
 
 
+    [Header("Timer")] 
+    public float timerGame;
+
+
     private void Awake()
     {
         if (Instance != null)
@@ -55,11 +59,16 @@ public class EventManager : MonoBehaviour
     {
         UI = UIPrincipale.Instance.gameObject;
         score = UIPrincipale.Instance.textScore;
+
+        timerGame = PlayerPrefs.GetFloat("timer", 0);
     }
 
     
     void Update()
     {
+        if(!MenuManager.Instance.ActivateOnThisScene && !Character.Instance.isSpawning)
+            Timer();
+
         // Transition lorsque l'on passe de la scene de menue à la scene de jeu
         if (menuToGame)
         {
@@ -133,6 +142,25 @@ public class EventManager : MonoBehaviour
             StartCoroutine(WaitAnimation(dureeAnimationMort));
         }
     }
+
+    public void Timer()
+    {
+        timerGame += Time.deltaTime;
+        PlayerPrefs.SetFloat("timer", timerGame);
+    }
+
+    public int CallTimerMinutes()
+    {
+        return (int) PlayerPrefs.GetFloat("timer", 0) / 60;
+    }
+
+    public int CallTimerSeconds()
+    {
+        int minutes = (int) PlayerPrefs.GetFloat("timer", 0) / 60;
+        
+        return (int) PlayerPrefs.GetFloat("timer", 0) - minutes * 60;
+    }
+    
     
     public void AddPoints(int points)
     {
