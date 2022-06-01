@@ -210,6 +210,8 @@ public class Character: MonoBehaviour
             {
                 isRunning = false;
                 isWalking = false;
+                jumpForce = stockageJumpForce;
+                rb.gravityScale = stockageGravityScale;
 
                 anim.SetBool("isGrabbing", false);
                 anim.SetBool("isOnTyroMaïs", false);
@@ -232,7 +234,6 @@ public class Character: MonoBehaviour
             if (UIManager.Instance.pauseActive)
             {
                 jump = false;
-
             }
             
 
