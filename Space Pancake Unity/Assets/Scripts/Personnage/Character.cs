@@ -385,7 +385,7 @@ public class Character: MonoBehaviour
             VFX();
             
             // Ghost jump
-            if (!onGround && !jumped && ghostJumpTimer < dureeGhostJump)
+            if (!onGround && !jumped && ghostJumpTimer < dureeGhostJump && !noJump)
             {
                 ghostJumpTimer += Time.deltaTime;
 
