@@ -5,7 +5,7 @@ using Cinemachine;
 
 public class CinemachineMovements : MonoBehaviour
 {
-    public static CinemachineMovements Instance;
+    /* public static CinemachineMovements Instance;
     private CinemachineVirtualCamera camera;
 
     public float stockageSize;
@@ -38,5 +38,5 @@ public class CinemachineMovements : MonoBehaviour
     {
         camera.m_Lens.OrthographicSize = dezoom;
         camera.m_Follow = objectFollowed;
-    }
+    }*/
 }

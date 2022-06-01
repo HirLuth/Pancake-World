@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class CameraFixe : MonoBehaviour
 {
-    public float dezoom;
+    /* public float dezoom;
     private float stockage;
     
     private void OnTriggerEnter2D(Collider2D other)
@@ -24,5 +24,5 @@ public class CameraFixe : MonoBehaviour
         
         CinemachineMovements.Instance.ChangeFollow(other.transform, stockage);
         
-    }
+    } */
 }
