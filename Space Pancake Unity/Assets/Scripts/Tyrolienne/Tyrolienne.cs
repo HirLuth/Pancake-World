@@ -144,6 +144,8 @@ public class Tyrolienne : MonoBehaviour
             // Si le joueur n'est plus entre les deux poteaux ou si on n'utilise pas la tyrolienne
             else if (player.transform.position.x >= poteau2.transform.position.x || player.transform.position.x <= poteau1.transform.position.x)
             {
+                Debug.Log(player.transform.position.x);
+                
                 isOnThisZipline = false;
                 usingTyrolienne = false;
                 Character.Instance.noControl = false;

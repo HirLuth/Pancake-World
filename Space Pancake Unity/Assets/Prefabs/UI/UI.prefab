@@ -842,8 +842,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: LA QUETE DU GUI-MAUVE
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2100000, guid: 79459efec17a4d00a321bdcc27bbc385, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 83096cd2b6b64fb4fa38688133419750, type: 2}
+  m_sharedMaterial: {fileID: 2786840683942836284, guid: 83096cd2b6b64fb4fa38688133419750, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2706,6 +2706,7 @@ MonoBehaviour:
   menu: {fileID: 1159105102}
   ActivateOnThisScene: 0
   fondu: {fileID: 838429675}
+  anim: {fileID: 0}
   options: {fileID: 3505387310693295120}
   optionsActives: 0
 --- !u!1 &361605730883339818
@@ -4370,7 +4371,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -315.2, y: 179.8}
+  m_AnchoredPosition: {x: -307.8, y: 179.8}
   m_SizeDelta: {x: 70, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8038471001462322402
@@ -4401,10 +4402,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: ' X 0'
+  m_text: 0
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2100000, guid: 79459efec17a4d00a321bdcc27bbc385, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 83096cd2b6b64fb4fa38688133419750, type: 2}
+  m_sharedMaterial: {fileID: 2786840683942836284, guid: 83096cd2b6b64fb4fa38688133419750, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
