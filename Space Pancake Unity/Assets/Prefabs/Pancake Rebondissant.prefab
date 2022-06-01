@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 19521882}
   - component: {fileID: 19521883}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: C'est pas beau mais j'ai la flemme
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,7 +44,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.013599992, y: 0.01697094}
+  m_Offset: {x: -0.0085962415, y: -0.053028166}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -55,7 +55,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.1595459, y: 0.20680575}
+  m_Size: {x: 1.1975464, y: 0.34680396}
   m_EdgeRadius: 0
 --- !u!1 &6798546507721895059
 GameObject:
@@ -133,7 +133,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -4243693440684728460, guid: 2a0724af5f4d04c4a88aa4ba8a8fa5a2, type: 3}
+  m_Sprite: {fileID: -3288329281988681549, guid: 2c46f94505ba5594984de700a78c7bd9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -157,18 +157,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.010125756, y: 0.069080345}
+  m_Offset: {x: -0.009488821, y: 0.0982994}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.55, y: 0.26}
-    oldSize: {x: 1.6, y: 1.2}
+    pivot: {x: 0.56, y: 0.35}
+    oldSize: {x: 1.6, y: 1.725}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.1476958, y: 0.11259593}
+  m_Size: {x: 1.1984222, y: 0.05499801}
   m_EdgeRadius: 0
 --- !u!111 &895963653
 Animation:
