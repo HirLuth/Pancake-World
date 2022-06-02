@@ -131,6 +131,7 @@ public class Character: MonoBehaviour
     public bool isSpawning;
     public bool menuPrincipale;
     public Vector3 coordonnesApparition;
+    [HideInInspector] public bool isOnTyro;
 
 
     [Header("Lancement")] 
@@ -882,8 +883,17 @@ public class Character: MonoBehaviour
             emissionGauche.enabled = false;
         }
     }
-    
-    
+
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (isOnTyro)
+        {
+            isOnTyro = false;
+        }
+    }
+
+
     public IEnumerator WaitSpawn(float duree)
     {
         EventManager.Instance.dieOnce = false;

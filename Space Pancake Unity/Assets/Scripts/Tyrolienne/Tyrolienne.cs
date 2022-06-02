@@ -79,9 +79,25 @@ public class Tyrolienne : MonoBehaviour
 
     void Update()
     {
-        if (isOnThisZipline)
+        if (isOnThisZipline && Character.Instance.isOnTyro)
         {
             UseZipline();
+        }
+        else if (isOnThisZipline && !Character.Instance.isOnTyro)
+        {
+            Debug.Log(12);
+            
+            isOnThisZipline = false;
+            usingTyrolienne = false;
+            Character.Instance.noControl = false;
+            Character.Instance.noAirControl = false;
+            Detection.canUseZipline = false;
+            rb.gravityScale = stockageGravity;
+
+            CameraMovements.Instance.tyrolienneCamera = false;
+            Character.Instance.particuleVitesse.Stop();
+            
+            Character.Instance.anim.SetBool("isOnTyroMaïs", usingTyrolienne);
         }
     }
 
@@ -117,7 +133,7 @@ public class Tyrolienne : MonoBehaviour
                     rb.gravityScale = stockageGravity;
                     CameraMovements.Instance.tyrolienneCamera = false;
                     Character.Instance.wantsToJump = false;
-                    
+
                     Character.Instance.particuleVitesse.Stop();
                 }
 
@@ -144,8 +160,6 @@ public class Tyrolienne : MonoBehaviour
             // Si le joueur n'est plus entre les deux poteaux ou si on n'utilise pas la tyrolienne
             else if (player.transform.position.x >= poteau2.transform.position.x || player.transform.position.x <= poteau1.transform.position.x)
             {
-                Debug.Log(stockageGravity);
-                
                 isOnThisZipline = false;
                 usingTyrolienne = false;
                 Character.Instance.noControl = false;
@@ -153,9 +167,10 @@ public class Tyrolienne : MonoBehaviour
                 Detection.canUseZipline = false;
                 rb.gravityScale = stockageGravity;
                 
+                Character.Instance.isOnTyro = false;
+                
                 CameraMovements.Instance.tyrolienneCamera = false;
                 Character.Instance.particuleVitesse.Stop();
-                
             }
         }
         
@@ -191,6 +206,8 @@ public class Tyrolienne : MonoBehaviour
             usingTyrolienne = true;
             speedTyrolienne = rb.velocity.x;
             Character.Instance.noJump = false;
+            
+            Character.Instance.isOnTyro = true;
 
             posActuel.x = pos2.x - collision.transform.position.x;
             posActuel.y = pos2.y - collision.transform.position.y;
