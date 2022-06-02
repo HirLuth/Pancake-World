@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using DG.Tweening;
 using DG.Tweening.Plugins.Options;
 using TMPro;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Rendering.Universal;
@@ -11,10 +12,12 @@ using UnityEngine.UI;
 
 public class ScriptFinDeJeu : MonoBehaviour
 {
-    [SerializeField] private bool endEvent;
+    [HideInInspector] public bool endEvent;
+    public static ScriptFinDeJeu Instance;
     
     [Header("Partie1")]
     public Image fondu;
+    public GameObject fondu2;
     private float timer;
 
     [Header("Partie2")] 
@@ -33,6 +36,8 @@ public class ScriptFinDeJeu : MonoBehaviour
     [Header("Score")] 
     public GameObject UIScore;
     public TextMeshProUGUI textScore;
+    public TextMeshProUGUI textCoins;
+    public TextMeshProUGUI textTime;
 
 
     void Start()
@@ -40,6 +45,8 @@ public class ScriptFinDeJeu : MonoBehaviour
         originalPos = guimauve.transform.position;
         
         particule.Stop(true);
+
+        Instance = this;
     }
     
     
@@ -48,6 +55,7 @@ public class ScriptFinDeJeu : MonoBehaviour
     {
         timerGuimauve += Time.deltaTime;
 
+        // Balancement du guimauve
         if (timerGuimauve < 1 && !stop)
         {
             guimauve.transform.DOMoveY(originalPos.y + 0.3f, 1).SetEase(Ease.Flash);
@@ -133,11 +141,13 @@ public class ScriptFinDeJeu : MonoBehaviour
 
             else
             {
-                fondu.DOFade(1.1f, 2);
+                //fondu2.GetComponent<SpriteRenderer>().DOFade(1.2f, 2);
+                fondu.DOFade(1.2f, 2);
                 
                 UIScore.SetActive(true);
                 textScore.text = "Score : " + CalculScore();
-                
+                textTime.text = UIManager.Instance.Timer() + " = " + CalculPointsTime();
+
                 /*CameraMovements.Instance.camera.DOOrthoSize(zoom2, 3);
 
                 SpawnPointManagement.instance.RecordSpawn(new Vector2(-90.4f, -4.2f));
@@ -162,7 +172,7 @@ public class ScriptFinDeJeu : MonoBehaviour
     {
         float time = PlayerPrefs.GetFloat("timer", 0);
 
-        return Mathf.Pow(1 / Mathf.Round(time) * 400000, 1.25f);
+        return Mathf.Round(Mathf.Pow(1 / Mathf.Round(time) * 400000, 1.25f));
     }
 
     private float CalculPointsCoins()

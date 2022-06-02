@@ -61,9 +61,10 @@ public class UIManager : MonoBehaviour
 
     void Update()
     {
-        Timer();
+        if(!ScriptFinDeJeu.Instance.endEvent)
+            timer.text = Timer();
         
-        if (controls.Personnage.Pause.WasPerformedThisFrame() && !MenuManager.Instance.ActivateOnThisScene && !EventManager.Instance.isDead)
+        if (controls.Personnage.Pause.WasPerformedThisFrame() && !MenuManager.Instance.ActivateOnThisScene && !EventManager.Instance.isDead && !ScriptFinDeJeu.Instance.endEvent)
         {
             if (!pauseActive)
             {
@@ -156,26 +157,26 @@ public class UIManager : MonoBehaviour
     }
 
 
-    public void Timer()
+    public string Timer()
     {
         if (EventManager.Instance.CallTimerSeconds() < 10)
         {
             if (EventManager.Instance.CallTimerMinutes() < 10)
             {
-                timer.text = "0" + EventManager.Instance.CallTimerMinutes() + ":0" + EventManager.Instance.CallTimerSeconds();
+                return "0" + EventManager.Instance.CallTimerMinutes() + ":0" + EventManager.Instance.CallTimerSeconds();
             }
             else
             {
-                timer.text = EventManager.Instance.CallTimerMinutes() + ":0" + EventManager.Instance.CallTimerSeconds();
+                return EventManager.Instance.CallTimerMinutes() + ":0" + EventManager.Instance.CallTimerSeconds();
             }
         }
 
         
         else if(EventManager.Instance.CallTimerMinutes() < 10)
-            timer.text = "0" + EventManager.Instance.CallTimerMinutes() + ":" + EventManager.Instance.CallTimerSeconds();
+            return "0" + EventManager.Instance.CallTimerMinutes() + ":" + EventManager.Instance.CallTimerSeconds();
             
         else
-            timer.text = EventManager.Instance.CallTimerMinutes() + ":" + EventManager.Instance.CallTimerSeconds();
+            return EventManager.Instance.CallTimerMinutes() + ":" + EventManager.Instance.CallTimerSeconds();
     }
     
     
