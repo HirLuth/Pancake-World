@@ -23,15 +23,6 @@ public class Collectibles : MonoBehaviour
         eventManager = EventManager.Instance;
         spawnPointManagement = SpawnPointManagement.instance; 
         stockagePosition = transform.position;
-        Debug.Log(PlayerPrefs.HasKey(stockagePosition.ToString()));
-        if (PlayerPrefs.HasKey(stockagePosition.ToString()))
-        {
-            Debug.Log(stockagePosition);
-        }
-        if (!spawnPointManagement.locationCollectibleCollected.Contains(stockagePosition) && PlayerPrefs.HasKey(stockagePosition.ToString()))
-        {
-            spawnPointManagement.IamCollected(stockagePosition);
-        }
         foreach (var location in spawnPointManagement.locationCollectibleCollected)
         {
             if (location == stockagePosition)
@@ -52,7 +43,6 @@ public class Collectibles : MonoBehaviour
         if (locationToRemove != null)
         {
             spawnPointManagement.locationCollectibleCollected.Remove(locationToRemove);
-            PlayerPrefs.DeleteKey(stockagePosition.ToString());
         }
         eventManager.SavePoints();
     }
@@ -67,7 +57,6 @@ public class Collectibles : MonoBehaviour
             if (timer >= timeToDestroy)
             {
                 spawnPointManagement.IamCollected(stockagePosition);
-                PlayerPrefs.SetInt(stockagePosition.ToString(),1);
                 Destroy(this.gameObject);
                 
             }

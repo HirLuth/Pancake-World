@@ -15,6 +15,7 @@ public class PointDeSpawn : MonoBehaviour
         if (other.CompareTag("Character"))
         {
             SpawnPointManagement.instance.SetSpawnPoint(transform.position + new Vector3(0, Character.Instance.gameObject.GetComponent<SpriteRenderer>().bounds.size.y/2, 0));
+            EventManager.Instance.SavePoints();
         }
     }
 
