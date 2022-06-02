@@ -166,14 +166,14 @@ public class ScriptFinDeJeu : MonoBehaviour
         float time = PlayerPrefs.GetFloat("timer", 0);
         int coins = EventManager.Instance.pointsNumber;
 
-        return 15 * coins + Mathf.Round(Mathf.Pow((1 / time * 400000), 1.25f));
+        return 15 * coins + Mathf.Round(Mathf.Pow((1 / time * 400000), 1.125f));
     }
 
     private float CalculPointsTime()
     {
         float time = PlayerPrefs.GetFloat("timer", 0);
 
-        return Mathf.Round(Mathf.Pow((1 / time * 400000), 1.25f));
+        return Mathf.Round(Mathf.Pow((1 / time * 400000), 1.125f));
     }
 
     private float CalculPointsCoins()
