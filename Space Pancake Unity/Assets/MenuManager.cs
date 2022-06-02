@@ -102,7 +102,9 @@ public class MenuManager : MonoBehaviour
     {
         // Transition de scene en scene
         EventManager.Instance.menuToGame = true;
-        StartCoroutine(Fondu(2));
+        anim.SetTrigger("Balade");
+        
+        StartCoroutine(Fondu(1.3f));
     }
 
 
