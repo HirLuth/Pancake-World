@@ -147,6 +147,7 @@ public class ScriptFinDeJeu : MonoBehaviour
                 UIScore.SetActive(true);
                 textScore.text = "Score : " + CalculScore() + " pts";
                 textTime.text = UIManager.Instance.Timer() + " = " + CalculPointsTime() + " pts";
+                textCoins.text = EventManager.Instance.pointsNumber + " = " + CalculPointsCoins() + " pts";
 
                 /*CameraMovements.Instance.camera.DOOrthoSize(zoom2, 3);
 
@@ -163,21 +164,21 @@ public class ScriptFinDeJeu : MonoBehaviour
     private float CalculScore()
     {
         float time = PlayerPrefs.GetFloat("timer", 0);
-        int coins = PlayerPrefs.GetInt("coins", 0);
+        int coins = EventManager.Instance.pointsNumber;
 
-        return Mathf.Round(15 * coins + Mathf.Pow((1 / Mathf.Round(time) * 400000), 1.25f));
+        return 15 * coins + Mathf.Round(Mathf.Pow((1 / time * 400000), 1.25f));
     }
 
     private float CalculPointsTime()
     {
         float time = PlayerPrefs.GetFloat("timer", 0);
 
-        return Mathf.Round(Mathf.Pow(1 / Mathf.Round(time) * 400000, 1.25f));
+        return Mathf.Round(Mathf.Pow((1 / time * 400000), 1.25f));
     }
 
     private float CalculPointsCoins()
     {
-        float coins = PlayerPrefs.GetInt("coins", 0);
+        float coins = EventManager.Instance.pointsNumber;
 
         return 15 * coins;
     }
