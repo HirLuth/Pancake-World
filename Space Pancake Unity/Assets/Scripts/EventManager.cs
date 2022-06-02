@@ -167,7 +167,6 @@ public class EventManager : MonoBehaviour
     {
         pointsNumber += points;
         score.text = "" + pointsNumber;
-        SavePoints();
     }
 
     public void SavePoints()
