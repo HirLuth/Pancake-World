@@ -67,7 +67,7 @@ public class EventManager : MonoBehaviour
     
     void Update()
     {
-        if(!MenuManager.Instance.ActivateOnThisScene && !Character.Instance.isSpawning)
+        if(!MenuManager.Instance.ActivateOnThisScene && !Character.Instance.isSpawning && !ScriptFinDeJeu.Instance.endEvent)
             Timer();
 
         // Transition lorsque l'on passe de la scene de menue à la scene de jeu
