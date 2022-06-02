@@ -17,7 +17,6 @@ public class ScriptFinDeJeu : MonoBehaviour
     
     [Header("Partie1")]
     public Image fondu;
-    public GameObject fondu2;
     private float timer;
 
     [Header("Partie2")] 
@@ -141,7 +140,6 @@ public class ScriptFinDeJeu : MonoBehaviour
 
             else
             {
-                //fondu2.GetComponent<SpriteRenderer>().DOFade(1.2f, 2);
                 fondu.DOFade(1.2f, 2);
                 
                 UIScore.SetActive(true);
@@ -149,14 +147,16 @@ public class ScriptFinDeJeu : MonoBehaviour
                 textTime.text = UIManager.Instance.Timer() + " = " + CalculPointsTime() + " pts";
                 textCoins.text = EventManager.Instance.pointsNumber + " = " + CalculPointsCoins() + " pts";
 
-                /*CameraMovements.Instance.camera.DOOrthoSize(zoom2, 3);
+                if (Character.Instance.controls.Personnage.Sauter.WasPerformedThisFrame())
+                {
+                    CameraMovements.Instance.camera.DOOrthoSize(zoom2, 3);
 
-                SpawnPointManagement.instance.RecordSpawn(new Vector2(-90.4f, -4.2f));
-                SpawnPointManagement.spawnWasModifiedOnce = false;
+                    SpawnPointManagement.instance.RecordSpawn(new Vector2(-90.4f, -4.2f));
+                    SpawnPointManagement.spawnWasModifiedOnce = false;
                 
-                UIManager.Instance.Menu();*/
+                    UIManager.Instance.Menu();
+                }
             }
-            
         }
     }
 
@@ -166,14 +166,16 @@ public class ScriptFinDeJeu : MonoBehaviour
         float time = PlayerPrefs.GetFloat("timer", 0);
         int coins = EventManager.Instance.pointsNumber;
 
-        return 15 * coins + Mathf.Round(Mathf.Pow((1 / time * 400000), 1.125f));
+        float arrondi = Mathf.Round(Mathf.Pow((1 / time * 400000), 1.125f) / 10) * 10;
+
+        return 15 * coins + arrondi;
     }
 
     private float CalculPointsTime()
     {
         float time = PlayerPrefs.GetFloat("timer", 0);
 
-        return Mathf.Round(Mathf.Pow((1 / time * 400000), 1.125f));
+        return Mathf.Round(Mathf.Pow((1 / time * 400000), 1.125f) / 10) * 10;
     }
 
     private float CalculPointsCoins()
