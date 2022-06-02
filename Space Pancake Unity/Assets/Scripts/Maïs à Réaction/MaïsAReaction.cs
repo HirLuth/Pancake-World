@@ -105,7 +105,7 @@ public class MaïsAReaction : MonoBehaviour
             Destruction();
             return;
         }
-        if (playerIsAtRange && controls.Personnage.Serpe.WasPerformedThisFrame())
+        if (playerIsAtRange && controls.Personnage.Serpe.WasPerformedThisFrame() && !launchedWithoutPlayer)
         {
             isOnTheRide = true;
         }
