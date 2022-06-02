@@ -26,19 +26,19 @@ public class SpawnPointManagement : MonoBehaviour
             }
             instance = this;
             DontDestroyOnLoad(this.gameObject);
+            if (GetSpawn() != Vector2.zero)
+            {
+                spawnPointLocation = GetSpawn();
+            }
         }
     }
 
-#if !UNITY_EDITOR
+
     private void Start()
     {
-        if (GetSpawn() != Vector2.zero)
-        {
-            Character.Instance.transform.position = GetSpawn();
-        }
-    }  
-#endif
-    
+        
+    }
+
 
 
     public void SetSpawnPoint(Vector2 newSpawnPointLocation)

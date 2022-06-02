@@ -165,10 +165,14 @@ public class EventManager : MonoBehaviour
     
     public void AddPoints(int points)
     {
-        PlayerPrefs.SetInt("coins", pointsNumber + 1);
-        
-        pointsNumber = PlayerPrefs.GetInt("coins", 0);
+        pointsNumber += points;
         score.text = "" + pointsNumber;
+        SavePoints();
+    }
+
+    public void SavePoints()
+    {
+        PlayerPrefs.SetInt("score",pointsNumber);
     }
 
 
