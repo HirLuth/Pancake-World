@@ -145,8 +145,8 @@ public class ScriptFinDeJeu : MonoBehaviour
                 fondu.DOFade(1.2f, 2);
                 
                 UIScore.SetActive(true);
-                textScore.text = "Score : " + CalculScore();
-                textTime.text = UIManager.Instance.Timer() + " = " + CalculPointsTime();
+                textScore.text = "Score : " + CalculScore() + " pts";
+                textTime.text = UIManager.Instance.Timer() + " = " + CalculPointsTime() + " pts";
 
                 /*CameraMovements.Instance.camera.DOOrthoSize(zoom2, 3);
 
