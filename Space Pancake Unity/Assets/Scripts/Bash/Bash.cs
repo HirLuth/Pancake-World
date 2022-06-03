@@ -171,6 +171,10 @@ public class Bash : MonoBehaviour
                 
                 //VFX
                 particleBash.Play();
+                
+                // Sound effect
+                AudioManager.instance.LaunchOutOfSerpeSoundEffect();
+                AudioManager.instance.BackToNeutralSoundEffect1();
             }
 
 
@@ -242,7 +246,6 @@ public class Bash : MonoBehaviour
             Character.Instance.noControl = false;
             usingSerpe = false;
             spriteRenderer.color = couleurNonDetection;
-            AudioManager.instance.BackToNeutralSoundEffect1();
 
             if (!exitEffects)
             {

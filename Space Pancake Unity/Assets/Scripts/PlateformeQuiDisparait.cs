@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.WSA;
 
 public class PlateformeQuiDisparait : MonoBehaviour
 {
@@ -43,6 +44,7 @@ public class PlateformeQuiDisparait : MonoBehaviour
         
         if (steppedOn)
         {
+            AudioManager.instance.LaunchSucreSoundEffect();
             if (timer >= timerToDisapear)
             {
                 Destroy(this.gameObject); 

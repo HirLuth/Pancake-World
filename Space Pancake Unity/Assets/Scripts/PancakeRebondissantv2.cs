@@ -42,7 +42,7 @@ public class PancakeRebondissantv2 : MonoBehaviour
                 var vector = new Vector2(stockageVelocityX, bounceForce);
                 wasPropulsed  = true;
                 rbCharacter.velocity = vector;
-
+                AudioManager.instance.LaunchPancakeSoundEffect();
                 //var mainModule = particleSystem.main;
                 //mainModule.startRotation = Vector2.Angle(particleSystem.transform.forward,vector);
                 //Debug.Log(Vector2.Angle(vector.normalized, Vector2.down));
