@@ -12,22 +12,31 @@ public class PassageTyrolienne : MonoBehaviour
     
     void FixedUpdate()
     {
+        Debug.Log(triggerActivated);
+        
         if (triggerActivated && !EventManager.Instance.isDead)
         {
             CameraMovements.Instance.offset.x += Mathf.Lerp(5, 0, Time.deltaTime);
             CameraMovements.Instance.camera.DOOrthoSize(11, 2.5f);
         }
+        else
+        {
+            Debug.Log("oui");
+            triggerActivated = false;
+            CameraMovements.Instance.offset.x += Mathf.Lerp(0, 5, Time.deltaTime);
+            CameraMovements.Instance.camera.DOOrthoSize(9, 2.5f);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (!triggerActivated && other.tag == "Character")
+        if (other.tag == "Character" && other.transform.position.x < 1100)
         {
             triggerActivated = true;
         }
-        else if (other.tag == "Character" && transform.position.x > 1041)
+        
+        else if (other.tag == "Character" && other.transform.position.x > 1100)
         {
-            Debug.Log(12);
             triggerActivated = false;
             CameraMovements.Instance.camera.DOOrthoSize(9, 2.5f);
         }
