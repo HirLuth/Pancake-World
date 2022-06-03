@@ -8,23 +8,25 @@ public class PassageTyrolienne : MonoBehaviour
 {
     private bool triggerActivated;
     public GameObject cible;
+    private bool stop;
     
     
     void FixedUpdate()
     {
-        Debug.Log(triggerActivated);
-        
-        if (triggerActivated && !EventManager.Instance.isDead)
+        if (triggerActivated && !EventManager.Instance.isDead && !Character.Instance.isSpawning && !stop)
         {
             CameraMovements.Instance.offset.x += Mathf.Lerp(5, 0, Time.deltaTime);
             CameraMovements.Instance.camera.DOOrthoSize(11, 2.5f);
         }
-        else
+        else if(!EventManager.Instance.isDead && !Character.Instance.isSpawning && !stop)
         {
-            Debug.Log("oui");
             triggerActivated = false;
             CameraMovements.Instance.offset.x += Mathf.Lerp(0, 5, Time.deltaTime);
             CameraMovements.Instance.camera.DOOrthoSize(9, 2.5f);
+        }
+        else
+        {
+            stop = true;
         }
     }
 
