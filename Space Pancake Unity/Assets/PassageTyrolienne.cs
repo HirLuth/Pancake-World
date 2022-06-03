@@ -12,11 +12,10 @@ public class PassageTyrolienne : MonoBehaviour
     
     void FixedUpdate()
     {
-        if (triggerActivated)
+        if (triggerActivated && !EventManager.Instance.isDead)
         {
-            Debug.Log(12222);
             CameraMovements.Instance.offset.x += Mathf.Lerp(5, 0, Time.deltaTime);
-            CameraMovements.Instance.camera.DOOrthoSize(11, 1);
+            CameraMovements.Instance.camera.DOOrthoSize(11, 2.5f);
         }
     }
 
@@ -25,6 +24,12 @@ public class PassageTyrolienne : MonoBehaviour
         if (!triggerActivated && other.tag == "Character")
         {
             triggerActivated = true;
+        }
+        else if (other.tag == "Character" && transform.position.x > 1041)
+        {
+            Debug.Log(12);
+            triggerActivated = false;
+            CameraMovements.Instance.camera.DOOrthoSize(9, 2.5f);
         }
     }
 }
