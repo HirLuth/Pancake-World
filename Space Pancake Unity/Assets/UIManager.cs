@@ -64,7 +64,7 @@ public class UIManager : MonoBehaviour
         if(!ScriptFinDeJeu.Instance.endEvent)
             timer.text = Timer();
         
-        if (controls.Personnage.Pause.WasPerformedThisFrame() && !MenuManager.Instance.ActivateOnThisScene && !EventManager.Instance.isDead && !ScriptFinDeJeu.Instance.endEvent)
+        if (controls.Personnage.Pause.WasPerformedThisFrame() && !MenuManager.Instance.ActivateOnThisScene && !EventManager.Instance.isDead && !ScriptFinDeJeu.Instance.endEvent && !MenuManager.Instance.optionsActives)
         {
             if (!pauseActive)
             {
