@@ -18,7 +18,7 @@ public class TriggerFraise : MonoBehaviour
         character = Character.Instance;
         foreach (SoldatFraise fraise in listFraiseToControl)
         {
-            if (SpawnPointManagement.spawnPointLocation.x >= transform.position.x && character.activatespawnpoint)
+            if (SpawnPointManagement.spawnPointLocation.x >= transform.position.x)
             {
                 fraise.iaIsWalking = true;
             }

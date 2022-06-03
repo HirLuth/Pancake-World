@@ -19,6 +19,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] [Range(0,1)] private float masterVolume = 1;
     private int backGroundPlaying;
     private int soundEffectPlaying;
+    [Range(6,10)]private int nextCollectibleSound = 6;
 
 
     private void Awake()
@@ -137,12 +138,42 @@ public class AudioManager : MonoBehaviour
 
     public void LaunchCollectibleSound()
     {
+        PlayOneshotSoundEffect(nextCollectibleSound);
+        if (nextCollectibleSound == 10)
+        {
+            PlayOneshotSoundEffect(11);
+            nextCollectibleSound = 6;
+        }
+        else
+        {
+            nextCollectibleSound += 1; 
+        }
+        
+    }
+
+    public void LaunchPancakeSoundEffect()
+    {
         PlayOneshotSoundEffect(4);
     }
 
     public void SetSerpeSound()
     {
         SetSoundEffect1(5);
+    }
+
+    public void LaunchOutOfSerpeSoundEffect()
+    {
+        PlayOneshotSoundEffect(14);
+    }
+
+    public void LaunchSucreSoundEffect()
+    {
+        PlayOneshotSoundEffect(12);
+    }
+
+    public void SetWalkingSound()
+    {
+        SetSoundEffect1(13);
     }
     
 }
