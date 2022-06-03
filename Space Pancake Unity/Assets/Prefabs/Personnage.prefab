@@ -441,6 +441,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   wantsToJump: 0
+  noJump: 0
   airControlForce: 16
   noButtonForce: 4.4
   noAirControl: 0
@@ -449,8 +450,12 @@ MonoBehaviour:
   grabForceWall: 3
   tailleRaycastWall: 0.5
   dureeNoAirControl: 0.25
-  maxTimerWallJumpBuffer: 0.2
+  maxTimerWallJumpBuffer: 0.08
   anim: {fileID: 7250847303676680922}
+  isWalking: 0
+  isRunning: 0
+  isJumping: 0
+  isFalling: 0
   dezoomMax: 1
   vitesseDezoom: 1.25
   vitesseZoom: 0.75
@@ -466,13 +471,14 @@ MonoBehaviour:
   noControl: 0
   apparition: 0
   usingSerpe: 0
-  activatespawnpoint: 0
+  activatespawnpoint: 1
   stockageJumpForce: 0
   stockageGravityScale: 0
   limiteVitesseChute: 20
   isSpawning: 0
   menuPrincipale: 0
   coordonnesApparition: {x: 0, y: 0, z: 0}
+  isOnTyro: 0
   menuPrinc: 0
 --- !u!95 &7250847303676680922
 Animator:

@@ -24,6 +24,11 @@ public class MenuManager : MonoBehaviour
     public GameObject options;
     public bool optionsActives;
 
+    [Header("Objects To Destroy")] 
+    public GameObject audioManager;
+    public GameObject spawnPointManager;
+    public GameObject character;
+
 
     private void Awake()
     {
@@ -88,6 +93,11 @@ public class MenuManager : MonoBehaviour
         
         PlayerPrefs.SetInt("coins", 0);
         EventManager.Instance.pointsNumber = 0;
+        
+        
+        Destroy(audioManager);
+        Destroy(spawnPointManager);
+        Destroy(character);
         
         
         // Transition de scene en scene
