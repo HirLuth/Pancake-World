@@ -62,6 +62,7 @@ public class CameraMovements : MonoBehaviour
     private float offsetStart;
     private float avanceeOffsetStart;
     private bool groundCheck;
+    [HideInInspector] public bool followOther;
 
 
     private void Awake()
@@ -117,6 +118,13 @@ public class CameraMovements : MonoBehaviour
                 float stockage = targetPosition.x;
                     
                 targetPosition = Character.Instance.transform.position + offset;
+
+                avanceeX += targetPosition.x - stockage;
+            }
+            
+            else if (followOther)
+            {
+                float stockage = targetPosition.x;
 
                 avanceeX += targetPosition.x - stockage;
             }
