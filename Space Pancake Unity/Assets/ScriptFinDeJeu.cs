@@ -32,6 +32,8 @@ public class ScriptFinDeJeu : MonoBehaviour
     public ParticleSystem particule;
     private bool particuleActives;
 
+    public Animator dragon;
+
     [Header("Score")] 
     public GameObject UIScore;
     public TextMeshProUGUI textScore;
@@ -115,6 +117,7 @@ public class ScriptFinDeJeu : MonoBehaviour
 
             else if (timer < 7f)
             {
+                dragon.SetBool("YeuxDragon", true);
                 Character.Instance.rb.velocity = new Vector2(0, 0);
 
                 CameraMovements.Instance.camera.DOOrthoSize(zoom2, 3);
