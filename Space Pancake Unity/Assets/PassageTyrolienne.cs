@@ -20,10 +20,6 @@ public class PassageTyrolienne : MonoBehaviour
                 CameraMovements.Instance.offset.x += Mathf.Lerp(6, 0, Time.deltaTime);
             }
         }
-        /*else if (!EventManager.Instance.isDead && Character.Instance.isSpawning)  
-        {
-            CameraMovements.Instance.camera.DOOrthoSize(EventManager.Instance.newZoom, 0);
-        }*/
     }
 
     private void OnTriggerEnter2D(Collider2D other)
