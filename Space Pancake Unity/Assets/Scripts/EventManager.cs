@@ -24,6 +24,7 @@ public class EventManager : MonoBehaviour
     private float timerAnimation;
     public float dureeAnimationMort;
     public bool isDead;
+    public bool stopCamera;
     
     public float newZoom;
     public float stockageZoom;
@@ -115,6 +116,7 @@ public class EventManager : MonoBehaviour
     {
         if (!dieOnce)
         {
+            stopCamera = true;
             dieOnce = true;
             Time.timeScale = 1;
 

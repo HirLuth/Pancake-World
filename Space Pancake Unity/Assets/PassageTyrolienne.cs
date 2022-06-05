@@ -13,21 +13,17 @@ public class PassageTyrolienne : MonoBehaviour
     
     void FixedUpdate()
     {
-        if (triggerActivated && !EventManager.Instance.isDead && !Character.Instance.isSpawning && !stop)
+        if (!EventManager.Instance.stopCamera)
         {
-            CameraMovements.Instance.offset.x += Mathf.Lerp(5, 0, Time.deltaTime);
-            CameraMovements.Instance.camera.DOOrthoSize(11, 2.5f);
+            if (triggerActivated && !EventManager.Instance.isDead && !stop)
+            {
+                CameraMovements.Instance.offset.x += Mathf.Lerp(6, 0, Time.deltaTime);
+            }
         }
-        else if(!EventManager.Instance.isDead && !Character.Instance.isSpawning && !stop)
+        /*else if (!EventManager.Instance.isDead && Character.Instance.isSpawning)  
         {
-            triggerActivated = false;
-            CameraMovements.Instance.offset.x += Mathf.Lerp(0, 5, Time.deltaTime);
-            CameraMovements.Instance.camera.DOOrthoSize(9, 2.5f);
-        }
-        else
-        {
-            stop = true;
-        }
+            CameraMovements.Instance.camera.DOOrthoSize(EventManager.Instance.newZoom, 0);
+        }*/
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -35,12 +31,17 @@ public class PassageTyrolienne : MonoBehaviour
         if (other.tag == "Character" && other.transform.position.x < 1100)
         {
             triggerActivated = true;
+            CameraMovements.Instance.camera.DOOrthoSize(11.5f, 2f);
+            CameraMovements.Instance.dezoomAuto = false;
         }
         
         else if (other.tag == "Character" && other.transform.position.x > 1100)
         {
             triggerActivated = false;
-            CameraMovements.Instance.camera.DOOrthoSize(9, 2.5f);
+            CameraMovements.Instance.offset.x += Mathf.Lerp(0, 5, Time.deltaTime);
+            CameraMovements.Instance.camera.DOOrthoSize(9, 2f);
+            CameraMovements.Instance.dezoomAuto = true;
+            CameraMovements.Instance.dezoomActuel = 0;
         }
     }
 }

@@ -31,6 +31,7 @@ public class CameraMovements : MonoBehaviour
     [HideInInspector] public float stockageSize;
     [HideInInspector] public float dezoomActuel;
     [HideInInspector] public Camera camera;
+    [HideInInspector] public bool dezoomAuto;
 
 
     [Header("Tyrolienne")] 
@@ -79,6 +80,8 @@ public class CameraMovements : MonoBehaviour
         followPlayer = true;
 
         groundCheck = true;
+
+        dezoomAuto = true;
 
         if (EventManager.Instance.menuToGame)
         {
@@ -159,7 +162,8 @@ public class CameraMovements : MonoBehaviour
                     dezoomActuel += Time.deltaTime * vitesseDezoom;
                 }
                     
-                camera.orthographicSize = stockageSize + Mathf.Lerp(0, dezoomMax, Mathf.SmoothStep(0, 1, dezoomActuel));
+                if(dezoomAuto)
+                    camera.orthographicSize = stockageSize + Mathf.Lerp(0, dezoomMax, Mathf.SmoothStep(0, 1, dezoomActuel));
             }
                 
             // Rattrapage de la camera lorsque le joueur court vers la droite + dezoom
@@ -178,7 +182,8 @@ public class CameraMovements : MonoBehaviour
                     dezoomActuel += Time.deltaTime * vitesseDezoom;
                 }
                     
-                camera.orthographicSize = stockageSize + Mathf.Lerp(0, dezoomMax, Mathf.SmoothStep(0, 1, dezoomActuel));
+                if(dezoomAuto)
+                    camera.orthographicSize = stockageSize + Mathf.Lerp(0, dezoomMax, Mathf.SmoothStep(0, 1, dezoomActuel));
             }
 
             // Quand le joueur s'arrête ou change de direction
@@ -196,7 +201,8 @@ public class CameraMovements : MonoBehaviour
                     dezoomActuel -= Time.deltaTime * vitesseZoom;
                 }
                     
-                camera.orthographicSize = stockageSize + Mathf.Lerp(0, dezoomMax, Mathf.SmoothStep(0, 1, dezoomActuel));
+                if(dezoomAuto)
+                    camera.orthographicSize = stockageSize + Mathf.Lerp(0, dezoomMax, Mathf.SmoothStep(0, 1, dezoomActuel));
             }
 
 
