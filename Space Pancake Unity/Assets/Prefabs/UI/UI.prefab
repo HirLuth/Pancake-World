@@ -996,12 +996,12 @@ GameObject:
   - component: {fileID: 896163804}
   - component: {fileID: 896163803}
   m_Layer: 0
-  m_Name: Text (TMP)
+  m_Name: HighScore
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &896163802
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1018,7 +1018,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 195.70007}
+  m_AnchoredPosition: {x: -71, y: 241}
   m_SizeDelta: {x: 900, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &896163804
@@ -1049,7 +1049,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: LA QUETE DU GUI-MAUVE
+  m_text: 'Meilleur score :'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 83096cd2b6b64fb4fa38688133419750, type: 2}
   m_sharedMaterial: {fileID: 2786840683942836284, guid: 83096cd2b6b64fb4fa38688133419750, type: 2}
@@ -1076,14 +1076,14 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 70
-  m_fontSizeBase: 70
+  m_fontSize: 25
+  m_fontSizeBase: 25
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -2918,8 +2918,12 @@ MonoBehaviour:
   ActivateOnThisScene: 0
   fondu: {fileID: 838429675}
   anim: {fileID: 0}
+  highScore: {fileID: 896163803}
   options: {fileID: 3505387310693295120}
   optionsActives: 0
+  audioManager: {fileID: 0}
+  spawnPointManager: {fileID: 0}
+  character: {fileID: 0}
 --- !u!1 &361605730883339818
 GameObject:
   m_ObjectHideFlags: 0

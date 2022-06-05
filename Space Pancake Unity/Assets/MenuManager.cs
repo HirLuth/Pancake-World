@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -19,6 +20,8 @@ public class MenuManager : MonoBehaviour
     private bool stop;
 
     public Animator anim;
+
+    public TextMeshProUGUI highScore;
 
     [Header("Options")] 
     public GameObject options;
@@ -55,6 +58,8 @@ public class MenuManager : MonoBehaviour
         if (ActivateOnThisScene)
         {
             menu.SetActive(true);
+
+            highScore.text = "MEILLEUR SCORE : " + PlayerPrefs.GetFloat("meilleurScore", 0) + " PTS";
         }
 
         // Sinon on le retire
