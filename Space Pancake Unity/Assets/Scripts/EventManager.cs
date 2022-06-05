@@ -45,6 +45,10 @@ public class EventManager : MonoBehaviour
     public float timerGame;
 
 
+    [Header("MeilleurScore")] 
+    private int meilleurScore;
+
+
     private void Awake()
     {
         if (Instance != null)

@@ -149,6 +149,9 @@ public class ScriptFinDeJeu : MonoBehaviour
                 textScore.text = "Score : " + CalculScore() + " pts";
                 textTime.text = UIManager.Instance.Timer() + " = " + CalculPointsTime() + " pts";
                 textCoins.text = EventManager.Instance.pointsNumber + " = " + CalculPointsCoins() + " pts";
+                
+                if(PlayerPrefs.GetFloat("meilleurScore", 0) < CalculScore())
+                    PlayerPrefs.SetFloat("meilleurScore", CalculScore());
 
                 if (Character.Instance.controls.Personnage.Sauter.WasPerformedThisFrame())
                 {
