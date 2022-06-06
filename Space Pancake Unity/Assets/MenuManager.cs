@@ -59,7 +59,7 @@ public class MenuManager : MonoBehaviour
         {
             menu.SetActive(true);
 
-            highScore.text = "MEILLEUR SCORE : " + PlayerPrefs.GetFloat("meilleurScore", 0) + " PTS";
+            highScore.text = "Meilleur Score : " + PlayerPrefs.GetFloat("meilleurScore", 0) + " pts";
         }
 
         // Sinon on le retire
@@ -153,6 +153,12 @@ public class MenuManager : MonoBehaviour
         Character.Instance.inverseRun = inverse;
     }
 
+    public void FullScreen(bool fenetre)
+    {
+        Screen.fullScreen = fenetre;
+    }
+    
+
 
     IEnumerator WaitForSceneLoad(string sceneName)
     {
@@ -162,7 +168,7 @@ public class MenuManager : MonoBehaviour
         }
     }
 
-    
+
     IEnumerator Fondu(float duree)
     {
         yield return new WaitForSeconds(1);
