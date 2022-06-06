@@ -16,6 +16,7 @@ public class FallingPlateform : MonoBehaviour
    [SerializeField] private Vector2 stockagePosition;
    [SerializeField] private bool playerAsSteppedOn;
    [SerializeField] private bool isDestroying;
+   [SerializeField] private bool isInTrigger;
    [SerializeField] private float fallingSpeed;
    [SerializeField] private float timerToFall;
    [SerializeField] private float timeBeforFalling;
@@ -58,6 +59,7 @@ public class FallingPlateform : MonoBehaviour
             animatorself.SetBool("IsRespawning", true);
             animatorself.SetBool("IsDestroying",false);
             playerAsSteppedOn = false;
+            isInTrigger = false;
             if (timerToDestroy >= timeToRespawn)
             {
                animatorself.SetBool("IsRespawning", false);
@@ -69,6 +71,10 @@ public class FallingPlateform : MonoBehaviour
       }
       else
       {
+         if (isInTrigger && Character.Instance.onGround)
+         {
+            playerAsSteppedOn = true;
+         }
          if (player.transform.position.y >= transform.position.y + (colliderSize/2) + (player.transform.localScale.y/2) + margeDetection)
          {
             triggerZone.enabled = true;
@@ -97,8 +103,16 @@ public class FallingPlateform : MonoBehaviour
    {
       if (other.gameObject.CompareTag("Character"))
       {
-         playerAsSteppedOn = true;
+         isInTrigger = true;
          timerToDestroy = 0;
+      }
+   }
+
+   private void OnTriggerExit2D(Collider2D other)
+   {
+      if (other.gameObject.CompareTag("Character"))
+      {
+         isInTrigger = false;
       }
    }
 
