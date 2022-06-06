@@ -73,6 +73,7 @@ public class ScriptFinDeJeu : MonoBehaviour
         if (endEvent && Character.Instance.onGround)
         {
             timer += Time.deltaTime;
+            dragon.SetBool("YeuxDragon", true);
 
             if (timer < 1)
             {
@@ -142,7 +143,6 @@ public class ScriptFinDeJeu : MonoBehaviour
 
             else
             {
-                dragon.SetBool("YeuxDragon", true);
                 fondu.DOFade(1.2f, 2);
                 
                 UIScore.SetActive(true);
