@@ -117,7 +117,6 @@ public class ScriptFinDeJeu : MonoBehaviour
 
             else if (timer < 7f)
             {
-                dragon.SetBool("YeuxDragon", true);
                 Character.Instance.rb.velocity = new Vector2(0, 0);
 
                 CameraMovements.Instance.camera.DOOrthoSize(zoom2, 3);
@@ -143,6 +142,7 @@ public class ScriptFinDeJeu : MonoBehaviour
 
             else
             {
+                dragon.SetBool("YeuxDragon", true);
                 fondu.DOFade(1.2f, 2);
                 
                 UIScore.SetActive(true);
