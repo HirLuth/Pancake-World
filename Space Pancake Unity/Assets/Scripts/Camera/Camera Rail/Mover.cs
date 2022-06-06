@@ -46,6 +46,8 @@ public class Mover : MonoBehaviour
 
         else if (isCompleted && !oneTime)
         {
+            if (!CameraMovements.Instance.isOnRail) AudioManager.instance.RailExit();
+            AudioManager.instance.RailExit();
             CameraMovements.Instance.isOnRail = false;
             oneTime = true;
         }
@@ -53,6 +55,7 @@ public class Mover : MonoBehaviour
 
     private void Play()
     {
+        if (!CameraMovements.Instance.isOnRail) AudioManager.instance.RailEnter();
         CameraMovements.Instance.isOnRail = true;
         audioManager.isCompleted = false;
 

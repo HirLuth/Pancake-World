@@ -50,6 +50,7 @@ public class AudioManager : MonoBehaviour
     
     void Update()
     {
+        return;
         if (CameraMovements.Instance != null)
         {
             if (CameraMovements.Instance.isOnRail)
@@ -88,6 +89,33 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    public void RailEnter()
+    {
+        main3AudioSource.priority = 0;
+        main2AudioSource.priority = 128;
+                    
+        main2AudioSource.DOFade(0f, 1f);
+        main3AudioSource.DOFade(1f, 1f);
+        Debug.Log("Enter");
+        
+        
+    }
+
+    public void RailExit()
+    {
+        main2AudioSource.Play();
+        main2AudioSource.priority = 0;
+        main3AudioSource.priority = 128;
+        
+        main2AudioSource.DOKill();
+        main3AudioSource.DOKill();
+        Debug.Log(main2AudioSource.clip.name);
+        Debug.Log(main3AudioSource.clip.name);
+
+        main2AudioSource.DOFade(1f, 1f);
+        main3AudioSource.DOFade(0f, 1f);
+        Debug.Log("Exit");
+    }
     public void SetBackGroundSound(int numberIntheList)
     {
         if (mainAudioSource.clip != listClip[numberIntheList].clip || !mainAudioSource.isPlaying)
