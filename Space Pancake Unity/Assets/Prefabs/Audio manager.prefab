@@ -70,23 +70,23 @@ MonoBehaviour:
     name: 
     volume: 1
     pitch: 1
-  - clip: {fileID: 8300000, guid: 189f817c9b53d3e46b1bb5922d2c23fe, type: 3}
+  - clip: {fileID: 8300000, guid: 82e68e901b5a2ff4ca7b33d5fac92eb9, type: 3}
     name: 
     volume: 1
     pitch: 1
-  - clip: {fileID: 8300000, guid: 46b505900db1f2846a2a895698a535d7, type: 3}
+  - clip: {fileID: 8300000, guid: 7bdb6dc13f8f78242aa552ff084f24cd, type: 3}
     name: 
     volume: 1
     pitch: 1
-  - clip: {fileID: 8300000, guid: 87bfa72795c274942beaf35d491be241, type: 3}
+  - clip: {fileID: 8300000, guid: 5dda67f464e8b294d926ed1faea9fa92, type: 3}
     name: 
     volume: 1
     pitch: 1
-  - clip: {fileID: 8300000, guid: 75cd676489b87ae4cba3045bedce7cae, type: 3}
+  - clip: {fileID: 8300000, guid: 6c99b9a0efd4e6f4795a6ace4456ee2c, type: 3}
     name: 
     volume: 1
     pitch: 1
-  - clip: {fileID: 8300000, guid: 406383f833109244d99cf9faa94a8dcc, type: 3}
+  - clip: {fileID: 8300000, guid: d7b0debf5cf49c840a529c2d5cb8d545, type: 3}
     name: 
     volume: 1
     pitch: 1
