@@ -155,7 +155,7 @@ public class MenuManager : MonoBehaviour
 
     public void FullScreen(bool fenetre)
     {
-        Screen.fullScreen = fenetre;
+        Screen.fullScreen = !fenetre;
     }
     
 
