@@ -5,12 +5,14 @@ using UnityEngine;
 
 public class Mover : MonoBehaviour
 {
+    public AudioManager audioManager;
+    
     public Rail rail;
     public static Mover Instance;
 
     public int currentSeg;
     private float transition;
-    private bool isCompleted;
+    [HideInInspector]public bool isCompleted;
 
     public bool go;
     private float avanceeTransition;
@@ -52,7 +54,8 @@ public class Mover : MonoBehaviour
     private void Play()
     {
         CameraMovements.Instance.isOnRail = true;
-        
+        audioManager.isCompleted = false;
+
         // Tout ce qui concerne le changement de rythme du scrolling
         Vector3 positionCamera = CameraMovements.Instance.transform.position;
         Vector3 positionCharacter = Character.Instance.transform.position;
@@ -184,6 +187,7 @@ public class Mover : MonoBehaviour
         else
         {
             isCompleted = true;
+            audioManager.isCompleted = true;
         }
     }
 
