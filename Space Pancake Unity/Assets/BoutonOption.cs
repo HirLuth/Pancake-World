@@ -6,6 +6,7 @@ using UnityEngine;
 public class BoutonOption : MonoBehaviour
 {
     public ParticleSystem VFX;
+    public GameObject VFXGameObject;
     public bool launchVFX;
 
     public void Start()
@@ -17,11 +18,11 @@ public class BoutonOption : MonoBehaviour
     {
         if (launchVFX)
         {
-            VFX.Play();
+            VFX.gameObject.SetActive(true);
         }
         else
         {
-            VFX.Stop();
+            VFX.gameObject.SetActive(false);
         }
     }
 
