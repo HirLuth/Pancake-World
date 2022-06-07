@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.Audio;
 using UnityEngine;
@@ -23,13 +24,7 @@ public class AudioManager : MonoBehaviour
     private int soundEffectPlaying;
     [Range(6,10)]private int nextCollectibleSound = 6;
 
-    public AnimationCurve curve, curveNeg;
-
-    private float increment, graph, graph2;
-    private bool canRunCurve, activateCurve, crossFadeFinished, crossFade2Finished = true;
-    public bool x, x2;
-
-    public bool isCompleted;
+    private bool isSFXfinished;
 
 
     private void Awake()
@@ -46,46 +41,14 @@ public class AudioManager : MonoBehaviour
     void Start()
     {
         SetMenuTheme();
+        isSFXfinished = true;
     }
     
     void Update()
     {
-        return;
-        if (CameraMovements.Instance != null)
+        if (mainAudioSource.clip != null)
         {
-            if (CameraMovements.Instance.isOnRail)
-            {
-                if (!x)
-                {
-                    main3AudioSource.priority = 0;
-                    main2AudioSource.priority = 128;
-                    
-                    main2AudioSource.DOFade(0f, 1f);
-                    main3AudioSource.DOFade(1f, 1f);
-                    
-                    x = true;
-                    x2 = false;
-                    
-                    Debug.Log("CrossFade1");
-                }
-            }
-            if(isCompleted)
-            {
-                if (!x2)
-                {
-                    main2AudioSource.priority = 0;
-                    main3AudioSource.priority = 128;
-                    
-                    main2AudioSource.DOFade(1f, 1f);
-                    main3AudioSource.DOFade(0f, 1f);
-                    
-                    x = false;
-                    x2 = true;
-                    
-                    isCompleted = false;
-                    Debug.Log("CrossFade2");
-                }
-            }
+            Debug.Log(mainAudioSource.clip.name);
         }
     }
 
@@ -118,7 +81,7 @@ public class AudioManager : MonoBehaviour
     }
     public void SetBackGroundSound(int numberIntheList)
     {
-        if (mainAudioSource.clip != listClip[numberIntheList].clip || !mainAudioSource.isPlaying)
+        if (main2AudioSource.clip != listClip[numberIntheList].clip || !main2AudioSource.isPlaying)
         {
             main2AudioSource.volume = listClip[numberIntheList].volume * masterVolume * playermastervolume;
             main2AudioSource.pitch = listClip[numberIntheList].pitch;
@@ -131,7 +94,7 @@ public class AudioManager : MonoBehaviour
     
     public void SetBackGroundSound2(int numberIntheList)
     {
-        if (main2AudioSource.clip != listClip[numberIntheList].clip || !main2AudioSource.isPlaying)
+        if (main3AudioSource.clip != listClip[numberIntheList].clip || !main3AudioSource.isPlaying)
         {
             main3AudioSource.volume = 0f;
             main3AudioSource.pitch = listClip[numberIntheList].pitch;
@@ -156,7 +119,26 @@ public class AudioManager : MonoBehaviour
 
     public void PlayOneshotSoundEffect(int numberIntheList)
     {
-        mainAudioSource.PlayOneShot(listClip[numberIntheList].clip,  listClip[numberIntheList].volume * masterVolume * playermastervolume);
+        if (numberIntheList == 12)
+        {
+            mainAudioSource.clip = listClip[numberIntheList].clip;
+            mainAudioSource.volume = listClip[numberIntheList].volume * masterVolume * playermastervolume;
+
+            StartCoroutine(RunSoundEffect());
+        }
+        else
+        {
+            mainAudioSource.PlayOneShot(listClip[numberIntheList].clip,  listClip[numberIntheList].volume * masterVolume * playermastervolume);
+        }
+    }
+
+    IEnumerator RunSoundEffect()
+    {
+        mainAudioSource.Play();
+        isSFXfinished = false;
+        yield return new WaitForSeconds(mainAudioSource.clip.length);
+        mainAudioSource.Stop();
+        isSFXfinished = true;
     }
 
     public void BackToNeutralMain()
@@ -245,7 +227,10 @@ public class AudioManager : MonoBehaviour
 
     public void LaunchSucreSoundEffect()
     {
-        PlayOneshotSoundEffect(12);
+        if (isSFXfinished)
+        {
+            PlayOneshotSoundEffect(12);
+        }
     }
 
     public void SetWalkingSound()
