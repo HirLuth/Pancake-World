@@ -34,6 +34,9 @@ public class FirstSelected : MonoBehaviour
     private GameObject newBouton;
     private Vector3 newOriginalPosition;
 
+    private bool changingButton;
+    private BoutonOption sauvegardeVFX;
+
 
     private void Awake()
     {
@@ -43,6 +46,7 @@ public class FirstSelected : MonoBehaviour
 
     void Update()
     {
+        // Sélection d'un bouton à l'ouverture d'un menu
         if (MenuManager.Instance.ActivateOnThisScene && !eventSystem.currentSelectedGameObject && !MenuManager.Instance.optionsActives)
         {
             eventSystem.SetSelectedGameObject(menuPrincipale);
@@ -60,6 +64,7 @@ public class FirstSelected : MonoBehaviour
 
 
 
+        // Grossissement bouton menu principal
         if (eventSystem.currentSelectedGameObject != bouton && eventSystem.currentSelectedGameObject && (eventSystem.currentSelectedGameObject.tag == "Button" || MenuManager.Instance.ActivateOnThisScene))
         {
             if (bouton != null)
@@ -71,6 +76,8 @@ public class FirstSelected : MonoBehaviour
             goUp = true;
             goDown = false;
             timer = 0;
+
+            changingButton = true;
             
             bouton = eventSystem.currentSelectedGameObject;
             originalPosition = bouton.transform.position;
@@ -82,7 +89,7 @@ public class FirstSelected : MonoBehaviour
             if (goUp && eventSystem.currentSelectedGameObject.tag == "Button")
             {
                 goUp = false;
-                bouton.transform.DOMoveY(originalPosition.y + 4, speedOscillation);
+                bouton.transform.DOMoveY(originalPosition.y + 0.5f, speedOscillation);
                 bouton.transform.DOScale(newSize, speedOscillation);
 
                 timer += Time.deltaTime;
@@ -94,18 +101,24 @@ public class FirstSelected : MonoBehaviour
                 }
             }
             
-            if (goDown)
+            if (eventSystem.currentSelectedGameObject.tag == "Option" && changingButton)
             {
-                goDown = false;
-                bouton.transform.DOMoveY(originalPosition.y - 4, speedOscillation);
+                if (sauvegardeVFX != null)
+                    sauvegardeVFX.launchVFX = false;
 
-                timer += Time.deltaTime;
+                eventSystem.currentSelectedGameObject.GetComponent<BoutonOption>().launchVFX = true;
+            
+                sauvegardeVFX = eventSystem.currentSelectedGameObject.GetComponent<BoutonOption>();
 
-                if (timer >= speedOscillation)
-                {
-                    timer = 0;
-                    goUp = true;
-                }
+                changingButton = false;
+            }
+        
+            else if (changingButton)
+            {
+                if(sauvegardeVFX != null)
+                    sauvegardeVFX.launchVFX = false;
+
+                changingButton = false;
             }
         }
     }

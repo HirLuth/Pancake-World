@@ -85,8 +85,6 @@ public class Tyrolienne : MonoBehaviour
         }
         else if (isOnThisZipline && !Character.Instance.isOnTyro)
         {
-            Debug.Log(12);
-            
             isOnThisZipline = false;
             usingTyrolienne = false;
             Character.Instance.noControl = false;

@@ -7,16 +7,9 @@ public class ResolutionManager : MonoBehaviour
 {
     public Toggle fullscreenTog;
     
-    // Start is called before the first frame update
     void Start()
     {
         fullscreenTog.isOn = Screen.fullScreen;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public void ApplyGraphics()
