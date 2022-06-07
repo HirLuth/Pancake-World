@@ -80,6 +80,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Quitter"",
+                    ""type"": ""Button"",
+                    ""id"": ""dda82014-9e34-4c02-8bdd-4ab40f5b69da"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -225,6 +234,17 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cd39de41-7aea-4585-b606-3d2ee2d9a3c3"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Quitter"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -239,6 +259,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_Personnage_MoveRight = m_Personnage.FindAction("MoveRight", throwIfNotFound: true);
         m_Personnage_MoveLeft = m_Personnage.FindAction("MoveLeft", throwIfNotFound: true);
         m_Personnage_Pause = m_Personnage.FindAction("Pause", throwIfNotFound: true);
+        m_Personnage_Quitter = m_Personnage.FindAction("Quitter", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -304,6 +325,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Personnage_MoveRight;
     private readonly InputAction m_Personnage_MoveLeft;
     private readonly InputAction m_Personnage_Pause;
+    private readonly InputAction m_Personnage_Quitter;
     public struct PersonnageActions
     {
         private @PlayerControls m_Wrapper;
@@ -314,6 +336,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @MoveRight => m_Wrapper.m_Personnage_MoveRight;
         public InputAction @MoveLeft => m_Wrapper.m_Personnage_MoveLeft;
         public InputAction @Pause => m_Wrapper.m_Personnage_Pause;
+        public InputAction @Quitter => m_Wrapper.m_Personnage_Quitter;
         public InputActionMap Get() { return m_Wrapper.m_Personnage; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -341,6 +364,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Pause.started -= m_Wrapper.m_PersonnageActionsCallbackInterface.OnPause;
                 @Pause.performed -= m_Wrapper.m_PersonnageActionsCallbackInterface.OnPause;
                 @Pause.canceled -= m_Wrapper.m_PersonnageActionsCallbackInterface.OnPause;
+                @Quitter.started -= m_Wrapper.m_PersonnageActionsCallbackInterface.OnQuitter;
+                @Quitter.performed -= m_Wrapper.m_PersonnageActionsCallbackInterface.OnQuitter;
+                @Quitter.canceled -= m_Wrapper.m_PersonnageActionsCallbackInterface.OnQuitter;
             }
             m_Wrapper.m_PersonnageActionsCallbackInterface = instance;
             if (instance != null)
@@ -363,6 +389,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Pause.started += instance.OnPause;
                 @Pause.performed += instance.OnPause;
                 @Pause.canceled += instance.OnPause;
+                @Quitter.started += instance.OnQuitter;
+                @Quitter.performed += instance.OnQuitter;
+                @Quitter.canceled += instance.OnQuitter;
             }
         }
     }
@@ -375,5 +404,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnMoveRight(InputAction.CallbackContext context);
         void OnMoveLeft(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
+        void OnQuitter(InputAction.CallbackContext context);
     }
 }

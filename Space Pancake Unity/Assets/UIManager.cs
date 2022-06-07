@@ -64,10 +64,11 @@ public class UIManager : MonoBehaviour
         if(!ScriptFinDeJeu.Instance.endEvent)
             timer.text = Timer();
         
-        if (controls.Personnage.Pause.WasPerformedThisFrame() && !MenuManager.Instance.ActivateOnThisScene && !EventManager.Instance.isDead && !ScriptFinDeJeu.Instance.endEvent && !MenuManager.Instance.optionsActives)
+        if ((controls.Personnage.Pause.WasPerformedThisFrame() || controls.Personnage.Quitter.WasPerformedThisFrame()) && !MenuManager.Instance.ActivateOnThisScene && !EventManager.Instance.isDead
+            && !ScriptFinDeJeu.Instance.endEvent)
         {
-            if (!pauseActive)
-            {
+            if (!pauseActive && !controls.Personnage.Quitter.WasPerformedThisFrame())
+            {                                                                                                                                                                                                                                                                   
                 pauseActive = true;
                 UIPause.SetActive(true);
 
@@ -75,6 +76,11 @@ public class UIManager : MonoBehaviour
                 Character.Instance.noControl = true;
             }
 
+            else if (MenuManager.Instance.optionsActives)
+            {
+                MenuManager.Instance.QuitterOptions();
+            }
+            
             else
             {
                 pauseActive = false;
