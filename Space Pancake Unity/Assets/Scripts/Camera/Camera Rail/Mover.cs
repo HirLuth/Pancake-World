@@ -57,7 +57,6 @@ public class Mover : MonoBehaviour
     {
         if (!CameraMovements.Instance.isOnRail) AudioManager.instance.RailEnter();
         CameraMovements.Instance.isOnRail = true;
-        audioManager.isCompleted = false;
 
         // Tout ce qui concerne le changement de rythme du scrolling
         Vector3 positionCamera = CameraMovements.Instance.transform.position;
@@ -190,7 +189,6 @@ public class Mover : MonoBehaviour
         else
         {
             isCompleted = true;
-            audioManager.isCompleted = true;
         }
     }
 

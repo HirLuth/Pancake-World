@@ -5,6 +5,7 @@ using System.Net.Sockets;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Vector2 = UnityEngine.Vector2;
+using DG.Tweening;
 
 public class Character: MonoBehaviour
 {
@@ -137,6 +138,11 @@ public class Character: MonoBehaviour
     [Header("Lancement")] 
     public bool menuPrinc;
 
+    [HideInInspector]
+    public bool isUsingSerp;
+
+    private bool x1, x2;
+
 
 
     // Tout ce qui concerne le controller
@@ -200,6 +206,8 @@ public class Character: MonoBehaviour
 
     private void Update()
     {
+        LowPassSerp();
+        
         if (MenuManager.Instance.ActivateOnThisScene)
         {
             rb.bodyType = RigidbodyType2D.Static;
@@ -488,6 +496,22 @@ public class Character: MonoBehaviour
                     AirControl();
                 }
             }
+        }
+    }
+
+    void LowPassSerp()
+    {
+        if (isUsingSerp && !x1)
+        {
+            AudioManager.instance.mainAudioSource.outputAudioMixerGroup.audioMixer.DOSetFloat("Lowpass", 520f, .02f);
+            x1 = true;
+            x2 = false;
+        }
+        else if(!isUsingSerp && !x2)
+        {
+            AudioManager.instance.mainAudioSource.outputAudioMixerGroup.audioMixer.DOSetFloat("Lowpass", 22000f, .02f);
+            x2 = true;
+            x1 = false;
         }
     }
 

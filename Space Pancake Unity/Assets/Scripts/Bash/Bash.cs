@@ -57,7 +57,6 @@ public class Bash : MonoBehaviour
     GamePadState state;
     GamePadState prevState;
 
-
     public void Awake()
     {
         controls = new PlayerControls();
@@ -153,7 +152,7 @@ public class Bash : MonoBehaviour
                 Time.fixedDeltaTime = 0.02f * Time.timeScale;
                 exitEffects = true;
                 timerEffets = 1;
-
+                
                 arrow.SetActive(false);   // On retire la fl�che
                 usingSerpe = false;    // On redonne le contr�le du personnage
                 Character.Instance.noControl = false;
@@ -253,6 +252,16 @@ public class Bash : MonoBehaviour
             }
 
             Character.Instance.anim.SetBool("isGrabbing", false);
+            
+            Character.Instance.isUsingSerp = false;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Character"))
+        {
+            Character.Instance.isUsingSerp = true;
         }
     }
 }
