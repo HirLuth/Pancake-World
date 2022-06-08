@@ -28,6 +28,7 @@ public class FirstSelected : MonoBehaviour
     private float timer;
     
     private GameObject bouton;
+    private BoutonPause scriptBouton;
     private Vector3 originalPosition;
     private bool stop;
 
@@ -80,7 +81,8 @@ public class FirstSelected : MonoBehaviour
             changingButton = true;
             
             bouton = eventSystem.currentSelectedGameObject;
-            originalPosition = bouton.transform.position;
+            scriptBouton = eventSystem.currentSelectedGameObject.GetComponent<BoutonPause>();
+            originalPosition = scriptBouton.posOriginale;
         }
         
 

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -17,6 +18,7 @@ public class MenuManager : MonoBehaviour
 
     public bool ActivateOnThisScene;
     public Image fondu;
+    public InputSystemUIInputModule controls;
     private bool stop;
 
     public Animator anim;
@@ -108,6 +110,8 @@ public class MenuManager : MonoBehaviour
         // Transition de scene en scene
         EventManager.Instance.menuToGame = true;
         anim.SetTrigger("Balade");
+
+        controls.enabled = false;
         
         StartCoroutine(Fondu(1.3f));
     }
@@ -118,6 +122,8 @@ public class MenuManager : MonoBehaviour
         // Transition de scene en scene
         EventManager.Instance.menuToGame = true;
         anim.SetTrigger("Balade");
+        
+        controls.enabled = false;
         
         StartCoroutine(Fondu(1.3f));
     }

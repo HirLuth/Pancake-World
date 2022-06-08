@@ -5,6 +5,15 @@ using UnityEngine.UI;
 
 public class BoutonPause : MonoBehaviour
 {
+    public Vector3 posOriginale;
+
+
+    void Awake()
+    {
+        posOriginale = transform.position;
+    }
+    
+    
     void Update()
     {
         if (MenuManager.Instance.optionsActives)
