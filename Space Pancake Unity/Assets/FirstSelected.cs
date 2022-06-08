@@ -79,10 +79,13 @@ public class FirstSelected : MonoBehaviour
             timer = 0;
 
             changingButton = true;
-            
-            bouton = eventSystem.currentSelectedGameObject;
-            scriptBouton = eventSystem.currentSelectedGameObject.GetComponent<BoutonPause>();
-            originalPosition = scriptBouton.posOriginale;
+
+            if (eventSystem.currentSelectedGameObject.tag == "Button")
+            {
+                bouton = eventSystem.currentSelectedGameObject;
+                scriptBouton = eventSystem.currentSelectedGameObject.GetComponent<BoutonPause>();
+                originalPosition = scriptBouton.posOriginale;
+            }
         }
         
 
