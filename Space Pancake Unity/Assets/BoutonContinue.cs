@@ -11,7 +11,7 @@ public class BoutonContinue : MonoBehaviour
     public Color notOkayColor;
     
     
-    void Start()
+    void OnEnable()
     {
         bouton = GetComponent<Button>();
     }

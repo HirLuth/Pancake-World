@@ -41,7 +41,7 @@ public class MenuManager : MonoBehaviour
     }
 
 
-    void Start()
+    void OnEnable()
     {
         if (ActivateOnThisScene)
         {
