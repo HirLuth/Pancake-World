@@ -27,7 +27,7 @@ public class FirstSelected : MonoBehaviour
     private bool goUp;
     private float timer;
     
-    private GameObject bouton;
+    public GameObject bouton;
     private BoutonPause scriptBouton;
     private Vector3 originalPosition;
     private bool stop;
