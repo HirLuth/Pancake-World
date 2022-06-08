@@ -9,7 +9,8 @@ public class BoutonPause : MonoBehaviour
     public bool desactivate;
 
     public GameObject boutonMenu;
-
+    
+    
 
     void Start()
     {

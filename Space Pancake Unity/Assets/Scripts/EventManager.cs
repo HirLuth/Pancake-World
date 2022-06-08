@@ -39,14 +39,15 @@ public class EventManager : MonoBehaviour
     public bool menuToGame;
     public bool gameToMenu;
     public Image fondu;
-
-
+    
     [Header("Timer")] 
     public float timerGame;
-
-
+    
     [Header("MeilleurScore")] 
     private int meilleurScore;
+
+    [Header("CinématiqueDébut")] 
+    public bool playedOnce;
 
 
     private void Awake()
