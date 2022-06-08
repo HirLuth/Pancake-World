@@ -19,10 +19,15 @@ public class BoutonPause : MonoBehaviour
     
     void Update()
     {
-        if (MenuManager.Instance.optionsActives && !desactivate && FirstSelected.Instance.bouton != boutonMenu)
+        if (MenuManager.Instance.optionsActives && !desactivate)
         {
             gameObject.GetComponent<Button>().interactable = false;
-            boutonMenu.transform.position = new Vector3(-8.912598f, 9.101929f, 0);
+
+            if (boutonMenu != null)
+            {
+                if (FirstSelected.Instance.bouton != boutonMenu)
+                    boutonMenu.transform.position = new Vector3(-8.912598f, 9.101929f, 0);
+            }
         }
 
         else if (!MenuManager.Instance.optionsActives && !desactivate)

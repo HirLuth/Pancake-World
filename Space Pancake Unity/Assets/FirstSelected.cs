@@ -118,7 +118,7 @@ public class FirstSelected : MonoBehaviour
                 changingButton = false;
             }
         
-            else if (changingButton)
+            else 
             {
                 if(sauvegardeVFX != null)
                     sauvegardeVFX.launchVFX = false;
