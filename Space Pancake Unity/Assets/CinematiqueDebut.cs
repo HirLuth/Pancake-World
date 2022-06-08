@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
@@ -13,6 +14,8 @@ public class CinematiqueDebut : MonoBehaviour
     public GameObject fond;
     public GameObject fondAvant;
     private bool fadeOnce;
+    private bool stop;
+    public PlayerControls controls;
 
     [Header("Mouvement Parchemin")] 
     public float point1;
@@ -36,7 +39,23 @@ public class CinematiqueDebut : MonoBehaviour
     public float dureeMouvements;
 
 
-    // Start is called before the first frame update
+    private void Awake()
+    {
+        controls = new PlayerControls();
+    }
+
+    private void OnEnable()
+    {
+        controls.Enable();
+    }
+
+    private void OnDisable()
+    {
+
+        controls.Disable();
+    }
+
+
     void Start()
     {
         UI.SetActive(false);
@@ -46,52 +65,79 @@ public class CinematiqueDebut : MonoBehaviour
         
         //camera.DOShakePosition(shakeDuration, shakeStrenght, shakeVibrato, shakeRandomness);
     }
-
-    // Update is called once per frame
+    
     void Update()
     {
         timer += Time.deltaTime;
 
-
-        if (timer < time1)
+        if (controls.Personnage.Pause.WasPerformedThisFrame() || stop)
         {
-            transform.DOMoveY(point1, dureeMouvements).SetEase(Ease.Flash);
-        }
-
-        else if (timer > time1 && timer < time2)
-        {
-            transform.DOMoveY(point2, dureeMouvements).SetEase(Ease.Flash);
-        }
-        
-        else if (timer > time2 && timer < time3)
-        {
-            transform.DOMoveY(point3, dureeMouvements).SetEase(Ease.Flash);
-        }
-        
-        else if (timer > time3 && timer < time4)
-        {
-            transform.DOMoveY(point4, dureeMouvements).SetEase(Ease.Flash);
-        }
-        
-        else if (timer > time4 && timer < time4 + dureeMouvements)
-        {
+            if (!stop)
+                timer = 0;
+            
+            stop = true;
+            
+            
             fondAvant.GetComponent<SpriteRenderer>().DOFade(1, 1);
 
-            if (timer > time4 + 1 && !fadeOnce)
+            if (timer > 1 && !fadeOnce)
             {
                 fondAvant.GetComponent<SpriteRenderer>().DOFade(0, 1);
                 fond.GetComponent<SpriteRenderer>().DOFade(0, 1);
                 gameObject.GetComponent<SpriteRenderer>().DOFade(0, 0);
                 
                 UI.SetActive(true);
-
-                fadeOnce = true;
                 
+                fadeOnce = true;
             }
-            
-            if (timer > time4 + 2)
+
+            if (timer > 2)
             {
                 intro.SetActive(false);
+            }
+        }
+        
+        else
+        {
+            if (timer < time1)
+            {
+                transform.DOMoveY(point1, dureeMouvements).SetEase(Ease.Flash);
+            }
+
+            else if (timer > time1 && timer < time2)
+            {
+                transform.DOMoveY(point2, dureeMouvements).SetEase(Ease.Flash);
+            }
+        
+            else if (timer > time2 && timer < time3)
+            {
+                transform.DOMoveY(point3, dureeMouvements).SetEase(Ease.Flash);
+            }
+        
+            else if (timer > time3 && timer < time4)
+            {
+                transform.DOMoveY(point4, dureeMouvements).SetEase(Ease.Flash);
+            }
+        
+            else if (timer > time4 && timer < time4 + dureeMouvements)
+            {
+                fondAvant.GetComponent<SpriteRenderer>().DOFade(1, 1);
+
+                if (timer > time4 + 1 && !fadeOnce)
+                {
+                    fondAvant.GetComponent<SpriteRenderer>().DOFade(0, 1);
+                    fond.GetComponent<SpriteRenderer>().DOFade(0, 1);
+                    gameObject.GetComponent<SpriteRenderer>().DOFade(0, 0);
+                
+                    UI.SetActive(true);
+
+                    fadeOnce = true;
+                }
+            
+                if (timer > time4 + 2)
+                {
+                    intro.SetActive(false);
+                }
             }
         }
     }
