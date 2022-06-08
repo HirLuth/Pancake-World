@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using DG.Tweening;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class CinematiqueDebut : MonoBehaviour
 {
@@ -38,6 +39,9 @@ public class CinematiqueDebut : MonoBehaviour
     public float time4;
     public float dureeMouvements;
 
+    [Header("Gestion")] 
+    public bool playedOnce;
+
 
     private void Awake()
     {
@@ -70,7 +74,13 @@ public class CinematiqueDebut : MonoBehaviour
     {
         timer += Time.deltaTime;
 
-        if (controls.Personnage.Pause.WasPerformedThisFrame() || stop)
+        if (EventManager.Instance.playedOnce)
+        {
+            UI.SetActive(true);
+            intro.SetActive(false);
+        }
+        
+        else if (controls.Personnage.Pause.WasPerformedThisFrame() || stop)
         {
             if (!stop)
                 timer = 0;
@@ -78,21 +88,20 @@ public class CinematiqueDebut : MonoBehaviour
             stop = true;
             
             
-            fondAvant.GetComponent<SpriteRenderer>().DOFade(1, 1);
+            fondAvant.GetComponent<SpriteRenderer>().DOFade(1, 0.5f);
 
-            if (timer > 1 && !fadeOnce)
+            if (timer > 1)
             {
-                fondAvant.GetComponent<SpriteRenderer>().DOFade(0, 1);
-                fond.GetComponent<SpriteRenderer>().DOFade(0, 1);
+                fondAvant.GetComponent<SpriteRenderer>().DOFade(0, 0.5f);
+                fond.GetComponent<SpriteRenderer>().DOFade(0, 0.5f);
                 gameObject.GetComponent<SpriteRenderer>().DOFade(0, 0);
                 
                 UI.SetActive(true);
-                
-                fadeOnce = true;
             }
 
             if (timer > 2)
             {
+                EventManager.Instance.playedOnce = true;
                 intro.SetActive(false);
             }
         }
@@ -136,6 +145,7 @@ public class CinematiqueDebut : MonoBehaviour
             
                 if (timer > time4 + 2)
                 {
+                    EventManager.Instance.playedOnce = true;
                     intro.SetActive(false);
                 }
             }
