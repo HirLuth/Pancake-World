@@ -64,6 +64,11 @@ public class CameraMovements : MonoBehaviour
     private float avanceeOffsetStart;
     private bool groundCheck;
     [HideInInspector] public bool followOther;
+    
+    [Header("Poursuite")]
+    public GameObject effetPoursuite;
+    public Vector3 posNo;
+    public Vector3 posYes;
 
 
     private void Awake()
@@ -181,9 +186,11 @@ public class CameraMovements : MonoBehaviour
                 {
                     dezoomActuel += Time.deltaTime * vitesseDezoom;
                 }
-                    
-                if(dezoomAuto)
+
+                if (dezoomAuto && !isOnRail)
+                {
                     camera.orthographicSize = stockageSize + Mathf.Lerp(0, dezoomMax, Mathf.SmoothStep(0, 1, dezoomActuel));
+                }
             }
 
             // Quand le joueur s'arrête ou change de direction
@@ -196,12 +203,12 @@ public class CameraMovements : MonoBehaviour
                 offset.x = 0;
 
                     
-                if (dezoomActuel > 0)
+                if (dezoomActuel > 0 && !isOnRail)
                 {
                     dezoomActuel -= Time.deltaTime * vitesseZoom;
                 }
                     
-                if(dezoomAuto)
+                if(dezoomAuto && !isOnRail)
                     camera.orthographicSize = stockageSize + Mathf.Lerp(0, dezoomMax, Mathf.SmoothStep(0, 1, dezoomActuel));
             }
 
@@ -276,10 +283,23 @@ public class CameraMovements : MonoBehaviour
             if (!isOnRail)
             {
                 transform.position = new Vector3(newPositionX, newPositionY, transform.position.z);
+                zoneMort.SetActive(false);
+
+                effetPoursuite.transform.DOLocalMoveX(posNo.x, 2);
             }
-            else 
-            { 
+            
+            else
+            {
                 zoneMort.SetActive(true);
+                
+                effetPoursuite.transform.DOLocalMoveX(posYes.x, 1);
+
+                if (dezoomActuel < dezoomMax)
+                {
+                    dezoomActuel += Time.deltaTime * vitesseDezoom;
+                }
+                
+                camera.orthographicSize = stockageSize + Mathf.Lerp(0, dezoomMax, Mathf.SmoothStep(0, 1, dezoomActuel));
             }
         }
         

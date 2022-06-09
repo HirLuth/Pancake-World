@@ -35,9 +35,8 @@ public class PassageTyrolienne : MonoBehaviour
         {
             triggerActivated = false;
             CameraMovements.Instance.offset.x += Mathf.Lerp(0, 5, Time.deltaTime);
-            CameraMovements.Instance.camera.DOOrthoSize(9, 2f);
+            CameraMovements.Instance.camera.DOOrthoSize(9 + CameraMovements.Instance.dezoomActuel, 2f);
             CameraMovements.Instance.dezoomAuto = true;
-            CameraMovements.Instance.dezoomActuel = 0;
         }
     }
 }
