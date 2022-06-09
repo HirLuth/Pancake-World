@@ -110,7 +110,7 @@ MonoBehaviour:
     pitch: 1
   - clip: {fileID: 8300000, guid: 3d692369323793a47b51e02f0ed26fb9, type: 3}
     name: 
-    volume: 1
+    volume: 0.577
     pitch: 1
   mainAudioSource: {fileID: 5146711195465452341}
   main2AudioSource: {fileID: 2771491580012476490}
