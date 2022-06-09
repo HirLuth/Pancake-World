@@ -48,7 +48,7 @@ public class AudioManager : MonoBehaviour
     {
         if (mainAudioSource.clip != null)
         {
-            Debug.Log(mainAudioSource.clip.name);
+            //Debug.Log(mainAudioSource.clip.name);
         }
     }
 

@@ -24,7 +24,7 @@ public class Collectibles : MonoBehaviour
         eventManager = EventManager.Instance;
         spawnPointManagement = SpawnPointManagement.instance;
         stockagePosition = transform.position;
-        Debug.Log(SpawnPointManagement.instance.newGame);
+        //Debug.Log(SpawnPointManagement.instance.newGame);
         if (SpawnPointManagement.instance.newGame)
         {
             SpawnPointManagement.instance.locationCollectibleCollected = new List<Vector2>();
