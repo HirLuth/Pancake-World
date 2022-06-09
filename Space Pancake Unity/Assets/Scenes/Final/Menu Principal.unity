@@ -499,10 +499,10 @@ MonoBehaviour:
   shakeVibrato: 1
   shakeRandomness: 10
   timer: 0
-  time1: 10
-  time2: 20
-  time3: 30
-  time4: 40
+  time1: 13
+  time2: 26
+  time3: 39
+  time4: 52
   dureeMouvements: 4
   playedOnce: 0
 --- !u!212 &567526541
