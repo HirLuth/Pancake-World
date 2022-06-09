@@ -94,6 +94,7 @@ public class Tyrolienne : MonoBehaviour
 
             CameraMovements.Instance.tyrolienneCamera = false;
             Character.Instance.particuleVitesse.Stop();
+            Character.Instance.particuleVitesseInversé.Stop();
             
             Character.Instance.anim.SetBool("isOnTyroMaïs", usingTyrolienne);
         }
@@ -111,10 +112,19 @@ public class Tyrolienne : MonoBehaviour
                 rb.gravityScale = 0;
                 Character.Instance.noControl = true;
                 CameraMovements.Instance.tyrolienneCamera = true;
-                
-                if (!Character.Instance.particuleVitesse.isPlaying)
+                if (player.transform.rotation.y == 0)
                 {
-                    Character.Instance.particuleVitesse.Play();
+                    if (!Character.Instance.particuleVitesse.isPlaying)
+                    {
+                        Character.Instance.particuleVitesse.Play();
+                    }
+                }
+                else
+                {
+                    if (!Character.Instance.particuleVitesseInversé.isPlaying)
+                    {
+                        Character.Instance.particuleVitesseInversé.Play(); 
+                    }
                 }
                 
                 // Si le joueur décide de sauter sur la tyrolienne
@@ -133,6 +143,7 @@ public class Tyrolienne : MonoBehaviour
                     Character.Instance.wantsToJump = false;
 
                     Character.Instance.particuleVitesse.Stop();
+                    Character.Instance.particuleVitesseInversé.Stop();
                 }
 
                 // Gain de vitesse de la tyrolienne 
@@ -169,6 +180,7 @@ public class Tyrolienne : MonoBehaviour
                 
                 CameraMovements.Instance.tyrolienneCamera = false;
                 Character.Instance.particuleVitesse.Stop();
+                Character.Instance.particuleVitesseInversé.Stop();
             }
         }
         

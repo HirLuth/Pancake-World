@@ -114,6 +114,7 @@ public class Character: MonoBehaviour
     [SerializeField] private ParticleSystem particulesGauches;
     [SerializeField] public ParticleSystem particuleImpulsionPancake;
     [SerializeField] public ParticleSystem particuleVitesse;
+    [SerializeField] public ParticleSystem particuleVitesseInversé;
     [SerializeField] private ParticleSystem particuleAtterissage;
     [SerializeField] private bool playAtterrissage = true;
 
@@ -200,6 +201,7 @@ public class Character: MonoBehaviour
         }
         particuleImpulsionPancake.Stop();
         particuleVitesse.Stop();
+        particuleVitesseInversé.Stop();
         particuleAtterissage.Stop();
     }
 
