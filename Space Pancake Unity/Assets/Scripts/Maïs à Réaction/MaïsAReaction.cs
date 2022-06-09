@@ -44,6 +44,7 @@ public class MaïsAReaction : MonoBehaviour
     [SerializeField] private float timerExplosion;
     [SerializeField] [Range(-1,1)] private float horizontaleSpeedSide;
     [SerializeField] private bool grabKeyPressed;
+    [SerializeField] private bool soundWasPlayed;
 
 
     [Header("Variable UI")] 
@@ -141,6 +142,11 @@ public class MaïsAReaction : MonoBehaviour
             character.jumping = false;
             Character.Instance.noJump = false;
             character.abscisseJumpCurve = 0;
+            if (!soundWasPlayed)
+            {
+                AudioManager.instance.PlayOneshotSoundEffect(15);
+                soundWasPlayed = true;
+            }
             timer += Time.deltaTime;
             playerRB.gravityScale = 0;
             character.noControl = true;
@@ -221,6 +227,7 @@ public class MaïsAReaction : MonoBehaviour
         rbSelf.velocity = Vector2.zero;
         if (timerExplosion >= explosionAnimationTimer)
         {
+            AudioManager.instance.BackToNeutralSoundEffect1();
             Destroy(this.gameObject);
         }
     }

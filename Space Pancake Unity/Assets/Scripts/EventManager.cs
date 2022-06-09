@@ -145,6 +145,7 @@ public class EventManager : MonoBehaviour
 
             // On lance son animation
             Character.Instance.anim.SetTrigger("isDead");
+            AudioManager.instance.PlayOneshotSoundEffect(17);
 
             // Attente de la fin de l'animation
             StartCoroutine(WaitAnimation(dureeAnimationMort));

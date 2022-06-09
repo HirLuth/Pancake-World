@@ -108,6 +108,18 @@ MonoBehaviour:
     name: 
     volume: 1
     pitch: 1
+  - clip: {fileID: 8300000, guid: 3d692369323793a47b51e02f0ed26fb9, type: 3}
+    name: 
+    volume: 0.577
+    pitch: 1
+  - clip: {fileID: 8300000, guid: a9f412fc550d2774abd66176eb7a8deb, type: 3}
+    name: 
+    volume: 1
+    pitch: 1
+  - clip: {fileID: 8300000, guid: c8bbd4fe0aa3f1a4e910faf96475584f, type: 3}
+    name: 
+    volume: 1
+    pitch: 1
   mainAudioSource: {fileID: 5146711195465452341}
   main2AudioSource: {fileID: 2771491580012476490}
   main3AudioSource: {fileID: 212357742907437062}
@@ -116,21 +128,6 @@ MonoBehaviour:
   actualNeutralSoundEffect: 0
   playermastervolume: 1
   masterVolume: 1
-  curve:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  curveNeg:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  x: 0
-  x2: 0
-  isCompleted: 0
 --- !u!82 &5146711195465452341
 AudioSource:
   m_ObjectHideFlags: 0
