@@ -64,6 +64,7 @@ public class CameraMovements : MonoBehaviour
     private float avanceeOffsetStart;
     private bool groundCheck;
     [HideInInspector] public bool followOther;
+    public GameObject effetPoursuite;
 
 
     private void Awake()
@@ -182,7 +183,7 @@ public class CameraMovements : MonoBehaviour
                     dezoomActuel += Time.deltaTime * vitesseDezoom;
                 }
                     
-                if(dezoomAuto)
+                if(dezoomAuto && !isOnRail)
                     camera.orthographicSize = stockageSize + Mathf.Lerp(0, dezoomMax, Mathf.SmoothStep(0, 1, dezoomActuel));
             }
 
@@ -201,7 +202,7 @@ public class CameraMovements : MonoBehaviour
                     dezoomActuel -= Time.deltaTime * vitesseZoom;
                 }
                     
-                if(dezoomAuto)
+                if(dezoomAuto && !isOnRail)
                     camera.orthographicSize = stockageSize + Mathf.Lerp(0, dezoomMax, Mathf.SmoothStep(0, 1, dezoomActuel));
             }
 
@@ -276,10 +277,21 @@ public class CameraMovements : MonoBehaviour
             if (!isOnRail)
             {
                 transform.position = new Vector3(newPositionX, newPositionY, transform.position.z);
+                zoneMort.SetActive(false);
+                effetPoursuite.SetActive(false);
             }
-            else 
-            { 
+            else
+            {
+                
+                effetPoursuite.SetActive(true);
                 zoneMort.SetActive(true);
+
+                if (dezoomActuel < dezoomMax)
+                {
+                    dezoomActuel += Time.deltaTime * vitesseDezoom;
+                }
+                
+                camera.orthographicSize = stockageSize + Mathf.Lerp(0, dezoomMax, Mathf.SmoothStep(0, 1, dezoomActuel));
             }
         }
         
