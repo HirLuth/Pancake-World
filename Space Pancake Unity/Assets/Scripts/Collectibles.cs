@@ -21,13 +21,19 @@ public class Collectibles : MonoBehaviour
     private void Start()
     {
         eventManager = EventManager.Instance;
-        spawnPointManagement = SpawnPointManagement.instance; 
+        spawnPointManagement = SpawnPointManagement.instance;
         stockagePosition = transform.position;
-        foreach (var location in spawnPointManagement.locationCollectibleCollected)
+        Debug.Log(SpawnPointManagement.instance.newGame);
+        if (SpawnPointManagement.instance.newGame)
+        {
+            SpawnPointManagement.instance.locationCollectibleCollected = new List<Vector2>();
+            SpawnPointManagement.instance.newGame = false;
+        }
+        foreach (var location in SpawnPointManagement.instance.locationCollectibleCollected)
         {
             if (location == stockagePosition)
             {
-                
+                Debug.Log(location);
                 if (stockagePosition.x < SpawnPointManagement.spawnPointLocation.x)
                 {
                     Destroy(this.gameObject);  
