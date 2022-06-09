@@ -15,6 +15,7 @@ public class ScriptFinDeJeu : MonoBehaviour
     [HideInInspector] public bool endEvent;
     public static ScriptFinDeJeu Instance;
     
+    
     [Header("Partie1")]
     public Image fondu;
     private float timer;
@@ -41,6 +42,12 @@ public class ScriptFinDeJeu : MonoBehaviour
     public TextMeshProUGUI textTime;
 
 
+    [Header("Crédits")] public GameObject fondAvant;
+    public bool launchCredits;
+    private float timerCredits;
+    public float finCredits;
+
+
     void Start()
     {
         originalPos = guimauve.transform.position;
@@ -48,6 +55,8 @@ public class ScriptFinDeJeu : MonoBehaviour
         particule.Stop(true);
 
         Instance = this;
+        
+        fondAvant.GetComponent<Image>().DOFade(0,0);
     }
     
     
@@ -141,11 +150,12 @@ public class ScriptFinDeJeu : MonoBehaviour
                 }
             }
 
-            else
+            else if (!launchCredits)
             {
                 fondu.DOFade(1.2f, 2);
-                
+
                 UIScore.SetActive(true);
+
                 textScore.text = "Score : " + CalculScore() + " pts";
                 textTime.text = UIManager.Instance.Timer() + " = " + CalculPointsTime() + " pts";
                 textCoins.text = EventManager.Instance.pointsNumber + " = " + CalculPointsCoins() + " pts";
@@ -157,6 +167,23 @@ public class ScriptFinDeJeu : MonoBehaviour
                 {
                     CameraMovements.Instance.camera.DOOrthoSize(zoom2, 3);
 
+                    fondAvant.GetComponent<Image>().DOFade(1, 1);
+
+                    launchCredits = true;
+
+                    /*SpawnPointManagement.instance.RecordSpawn(new Vector2(-90.4f, -4.2f));
+                    SpawnPointManagement.spawnWasModifiedOnce = false;
+                
+                    UIManager.Instance.Menu();*/
+                }
+            }
+            
+            else if (launchCredits)
+            {
+                timerCredits += Time.deltaTime;
+                
+                if (Character.Instance.controls.Personnage.Pause.WasPerformedThisFrame() || timerCredits > finCredits)
+                {
                     SpawnPointManagement.instance.RecordSpawn(new Vector2(-90.4f, -4.2f));
                     SpawnPointManagement.spawnWasModifiedOnce = false;
                 
