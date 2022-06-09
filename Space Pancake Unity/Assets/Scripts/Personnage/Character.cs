@@ -466,6 +466,41 @@ public class Character: MonoBehaviour
                     stopStretch = true;
                 }
             }
+            
+            if(!noControl && !noAirControl && !usingSerpe && !onGround && !stop)
+            {
+                if (!isWallJumping)
+                {
+                    if ((canWallJumpLeft || canWallJumpRight) && resistanceWall > 0.15f)
+                    {
+                        if(Mathf.Abs(rb.velocity.x) > speed + 0.5f)
+                        {
+                            runAirControl = true;
+                            stop = true;
+                        }
+                        else
+                        {
+                            runAirControl = false;
+                            stop = true;
+                        }
+                    }
+                    
+                    else if (!canWallJumpLeft && !canWallJumpRight)
+                    {
+                        if(Mathf.Abs(rb.velocity.x) > speed + 0.5f)
+                        {
+                            Debug.Log(Mathf.Abs(rb.velocity.x));
+                            runAirControl = true;
+                            stop = true;
+                        }
+                        else
+                        {
+                            runAirControl = false;
+                            stop = true;
+                        }
+                    }
+                }
+            }
         }
     }
 
@@ -716,7 +751,7 @@ public class Character: MonoBehaviour
     void AirControl()
     {
         // Tout ce qui concerne le fait que le personnage a un air control pouvant aller plus vite que la vitesse de marche
-        if (!stop)
+        /*if (!stop)
         {
             if(Mathf.Abs(rb.velocity.x) > speed)
             {
@@ -728,7 +763,7 @@ public class Character: MonoBehaviour
                 runAirControl = false;
                 stop = true;
             }
-        }
+        }*/
 
         if (moveLeft || moveRight)
         {
