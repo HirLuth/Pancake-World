@@ -17,6 +17,8 @@ public class CinematiqueDebut : MonoBehaviour
     private bool fadeOnce;
     private bool stop;
     public PlayerControls controls;
+    public List<GameObject> texts = new List<GameObject>();
+    public List<GameObject> canvas = new List<GameObject>();
 
     [Header("Mouvement Parchemin")] 
     public float point1;
@@ -80,15 +82,18 @@ public class CinematiqueDebut : MonoBehaviour
             intro.SetActive(false);
         }
         
+        // Si le joueur appuie sur start
         else if (controls.Personnage.Pause.WasPerformedThisFrame() || stop)
         {
             if (!stop)
                 timer = 0;
             
             stop = true;
-            
-            
-            fondAvant.GetComponent<SpriteRenderer>().DOFade(1, 0.5f);
+
+            if (timer < 1)
+            {
+                fondAvant.GetComponent<SpriteRenderer>().DOFade(1, 0.5f);
+            }
 
             if (timer > 1)
             {
@@ -97,6 +102,11 @@ public class CinematiqueDebut : MonoBehaviour
                 gameObject.GetComponent<SpriteRenderer>().DOFade(0, 0);
                 
                 UI.SetActive(true);
+
+                for (int i = 0; i < texts.Count; i++)
+                {
+                    texts[i].SetActive(false);
+                }
             }
 
             if (timer > 2)
@@ -130,17 +140,23 @@ public class CinematiqueDebut : MonoBehaviour
         
             else if (timer > time4 && timer < time4 + dureeMouvements)
             {
-                fondAvant.GetComponent<SpriteRenderer>().DOFade(1, 1);
-
-                if (timer > time4 + 1 && !fadeOnce)
+                if (timer < time4 + 1)
                 {
-                    fondAvant.GetComponent<SpriteRenderer>().DOFade(0, 1);
-                    fond.GetComponent<SpriteRenderer>().DOFade(0, 1);
+                    fondAvant.GetComponent<SpriteRenderer>().DOFade(1, 0.5f);
+                }
+
+                if (timer > time4 + 1)
+                {
+                    fondAvant.GetComponent<SpriteRenderer>().DOFade(0, 0.5f);
+                    fond.GetComponent<SpriteRenderer>().DOFade(0, 0.5f);
                     gameObject.GetComponent<SpriteRenderer>().DOFade(0, 0);
                 
                     UI.SetActive(true);
-
-                    fadeOnce = true;
+                    
+                    for (int i = 0; i < 4; i++)
+                    {
+                        texts[i].GetComponent<SpriteRenderer>().DOFade(0, 0);
+                    }
                 }
             
                 if (timer > time4 + 2)

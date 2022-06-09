@@ -780,6 +780,12 @@ MonoBehaviour:
   intro: {fileID: 126038532}
   fond: {fileID: 6570062}
   fondAvant: {fileID: 1815221246}
+  texts:
+  - {fileID: 995783393}
+  - {fileID: 777277257}
+  - {fileID: 1160463024}
+  - {fileID: 2097041886}
+  canvas: []
   point1: -23
   point2: 5
   point3: 38
@@ -3178,7 +3184,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1815221247
 Transform:
   m_ObjectHideFlags: 0
