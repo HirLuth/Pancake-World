@@ -155,7 +155,7 @@ public class CinematiqueDebut : MonoBehaviour
                     
                     for (int i = 0; i < 4; i++)
                     {
-                        texts[i].GetComponent<SpriteRenderer>().DOFade(0, 0);
+                        texts[i].SetActive(false);
                     }
                 }
             

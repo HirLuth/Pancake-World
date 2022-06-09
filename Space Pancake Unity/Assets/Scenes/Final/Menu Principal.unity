@@ -796,11 +796,11 @@ MonoBehaviour:
   shakeVibrato: 1
   shakeRandomness: 10
   timer: 0
-  time1: 8
-  time2: 16
-  time3: 24
-  time4: 32
-  dureeMouvements: 3
+  time1: 10
+  time2: 20
+  time3: 30
+  time4: 40
+  dureeMouvements: 4
   playedOnce: 0
 --- !u!212 &567526541
 SpriteRenderer:
