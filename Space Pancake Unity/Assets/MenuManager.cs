@@ -100,13 +100,12 @@ public class MenuManager : MonoBehaviour
         
         PlayerPrefs.SetInt("coins", 0);
         EventManager.Instance.pointsNumber = 0;
-        
+        SpawnPointManagement.instance.locationCollectibleCollected = new List<Vector2>();
         
         Destroy(audioManager);
-        Destroy(spawnPointManager);
+        //Destroy(spawnPointManager);
         Destroy(character);
-        
-        
+
         // Transition de scene en scene
         EventManager.Instance.menuToGame = true;
         anim.SetTrigger("Balade");

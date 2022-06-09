@@ -12,6 +12,7 @@ public class SpawnPointManagement : MonoBehaviour
     public static bool spawnWasModifiedOnce;
     public bool activerCheckpoint;
     public List<Vector2> locationCollectibleCollected;
+    public bool newGame = true;
 
     public Vector3 originalPosition;
 
