@@ -17,6 +17,7 @@ public class Collectibles : MonoBehaviour
     [SerializeField] private float hauteurAnimation;
     [SerializeField] private bool asCollected;
     private Vector2 locationToRemove;
+    [SerializeField] private ParticleSystem vfxSelf;
 
     private void Start()
     {
@@ -60,11 +61,11 @@ public class Collectibles : MonoBehaviour
             timer += Time.deltaTime;
             animatorSelf.SetBool("IsCroqued", true);
             transform.position = Vector3.Lerp(stockagePosition, new Vector2(stockagePosition.x,stockagePosition.y + hauteurAnimation), timer/timeToGoUp);
+            vfxSelf.Stop();
             if (timer >= timeToDestroy)
             {
                 spawnPointManagement.IamCollected(stockagePosition);
                 Destroy(this.gameObject);
-                
             }
             
         }

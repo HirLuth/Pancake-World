@@ -134,6 +134,7 @@ MonoBehaviour:
   timeToDestroy: 0.5
   hauteurAnimation: 3
   asCollected: 0
+  vfxSelf: {fileID: 3519911363286359624}
 --- !u!95 &6646121197209017299
 Animator:
   serializedVersion: 3
@@ -176,6 +177,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: "Pi\xE8ces vfx"
       objectReference: {fileID: 0}
+    - target: {fileID: 4712754569447624774, guid: 600bb10d444f2e9499efdf84dfecd0bc, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5461167775143070327, guid: 600bb10d444f2e9499efdf84dfecd0bc, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.a
+      value: 0.101960786
+      objectReference: {fileID: 0}
     - target: {fileID: 5461167775143070327, guid: 600bb10d444f2e9499efdf84dfecd0bc, type: 3}
       propertyPath: InitialModule.startColor.maxColor.b
       value: 0
@@ -210,7 +219,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9100100854200759637, guid: 600bb10d444f2e9499efdf84dfecd0bc, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -14.931971
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9100100854200759637, guid: 600bb10d444f2e9499efdf84dfecd0bc, type: 3}
       propertyPath: m_LocalRotation.w
@@ -245,5 +254,10 @@ PrefabInstance:
 --- !u!4 &385838521578987882 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9100100854200759637, guid: 600bb10d444f2e9499efdf84dfecd0bc, type: 3}
+  m_PrefabInstance: {fileID: 8867811504447935551}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &3519911363286359624 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 5461167775143070327, guid: 600bb10d444f2e9499efdf84dfecd0bc, type: 3}
   m_PrefabInstance: {fileID: 8867811504447935551}
   m_PrefabAsset: {fileID: 0}

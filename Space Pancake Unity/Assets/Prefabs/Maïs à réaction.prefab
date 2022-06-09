@@ -149,7 +149,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 3
   m_Sprite: {fileID: -6801049011368248877, guid: 46dfd3f35ebdbfc47b1bac2eb5aaa632, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -277,8 +277,10 @@ MonoBehaviour:
   multiplicatorTimeToGetInPosition: 2
   directionnalModificator: 3
   jumpOutForceMultiplicator: 3.5
+  timeRespawn: 1
   stockagePosition: {x: 0, y: 0}
   isInDestroyingAnmation: 0
+  isInSpawningAnimation: 0
   playerIsAtRange: 0
   isOnTheRide: 0
   launchedWithoutPlayer: 0

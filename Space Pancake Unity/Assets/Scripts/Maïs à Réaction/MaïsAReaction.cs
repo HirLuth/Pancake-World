@@ -134,7 +134,7 @@ public class MaïsAReaction : MonoBehaviour
             CameraMovements.Instance.maïsCamera = true;
             
             Character.Instance.anim.SetBool("isOnTyroMaïs", true);
-            Character.Instance.GetComponent<SpriteRenderer>().sortingOrder = -1;
+            Character.Instance.GetComponent<SpriteRenderer>().sortingOrder = 2;
             
             spriteSelf.color = colorNotAtRange;
             animatorSelf.SetBool("maïsIsGoingUp", true);
