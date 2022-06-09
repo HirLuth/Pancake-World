@@ -39,6 +39,7 @@ public class Tyrolienne : MonoBehaviour
     [Header("Autres")]
     private bool isOnThisZipline;
     public static Tyrolienne Instance;
+    private bool soundWasPlayed;
     
     bool oui = true;
 
@@ -123,8 +124,14 @@ public class Tyrolienne : MonoBehaviour
                 {
                     if (!Character.Instance.particuleVitesseInversé.isPlaying)
                     {
-                        Character.Instance.particuleVitesseInversé.Play(); 
+                        Character.Instance.particuleVitesseInversé.Play();
                     }
+                }
+
+                if (!soundWasPlayed)
+                {
+                    AudioManager.instance.PlayOneshotSoundEffect(16);
+                    soundWasPlayed = true;
                 }
                 
                 // Si le joueur décide de sauter sur la tyrolienne
@@ -144,6 +151,7 @@ public class Tyrolienne : MonoBehaviour
 
                     Character.Instance.particuleVitesse.Stop();
                     Character.Instance.particuleVitesseInversé.Stop();
+                    soundWasPlayed = false;
                 }
 
                 // Gain de vitesse de la tyrolienne 
@@ -221,6 +229,7 @@ public class Tyrolienne : MonoBehaviour
 
             posActuel.x = pos2.x - collision.transform.position.x;
             posActuel.y = pos2.y - collision.transform.position.y;
+
         }
     }
 }
