@@ -340,6 +340,11 @@ public class Character: MonoBehaviour
                     resistanceWall = 0;
                     
                     MoveCharacter();
+
+                    if (Mathf.Abs(rb.velocity.x) < 0.1f)
+                    {
+                        AudioManager.instance.BackToNeutralSoundEffect1();
+                    }
                 }
 
                 else if (!noAirControl)
@@ -622,7 +627,6 @@ public class Character: MonoBehaviour
             // Si le joueur s'arrête de bouger
             else if (abscisseMovementsCurve >= -0.0001f)
             {
-                AudioManager.instance.BackToNeutralSoundEffect1();
                 abscisseMovementsCurve -= Time.deltaTime * vitesseDecelerationCurve;
             }
 
