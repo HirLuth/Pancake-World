@@ -718,7 +718,7 @@ public class Character: MonoBehaviour
         // Tout ce qui concerne le fait que le personnage a un air control pouvant aller plus vite que la vitesse de marche
         if (!stop)
         {
-            if(Mathf.Abs(rb.velocity.x) > speed + 0.1f)
+            if(Mathf.Abs(rb.velocity.x) > speed)
             {
                 runAirControl = true;
                 stop = true;
