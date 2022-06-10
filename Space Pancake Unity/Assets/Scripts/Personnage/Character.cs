@@ -468,14 +468,14 @@ public class Character: MonoBehaviour
                     stopStretch = true;
                 }
             }
-            
+
             if(!noControl && !noAirControl && !usingSerpe && !onGround && !stop)
             {
                 if (!isWallJumping)
                 {
                     if ((canWallJumpLeft || canWallJumpRight) && resistanceWall > 0.15f)
                     {
-                        if(Mathf.Abs(rb.velocity.x) > speed + 0.5f)
+                        if(Mathf.Abs(rb.velocity.x) > speed)
                         {
                             runAirControl = true;
                             stop = true;
@@ -489,7 +489,7 @@ public class Character: MonoBehaviour
                     
                     else if (!canWallJumpLeft && !canWallJumpRight)
                     {
-                        if(Mathf.Abs(rb.velocity.x) > speed + 0.5f)
+                        if(Mathf.Abs(rb.velocity.x) > speed)
                         {
                             runAirControl = true;
                             stop = true;
@@ -667,6 +667,15 @@ public class Character: MonoBehaviour
             {
                 abscisseRunCurve -= Time.deltaTime * vitesseRunDecelerationCurve;
                 //Debug.Log(abscisseRunCurve);
+            }
+
+            if (abscisseRunCurve > 0.2f)
+            {
+                runAirControl = true;
+            }
+            else
+            {
+                runAirControl = false;
             }
             
             
