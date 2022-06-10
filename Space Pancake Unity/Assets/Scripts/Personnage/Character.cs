@@ -143,6 +143,7 @@ public class Character: MonoBehaviour
     public bool isUsingSerp;
 
     private bool x1, x2;
+    private bool walkSound;
 
 
 
@@ -451,18 +452,21 @@ public class Character: MonoBehaviour
 
             if (onGround && !EventManager.Instance.isDead)
             {
-                if (Mathf.Abs(rb.velocity.x) < 0.1f)
+                if (Mathf.Abs(rb.velocity.x) < 0.1f && walkSound)
                 {
+                    walkSound = false;
                     AudioManager.instance.BackToNeutralSoundEffect1();
                 }
-                else
+                else if(Mathf.Abs(rb.velocity.x) > 0.1f)
                 {
+                    walkSound = true;
                     AudioManager.instance.SetWalkingSound();
                 }
             }
 
-            else
+            else if(walkSound)
             {
+                walkSound = false;
                 AudioManager.instance.BackToNeutralSoundEffect1();
             }
 
