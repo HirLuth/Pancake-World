@@ -448,27 +448,24 @@ public class Character: MonoBehaviour
                 isFalling = false;
                 isJumping = true;
             }
-            
-            if(Mathf.Abs(rb.velocity.x) < 0.1f)
+
+            if (onGround && !EventManager.Instance.isDead)
             {
-                if(onGround)
+                if (Mathf.Abs(rb.velocity.x) < 0.1f)
+                {
                     AudioManager.instance.BackToNeutralSoundEffect1();
-            }
-            else if (onGround)
-            {
-                if(Mathf.Abs(rb.velocity.x) < speed + 0.1f)
+                }
+                else
                 {
                     AudioManager.instance.SetWalkingSound();
                 }
             }
-            else if(!onGround)
-                AudioManager.instance.BackToNeutralSoundEffect1();
-            
-            if (EventManager.Instance.isDead)
+
+            else
             {
                 AudioManager.instance.BackToNeutralSoundEffect1();
             }
-            
+
 
             anim.SetBool("isRunning", isRunning);
             anim.SetBool("isWalking", isWalking);
