@@ -448,6 +448,29 @@ public class Character: MonoBehaviour
                 isFalling = false;
                 isJumping = true;
             }
+            
+            if(Mathf.Abs(rb.velocity.x) < 0.1f)
+            {
+                if(onGround)
+                    AudioManager.instance.BackToNeutralSoundEffect1();
+            }
+            else
+            {
+                if(Mathf.Abs(rb.velocity.x) < speed + 0.1f)
+                {  
+                    if(onGround)
+                        AudioManager.instance.SetWalkingSound();
+                }
+            }
+            
+            if(!onGround)
+                AudioManager.instance.BackToNeutralSoundEffect1();
+            
+            if (EventManager.Instance.isDead)
+            {
+                AudioManager.instance.BackToNeutralSoundEffect1();
+            }
+            
 
             anim.SetBool("isRunning", isRunning);
             anim.SetBool("isWalking", isWalking);
@@ -704,11 +727,6 @@ public class Character: MonoBehaviour
             {
                 isRunning = true;
             }
-        }
-
-        if (EventManager.Instance.isDead)
-        {
-            AudioManager.instance.BackToNeutralSoundEffect1();
         }
     }
 
