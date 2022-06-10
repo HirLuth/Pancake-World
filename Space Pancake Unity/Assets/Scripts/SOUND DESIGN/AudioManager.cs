@@ -45,11 +45,12 @@ public class AudioManager : MonoBehaviour
     
     void Update()
     {
-        Debug.Log(secondaryAudioSource.isPlaying);
+        
     }
 
     public void RailEnter()
     {
+        main3AudioSource.Play();
         main3AudioSource.priority = 0;
         main2AudioSource.priority = 128;
                     
