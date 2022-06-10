@@ -18,11 +18,13 @@ public class UIManager : MonoBehaviour
     public Image fondu;
 
     private PlayerControls controls;
+    
 
     [Header("Pause")]
     [HideInInspector] public bool pauseActive;
     private float timerSortiePause;
     public EventSystem eventSystem;
+    private bool doItOnce;
 
 
     [Header("Timer")] public TextMeshProUGUI timer;
@@ -100,10 +102,12 @@ public class UIManager : MonoBehaviour
             timerSortiePause += Time.deltaTime;
             Character.Instance.jump = false;
             Character.Instance.noControl = true;
+            doItOnce = false;
         }
-        else
+        else if(!doItOnce)
         {
             Character.Instance.noControl = false;
+            doItOnce = true;
         }
     }
 
