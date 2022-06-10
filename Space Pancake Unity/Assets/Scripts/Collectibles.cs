@@ -34,7 +34,6 @@ public class Collectibles : MonoBehaviour
         {
             if (location == stockagePosition)
             {
-                Debug.Log(location);
                 if (stockagePosition.x < SpawnPointManagement.spawnPointLocation.x)
                 {
                     Destroy(this.gameObject);  
