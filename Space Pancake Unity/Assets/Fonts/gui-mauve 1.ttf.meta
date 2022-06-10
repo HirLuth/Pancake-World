@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 0722f974fe57b3d42a84739094a5eb7f
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Gui-Mauve
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: dbbc7f094c65c4246942ca906ccb0010, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
