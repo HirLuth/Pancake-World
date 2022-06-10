@@ -156,6 +156,7 @@ public class MenuManager : MonoBehaviour
     public void WalkRun(bool inverse)
     {
         Character.Instance.inverseRun = inverse;
+        Character.Instance.run = false;
     }
 
     public void FullScreen(bool fenetre)
