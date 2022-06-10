@@ -496,7 +496,6 @@ public class Character: MonoBehaviour
                     {
                         if(Mathf.Abs(rb.velocity.x) > speed + 0.5f)
                         {
-                            Debug.Log(Mathf.Abs(rb.velocity.x));
                             runAirControl = true;
                             stop = true;
                         }

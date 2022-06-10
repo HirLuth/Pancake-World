@@ -66,6 +66,8 @@ public class Bash : MonoBehaviour
     {
         rb = Character.Instance.rb;
         particleBash.Stop();
+
+        debutRalenti = 1.5f;
     }
 
     private void OnEnable()
@@ -107,7 +109,7 @@ public class Bash : MonoBehaviour
         
         else if (exitEffects)
         {
-            debutRalenti = 1;
+            debutRalenti = 1.5f;
             
             if (timerEffets > 0)
             {
@@ -184,7 +186,7 @@ public class Bash : MonoBehaviour
                 
                 Time.fixedDeltaTime = 0.02f * Time.timeScale;
 
-                if (distance < 1)
+                /*if (distance < 1)
                 {
                     volume.weight = 0.5f * puissanceEffets;
                     Time.timeScale = 0.035f;
@@ -193,11 +195,14 @@ public class Bash : MonoBehaviour
                 {
                     volume.weight = 1f - distance * 0.5f * puissanceEffets;
                     Time.timeScale = 0.3f * distance / 10;
-                }
+                }*/
+                
+                volume.weight = 0.9f - distance * 0.5f * puissanceEffets;
+                Time.timeScale = 0.012f + distance / 25;
 
-                if (debutRalenti > puissanceEffets)
+                if (debutRalenti > volume.weight)
                 {
-                    debutRalenti -= Time.deltaTime * 25;
+                    debutRalenti -= Time.deltaTime * 20;
                     volume.weight = debutRalenti;
                 }
 
