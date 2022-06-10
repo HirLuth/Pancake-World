@@ -981,6 +981,9 @@ public class Character: MonoBehaviour
         abscisseMovementsCurve = 0;
         abscisseRunCurve = 0;
 
+        wallJump = false;
+        timerWallJump = 0;
+
         GetComponent<SpriteRenderer>().sortingOrder = 3;
 
         yield return new WaitForSeconds(duree);
