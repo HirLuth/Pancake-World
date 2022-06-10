@@ -45,10 +45,7 @@ public class AudioManager : MonoBehaviour
     
     void Update()
     {
-        if (mainAudioSource.clip != null)
-        {
-            //Debug.Log(mainAudioSource.clip.name);
-        }
+        Debug.Log(secondaryAudioSource.isPlaying);
     }
 
     public void RailEnter()
