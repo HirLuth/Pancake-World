@@ -99,6 +99,7 @@ public class EventManager : MonoBehaviour
         {
             if (SceneManager.GetActiveScene().name == "Menu Principal")
             {
+                AudioManager.instance.SetMenuTheme();
                 fondu = MenuManager.Instance.fondu;
                 
                 fondu.DOFade(1, 0);
