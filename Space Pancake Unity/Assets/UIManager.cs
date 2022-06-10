@@ -99,6 +99,11 @@ public class UIManager : MonoBehaviour
         {
             timerSortiePause += Time.deltaTime;
             Character.Instance.jump = false;
+            Character.Instance.noControl = true;
+        }
+        else
+        {
+            Character.Instance.noControl = false;
         }
     }
 
@@ -109,8 +114,7 @@ public class UIManager : MonoBehaviour
         UIPause.SetActive(false);
 
         Time.timeScale = 1;
-        Character.Instance.noControl = false;
-                
+
         FirstSelected.Instance.FermetureMenu();
 
         timerSortiePause = 0;

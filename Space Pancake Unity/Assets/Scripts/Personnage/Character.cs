@@ -13,7 +13,7 @@ public class Character: MonoBehaviour
     public PlayerControls controls;
     [HideInInspector] public bool moveLeft;
     [HideInInspector] public bool moveRight;
-    private bool run;
+    [HideInInspector] public bool run;
     [HideInInspector] public bool jump;
     private bool wallJump;
     [HideInInspector] public bool inverseRun;
