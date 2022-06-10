@@ -342,11 +342,6 @@ public class Character: MonoBehaviour
                     resistanceWall = 0;
                     
                     MoveCharacter();
-
-                    if (Mathf.Abs(rb.velocity.x) < 0.1f)
-                    {
-                        AudioManager.instance.BackToNeutralSoundEffect1();
-                    }
                 }
 
                 else if (!noAirControl)
@@ -616,7 +611,6 @@ public class Character: MonoBehaviour
         // Si le joueur marche
         else if (!run && !running)
         {
-            AudioManager.instance.SetWalkingSound();
             stopDemiTourWalk = false;
             
             // Si le joueur appuie sur une touche de déplacement
@@ -684,11 +678,13 @@ public class Character: MonoBehaviour
         if(Mathf.Abs(rb.velocity.x) < 0.1f)
         {
             isWalking = false;
+            AudioManager.instance.BackToNeutralSoundEffect1();
         }
         else
         {
             if(Mathf.Abs(rb.velocity.x) < speed + 0.1f)
             {  
+                AudioManager.instance.SetWalkingSound();
                 isWalking = true;
                 isRunning = false;
             }
