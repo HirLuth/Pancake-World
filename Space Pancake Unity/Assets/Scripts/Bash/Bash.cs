@@ -158,7 +158,7 @@ public class Bash : MonoBehaviour
                 Character.Instance.noControl = false;
                 
                 // Camera shake
-                Camera.main.DOShakePosition(duration, amplitude);
+                Camera.main.DOShakePosition(duration, amplitude, 10, 120);
 
                 // On donne de l'�lan au personnage
                 direction = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical") + 0.23f);
