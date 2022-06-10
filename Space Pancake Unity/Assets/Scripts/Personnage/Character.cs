@@ -454,16 +454,14 @@ public class Character: MonoBehaviour
                 if(onGround)
                     AudioManager.instance.BackToNeutralSoundEffect1();
             }
-            else
+            else if (onGround)
             {
                 if(Mathf.Abs(rb.velocity.x) < speed + 0.1f)
-                {  
-                    if(onGround)
-                        AudioManager.instance.SetWalkingSound();
+                {
+                    AudioManager.instance.SetWalkingSound();
                 }
             }
-            
-            if(!onGround)
+            else if(!onGround)
                 AudioManager.instance.BackToNeutralSoundEffect1();
             
             if (EventManager.Instance.isDead)
@@ -710,16 +708,11 @@ public class Character: MonoBehaviour
         if(Mathf.Abs(rb.velocity.x) < 0.1f)
         {
             isWalking = false;
-            
-            if(onGround)
-                AudioManager.instance.BackToNeutralSoundEffect1();
         }
         else
         {
             if(Mathf.Abs(rb.velocity.x) < speed + 0.1f)
-            {  
-                if(onGround)
-                    AudioManager.instance.SetWalkingSound();
+            {
                 isWalking = true;
                 isRunning = false;
             }
