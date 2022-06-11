@@ -198,7 +198,7 @@ public class Bash : MonoBehaviour
                 }*/
                 
                 volume.weight = 0.9f - distance * 0.5f * puissanceEffets;
-                Time.timeScale = 0.015f + distance / 30;
+                Time.timeScale = 0.025f;
 
                 if (debutRalenti > volume.weight)
                 {
