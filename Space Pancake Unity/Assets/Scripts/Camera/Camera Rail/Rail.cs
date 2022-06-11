@@ -9,13 +9,17 @@ public class Rail : MonoBehaviour
 {
     public Transform[] nodes;
     public Nodes[] vitessesNodes;
+    [SerializeField] private bool nikeTaMere;
 
     public static Rail Instance;
 
     private void Start()
     {
-        nodes = GetComponentsInChildren<Transform>();
-        vitessesNodes = GetComponentsInChildren<Nodes>();
+        if (!nikeTaMere)
+        {
+            nodes = GetComponentsInChildren<Transform>();
+            vitessesNodes = GetComponentsInChildren<Nodes>();  
+        }
         Instance = this;
     }
 
