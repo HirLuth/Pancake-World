@@ -104,6 +104,7 @@ public class MenuManager : MonoBehaviour
         
         //Destroy(spawnPointManager);
         Destroy(character);
+        AudioManager.instance.dangerSongWasPlayed = false;
 
         // Transition de scene en scene
         EventManager.Instance.menuToGame = true;

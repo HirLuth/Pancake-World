@@ -13,6 +13,7 @@ public class Mover : MonoBehaviour
     public int currentSeg;
     private float transition;
     [HideInInspector]public bool isCompleted;
+    private bool musicLaunched;
 
     public bool go;
     private float avanceeTransition;
@@ -55,7 +56,7 @@ public class Mover : MonoBehaviour
 
     private void Play()
     {
-        if (!CameraMovements.Instance.isOnRail) AudioManager.instance.RailEnter();
+        //if (!CameraMovements.Instance.isOnRail) 
         CameraMovements.Instance.isOnRail = true;
 
         // Tout ce qui concerne le changement de rythme du scrolling
@@ -196,6 +197,11 @@ public class Mover : MonoBehaviour
     {
         if (other.tag == "Character")
         {
+            if (!musicLaunched)
+            {
+                AudioManager.instance.RailEnter();
+                musicLaunched = true;
+            }
             go = true;
         }
     }

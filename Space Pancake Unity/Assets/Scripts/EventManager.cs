@@ -100,6 +100,8 @@ public class EventManager : MonoBehaviour
             if (SceneManager.GetActiveScene().name == "Menu Principal")
             {
                 AudioManager.instance.SetMenuTheme();
+                AudioManager.instance.RailExit();
+                AudioManager.instance.dangerSongWasPlayed = false;
                 fondu = MenuManager.Instance.fondu;
                 
                 fondu.DOFade(1, 0);
