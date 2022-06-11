@@ -1336,8 +1336,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "Dans les temps anciens, arm\xE9 d\u2019un rouleau \xE0 p\xE2tisserie,
-    d\u2019un four et d\u2019un fouet, le Cuisto Universel cr\xE9a un monde de confiserie
-    et de p\xE2tisserie. Il glissa dans la recette une pinc\xE9e de sucre magique,
+    d\u2019un four et d\u2019un fouet, le Cuisto Universel cr\xE9a un monde de confiseries
+    et de p\xE2tisseries. Il glissa dans la recette une pinc\xE9e de sucre magique,
     afin de lui donner vie."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 17d25b1b06ca78c41ae572fda0ebf289, type: 2}
@@ -1365,8 +1365,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 4.45
-  m_fontSizeBase: 4.45
+  m_fontSize: 4.4
+  m_fontSizeBase: 4.4
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
