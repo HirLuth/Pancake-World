@@ -9,7 +9,7 @@ public class TextCredits : MonoBehaviour
     {
         if (ScriptFinDeJeu.Instance.launchCredits)
         {
-            transform.DOMoveY(transform.position.y + 100, 5);
+            transform.DOMoveY(transform.position.y + 150, 5);
         }
     }
 }
