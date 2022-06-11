@@ -120,7 +120,7 @@ public class EventManager : MonoBehaviour
     }
     
     
-    public void Death()
+    public void Death(bool isWater = false)
     {
         if (!dieOnce)
         {
@@ -148,8 +148,14 @@ public class EventManager : MonoBehaviour
 
             // On lance son animation
             Character.Instance.anim.SetTrigger("isDead");
-            AudioManager.instance.PlayOneshotSoundEffect(17);
-
+            if (isWater)
+            {
+                AudioManager.instance.PlayOneshotSoundEffect(17); 
+            }
+            else
+            {
+                AudioManager.instance.PlayOneshotSoundEffect(18);
+            }
             // Attente de la fin de l'animation
             StartCoroutine(WaitAnimation(dureeAnimationMort));
         }

@@ -6,12 +6,20 @@ using UnityEngine.SceneManagement;
 
 public class ZoneMort : MonoBehaviour
 {
-
+    [SerializeField] private bool isWater;
         private void OnCollisionEnter2D(Collision2D other)
         {
             if (other.gameObject.CompareTag("Character") && !EventManager.Instance.isDead)
             {
-                EventManager.Instance.Death(); 
+                if (isWater)
+                {
+                    EventManager.Instance.Death(true);  
+                }
+                else
+                {
+                    EventManager.Instance.Death(false);
+                }
+                
             } 
         }
 
@@ -19,7 +27,14 @@ public class ZoneMort : MonoBehaviour
         {
             if (other.gameObject.CompareTag("Character") && !EventManager.Instance.isDead)
             {
-                EventManager.Instance.Death(); 
+                if (isWater)
+                {
+                    EventManager.Instance.Death(true);  
+                }
+                else
+                {
+                    EventManager.Instance.Death(false);
+                }
             } 
         }
 }

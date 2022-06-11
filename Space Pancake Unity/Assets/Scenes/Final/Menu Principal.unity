@@ -708,16 +708,20 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 5146711195465452340, guid: 11f8edccc0a4fc0429134597639cc1c3, type: 3}
-      propertyPath: listClip.Array.data[0].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: f3535aae9dce610498c0cb685a7f7a4a, type: 3}
+      propertyPath: listClip.Array.size
+      value: 19
+      objectReference: {fileID: 0}
     - target: {fileID: 5146711195465452340, guid: 11f8edccc0a4fc0429134597639cc1c3, type: 3}
-      propertyPath: listClip.Array.data[1].clip
+      propertyPath: listClip.Array.data[18].clip
       value: 
-      objectReference: {fileID: 8300000, guid: 4bb7ff6a246a44d4bb1ef29b19b6bf86, type: 3}
+      objectReference: {fileID: 8300000, guid: 94194f24fc93ac140b29f4f179fbd564, type: 3}
     - target: {fileID: 5146711195465452340, guid: 11f8edccc0a4fc0429134597639cc1c3, type: 3}
-      propertyPath: listClip.Array.data[3].volume
-      value: 0
+      propertyPath: listClip.Array.data[18].pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5146711195465452340, guid: 11f8edccc0a4fc0429134597639cc1c3, type: 3}
+      propertyPath: listClip.Array.data[18].volume
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5146711195465452343, guid: 11f8edccc0a4fc0429134597639cc1c3, type: 3}
       propertyPath: m_RootOrder

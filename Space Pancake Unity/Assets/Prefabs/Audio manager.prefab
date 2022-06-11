@@ -48,21 +48,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   listClip:
-  - clip: {fileID: 8300000, guid: fdb189fb304ada3459b134c7720d1797, type: 3}
+  - clip: {fileID: 8300000, guid: f3535aae9dce610498c0cb685a7f7a4a, type: 3}
     name: 
     volume: 1
     pitch: 1
-  - clip: {fileID: 8300000, guid: 80da645cd0770ae48a6bd88663bf9519, type: 3}
+  - clip: {fileID: 8300000, guid: 4bb7ff6a246a44d4bb1ef29b19b6bf86, type: 3}
     name: 
     volume: 1
     pitch: 1
-  - clip: {fileID: 8300000, guid: 7385705ff33d4544ea4950fece76a903, type: 3}
+  - clip: {fileID: 8300000, guid: 286f450dae0c7ad488b29fda652b4d31, type: 3}
     name: 
     volume: 0.095
     pitch: 1
   - clip: {fileID: 8300000, guid: 6e37758b2fb172942935b4dfc2f02413, type: 3}
     name: 
-    volume: 0.049
+    volume: 0
     pitch: 1
   - clip: {fileID: 8300000, guid: 42e1b7eb4ce8e8a49a5c35d9b664444c, type: 3}
     name: 
@@ -126,6 +126,7 @@ MonoBehaviour:
   secondaryAudioSource: {fileID: 1979781201112652393}
   actualNeutralBackground: 0
   actualNeutralSoundEffect: 0
+  dangerSongWasPlayed: 0
   playermastervolume: 1
   masterVolume: 1
 --- !u!82 &5146711195465452341
