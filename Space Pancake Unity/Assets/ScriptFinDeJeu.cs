@@ -46,6 +46,8 @@ public class ScriptFinDeJeu : MonoBehaviour
     public bool launchCredits;
     private float timerCredits;
     public float finCredits;
+    public GameObject fondAvant2;
+    public bool stopCredits;
 
 
     void Start()
@@ -57,6 +59,7 @@ public class ScriptFinDeJeu : MonoBehaviour
         Instance = this;
         
         fondAvant.GetComponent<Image>().DOFade(0,0);
+        fondAvant2.GetComponent<Image>().DOFade(0,0);
     }
     
     
@@ -137,7 +140,7 @@ public class ScriptFinDeJeu : MonoBehaviour
                 Character.Instance.isFalling = false;
             }
             
-            else if(timer < 9.5f)
+            else if (timer < 9.5f)
             {
                 stop = true;
                 guimauve.transform.DOMoveY(originalPos.y + 2, 2);
@@ -182,12 +185,29 @@ public class ScriptFinDeJeu : MonoBehaviour
             {
                 timerCredits += Time.deltaTime;
                 
-                if (Character.Instance.controls.Personnage.Pause.WasPerformedThisFrame() || timerCredits > finCredits)
+                if (Character.Instance.controls.Personnage.Pause.WasPerformedThisFrame())
                 {
                     SpawnPointManagement.instance.RecordSpawn(new Vector2(-90.4f, -4.2f));
                     SpawnPointManagement.spawnWasModifiedOnce = false;
+                    
+                    fondAvant2.GetComponent<Image>().DOFade(1, 0.5f);
                 
                     UIManager.Instance.Menu();
+                }
+                
+                else if (timerCredits > finCredits)
+                {
+                    SpawnPointManagement.instance.RecordSpawn(new Vector2(-90.4f, -4.2f));
+                    SpawnPointManagement.spawnWasModifiedOnce = false;
+                    
+                    fondAvant2.GetComponent<Image>().DOFade(1, 0.5f);
+
+                    stopCredits = true;
+
+                    if (timerCredits > finCredits + 1)
+                    {
+                        UIManager.Instance.Menu();
+                    }
                 }
             }
         }
