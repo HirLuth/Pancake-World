@@ -102,7 +102,6 @@ public class MenuManager : MonoBehaviour
         EventManager.Instance.pointsNumber = 0;
         SpawnPointManagement.instance.locationCollectibleCollected = new List<Vector2>();
         
-        Destroy(audioManager);
         //Destroy(spawnPointManager);
         Destroy(character);
 
