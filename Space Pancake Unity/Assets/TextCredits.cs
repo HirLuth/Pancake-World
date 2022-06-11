@@ -7,9 +7,16 @@ public class TextCredits : MonoBehaviour
 {
     void Update()
     {
-        if (ScriptFinDeJeu.Instance.launchCredits)
+        if (ScriptFinDeJeu.Instance.endEvent)
         {
-            transform.DOMoveY(transform.position.y + 150, 5);
+            if (ScriptFinDeJeu.Instance.launchCredits && !ScriptFinDeJeu.Instance.stopCredits)
+            {
+                transform.DOMoveY(transform.position.y + 150, 5);
+            }
+            else
+            {
+                transform.DOMoveY(transform.position.y, 5);
+            }
         }
     }
 }
