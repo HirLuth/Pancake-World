@@ -15,6 +15,7 @@ public class AudioManager : MonoBehaviour
     public static AudioManager instance;
     public int actualNeutralBackground;
     public int actualNeutralSoundEffect;
+    public bool dangerSongWasPlayed;
 
     [Header("Volume Sound Effects")] 
     [Range(0,3)] public float playermastervolume;
@@ -50,15 +51,16 @@ public class AudioManager : MonoBehaviour
 
     public void RailEnter()
     {
-        main3AudioSource.Play();
-        main3AudioSource.priority = 0;
-        main2AudioSource.priority = 128;
+        if (!dangerSongWasPlayed)
+        {
+            main3AudioSource.Play();
+            main3AudioSource.priority = 0;
+            main2AudioSource.priority = 128;
                     
-        main2AudioSource.DOFade(0f, 1f);
-        main3AudioSource.DOFade(1f, 1f);
-        Debug.Log("Enter");
-        
-        
+            main2AudioSource.DOFade(0f, 1f);
+            main3AudioSource.DOFade(1f, 1f);
+            dangerSongWasPlayed = true;
+        }
     }
 
     public void RailExit()
@@ -74,7 +76,7 @@ public class AudioManager : MonoBehaviour
 
         main2AudioSource.DOFade(1f, 1f);
         main3AudioSource.DOFade(0f, 1f);
-        Debug.Log("Exit");
+        dangerSongWasPlayed = false;
     }
     public void SetBackGroundSound(int numberIntheList)
     {
