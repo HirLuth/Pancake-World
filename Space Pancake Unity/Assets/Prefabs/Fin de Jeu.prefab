@@ -1042,8 +1042,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\rREULOS-CARR\xC8RE Camille"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 17d25b1b06ca78c41ae572fda0ebf289, type: 2}
-  m_sharedMaterial: {fileID: -2198774170622599094, guid: 17d25b1b06ca78c41ae572fda0ebf289, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 5d3bbfa2608db4842b7eb0a84958b7ff, type: 2}
+  m_sharedMaterial: {fileID: -6123513371944376670, guid: 5d3bbfa2608db4842b7eb0a84958b7ff, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3823,7 +3823,7 @@ MonoBehaviour:
   textTime: {fileID: 4430169814477988642}
   fondAvant: {fileID: 142610531}
   launchCredits: 0
-  finCredits: 32.5
+  finCredits: 33
   fondAvant2: {fileID: 33678794}
   stopCredits: 0
 --- !u!1 &1941818486346667609
